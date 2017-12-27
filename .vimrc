@@ -4,10 +4,12 @@
 set nocompatible
 
 " Set default colorscheme
-colorscheme murphy
+colorscheme elflord
 
 " Leader - ( Spacebar )
 let mapleader = " "
+
+autocmd FileType python noremap <F5> :w !python %<CR>
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -265,19 +267,18 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'tmhedberg/SimpylFold' 
-Plugin 'vim-syntastic/syntastic'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'nvie/vim-flake8'
-Plugin 'Valloric/YouCompleteMe' " You will need to compile this plugin in ./vim/plugins/  you may need to install cmake in order to do so.
+Plugin 'w0rp/ale' " Asynchronous lint
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'maralla/completor.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " You will need a powerline font.  This is a good one: https://github.com/powerline/fonts/blob/master/DroidSansMono/Droid%20Sans%20Mono%20for%20Powerline.otf 
