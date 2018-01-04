@@ -160,8 +160,6 @@ let g:ag_working_path_mode="r"
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
-" Also map leader + s
-map <leader>s <C-S>
 
 " Quickly close windows
 nnoremap <leader>w :x<cr>
@@ -177,11 +175,11 @@ nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
 
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
-
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
+
+" Control H automatically finds and replaces in the current document
+nnoremap <C-H> :%s/s/r/g
 
 " AUTOCOMMANDS - Do stuff
 
@@ -262,6 +260,9 @@ let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 
 source ~/.simplenoterc
+let g:SimplenoteFiletype = "markdown"
+let g:SimplenoteVertical=1
+map <leader>s :Simplenote
 
 
 " set the runtime path to include Vundle and initialize
