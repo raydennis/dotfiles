@@ -28,6 +28,7 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # brew install zsh-autosuggestions
 source ~/.oh-my-zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+
 # setup "Z" on MACOS
 # brew install z
 case `uname` in
@@ -36,6 +37,8 @@ case `uname` in
     . `brew --prefix`/etc/profile.d/z.sh
   ;;
   Linux)
+    . ~/z.sh
+    unsetopt BG_NICE # fixes "zsh: nice(5) failed: operation not permitted" issue when running z on WSL
     # commands for Linux go here
   ;;
   FreeBSD)
