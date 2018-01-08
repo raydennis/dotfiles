@@ -52,7 +52,7 @@ esac
 # For a full list of active aliases, run `alias`.
 alias zshconfig="vim  ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias tnc="ping -c 1 8.8.8.9 -t 1 | grep '0.0% \| 100.0%'"
+alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 
 # taken from https://stackoverflow.com/questions/3964068/zsh-automatically-run-ls-after-every-cd
 function chpwd() 
