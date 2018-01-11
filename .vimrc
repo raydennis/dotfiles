@@ -222,6 +222,9 @@ augroup vimrcEx
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass,less setlocal iskeyword+=-
+
+  autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=perl | endif
+
 augroup END
 
 " Enable folding

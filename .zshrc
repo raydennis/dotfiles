@@ -29,11 +29,13 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
-# setup "Z" on MACOS
-# brew install z
 case `uname` in
   Darwin)
     # commands for OS X go here
+    # setup alias for MacVim
+    alias vim='/usr/local/Cellar/macvim/8.0-144_3/MacVim.app/Contents/MacOS/Vim'
+    # setup "Z" on MACOS
+    # brew install z
     . `brew --prefix`/etc/profile.d/z.sh
   ;;
   Linux)
@@ -53,6 +55,8 @@ esac
 alias zshconfig="vim  ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
+alias sn="vim -c SimplenoteList"
+alias todo="vim -c SimplenoteOpen # TODO"
 
 # taken from https://stackoverflow.com/questions/3964068/zsh-automatically-run-ls-after-every-cd
 function chpwd() 
