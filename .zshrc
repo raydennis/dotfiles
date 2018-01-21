@@ -56,7 +56,7 @@ alias zshconfig="vim  ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias sn="vim -c SimplenoteList"
-alias todo="vim -c SimplenoteOpen # TODO"
+alias todo="vim -c 'SimplenoteOpen deb32885f0aa11e7806ccd64099eb044'"
 
 # taken from https://stackoverflow.com/questions/3964068/zsh-automatically-run-ls-after-every-cd
 function chpwd() 
