@@ -142,8 +142,8 @@ map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 
 """ MORE AWESOME HOTKEYS
-"
-"
+nnoremap <leader>z [s1z=`]a
+
 " Run the q macro
 nnoremap <leader>q @q
 
@@ -155,15 +155,6 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 " Ag will search from project root
 let g:ag_working_path_mode="r"
-
-"Map Ctrl + S to save in any mode
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
-
-" Quickly close windows
-nnoremap <leader>w :x<cr>
-nnoremap <leader>W :q!<cr>
 
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
