@@ -123,6 +123,9 @@ nnoremap k gk
 nnoremap <tab> %
 vnoremap <tab> %
 
+nnoremap <leader>d "=strftime("%x %X")<CR>P
+
+
 " Always use vertical diffs
 set diffopt+=vertical
 
@@ -142,6 +145,7 @@ map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 
 """ MORE AWESOME HOTKEYS
+"spell check for previous mispelled word, accept first choice.
 nnoremap <leader>z [s1z=`]a
 
 " Run the q macro
