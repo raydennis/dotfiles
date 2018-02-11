@@ -4,7 +4,7 @@
 set nocompatible
 
 " Set default colorscheme
-colorscheme elflord
+colorscheme Monokai
 
 " Leader - ( Spacebar )
 let mapleader = " "
@@ -45,12 +45,6 @@ set hlsearch
 nnoremap <silent> <leader>, :noh<cr> " Stop highlight after searching
 set incsearch
 set showmatch
-
-" Softtabs, 2 spaces
-set tabstop=4
-set shiftwidth=4
-set shiftround
-set expandtab
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -231,15 +225,25 @@ noremap <leader>f za
 " <Python Setup>
 let python_highlight_all=1
 
-" python with virtualenv support
-" py << EOF
-" import os
-" import sys
-" if 'VIRTUAL_ENV' in os.environ:
-"   project_base_dir = os.environ['VIRTUAL_ENV']
-"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"   execfile(activate_this, dict(__file__=activate_this))
-" EOF
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set textwidth=79
+set expandtab
+set autoindent
+set fileformat=unix
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+imap <F5> <Esc>:w<CR>:!clear;python %<CR>"
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -275,6 +279,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+Plugin 'flazz/vim-colorschemes'
+Plugin 'hdima/python-syntax'
 Plugin 'mrtazz/simplenote.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'tmhedberg/SimpylFold'
