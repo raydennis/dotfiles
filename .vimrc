@@ -4,7 +4,8 @@
 set nocompatible
 
 " Set default colorscheme
-colorscheme Monokai
+colorscheme solarized
+set background=light
 
 " Leader - ( Spacebar )
 let mapleader = " "
@@ -279,7 +280,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-Plugin 'flazz/vim-colorschemes'
 Plugin 'hdima/python-syntax'
 Plugin 'mrtazz/simplenote.vim'
 Plugin 'vim-scripts/indentpython.vim'
