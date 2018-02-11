@@ -5,7 +5,7 @@ set nocompatible
 
 " Set default colorscheme
 colorscheme solarized
-set background=light
+set background=dark
 
 " Leader - ( Spacebar )
 let mapleader = " "
