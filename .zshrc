@@ -39,18 +39,6 @@ case `uname` in
     . `brew --prefix`/etc/profile.d/z.sh
     # simplenote date alias on osX
     local LASTWEEK=$(date -j -v-1w +"%Y-%m-%d")
-
-    code ()
-    {
-
-        if [[ $# = 0 ]]
-        then
-            open -a "Visual Studio Code"
-        else
-            [[ $1 = /* ]] && F="$1" || F="$PWD/${1#./}"
-            open -a "Visual Studio Code" --args "$F"
-        fi
-    }
   ;;
   Linux)
     . ~/z.sh
