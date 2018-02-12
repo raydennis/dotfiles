@@ -141,7 +141,7 @@ map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 
 """ MORE AWESOME HOTKEYS
 "spell check for previous mispelled word, accept first choice.
-nnoremap <leader>z [s1z=`]a
+nnoremap <leader>z [s1z=`]
 
 " Run the q macro
 nnoremap <leader>q @q
