@@ -4,7 +4,7 @@
 set nocompatible
 
 " Set default colorscheme
-colorscheme solarized
+colorscheme monokai
 set background=dark
 
 " Leader - ( Spacebar )
