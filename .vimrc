@@ -171,8 +171,8 @@ nnoremap <silent> <Down> :resize -5<cr>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" Control H automatically finds and replaces in the current document
-nnoremap <C-H> :%s/s/r/g
+" leader H automatically finds and replaces in the current document
+nnoremap <leader>h :%s/s/r/g
 
 " AUTOCOMMANDS - Do stuff
 
