@@ -171,6 +171,14 @@ nnoremap <silent> <Down> :resize -5<cr>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
+" Move lines up an down
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
 " leader H automatically finds and replaces in the current document
 nnoremap <leader>h :%s/s/r/g
 
