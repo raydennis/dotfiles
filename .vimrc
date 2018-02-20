@@ -246,34 +246,34 @@ set autoindent
 set fileformat=unix
 
 "python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-imap <F5> <Esc>:w<CR>:!clear;python %<CR>"
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+" EOF
+" imap <F5> <Esc>:w<CR>:!clear;python %<CR>"
 
 "Python interpreter in current file
 " http://vim.wikia.com/wiki/Execute_Python_from_within_current_file
-python << EOL
-import vim, StringIO
-def PyExecReplace(line1,line2):
-  r = vim.current.buffer.range(int(line1),int(line2))
-  redirected = StringIO.StringIO()
-  sys.stdout = redirected
-  exec('\n'.join(r) + '\n')
-  sys.stdout = sys.__stdout__
-  output = redirected.getvalue().split('\n')
-  r[:] = output[:-1] # the -1 is to remove the final blank line
-  redirected.close()
-EOL
-command -range Pyer python PyExecReplace(<f-line1>,<f-line2>)
-
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" python << EOL
+" import vim, StringIO
+" def PyExecReplace(line1,line2):
+"   r = vim.current.buffer.range(int(line1),int(line2))
+"   redirected = StringIO.StringIO()
+"   sys.stdout = redirected
+"   exec('\n'.join(r) + '\n')
+"   sys.stdout = sys.__stdout__
+"   output = redirected.getvalue().split('\n')
+"   r[:] = output[:-1] # the -1 is to remove the final blank line
+"   redirected.close()
+" EOL
+" command -range Pyer python PyExecReplace(<f-line1>,<f-line2>)
+" 
+" let g:ycm_autoclose_preview_window_after_completion=1
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " </Python Specific Setup>
 
