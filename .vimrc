@@ -172,12 +172,12 @@ nnoremap <silent> <Down> :resize -5<cr>
 nnoremap <leader><leader> <c-^>
 
 " Move lines up an down
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <C-d> :m .+1<CR>==
+nnoremap <C-u> :m .-2<CR>==
+inoremap <C-d> <Esc>:m .+1<CR>==gi
+inoremap <C-u> <Esc>:m .-2<CR>==gi
+vnoremap <C-d> :m '>+1<CR>gv=gv
+vnoremap <C-u> :m '<-2<CR>gv=gv
 
 " leader H automatically finds and replaces in the current document
 nnoremap <leader>h :%s/s/r/g
@@ -246,16 +246,31 @@ set autoindent
 set fileformat=unix
 
 "python with virtualenv support
-" py << EOF
-" import os
-" import sys
-" if 'VIRTUAL_ENV' in os.environ:
-  "  project_base_dir = os.environ['VIRTUAL_ENV']
-  "  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  "  execfile(activate_this, dict(__file__=activate_this))
-" EOF
-
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
 imap <F5> <Esc>:w<CR>:!clear;python %<CR>"
+
+"Python interpreter in current file
+" http://vim.wikia.com/wiki/Execute_Python_from_within_current_file
+python << EOL
+import vim, StringIO
+def PyExecReplace(line1,line2):
+  r = vim.current.buffer.range(int(line1),int(line2))
+  redirected = StringIO.StringIO()
+  sys.stdout = redirected
+  exec('\n'.join(r) + '\n')
+  sys.stdout = sys.__stdout__
+  output = redirected.getvalue().split('\n')
+  r[:] = output[:-1] # the -1 is to remove the final blank line
+  redirected.close()
+EOL
+command -range Pyer python PyExecReplace(<f-line1>,<f-line2>)
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -292,6 +307,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'hdima/python-syntax'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'mrtazz/simplenote.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'tmhedberg/SimpylFold'
