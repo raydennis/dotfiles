@@ -41,9 +41,13 @@ case `uname` in
     local LASTWEEK=$(date -j -v-1w +"%Y-%m-%d")
   ;;
   Linux)
+    # commands for Linux go here
+
+    # allow access to Vagrant from WSL
+    export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+    #setup the z plugin on WSL
     . ~/z.sh
     unsetopt BG_NICE # fixes "zsh: nice(5) failed: operation not permitted" issue when running z on WSL
-    # commands for Linux go here
   ;;
   FreeBSD)
     # commands for FreeBSD go here
