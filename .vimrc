@@ -10,8 +10,6 @@ set background=dark
 " Leader - ( Spacebar )
 let mapleader = " "
 
-autocmd FileType python noremap <F5> :w !python %<CR>
-
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
@@ -245,38 +243,6 @@ set expandtab
 set autoindent
 set fileformat=unix
 
-"python with virtualenv support
-" py << EOF
-" import os
-" import sys
-" if 'VIRTUAL_ENV' in os.environ:
-"   project_base_dir = os.environ['VIRTUAL_ENV']
-"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"   execfile(activate_this, dict(__file__=activate_this))
-" EOF
-" imap <F5> <Esc>:w<CR>:!clear;python %<CR>"
-
-"Python interpreter in current file
-" http://vim.wikia.com/wiki/Execute_Python_from_within_current_file
-" python << EOL
-" import vim, StringIO
-" def PyExecReplace(line1,line2):
-"   r = vim.current.buffer.range(int(line1),int(line2))
-"   redirected = StringIO.StringIO()
-"   sys.stdout = redirected
-"   exec('\n'.join(r) + '\n')
-"   sys.stdout = sys.__stdout__
-"   output = redirected.getvalue().split('\n')
-"   r[:] = output[:-1] # the -1 is to remove the final blank line
-"   redirected.close()
-" EOL
-" command -range Pyer python PyExecReplace(<f-line1>,<f-line2>)
-" 
-" let g:ycm_autoclose_preview_window_after_completion=1
-" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-" </Python Specific Setup>
-
 " Setup NERDTree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -287,11 +253,6 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
-
-source ~/.simplenoterc
-let g:SimplenoteFiletype = "markdown"
-let g:SimplenoteVertical=1
-map <leader>s :Simplenote
 
 
 " set the runtime path to include Vundle and initialize
@@ -306,20 +267,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-Plugin 'hdima/python-syntax'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'mrtazz/simplenote.vim'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'nvie/vim-flake8'
-Plugin 'w0rp/ale' " Asynchronous lint
 Plugin 'scrooloose/nerdtree'
-Plugin 'maralla/completor.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " You will need a powerline font.  This is a good one: https://github.com/powerline/fonts/blob/master/DroidSansMono/Droid%20Sans%20Mono%20for%20Powerline.otf 
-
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
