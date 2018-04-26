@@ -5,7 +5,6 @@ set nocompatible
 
 " Set default colorscheme
 colorscheme monokai
-set background=dark
 
 " Leader - ( Spacebar )
 let mapleader = " "
