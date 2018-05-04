@@ -15,5 +15,6 @@
     "[markdown]": {
         "editor.quickSuggestions": true
     },
-    "markdown.extension.preview.autoShowPreviewToSide": true
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+    "vsicons.dontShowNewVersionMessage": true
 }
