@@ -33,7 +33,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='/usr/local/Cellar/macvim/8.0-144_3/MacVim.app/Contents/MacOS/Vim'
+    alias vim='/usr/local/Cellar/macvim/8.0-146_1/MacVim.app/Contents/MacOS/Vim'
     # setup "Z" on MACOS
     # brew install z
     . `brew --prefix`/etc/profile.d/z.sh
