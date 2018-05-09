@@ -1,4 +1,7 @@
 # cheatsheetMarkdown 
+
+- [ ] Test
+
 # H1 
 ## H2 
 ### H3 
@@ -50,7 +53,7 @@ Reference-style:
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2" 
 
 Reference-style-2: 
-![alt text][logo2] 
+alt text][logo2] 
 
 [logo2]: https://i.imgur.com/cXfWL9J.png "Logo Title Text 2" 
 
@@ -69,6 +72,9 @@ print s
 No language indicated, so no syntax highlighting. 
 But let's throw in a tag. 
 ``` 
+
+inline hilighting  
+This is `git commmit -am "grreat code!"` inline highlighting
 
 ## Tables
 Colons can be used to align columns. 
@@ -137,3 +143,4 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" />
 Or, in pure Markdown, but losing the image sizing and border:m 
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+
