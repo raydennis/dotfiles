@@ -191,6 +191,10 @@ autocmd VimResized * :wincmd =
 "update dir to current file
 autocmd BufEnter * silent! cd %:p:h
 
+
+"alias F5 to open marddown with chrome"
+autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+
 augroup vimrcEx
   autocmd!
 
