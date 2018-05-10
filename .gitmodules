@@ -13,3 +13,6 @@
 [submodule "vim-monokai"]
 	path = vim-monokai
 	url = https://github.com/crusoexia/vim-monokai.git
+[submodule "vim-colors-solarized"]
+	path = vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git

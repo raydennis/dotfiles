@@ -9,6 +9,7 @@ ln -s ~/Documents/GitHub/dotFiles/z/z.sh ~/z.sh
 ln -s ~/Documents/GitHub/dotFiles/.vimrc ~/.vimrc
 ln -s ~/Documents/GitHub/dotFiles/.zshrc ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
+ln -s ~/Documents/GitHub/dotFiles/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
 
 # setup dependencies for vscode
 # on Mac or Linux (WSL = ?) type: 
