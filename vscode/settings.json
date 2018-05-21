@@ -16,5 +16,9 @@
         "editor.quickSuggestions": true
     },
     "markdown.extension.preview.autoShowPreviewToSide": true,
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "cSpell.language": "en"
 }
