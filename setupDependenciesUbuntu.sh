@@ -1,5 +1,11 @@
+# install zsh
+sudo apt-get install zsh -y
+
 # get oh-my-zsh installed
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# install vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 
 
 # link the dotfiles
 ln -s ~/Documents/GitHub/dotFiles/powerlevel9k ~/.oh-my-zsh/themes
