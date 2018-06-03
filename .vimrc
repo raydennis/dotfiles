@@ -259,6 +259,10 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 
+" Setup vim-table-mode
+noremap <leader>tm :TabelModeToggle
+noremap <leader>tt g:table_mode_tableize_map
+let g:table_mode_corner='|'
 
 " set the runtime path to include Vundle and initialize
 " take from: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -274,6 +278,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

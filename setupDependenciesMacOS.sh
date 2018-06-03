@@ -27,4 +27,3 @@ code --install-extension yzhang.dictionary-completion
 code --install-extension yzhang.markdown-all-in-one
 # now link to the user settings.json
 ln -s ~/Documents/GitHub/dotFiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-
