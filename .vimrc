@@ -208,10 +208,10 @@ augroup vimrcEx
   autocmd FileType markdown setlocal spell
 
   " Automatically wrap at 100 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=100
+  " autocmd BufRead,BufNewFile *.md setlocal textwidth=100
 
   " Automatically wrap at 100 characters and spell check git commit messages
-  autocmd FileType gitcommit setlocal textwidth=100
+  " autocmd FileType gitcommit setlocal textwidth=100
   autocmd FileType gitcommit setlocal spell
 
   " Allow stylesheets to autocomplete hyphenated words
@@ -233,6 +233,10 @@ let python_highlight_all=1
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+<<<<<<< HEAD
+=======
+" set textwidth=79
+>>>>>>> 1ce7fe266e90ce4dc4ee0c8085e64d00d1ad8763
 set expandtab
 set autoindent
 set fileformat=unix
