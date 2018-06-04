@@ -233,10 +233,7 @@ let python_highlight_all=1
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-<<<<<<< HEAD
-=======
 " set textwidth=79
->>>>>>> 1ce7fe266e90ce4dc4ee0c8085e64d00d1ad8763
 set expandtab
 set autoindent
 set fileformat=unix
