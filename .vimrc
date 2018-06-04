@@ -77,7 +77,6 @@ set matchpairs+=<:>
 let g:html_indent_tags = 'li\|p'
 
 " ================ Scrolling ========================
-
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
@@ -117,8 +116,8 @@ nnoremap k gk
 nnoremap <tab> %
 vnoremap <tab> %
 
+" Insert current date with leader+d
 nnoremap <leader>d "=strftime("%x %X")<CR>P
-
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -151,12 +150,6 @@ nnoremap <leader>q @q
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" bind \ (backward slash) to grep shortcut
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
-" Ag will search from project root
-let g:ag_working_path_mode="r"
-
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
@@ -166,9 +159,6 @@ nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
-
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
 
 " Move lines up an down
 nnoremap <C-d> :m .+1<CR>==
@@ -243,7 +233,6 @@ let python_highlight_all=1
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set textwidth=79
 set expandtab
 set autoindent
 set fileformat=unix
@@ -252,17 +241,22 @@ set fileformat=unix
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Setup YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
-
 " Setup vim-table-mode
 noremap <leader>tm :TabelModeToggle
 noremap <leader>tt g:table_mode_tableize_map
 let g:table_mode_corner='|'
+
+" Setup SimpleNote
+source ~/.simplenoterc
+noremap <leader>s :Simplenote
+noremap <leader>sl :SimplenoteList
+let g:SimplenoteVertical = 1
+let g:SimplenoteNoteFormat = "%F | %N%>[%T] [%D]"
+let g:SimplenoteStrftime = "%a, %b %d %Y %H:%M:%S"
+let g:SimplenoteSingleWindow = 1
+let g:SimplenoteSortOrder = "pinned, tags, modifydate"
+let g:SimplenoteListSize = 30
+let g:SimplenoteFiletype = "markdown"
 
 " set the runtime path to include Vundle and initialize
 " take from: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -277,8 +271,15 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'junegunn/fzf'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'tpope/vim-fugitive'
+Plugin 'w0rp/ale'
+Plugin 'tpope/vim-surround'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'mrtazz/simplenote.vim'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

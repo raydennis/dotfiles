@@ -74,3 +74,5 @@ function chpwd()
 
 #change format for time
 HISTTIMEFORMAT="%F %R%z "
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
