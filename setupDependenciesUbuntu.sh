@@ -17,3 +17,4 @@ ln -s ~/Documents/GitHub/dotFiles/.zshrc ~/.zshrc
 mkdir -p ~/.vim/colors
 ln -s ~/Documents/GitHub/dotFiles/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
 ln -s ~/Documents/GitHub/dotFiles/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
+ln -s ~/Documents/GitHub/dotFiles/en.utf-8.add ~/.vim/spell/en.utf-8.add
