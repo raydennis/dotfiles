@@ -12,7 +12,9 @@ ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/powerlevel9k ~/.oh-my-zsh/theme
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/zsh-autosuggestions ~/.oh-my-zsh/
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/zsh-syntax-highlighting ~/.oh-my-zsh/
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/z/z.sh /home/ray/z.sh
+rm ~/.vimrc
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/.vimrc ~/.vimrc
+rm ~/.zshrc
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/.zshrc ~/.zshrc
 mkdir -p ~/.vim/colors
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
