@@ -234,6 +234,15 @@ noremap <leader>tm :TabelModeToggle
 noremap <leader>tt g:table_mode_tableize_map
 let g:table_mode_corner='|'
 
+" Setup Powerline
+" Powerline setup
+set laststatus=2
+set term=xterm-256color
+set termencoding=utf-8
+set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
+" set guifont=Ubuntu\ Mono
+let g:Powerline_symbols = 'fancy'
+
 " set the runtime path to include Vundle and initialize
 " take from: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim/
@@ -258,6 +267,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
