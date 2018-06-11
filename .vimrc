@@ -54,7 +54,7 @@ set number
 set numberwidth=5
 
 " Open new split panes to right and bottom, which feels more natural
-" set splitbelow
+set splitbelow
 set splitright
 
 " Auto resize Vim splits to active split
