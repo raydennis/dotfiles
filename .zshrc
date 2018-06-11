@@ -43,7 +43,7 @@ case `uname` in
   ;;
   Linux)
     # commands for Linux go here
-
+   alias copy='xclip -sel clip'
     # allow access to Vagrant from WSL
     export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
     #setup the z plugin on WSL
