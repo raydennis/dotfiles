@@ -49,13 +49,6 @@ set showmatch
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" Make it obvious where 100 characters is
-set textwidth=100
-" set formatoptions=cq
-set formatoptions=qrn1
-set wrapmargin=0
-set colorcolumn=+1
-
 " Numbers
 set number
 set numberwidth=5
@@ -160,14 +153,6 @@ nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
 
-" Move lines up an down
-nnoremap <C-d> :m .+1<CR>==
-nnoremap <C-u> :m .-2<CR>==
-inoremap <C-d> <Esc>:m .+1<CR>==gi
-inoremap <C-u> <Esc>:m .-2<CR>==gi
-vnoremap <C-d> :m '>+1<CR>gv=gv
-vnoremap <C-u> :m '<-2<CR>gv=gv
-
 " leader H automatically finds and replaces in the current document
 nnoremap <leader>h :%s/s/r/g
 
@@ -185,7 +170,17 @@ autocmd BufEnter * silent! cd %:p:h
 
 
 "alias F5 to open marddown with chrome"
-autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    " Do Mac stuff here
+    autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+  else 
+    " Do Linux (Ubuntu) stuff here
+    autocmd BufEnter *.md exe 'noremap <F5> :! /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe %<CR>'
+  endif
+endif
+
 
 augroup vimrcEx
   autocmd!
@@ -230,14 +225,6 @@ noremap <leader>f za
 " <Python Setup>
 let python_highlight_all=1
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-" set textwidth=79
-set expandtab
-set autoindent
-set fileformat=unix
-
 " Setup NERDTree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -246,18 +233,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 noremap <leader>tm :TabelModeToggle
 noremap <leader>tt g:table_mode_tableize_map
 let g:table_mode_corner='|'
-
-" Setup SimpleNote
-source ~/.simplenoterc
-noremap <leader>s :Simplenote
-noremap <leader>sl :SimplenoteList
-let g:SimplenoteVertical = 1
-let g:SimplenoteNoteFormat = "%F | %N%>[%T] [%D]"
-let g:SimplenoteStrftime = "%a, %b %d %Y %H:%M:%S"
-let g:SimplenoteSingleWindow = 1
-let g:SimplenoteSortOrder = "pinned, tags, modifydate"
-let g:SimplenoteListSize = 30
-let g:SimplenoteFiletype = "markdown"
 
 " set the runtime path to include Vundle and initialize
 " take from: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -273,14 +248,16 @@ Plugin 'VundleVim/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'tpope/vim-fugitive'
 Plugin 'w0rp/ale'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'mrtazz/simplenote.vim'
-
+Plugin 'AndrewRadev/splitjoin.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
