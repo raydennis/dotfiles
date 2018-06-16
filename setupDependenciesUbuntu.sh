@@ -10,11 +10,13 @@ vim +BundleInstall +qall
 ~/.vim/bundle/fzf/install
 
 # link the dotfiles
-ln -s ~/Documents/GitHub/dotFiles/powerlevel9k ~/.oh-my-zsh/themes
+ln -s ~/Documents/GitHub/dotFiles/powerlevel9k ~/.oh-my-zsh/themes/powerlevel9k
 ln -s ~/Documents/GitHub/dotFiles/zsh-autosuggestions ~/.oh-my-zsh/
 ln -s ~/Documents/GitHub/dotFiles/zsh-syntax-highlighting ~/.oh-my-zsh/
 ln -s ~/Documents/GitHub/dotFiles/z/z.sh ~/z.sh
+rm ~/.vimrc
 ln -s ~/Documents/GitHub/dotFiles/.vimrc ~/.vimrc
+rm ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/.zshrc ~/.zshrc
 mkdir -p ~/.vim/colors
 ln -s ~/Documents/GitHub/dotFiles/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
