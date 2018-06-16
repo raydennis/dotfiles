@@ -15,6 +15,8 @@ ln -s ~/Documents/GitHub/dotFiles/.vimrc ~/.vimrc
 ln -s ~/Documents/GitHub/dotFiles/.zshrc ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
 ln -s ~/Documents/GitHub/dotFiles/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
+ln -s ~/Documents/GitHub/dotFiles/.gitconfig ~/.gitconfig
+ln -s ~/Documents/GitHub/dotFiles/.gitignore_global ~/.gitignore_global
 
 # setup dependencies for vscode
 # on Mac or Linux (WSL = ?) type: 
