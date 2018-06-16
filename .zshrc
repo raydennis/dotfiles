@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+export TERM="xterm-256color"
 
 #set vim keybindings (seems to break when used with oh-my-zsh)
 #bindkey -v
