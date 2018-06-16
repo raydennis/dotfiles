@@ -1,0 +1,14 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Ray
+	email = raydennis@outlook.com
+	name = Ray
+	name = Ray Dennis
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/raydennis/.gitignore_global
