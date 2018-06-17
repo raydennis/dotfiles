@@ -1,4 +1,3 @@
-" https://github.com/colbycheeze/dotfiles/blob/master/vimrc
 " Type :so % to refresh .vimrc after making changes 
 " Use Vim settings, rather then Vi settings. This setting must be as early as " possible, as it has side effects.  
 set nocompatible
@@ -7,6 +6,7 @@ set nocompatible
 syntax enable
 set background=dark
 colorscheme monokai
+set termguicolors
 
 " Leader - ( Spacebar )
 let mapleader = " "
@@ -23,14 +23,14 @@ set undoreload=10000        " number of lines to save for undo
 set ttyfast "Allow usage of mouse in iTerm
 set mouse=a "Allow usage of mouse in iTerm
 set foldlevel=2
-noremap <leader>f za 
+noremap <leader>f za " toggle fold with leader f
 
 " Trigger autoread when changing buffers or coming back to vim in terminal.
 au FocusGained,BufEnter * :silent! !
 
 "Set default font in mac vim and gvim
 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h24
-set cursorline    " highlight the current line
+
 set visualbell    " stop that ANNOYING beeping
 set wildmenu
 set wildmode=list:longest,full
@@ -64,8 +64,6 @@ set winwidth=104
 set winheight=5
 set winminheight=5
 set winheight=999
-
-
 
 " ================ Scrolling ========================
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
@@ -114,7 +112,6 @@ imap <leader>d <C-R>=strftime("%y%m%d")<CR>%m%d)"<CR>
 " Always use vertical diffs
 set diffopt+=vertical
 
-
 "system clipboard copy & paste support
 "Copy paste to/from clipboard
 vnoremap <C-c> "*y
@@ -134,8 +131,6 @@ nnoremap <silent> <Down> :resize -5<cr>
 
 " leader H automatically finds and replaces in the current document
 nnoremap <leader>h :%s/s/r/g
-
-" AUTOCOMMANDS - Do stuff
 
 " Save whenever switching windows or leaving vim. This is useful when running
 " the tests inside vim without having to save all files first.
