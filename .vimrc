@@ -8,9 +8,6 @@ set background=dark
 colorscheme monokai
 set termguicolors
 
-" Leader - ( Spacebar )
-let mapleader = " "
-
 set history=50
 set showcmd       " display incomplete command
 set laststatus=2  " Always display the status line
