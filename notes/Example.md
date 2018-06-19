@@ -1,6 +1,7 @@
 # cheatsheetMarkdown 
 
-- [ ] Test
+* [ ] unchecked # [checkbox:unchecked]
+* [x] checked   # [checkbox:checked]
 
 # H1 
 ## H2 
