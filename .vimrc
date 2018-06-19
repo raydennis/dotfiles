@@ -8,6 +8,9 @@ set background=dark
 colorscheme monokai
 set termguicolors
 
+" Leader - ( Spacebar )
+let mapleader = " "
+
 set history=50
 set showcmd       " display incomplete command
 set laststatus=2  " Always display the status line
@@ -103,8 +106,7 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " Insert current date with leader+d
-nmap <leader>d i<C-R>=strftime("%y%m%d")<CR><Esc>
-imap <leader>d <C-R>=strftime("%y%m%d")<CR>%m%d)"<CR>
+nmap <leader>d i<C-R>=strftime("%y%m%d ")<CR><Esc>
 
 " Always use vertical diffs
 set diffopt+=vertical
