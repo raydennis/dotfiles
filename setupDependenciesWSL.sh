@@ -1,9 +1,6 @@
-# install zsh
+# install zsh and oh-my-zsh
 sudo apt-get install zsh -y
-
-# get oh-my-zsh installed
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 
 # install vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 
@@ -22,6 +19,13 @@ ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/.zshrc ~/.zshrc
 mkdir -p ~/.vim/colors
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
+ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/.gitconfig ~/.gitconfig
+ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/.gitignore_global ~/.gitignore_global
 ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/en.utf-8.add ~/.vim/spell/en.utf-8.add
+
+# setup vimwiki
+mkdir /home/ray/Tresors
+ln -s /mnt/c/Users/Ray/tresors ~/Tresors/main
+
 # Python setup
 sudo pip install pep8 flake8 pyflakes isort yapf jedi 

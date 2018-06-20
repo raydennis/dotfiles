@@ -17,7 +17,7 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set autoread      " Reload files changed outside vim
 set undofile                " Save undos after file closes
-set undodir=$HOME/.vim/undo " where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
+set undodir=$HOME/.vim/.undo " where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 set ttyfast "Allow usage of mouse in iTerm
@@ -146,10 +146,20 @@ if has("unix")
     " Do Mac stuff here
     autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
     autocmd BufEnter *.markdown exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+
+    " Vimwiki paths
+    let g:vimwiki_list = [{'path':'/Users/raydennis/Tresors/Notes', 'syntax': 'markdown', 'ext': '.markdown'},
+    \ {'path':'/Users/raydennis/Tresors/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
+
   else 
-    " Do Linux (Ubuntu) stuff here
+    " Do Linux (Ubuntu/WSL UBUNTU) stuff here
     autocmd BufEnter *.md exe 'noremap <F5> :! /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe %<CR>'
     autocmd BufEnter *.markdown exe 'noremap <F5> :! /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe %<CR>'
+
+    " Vimwiki paths
+    let g:vimwiki_list = [{'path':'/mnt/c/Users/Ray/Tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'},
+    \ {'path':'/mnt/c/Users/Ray/Tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'}]
+
   endif
 endif
 
@@ -181,11 +191,9 @@ set termencoding=utf-8
 set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
 let g:Powerline_symbols = 'fancy'
 
-" setup vimwiki
-so ~/Tresors/main/Notes/vimwiki
-
 " setup FZF
 map <C-p> :FZF
+
 " set the runtime path to include Vundle and initialize
 " take from: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim/
