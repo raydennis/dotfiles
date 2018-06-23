@@ -106,7 +106,8 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " Insert current date with leader+d
-nmap <leader>d i<C-R>=strftime("%y%m%d ")<CR><Esc>
+nmap <leader>dd a<C-R>=strftime("%y%m%d ")<CR><Esc>
+nmap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -158,7 +159,8 @@ if has("unix")
 
     " Vimwiki paths
     let g:vimwiki_list = [{'path':'/mnt/c/Users/Ray/Tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'},
-    \ {'path':'/mnt/c/Users/Ray/Tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'}]
+    \ {'path':'/mnt/c/Users/Ray/Tresors/notes/projects', 'syntax': 'markdown', 'ext': '.markdown'},
+    \ {'path':'/mnt/c/Users/Ray/Tresors/notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
 
   endif
 endif
@@ -206,22 +208,22 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'w0rp/ale'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'vimwiki/vimwiki'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-scripts/VisIncr'
+Plugin 'vimwiki/vimwiki'
+Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
