@@ -20,8 +20,6 @@ set undofile                " Save undos after file closes
 set undodir=$HOME/.vim/.undo " where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
-set ttyfast "Allow usage of mouse in iTerm
-set mouse=a "Allow usage of mouse in iTerm
 set foldlevel=2
 noremap <leader>f za " toggle fold with leader f
 
@@ -34,13 +32,6 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline:h24
 set visualbell    " stop that ANNOYING beeping
 set wildmenu
 set wildmode=list:longest,full
-
-"Allow usage of mouse in iTerm
-set ttyfast
-set mouse=a
-" set ttymouse=xterm2
-
-" Make searching better
 set gdefault      " Never have to type /g at the end of search / replace again
 set ignorecase    " case insensitive searching (unless specified)
 set smartcase
@@ -139,29 +130,33 @@ au FocusLost,WinLeave * :silent! wa
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
-
-"alias F5 to open marddown with chrome"
 if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " Do Mac stuff here
-    autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
-    autocmd BufEnter *.markdown exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
-
-    " Vimwiki paths
-    let g:vimwiki_list = [{'path':'/Users/raydennis/Tresors/Notes', 'syntax': 'markdown', 'ext': '.markdown'},
-    \ {'path':'/Users/raydennis/Tresors/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
-
+        "Allow usage of mouse in iTerm
+        set ttyfast
+        set mouse=a
+        " set ttymouse=xterm2
+    
+        "alias F5 to open marddown with chrome"
+        autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+        autocmd BufEnter *.markdown exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
+    
+        " Vimwiki paths
+        let g:vimwiki_list = [{'path':'/Users/raydennis/Tresors/Notes', 'syntax': 'markdown', 'ext': '.markdown'},
+        \ {'path':'/Users/raydennis/Tresors/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
+    
   else 
     " Do Linux (Ubuntu/WSL UBUNTU) stuff here
-    autocmd BufEnter *.md exe 'noremap <F5> :! /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe %<CR>'
-    autocmd BufEnter *.markdown exe 'noremap <F5> :! /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe %<CR>'
-
-    " Vimwiki paths
-    let g:vimwiki_list = [{'path':'/mnt/c/Users/Ray/Tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'},
-    \ {'path':'/mnt/c/Users/Ray/Tresors/notes/projects', 'syntax': 'markdown', 'ext': '.markdown'},
-    \ {'path':'/mnt/c/Users/Ray/Tresors/notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
-
+        autocmd BufEnter *.md exe 'noremap <F5> :! /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe %<CR>'
+        autocmd BufEnter *.markdown exe 'noremap <F5> :! /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe %<CR>'
+    
+        " Vimwiki paths
+        let g:vimwiki_list = [{'path':'/vagrant_data/notes', 'syntax': 'markdown', 'ext': '.markdown'},
+        \ {'path':'/vagrant_data/notes/projects', 'syntax': 'markdown', 'ext': '.markdown'},
+        \ {'path':'/vagrant_data/notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
+    
   endif
 endif
 
@@ -190,7 +185,6 @@ let g:table_mode_corner='|'
 set laststatus=2
 set term=xterm-256color
 set termencoding=utf-8
-set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
 let g:Powerline_symbols = 'fancy'
 
 " setup FZF
