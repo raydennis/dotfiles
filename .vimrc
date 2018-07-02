@@ -1,4 +1,6 @@
 set nocompatible                        " Use Vim settings, rather then Vi settings. This setting must be as early as " possible, as it has side effects.  
+filetype off                            " required
+
 colorscheme monokai                     " Set default colorscheme
 let mapleader = " "                     " Leader - ( Spacebar )
 
@@ -116,6 +118,7 @@ autocmd BufReadPost *
 set rtp+=~/.vim/bundle/Vundle.vim/      " to install vundle:  git clone https://github.com/VundleVim/Vundle.vim.git 
 call vundle#begin()                     " set the runtime path to include Vundle and initialize
 Plugin 'VundleVim/Vundle.vim'           " let Vundle manage Vundle, required
+
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'StanAngeloff/php.vim'           " Sytax Highlighting for PHP
 Plugin 'Xuyuanp/nerdtree-git-plugin'    " Adds git status to nerdtree
@@ -145,7 +148,10 @@ Plugin 'tpope/vim-surround'             " Surrounds code with a character ex: ys
 Plugin 'vim-scripts/VisIncr'            " Allows incrementation of numbers in a line.  Visually select then press :I
 Plugin 'vimwiki/vimwiki'                " Gives access to a wiki wiht #<leader><leader>w
 Plugin 'w0rp/ale'                       " Asynchrounous linting with a variety of languages.  Must specify the compliler
+
 call vundle#end()                       " Required, All of the Plugins must be added before this line
+filetype plugin indent on               " required
+
 
 " Setup NERDTree
 map <C-n> :NERDTreeToggle<CR>
