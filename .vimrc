@@ -12,6 +12,7 @@ noremap <leader>f za                    " toggle fold with leader f
 set ai                                  " Auto Indent
 set autoread                            " Reload files changed outside vim
 set autowrite                           " Automatically :write before running commands
+set backspace=indent,eol,start          " Make backspace work like other apps"
 set colorcolumn=100                     " set a vertial colored line at 100
 set history=50
 set hlsearch
@@ -43,7 +44,6 @@ syntax enable
 vnoremap <C-c>"*y                       " Copy paste to/from clipboard
 
 " THIS COMMENT CANNOT BE APPENDED TO LINE BELOW (CAUSES GHOSTING) Trigger autoread when changing buffers or coming back to vim in terminal
-au FocusGained,BufEnter * :silent! !
 au FocusLost,WinLeave * :silent! wa     
 
 " Start scrolling when we're 8 lines away from margins
@@ -104,6 +104,15 @@ if has("unix")
         \ {'path':'/vagrant_data/notes/projects', 'syntax': 'markdown', 'ext': '.markdown'},
         \ {'path':'/vagrant_data/notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
   endif
+else
+    " Do Windows stuff here 
+        autocmd BufEnter *.md exe 'noremap <F5> :! % <CR>'
+        autocmd BufEnter *.markdown exe 'noremap <F5> :! % <CR>'
+
+        " Vimwiki paths
+        let g:vimwiki_list = [{'path':'~/tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'},
+        \ {'path':'~/tresors/notes/projects', 'syntax': 'markdown', 'ext': '.markdown'},
+        \ {'path':'~/tresors/notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
 endif
 
 " When editing a file, always jump to the last known cursor position.
@@ -164,7 +173,7 @@ let g:table_mode_corner='|'
 
 " Setup Powerline
 set laststatus=2
-set term=xterm-256color
+" set term=xterm-256color
 set termencoding=utf-8
 let g:Powerline_symbols = 'fancy'
 
@@ -174,4 +183,3 @@ map <C-p> :FZF
 
 " setup Gundo
 nnoremap <leader>u :GundoToggle<CR>
-
