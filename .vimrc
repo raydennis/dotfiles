@@ -175,6 +175,7 @@ let g:table_mode_corner='|'
 set laststatus=2
 " set term=xterm-256color
 set termencoding=utf-8
+set encoding=utf-8
 let g:Powerline_symbols = 'fancy'
 
 " setup FZF
