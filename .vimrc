@@ -1,7 +1,7 @@
 set nocompatible                        " Use Vim settings, rather then Vi settings. This setting must be as early as " possible, as it has side effects.  
 filetype off                            " required
 
-colorscheme monokai                     " Set default colorscheme
+colorscheme solarized                   " Set default colorscheme
 let mapleader = " "                     " Leader - ( Spacebar )
 
 nmap <Bs> <C-^>                         " Jump to last open file
@@ -24,7 +24,7 @@ set nowrap                              " Do not wrap lines
 set showcmd                             " display incomplete command
 set showmatch                           " Visually see wrap
 set smartcase                           " Case insensitive search
-set smartindent                         " 
+set smartindent
 set splitbelow                          " Open new split panes to right and bottom, which feels more natural
 set splitright
 set tabstop=4
@@ -146,7 +146,7 @@ Plugin 'easymotion/vim-easymotion'      " Move around faster with <leader><leade
 Plugin 'ryanoasis/vim-devicons'         " Adds file glyps to nerdtree
 Plugin 'scrooloose/nerdtree'            " graphical file tree
 Plugin 'scrooloose/syntastic'           " sytanx
-Plugin 'sjl/gundo.vim'                  " Visual representation of undo tree
+Plugin 'mbbill/undotree'                " Visual representation of undo tree
 Plugin 'stephpy/vim-php-cs-fixer'       " Fixes php sytnax on command or on exit
 Plugin 'tmhedberg/matchit'              " Extended % matching for HTML
 Plugin 'tommcdo/vim-lion'               " Align based on a character ex: glip(char)
@@ -182,4 +182,4 @@ map <C-p> :FZF
 
 
 " setup Gundo
-nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>

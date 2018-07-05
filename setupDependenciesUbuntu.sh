@@ -8,11 +8,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 
-# install vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 
-vim +BundleInstall +qall
-~/.vim/bundle/fzf/install
-
 # link the dotfiles
 ln -s ~/Documents/GitHub/dotFiles/powerlevel9k ~/.oh-my-zsh/themes/powerlevel9k
 ln -s ~/Documents/GitHub/dotFiles/zsh-autosuggestions ~/.oh-my-zsh/
@@ -27,5 +22,10 @@ ln -s ~/Documents/GitHub/dotFiles/vim-monokai/colors/monokai.vim ~/.vim/colors/m
 ln -s ~/Documents/GitHub/dotFiles/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
 ln -s ~/Documents/GitHub/dotFiles/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
+# install vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 
+vim +BundleInstall +qall
+~/.vim/bundle/fzf/install
+
 # Python setup
-sudo pip install pep8 flake8 pyflakes isort yapf jedi 
+# sudo pip install pep8 flake8 pyflakes isort yapf jedi 
