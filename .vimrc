@@ -2,6 +2,7 @@ set nocompatible                        " Use Vim settings, rather then Vi setti
 filetype off                            " required
 
 colorscheme solarized                   " Set default colorscheme
+set background = dark                   " Choose dark background version of colorscheme
 let mapleader = " "                     " Leader - ( Spacebar )
 
 nmap <Bs> <C-^>                         " Jump to last open file
@@ -13,15 +14,14 @@ set ai                                  " Auto Indent
 set autoread                            " Reload files changed outside vim
 set autowrite                           " Automatically :write before running commands
 set backspace=indent,eol,start          " Make backspace work like other apps"
-set colorcolumn=100                     " set a vertial colored line at 100
+set colorcolumn=100                     " Set a vertial colored line at 100
 set history=50
 set hlsearch
-set ignorecase                          " case insensitive searching (unless specified)
+set ignorecase                          " Case insensitive searching (unless specified)
 set incsearch
 set laststatus=2                        " Always display the status line
-set list listchars=tab:»·,trail:·       " Display tabs as '-' and traling whitespace as '.'
 set nowrap                              " Do not wrap lines
-set showcmd                             " display incomplete command
+set showcmd                             " Display incomplete command
 set showmatch                           " Visually see wrap
 set smartcase                           " Case insensitive search
 set smartindent
@@ -31,11 +31,11 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set undodir=$HOME/.vim/undo             " where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
+set undodir=$HOME/.vim/undo             " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
 set undofile                            " Save undos after file closes
 set undolevels=1000                     " How many undos
-set undoreload=10000                    " number of lines to save for undo
-set visualbell                          " switch from sound on error to flashj
+set undoreload=10000                    " Number of lines to save for undo
+set visualbell                          " Switch from sound on error to flashj
 set wildmenu
 set wildmode=list:longest,full
 setlocal number
@@ -69,7 +69,7 @@ vnoremap <tab> %
 nmap <leader>dd a<C-R>=strftime("%y%m%d ")<CR><Esc>
 nmap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
 
-" resize panes
+" Resize panes
 nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
@@ -78,6 +78,7 @@ autocmd VimResized * :wincmd = " automatically rebalance windows on vim resize
 
 " OS Specific Commands
 if has("unix")
+set list listchars=tab:»·,trail:·       " Display tabs as '-' and traling whitespace as '.'
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " Do Mac stuff here
@@ -86,7 +87,7 @@ if has("unix")
         set mouse=a
         set ttymouse=xterm2
 
-        "alias F5 to open marddown with chrome"
+        "Alias F5 to open marddown with chrome"
         autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
         autocmd BufEnter *.markdown exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'
 
@@ -124,18 +125,18 @@ autocmd BufReadPost *
  \ endif
 
 " Start Plugins 
-set rtp+=~/.vim/bundle/Vundle.vim/      " to install vundle:  git clone https://github.com/VundleVim/Vundle.vim.git 
-call vundle#begin()                     " set the runtime path to include Vundle and initialize
-Plugin 'VundleVim/Vundle.vim'           " let Vundle manage Vundle, required
+set rtp+=~/.vim/bundle/Vundle.vim/      " To install vundle:  git clone https://github.com/VundleVim/Vundle.vim.git 
+call vundle#begin()                     " Set the runtime path to include Vundle and initialize
+Plugin 'VundleVim/Vundle.vim'           " Let Vundle manage Vundle, required
 
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'StanAngeloff/php.vim'           " Sytax Highlighting for PHP
 Plugin 'Xuyuanp/nerdtree-git-plugin'    " Adds git status to nerdtree
 Plugin 'airblade/vim-gitgutter'         " Adds git functionalit to vim ex: :Gdiff
 Plugin 'ajh17/VimCompletesMe'           " Autocompletion
-Plugin 'honza/vim-snippets'             " snippets 
-Plugin 'jiangmiao/auto-pairs'           " autocomplete pairs like '('
-Plugin 'joonty/vdebug'                  " debugger (must have xdebug installed for php) http://web-techno.net/vim-php-ide/
+Plugin 'honza/vim-snippets'             " Snippets 
+Plugin 'jiangmiao/auto-pairs'           " Autocomplete pairs like '('
+Plugin 'joonty/vdebug'                  " Debugger (must have xdebug installed for php) http://web-techno.net/vim-php-ide/
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/gv.vim'                " Adds git functionalit to vim ex: :Gdiff
 Plugin 'ludovicchabant/vim-gutentags'   " Creates C-Tags automatically
@@ -144,8 +145,8 @@ Plugin 'neomake/neomake'                " Error warnings in your gutter
 Plugin 'phpactor/phpactor'              " Autocompletion
 Plugin 'easymotion/vim-easymotion'      " Move around faster with <leader><leader>w or b
 Plugin 'ryanoasis/vim-devicons'         " Adds file glyps to nerdtree
-Plugin 'scrooloose/nerdtree'            " graphical file tree
-Plugin 'scrooloose/syntastic'           " sytanx
+Plugin 'scrooloose/nerdtree'            " Graphical file tree
+Plugin 'scrooloose/syntastic'           " Syntax
 Plugin 'mbbill/undotree'                " Visual representation of undo tree
 Plugin 'stephpy/vim-php-cs-fixer'       " Fixes php sytnax on command or on exit
 Plugin 'tmhedberg/matchit'              " Extended % matching for HTML
@@ -159,7 +160,7 @@ Plugin 'vimwiki/vimwiki'                " Gives access to a wiki wiht #<leader><
 Plugin 'w0rp/ale'                       " Asynchrounous linting with a variety of languages.  Must specify the compliler
 
 call vundle#end()                       " Required, All of the Plugins must be added before this line
-filetype plugin indent on               " required
+filetype plugin indent on               " Required
 
 
 " Setup NERDTree
@@ -178,9 +179,9 @@ set termencoding=utf-8
 set encoding=utf-8
 let g:Powerline_symbols = 'fancy'
 
-" setup FZF
+" Setup FZF
 map <C-p> :FZF
 
 
-" setup Gundo
+" Setup Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
