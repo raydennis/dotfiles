@@ -136,7 +136,6 @@ call vundle#begin()                       " Set the runtime path to include Vund
 Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'StanAngeloff/php.vim'             " Sytax Highlighting for PHP
 Plugin 'Xuyuanp/nerdtree-git-plugin'      " Adds git status to nerdtree
 Plugin 'airblade/vim-gitgutter'           " Adds git functionalit to vim ex: :Gdiff
 Plugin 'ajh17/VimCompletesMe'             " Autocompletion
@@ -145,16 +144,10 @@ Plugin 'jiangmiao/auto-pairs'             " Autocomplete pairs like '('
 Plugin 'joonty/vdebug'                    " Debugger (must have xdebug installed for php) http://web-techno.net/vim-php-ide/
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/gv.vim'                  " Adds git functionalit to vim ex: :Gdiff
-Plugin 'ludovicchabant/vim-gutentags'     " Creates C-Tags automatically
-Plugin 'majutsushi/tagbar'                " Creates a tagbar that shows methods under their class
-Plugin 'neomake/neomake'                  " Error warnings in your gutter
-Plugin 'phpactor/phpactor'                " Autocompletion
 Plugin 'easymotion/vim-easymotion'        " Move around faster with <leader><leader>w or b
 Plugin 'scrooloose/nerdtree'              " Graphical file tree
 Plugin 'scrooloose/syntastic'             " Syntax
 Plugin 'mbbill/undotree'                  " Visual representation of undo tree
-Plugin 'stephpy/vim-php-cs-fixer'         " Fixes php sytnax on command or on exit
-Plugin 'tmhedberg/matchit'                " Extended % matching for HTML
 Plugin 'tommcdo/vim-lion'                 " Align based on a character ex: glip(char)
 Plugin 'tpope/vim-commentary'             " Comment out code with gcc
 Plugin 'tpope/vim-fugitive'               " Adds git functionalit to vim ex: :Gdiff
@@ -163,21 +156,14 @@ Plugin 'tpope/vim-surround'               " Surrounds code with a character ex: 
 Plugin 'tpope/vim-unimpaired'             " Surrounds code with a character ex: ysil(
 Plugin 'vim-scripts/VisIncr'              " Allows incrementation of numbers in a line.  Visually select then press :I
 Plugin 'vimwiki/vimwiki'                  " Gives access to a wiki wiht #<leader><leader>w
-Plugin 'w0rp/ale'                         " Asynchrounous linting with a variety of languages  Must specify the compliler
 
 Plugin 'ryanoasis/vim-devicons'           " Adds file glyps to nerdtree
 call vundle#end()                         " Required, All of the Plugins must be added before this line
 filetype plugin indent on                 " Required
 
-
 " Setup NERDTree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Setup vim-table-mode
-noremap <leader>tm :TabelModeToggle
-noremap <leader>tt g:table_mode_tableize_map
-let g:table_mode_corner='|'
 
 " Setup Powerline
 set laststatus=2
@@ -189,24 +175,5 @@ let g:Powerline_symbols = 'fancy'
 " Setup FZF
 map <C-p> :FZF
 
-
 " Setup Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
-
-
-" Setup Gutentags
-" Where to store tag files
-let g:gutentags_cache_dir = '~/.vim/gutentags'
-
-let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
-                            \ '*.phar', '*.ini', '*.rst', '*.md',
-                            \ '*vendor/*/test*', '*vendor/*/Test*',
-                            \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
-                            \ '*var/cache*', '*var/log*']
-
-" setup ale
-let g:ale_linters = {
-\   'php': ['php'],
-\}
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
