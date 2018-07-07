@@ -1,37 +1,22 @@
- set nocompatible                        " Use Vim settings, rather then Vi settings. This setting must be as early as " possible, as it has side effects.  
- filetype off                            " required
- 
+ set nocompatible                        " Use Vim settings, rather then Vi settings. This setting must be as early as " possible, as it has side effects.  filetype off                            " required
  colorscheme solarized                   " Set default colorscheme
  set background=dark                     " Choose dark background version of colorscheme
  let mapleader = " "                     " Leader - ( Spacebar )
- 
- " Jump to last open file
- nmap <Bs> <C-^>
- 
- " Leader H automatically finds and replaces in the current document
- nnoremap <leader>h :%s/s/r/g
- 
- " Spell check for previous mispelled word, accept first choice.
- nnoremap <leader>z [s1z=`]k
- 
- " Stop highlight after searching
- nnoremap <silent> <leader>, :noh<cr>
- 
- " Toggle fold with leader f
- noremap <leader>f za
- 
+ syntax enable
+
  set autoindent                          " Auto Indent
  set autoread                            " Reload files changed outside vim
  set autowrite                           " Automatically :write before running commands
  set backspace=indent,eol,start          " Make backspace work like other apps
  set colorcolumn=100                     " Set a vertial colored line at 100
+ set directory^=$HOME/.vim/swapfiles//   " Where to save swapfiles 
  set expandtab
  set history=50
  set hlsearch                            " When there is a previous search pattern, highlight all its matches.
  set ignorecase                          " Case insensitive searching (unless specified)
  set incsearch                           " While typing a search command, show where the pattern, as it was typed
  set laststatus=2                        " Always display the status line
- set nowrap                              " Do not wrap lines
+ set nowrap     
  set shiftwidth=4
  set showcmd                             " Display incomplete command
  set showmatch                           " Visually see wrap
@@ -47,21 +32,47 @@
  set visualbell                          " Switch from sound on error to flash
  set wildmenu                            " When 'wildmenu' is on, command-line completion operates in an enhanced mode
  set wildmode=list:longest,full
- syntax enable
- 
- " Trigger autoread when changing buffers or coming back to vim in terminal
- au FocusLost,WinLeave * :silent! wa     
- 
+
  " Start scrolling when we're 8 lines away from margins
  set scrolloff=8
  set sidescrolloff=15
  set sidescroll=1
+
+ " Jump to last open file
+ nmap <Bs> <C-^>
+ 
+ " Leader H automatically finds and replaces in the current document
+ nnoremap <leader>h :%s/s/r/g
+ 
+ " Spell check for previous mispelled word, accept first choice.
+ nnoremap <leader>z [s1z=`]k
+ 
+ " Stop highlight after searching
+ nnoremap <silent> <leader>, :noh<cr>
+ 
+ " Toggle fold with leader f
+ noremap <leader>f za
+ 
+ 
+ " Trigger autoread when changing buffers or coming back to vim in terminal
+ au FocusLost,WinLeave * :silent! wa     
+ 
  
  " Quicker window movement
  nnoremap <C-j> <C-w>j
  nnoremap <C-k> <C-w>k
  nnoremap <C-h> <C-w>h
  nnoremap <C-l> <C-w>l
+
+ " Quicker clibpard control
+nnoremap <Leader>y "+y
+nnoremap <Leader>d "+d
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d 
+nnoremap <Leader>p :set paste<CR>"+p:set nopaste<CR>
+nnoremap <Leader>P :set paste<CR>"+P:set nopaste<CR>
+vnoremap <Leader>p :set paste<CR>"+p:set nopaste<CR>
+vnoremap <Leader>P :set paste<CR>"+P:set nopaste<CR>
  
  " Navigate properly when lines are wrapped
  nnoremap j gj
