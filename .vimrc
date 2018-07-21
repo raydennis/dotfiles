@@ -46,10 +46,11 @@ autocmd QuickFixCmdPost    l* nested lwindow
 nnoremap <leader>g :grep -nRi 
 
 
-" Start scrolling when we're 8 lines away from margins
-set scrolloff=8
-set sidescrolloff=15
-set sidescroll=1
+" " start scrolling when we're 8 lines away from margins (nice, but makes
+" scrolling slower)
+" set scrolloff=8
+" set sidescrolloff=15
+" set sidescroll=1
 
 " Jump to last open file
 nmap <Bs> <C-^>
@@ -141,9 +142,9 @@ else
         autocmd BufEnter *.markdown exe 'noremap <F5> :! % <CR>'
 
         " Vim wiki paths
-        let g:vimwiki_list = [{'path':'~/tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'},
-        \ {'path':'~/tresors/notes/projects', 'syntax': 'markdown', 'ext': '.markdown'},
-        \ {'path':'~/tresors/notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
+        let g:vimwiki_list = [{'path':'~/My Tresors/notes', 'syntax': 'markdown', 'ext': '.markdown'},
+        \ {'path':'~/My Tresors/notes/projects', 'syntax': 'markdown', 'ext': '.markdown'},
+        \ {'path':'~/My Tresors/notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
 endif
 
 " When editing a file, always jump to the last known cursor position.
@@ -167,9 +168,9 @@ Plugin 'honza/vim-snippets'               " Snippets
 Plugin 'jiangmiao/auto-pairs'             " Autocomplete pairs like '('
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/gv.vim'                  " Adds git functionalist to vim ex: :Gdiff
+Plugin 'mbbill/undotree'                  " Visual representation of undo tree
 Plugin 'scrooloose/nerdtree'              " Graphical file tree
 Plugin 'scrooloose/syntastic'             " Syntax
-Plugin 'mbbill/undotree'                  " Visual representation of undo tree
 Plugin 'tommcdo/vim-lion'                 " Align based on a character ex: glip(char)
 Plugin 'tpope/vim-commentary'             " Comment out code with gcc
 Plugin 'tpope/vim-fugitive'               " Adds git functionality to vim ex: :Gdiff
