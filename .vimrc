@@ -67,6 +67,9 @@ nnoremap <silent> <leader>, :noh<cr>
 " Toggle fold with leader f
 noremap <leader>f za
 
+" change directory to current file's directory
+nnoremap <leader>cd :cd %:h<cr>
+
 
 " Trigger autoread when changing buffers or coming back to vim in terminal
 au FocusLost,WinLeave * :silent! wa     
@@ -100,7 +103,7 @@ vnoremap <tab> %
 nmap <leader>dd a<C-R>=strftime("%y%m%d ")<CR><Esc>
 nmap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
 
-" Resize panes
+" Resize panes with arrow keys
 nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
@@ -186,6 +189,7 @@ filetype plugin indent on                 " Required
 
 " Setup NerdTree
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Setup Powerline
