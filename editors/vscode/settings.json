@@ -1,0 +1,26 @@
+{
+    "telemetry.enableTelemetry": false,
+    "team.showWelcomeMessage": false,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "team.appInsights.enabled": false,
+    "editor.lineNumbers": "relative",
+    "window.zoomLevel": 1,
+    "workbench.iconTheme": "vscode-icons",
+    "files.autoSave": "afterDelay",
+    "editor.tabSize": 4, 
+    "editor.insertSpaces": true, 
+    "editor.renderWhitespace": "all",
+    "[markdown]": {
+        "editor.quickSuggestions": true
+    },
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "cSpell.language": "en",
+    "gitlens.historyExplorer.enabled": true,
+    "editor.fontFamily":"Droid Sans Mono for Powerline"
+}
