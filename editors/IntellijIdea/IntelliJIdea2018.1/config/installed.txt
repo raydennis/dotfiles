@@ -1,0 +1,5 @@
+Docker
+IdeaVIM
+com.jetbrains.php
+org.jetbrains.plugins.phpstorm-docker
+org.jetbrains.plugins.phpstorm-remote-interpreter
