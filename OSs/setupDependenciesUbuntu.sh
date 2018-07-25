@@ -25,6 +25,7 @@ ln -s ~/Documents/GitHub/dotFiles/editors/vim/.vimrc ~/.vimrc
 rm ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/.zshrc ~/.zshrc
 
+mkdir ~/.vim/colors
 rm ~/.vim/colors/monokai.vim
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
 
@@ -40,6 +41,12 @@ ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/editors/vim/en.utf-8.add ~/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 
 vim +BundleInstall +qall
 ~/.vim/bundle/fzf/install
+
+# Terminator setup
+sudo apt-get install terminator
+mkdir ~/.config/terminator
+rm ~/.config/terminator/config
+ln -s ~/Documents/GitHub/dotFiles/shells/terminator/config ~/.config/terminator/
 
 # Python setup
 # sudo pip install pep8 flake8 pyflakes isort yapf jedi 
