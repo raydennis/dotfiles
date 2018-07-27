@@ -12,8 +12,8 @@ rm ~/.oh-my-zsh/themes/powerlevel9k
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/powerlevel9k ~/.oh-my-zsh/themes
 
 rm ~/.oh-my-zsh/zsh-*
-ln -s ~/Documents/GitHub/dotFiles/editors/vim/zsh-autosuggestions ~/.oh-my-zsh/
-ln -s ~/Documents/GitHub/dotFiles/editors/vim/zsh-syntax-highlighting ~/.oh-my-zsh/
+ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-autosuggestions ~/.oh-my-zsh/
+ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-syntax-highlighting ~/.oh-my-zsh/
 
 rm ~/z.sh
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/z/z.sh ~/z.sh
