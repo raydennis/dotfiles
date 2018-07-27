@@ -136,5 +136,5 @@ map <C-p> :FZF
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " Setup vimwiki
-let g:vimwiki_list = [{'path':'/Users/raydennis/Tresors/Notes', 'syntax': 'markdown', 'ext': '.markdown'},
-\ {'path':'/Users/raydennis/Tresors/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
+let g:vimwiki_list = [{'path':'~/Tresors/Notes', 'syntax': 'markdown', 'ext': '.markdown'},
+\ {'path':'~/Tresors/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
