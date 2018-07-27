@@ -2,7 +2,7 @@
 filetype plugin indent on
 syntax on
 
-" because it's there
+" allows jumping between maches like if and end with % 
 runtime macros/matchit.vim
 
 " various settings
