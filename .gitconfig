@@ -12,3 +12,8 @@
 	helper = osxkeychain
 [core]
 	excludesfile = /Users/raydennis/.gitignore_global
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
