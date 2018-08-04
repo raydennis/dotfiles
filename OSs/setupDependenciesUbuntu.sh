@@ -1,3 +1,9 @@
+# install vim-gtk3
+sudo apt install vim-gtk3 -y
+
+# install curl
+sudo apt install curl -y
+
 # install zsh
 sudo apt-get install zsh -y
 
@@ -7,6 +13,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Install nerdfont
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 
 # link the dotfiles
 rm ~/.oh-my-zsh/themes/powerlevel9k
@@ -50,3 +57,13 @@ ln -s ~/Documents/GitHub/dotFiles/shells/terminator/config ~/.config/terminator/
 
 # Python setup
 # sudo pip install pep8 flake8 pyflakes isort yapf jedi 
+
+# Install TLP (battery saver)
+# sudo apt-get install tlp tlp-rdw -y
+
+# replace capslock with escape
+# sudo vim /usr/share/X11/xkb/symbols/pc
+# Comment out this line:
+# // key <CAPS> {	[ Caps_Lock		]	};
+# And add this line
+# key <CAPS> {        [ Escape                ]       };
