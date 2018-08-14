@@ -19,6 +19,9 @@ cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.
 rm ~/.oh-my-zsh/themes/powerlevel9k
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/powerlevel9k ~/.oh-my-zsh/themes
 
+rm ~/.oh-my-zsh/custom/aliases.zsh
+ln -s ~/Documents/GitHub/dotFiles/shells/zsh/aliases.zsh ~/.oh-my-zsh/custom
+
 rm ~/.oh-my-zsh/zsh-*
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-autosuggestions ~/.oh-my-zsh/
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-syntax-highlighting ~/.oh-my-zsh/
@@ -67,3 +70,42 @@ ln -s ~/Documents/GitHub/dotFiles/shells/terminator/config ~/.config/terminator/
 # // key <CAPS> {	[ Caps_Lock		]	};
 # And add this line
 # key <CAPS> {        [ Escape                ]       };
+
+## Make Firefox use touch scrolling
+## You can make this permanent by modifying the launcher using the following:
+sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox.desktop
+#To undo this change, use:
+# sudo sed -i "s|Exec=env MOZ_USE_XINPUT2=1 |Exec=|g" /usr/share/applications/firefox.desktop
+
+## Docker-CE (only for bare metal)
+# sudo apt-get remove docker docker-engine docker.io
+# sudo apt-get update
+# sudo apt-get install \\n    apt-transport-https \\n    ca-certificates \\n    curl \\n    software-properties-common\n
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository \\n   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \\n   $(lsb_release -cs) \\n   stable"
+# sudo apt-get update
+# sudo apt-get install docker-ce
+
+## Multitouch gestures
+# https://github.com/iberianpig/fusuma
+
+## Pulse secure
+# requires dependency
+# sudo apt-get install libwebkitgtk-1.0
+# download from: http://trial.pulsesecure.net/clients/ps-pulse-linux-5.3r3.0-b1021-ubuntu-debian-64-bit-installer.deb
+
+## Intellij Idea
+# snap install intellij-idea-ultimate --classic
+
+# allows USB passthrough
+sudo adduser $USER vboxusers
+
+# Virtualbox Extension Pack
+# Download
+LatestVirtualBoxVersion=$(wget -qO - http://download.virtualbox.org/virtualbox/LATEST.TXT) && wget "http://download.virtualbox.org/virtualbox/${LatestVirtualBoxVersion}/Oracle_VM_VirtualBox_Extension_Pack-${LatestVirtualBoxVersion}.vbox-extpack"
+# Install
+sudo VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-${LatestVirtualBoxVersion}.vbox-extpack
+
+# Install nvidia drivers
+# sudo ubuntu-drivers autoinstall 
+
