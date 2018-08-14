@@ -56,8 +56,6 @@ esac
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
-
 # taken from https://stackoverflow.com/questions/3964068/zsh-automatically-run-ls-after-every-cd
 function chpwd() 
 {
