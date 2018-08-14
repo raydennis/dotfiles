@@ -15,6 +15,9 @@ rm ~/.oh-my-zsh/zsh-*
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-autosuggestions ~/.oh-my-zsh/
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-syntax-highlighting ~/.oh-my-zsh/
 
+rm ~/.oh-my-zsh/custom/aliases.zsh
+ln -s ~/Documents/GitHub/dotFiles/shells/zsh/aliases.zsh ~/.oh-my-zsh/custom
+
 rm ~/z.sh
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/z/z.sh ~/z.sh
 
