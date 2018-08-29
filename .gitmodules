@@ -19,3 +19,6 @@
 [submodule "fonts"]
 	path = fonts
 	url = https://github.com/powerline/fonts
+[submodule "editors/IntellijIdea/colors"]
+	path = editors/IntellijIdea/colors
+	url = https://github.com/jkaving/intellij-colors-solarized.git
