@@ -15,6 +15,9 @@ rm ~/.oh-my-zsh/zsh-*
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-autosuggestions ~/.oh-my-zsh/
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/zsh-syntax-highlighting ~/.oh-my-zsh/
 
+rm ~/.oh-my-zsh/custom/aliases.zsh
+ln -s ~/Documents/GitHub/dotFiles/shells/zsh/aliases.zsh ~/.oh-my-zsh/custom
+
 rm ~/z.sh
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/z/z.sh ~/z.sh
 
@@ -50,4 +53,4 @@ code --install-extension waderyan.gitblame
 code --install-extension yzhang.dictionary-completion
 code --install-extension yzhang.markdown-all-in-one
 # now link to the user settings.json
-ln -s ~/Documents/GitHub/dotFiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -s ~/Documents/GitHub/dotFiles/editors/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
