@@ -39,3 +39,8 @@ Thumbs.db
 # IDE/TextEditor files# 
 #######################
 *.swp
+*.idea
+
+# Ansible #
+#######################
+*.retry
