@@ -119,7 +119,6 @@ Plugin 'scrooloose/syntastic'             " Syntax
 Plugin 'tommcdo/vim-lion'                 " Align based on a character ex: glip(char)
 Plugin 'tpope/vim-commentary'             " Comment out code with gcc
 Plugin 'tpope/vim-fugitive'               " Adds git functionality to vim ex: :Gdiff
-Plugin 'tpope/vim-git'                    " Adds git functionality to vim ex: :Gdiff
 Plugin 'tpope/vim-surround'               " Surrounds code with a character ex: ysil(
 Plugin 'tpope/vim-unimpaired'             " Provides useful mappings like 'yos' for setlocal spell
 Plugin 'vim-scripts/VisIncr'              " Allows incrementation of numbers in a line.  Visually select then press :I
@@ -153,3 +152,10 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " Setup vimwiki
 let g:vimwiki_list = [{'path':'~/Dropbox/Notes', 'syntax': 'markdown', 'ext': '.markdown'},
 \ {'path':'~/Dropbox/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
+
+" Setup netwr
+let g:netrw_liststyle=3                   " Tree View
+let g:netrw_winsize=80                    " Make split 20 (100-80) characters wide
+let g:netrw_banner=0                      " Remove Banner 
+let g:netrw_altv=1                        " Open Splits to the right 
+let g:netwr_browse_split=4                " Open in prior window 
