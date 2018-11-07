@@ -36,7 +36,7 @@ ln -s ~/Documents/GitHub/dotFiles/editors/vim/vim-colors-solarized/colors/solari
 ln -s ~/Documents/GitHub/dotFiles/.gitconfig ~/.gitconfig
 ln -s ~/Documents/GitHub/dotFiles/.gitignore_global ~/.gitignore_global
 rm ~/.vim/spell/en.utf-8.add
-ln -s /mnt/c/Users/Ray/Documents/GitHub/dotFiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
+ln -s ~/Documents/GitHub/dotFiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
 # setup dependencies for vscode
 # on Mac or Linux (WSL = ?) type: 
