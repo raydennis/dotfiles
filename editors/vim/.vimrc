@@ -1,7 +1,7 @@
 " filetype support
 filetype plugin indent on
 syntax on
-colorscheme molokai 
+colorscheme monokai
 set background=dark
 
 " allows jumping between maches like if and end with %
@@ -150,7 +150,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " Setup vimwiki
-let g:vimwiki_list = [{'path':'~/Dropbox/Notes', 'syntax': 'markdown', 'ext': '.markdown'},
+let g:vimwiki_list = [{'path':'~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.markdown'},
 \ {'path':'~/Dropbox/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
 
 " Setup netwr
