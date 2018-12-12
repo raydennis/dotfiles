@@ -28,6 +28,7 @@ rm ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/.zshrc ~/.zshrc
 
 rm ~/.vim/colors/monokai.vim
+mkdir ~/.vim/colors
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
 
 rm ~/.vim/colors/solarized.vim
@@ -52,5 +53,9 @@ code --install-extension vscodevim.vim
 code --install-extension waderyan.gitblame
 code --install-extension yzhang.dictionary-completion
 code --install-extension yzhang.markdown-all-in-one
+# To enable key-repeating execute the following in your Terminal and restart VS Code.
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
+defaults delete -g ApplePressAndHoldEnabled
 # now link to the user settings.json
 ln -s ~/Documents/GitHub/dotFiles/editors/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
