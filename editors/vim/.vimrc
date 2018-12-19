@@ -8,7 +8,11 @@ set background=dark
 runtime macros/matchit.vim
 
 " various settings
+set tabstop=8
 let &softtabstop = &tabstop
+set expandtab
+set shiftwidth=4
+set softtabstop=4
 let mapleader = " "                     " Leader - ( Space bar )
 set autoindent
 set backspace=indent,eol,start
@@ -96,6 +100,7 @@ if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " macOS
+    set guifont=FiraMonoForPowerline-Regular:h12 
   else 
     " Linux/WSL
   endif
