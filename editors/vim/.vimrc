@@ -23,15 +23,13 @@ set foldmethod=indent
 set grepprg=LC_ALL=C\ grep\ -nrsH
 set hidden                              " When ON a buffer becomes hidden when it is |abandon|ed. 
 set hlsearch                            " When there is a previous search pattern, highlight all its matches.
-set ignorecase                          " Case insensitive searching (unless specified)
-set incsearch                           " While typing a search command, show where the pattern, as it was typed
+set smartcase                           " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
+set incsearch                           " While typing a search command, show where pattern, as it was typed
 set mouse=a
 set noswapfile
 set path& | let &path .= "**"
 set showcmd                             " Display incomplete command
-set showmatch                           " Visually see wrap
-set showmatch                           " Visually see wrap
-set smartcase                           " Case insensitive search
+set showmatch                           " When a bracket is inserted, briefly jump to the matching one.
 set splitbelow                          " Open new split panes to right
 set splitright                          " Open new split panes to the bottom
 set tags=./tags;,tags;
@@ -42,6 +40,9 @@ set visualbell                          " Switch from sound on error to flash
 set wildcharm=<C-z>
 set wildmenu                            " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list,longest,full
+
+" remove blank lines in current document
+nnoremap <leader>rml :g/^$/d
 
 " Spell check for previous misspelled word, accept first choice.
 nnoremap <leader>z [s1z=]
