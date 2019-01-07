@@ -22,5 +22,5 @@
     "editor.minimap.enabled": false,
     "cSpell.language": "en",
     "gitlens.historyExplorer.enabled": true,
-    "editor.fontFamily":"Droid Sans Mono for Powerline"
+    "editor.fontFamily": "Fira Mono for Powerline",
 }
