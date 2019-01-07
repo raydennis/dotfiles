@@ -23,4 +23,8 @@
     "cSpell.language": "en",
     "gitlens.historyExplorer.enabled": true,
     "editor.fontFamily": "Fira Mono for Powerline",
+    "git.autofetch": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.pep8Enabled": true,
+    "python.linting.enabled": true,
 }
