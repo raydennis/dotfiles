@@ -1,10 +1,10 @@
 " filetype support
 filetype plugin indent on
 syntax on
-colorscheme monokai
-set background=dark
+colorscheme solarized
+" set background=dark
 
-" allows jumping between maches like if and end with %
+" allows jumping between matches like if and end with %
 runtime macros/matchit.vim
 
 " various settings
@@ -93,6 +93,12 @@ augroup minivimrc
 	autocmd VimResized * :wincmd = 
 augroup END
 
+augroup remember_folds
+  autocmd!
+  au BufWinLeave ?* mkview 1
+  au BufWinEnter ?* silent! loadview 1
+augroup END
+
 " OS Specific Commands
 if has("unix")
   " *nix
@@ -108,6 +114,7 @@ if has("unix")
 else
     " Windows
 endif
+
 
 " Start Plugins 
 set rtp+=~/.vim/bundle/Vundle.vim/        " To install Vundle:  git clone https://github.com/VundleVim/Vundle.vim.git 
@@ -135,17 +142,19 @@ filetype plugin indent on                 " Required
 
 " Setup Powerline
 set laststatus=2
-" set term=xterm-256color
+set term=xterm-256color
 set termencoding=utf-8
 set encoding=utf-8
 let g:Powerline_symbols = 'fancy'
 
 " Setup FZF
-map <C-p> :FZF
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+map <leader><Space> :FZF <CR>
+
+-" Mapping selecting mappings
+-nmap <leader><tab> <plug>(fzf-maps-n)
+-xmap <leader><tab> <plug>(fzf-maps-x)
+-omap <leader><tab> <plug>(fzf-maps-o)
+
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
