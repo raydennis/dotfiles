@@ -1,18 +1,17 @@
 " filetype support
 filetype plugin indent on
 syntax on
-colorscheme solarized
+colorscheme monokai
 " set background=dark
 
 " allows jumping between matches like if and end with %
 runtime macros/matchit.vim
 
 " various settings
-set tabstop=8
+set tabstop=4
 let &softtabstop = &tabstop
 set expandtab
 set shiftwidth=4
-set softtabstop=4
 let mapleader = " "                     " Leader - ( Space bar )
 set autoindent
 set backspace=indent,eol,start
@@ -33,13 +32,13 @@ set showmatch                           " When a bracket is inserted, briefly ju
 set splitbelow                          " Open new split panes to right
 set splitright                          " Open new split panes to the bottom
 set tags=./tags;,tags;
-set tagcase=smart                       " limit the number of responses we get for case matching 
+set tagcase=smart                       " limit the number of responses we get for case matching
 set undodir=$HOME/.vim/undo             " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
 set undofile                            " Save undos after file closes
 set visualbell                          " Switch from sound on error to flash
 set wildcharm=<C-z>
 set wildmenu                            " When 'wildmenu' is on, command-line completion operates in an enhanced mode
-set wildmode=list,longest,full
+set wildmode=full
 
 " remove blank lines in current document
 nnoremap <leader>rml :g/^$/d
@@ -121,31 +120,18 @@ set rtp+=~/.vim/bundle/Vundle.vim/        " To install Vundle:  git clone https:
 call vundle#begin()                       " Set the runtime path to include Vundle and initialize
 Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'airblade/vim-gitgutter'           " Adds signs in the gutter if there are changes to the current workspace 
-Plugin 'ajh17/VimCompletesMe'             " Tries to guess which completion you want 
-Plugin 'jiangmiao/auto-pairs'             " Autocomplete pairs like '('
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'                 " Fuzzy finding 
 Plugin 'mbbill/undotree'                  " Visual representation of undo tree
-Plugin 'scrooloose/syntastic'             " Syntax
 Plugin 'tommcdo/vim-lion'                 " Align based on a character ex: glip(char)
 Plugin 'tpope/vim-commentary'             " Comment out code with gcc
 Plugin 'tpope/vim-fugitive'               " Adds git functionality to vim ex: :Gdiff
-Plugin 'tpope/vim-surround'               " Surrounds code with a character ex: ysil(
-Plugin 'tpope/vim-unimpaired'             " Provides useful mappings like 'yos' for setlocal spell
 Plugin 'vim-scripts/VisIncr'              " Allows incrementation of numbers in a line.  Visually select then press :I
 Plugin 'vimwiki/vimwiki'                  " Gives access to a wiki with #<leader><leader>w
 
 call vundle#end()                         " Required, All of the Plugins must be added before this line
 filetype plugin indent on                 " Required
-
-" Setup Powerline
-set laststatus=2
-set term=xterm-256color
-set termencoding=utf-8
-set encoding=utf-8
-let g:Powerline_symbols = 'fancy'
 
 " Setup FZF
 map <leader><Space> :FZF <CR>
