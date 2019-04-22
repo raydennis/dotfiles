@@ -150,10 +150,10 @@ let g:Powerline_symbols = 'fancy'
 " Setup FZF
 map <leader><Space> :FZF <CR>
 
--" Mapping selecting mappings
--nmap <leader><tab> <plug>(fzf-maps-n)
--xmap <leader><tab> <plug>(fzf-maps-x)
--omap <leader><tab> <plug>(fzf-maps-o)
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
