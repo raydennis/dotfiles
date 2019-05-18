@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     vimscript
+     csv
      html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -41,9 +43,7 @@ values."
      helm
      auto-completion
      better-defaults
-     emacs-lisp
-     git
-     markdown
+     emacs-lisp git markdown
      org
      (shell :variables
             shell-default-height 30
@@ -51,13 +51,20 @@ values."
      spell-checking
      syntax-checking
      version-control
-     ;; my packages
+     php
+     python
+     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     yasnippet-snippets
+     atomic-chrome
+     sanityinc-theme
+    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -121,8 +128,8 @@ values."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-                                (todos . 10)
-                                (agenda . 10))
+                                (agenda . 10)
+                                (todos . 10))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -130,8 +137,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(sanityinc-solarized-dark
+                         sanityinc-solarized-light)
+
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -245,9 +253,7 @@ values."
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
-   ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
-   ;; scrolling overrides the default behavior of Emacs which recenters point
+   dotspacemacs-mode-line-unicode-symbols t ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
    ;; Control line numbers activation.
@@ -314,11 +320,30 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; ;; load emacs 24's package system. Add MELPA repository.
+  ;; (when (>= emacs-major-version 24)
+  ;;   (require 'package)
+  ;;   (add-to-list
+  ;;    'package-archives
+  ;;    ;; '("melpa" . "http://stable.melpa.org/packages/") ; many packages won't show if using stable
+  ;;    '("melpa" . "http://melpa.milkbox.net/packages/")
+  ;;    t))
+
+  ;; Targets include this file and any file contributing to the agenda - up to 5 levels deep
+  (setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
+
+  ;; enable evil multi cursor everywhere
+  (global-evil-mc-mode  1)
+
+  ;; atomic-chrome https://github.com/alpha22jp/atomic-chrome
+  (require 'atomic-chrome)
+  (atomic-chrome-start-server)
+
   ;; add additional todo keywords
   (setq org-todo-keywords
         '((sequence "TODO(t)"
                     "WAITING(w@/!)"
-                    "STARTED(t)"
+                    "STARTED(s)"
                     "|"
                     "DONE(d!)")))
 
@@ -334,6 +359,10 @@ you should place your code here."
   ;; persistent history
   (savehist-mode 1)
   (setq savehist-file "~/.emacs.d/tmp/savehist")
+
+
+  ;; disable showing images at actual size in org mode
+  (setq org-image-actual-width 400)
 
   ;; when you archive a task, it goes here
   (setq org-archive-location "~/notes/archive.org")
@@ -390,10 +419,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
   (global-set-key [escape] 'evil-exit-emacs-state)
 
+
   ;; Remember the cursor position of files when reopening them
   (setq save-place-file "~/.emacs.d/saveplace")
   (setq-default save-place t)
   (require 'saveplace)
+
+  ;; export for markdown support
+  (require 'ox-md nil t)
 
   ;; change the spelling program to aspell.  By default it is ispell, but
   ;; that isn't installed on MacOS and aspell looks to have better support for unicode
@@ -402,6 +435,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   ;; automatically show matching parenthesis
   (show-paren-mode t)
 
+
+  ;; make missing links red
+  (defun org-file--dynamic-face (path)
+    (let ((file (substring path 0 (string-match "::" path))))
+      (if (not (file-exists-p file))
+          '(:inherit org-link :foreground "red")
+        'org-link)))
+
   ;; --------------------------------------------------------------------------------
   ;; evil-mode key bindings
   (define-key evil-normal-state-map (kbd "SPC o d") (lambda () (interactive) (insert (format-time-string "%Y%m%d"))))
@@ -409,9 +450,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (define-key evil-normal-state-map (kbd "SPC o m") (lambda () (interactive) (insert "\[\[file:m_"(format-time-string "%Y%m%d") "_x.org\]\[m_"(format-time-string "%Y%m%d") "_y\]" )))
 
   (define-key evil-normal-state-map (kbd "SPC o f") (lambda () (interactive) (insert "\[\[file:x\]\[description\]")))
-
-  ;; search with helm while in normal mode with <SPC> <SPC>
-  (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-mini)
   ;; / evil-mode key bindings
 )
 
@@ -423,12 +461,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/orgMode/m_20190510_Infrastructure.org" "~/Dropbox/notes/orgMode/personal/home.org" "~/Dropbox/notes/orgMode/s_JenkinsPipeLineCIF.org" "~/notes/tasks.org")))
  '(package-selected-packages
    (quote
-    (yasnippet-snippets web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data xterm-color unfill smeargle shell-pop orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (vimrc-mode dactyl-mode autothemer websocket atomic-chrome yapfify yaml-mode pyvenv pytest pyenv-mode py-isort pip-requirements phpunit phpcbf php-extras php-auto-yasnippets live-py-mode hy-mode dash-functional helm-pydoc drupal-mode php-mode cython-mode company-anaconda anaconda-mode pythonic csv-mode yasnippet-snippets web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data xterm-color unfill smeargle shell-pop orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
