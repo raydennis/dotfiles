@@ -1,4 +1,5 @@
 " filetype support
+set nocompatible
 filetype plugin indent on
 syntax on
 colorscheme monokai
@@ -13,12 +14,13 @@ let &softtabstop = &tabstop
 set expandtab
 set shiftwidth=4
 let mapleader = " "                     " Leader - ( Space bar )
+let maplocalleader = " "                     " Leader - ( Space bar )
 set autoindent
 set backspace=indent,eol,start
 set complete+=d
 set directory^=$HOME/.vim/swapfiles//   " Where to save swap files
-set foldlevelstart=999
-set foldmethod=indent
+set foldlevelstart=1
+set foldmethod=syntax
 set grepprg=LC_ALL=C\ grep\ -nrsH
 set hidden                              " When ON a buffer becomes hidden when it is |abandon|ed. 
 set hlsearch                            " When there is a previous search pattern, highlight all its matches.
@@ -38,10 +40,10 @@ set undofile                            " Save undos after file closes
 set visualbell                          " Switch from sound on error to flash
 set wildcharm=<C-z>
 set wildmenu                            " When 'wildmenu' is on, command-line completion operates in an enhanced mode
-set wildmode=full
+set wildmode=list:longest,full
 
-" remove blank lines in current document
-nnoremap <leader>rml :g/^$/d
+" remove blank lines in current visual selection
+vnoremap <leader>rml :v/./d
 
 " Spell check for previous misspelled word, accept first choice.
 nnoremap <leader>z [s1z=]
@@ -63,7 +65,8 @@ vnoremap <Leader>p :set paste<CR>"+p:set nopaste<CR>
 vnoremap <Leader>P :set paste<CR>"+P:set nopaste<CR>
 
 " Insert current date with leader+d
- nnoremap <leader>dd a<C-R>=strftime("%y%m%d ")<CR><Esc>
+ nnoremap <C-d> a<C-R>=strftime("%y%m%d ")<CR><Esc>
+ inoremap <C-d> <C-R>=strftime("%y%m%d ")<CR>
  nnoremap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
 
 " Resize panes with arrow keys
@@ -71,6 +74,17 @@ nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
+
+" Org-Mode style bindings
+nnoremap <leader>td :.s/TODO/DONE/<CR> ea [<C-R>=strftime("%y%m%d")<CR>]<Esc><C-O>
+nnoremap <leader>tw :.s/TODO/WAITING/<CR> ea [<C-R>=strftime("%y%m%d")<CR>
+nnoremap <leader>tt :.s/* /TODO /<CR><C-O>
+
+" Vimwiki style bindings
+nnoremap <leader>ww :e ~/Documents/gitHub/notes/index.markdown<CR> 
+
+" Enter task list
+nnoremap <leader>t :read ! php ~/Documents/gitHub/notes/code/my-myit/rd-myit-001.php<CR>
 
 " various autocommands
 augroup minivimrc
@@ -115,20 +129,23 @@ else
 endif
 
 
-" Start Plugins 
+                                          " Start Plugins 
 set rtp+=~/.vim/bundle/Vundle.vim/        " To install Vundle:  git clone https://github.com/VundleVim/Vundle.vim.git 
 call vundle#begin()                       " Set the runtime path to include Vundle and initialize
 Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 
 Plugin 'airblade/vim-gitgutter'           " Adds signs in the gutter if there are changes to the current workspace 
+Plugin 'dhruvasagar/vim-table-mode'       " Tables
+Plugin 'jkramer/vim-checkbox'             " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'                 " Fuzzy finding 
 Plugin 'mbbill/undotree'                  " Visual representation of undo tree
+Plugin 'plasticboy/vim-markdown'          " Needed for markdown folding
 Plugin 'tommcdo/vim-lion'                 " Align based on a character ex: glip(char)
 Plugin 'tpope/vim-commentary'             " Comment out code with gcc
 Plugin 'tpope/vim-fugitive'               " Adds git functionality to vim ex: :Gdiff
+Plugin 'tpope/vim-surround'               " provides mappings to easily delete, change and add such surroundings in pairs
 Plugin 'vim-scripts/VisIncr'              " Allows incrementation of numbers in a line.  Visually select then press :I
-Plugin 'vimwiki/vimwiki'                  " Gives access to a wiki with #<leader><leader>w
 
 call vundle#end()                         " Required, All of the Plugins must be added before this line
 filetype plugin indent on                 " Required
@@ -136,23 +153,19 @@ filetype plugin indent on                 " Required
 " Setup FZF
 map <leader><Space> :FZF <CR>
 
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
+" Mapping selecting mappings
+nmap <c-x><c-n> <plug>(fzf-maps-n)
+xmap <c-x><c-x> <plug>(fzf-maps-x)
+omap <c-x><c-o> <plug>(fzf-maps-o)
+
 " Setup Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
-
-" Setup vimwiki
-let g:vimwiki_list = [{'path':'~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.markdown'},
-\ {'path':'~/Dropbox/Notes/personal', 'syntax': 'markdown', 'ext': '.markdown'}]
 
 " Setup netwr
 let g:netrw_liststyle=3                   " Tree View
