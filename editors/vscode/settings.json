@@ -7,7 +7,6 @@
     "team.appInsights.enabled": false,
     "editor.lineNumbers": "relative",
     "window.zoomLevel": 1,
-    "workbench.iconTheme": "vscode-icons",
     "files.autoSave": "afterDelay",
     "editor.tabSize": 4, 
     "editor.insertSpaces": true, 
@@ -16,7 +15,6 @@
         "editor.quickSuggestions": true
     },
     "markdown.extension.preview.autoShowPreviewToSide": true,
-    "vsicons.dontShowNewVersionMessage": true,
     "python.pythonPath": "/usr/local/bin/python3",
     "explorer.confirmDelete": false,
     "editor.minimap.enabled": false,
@@ -26,5 +24,5 @@
     "git.autofetch": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pep8Enabled": true,
-    "python.linting.enabled": true,
+    "python.linting.enabled": true
 }

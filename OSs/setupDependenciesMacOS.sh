@@ -27,12 +27,22 @@ ln -s ~/Documents/GitHub/dotFiles/editors/vim/.vimrc ~/.vimrc
 rm ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/.zshrc ~/.zshrc
 
+rm ~/.spacemacs
+ln -s ~/Documents/GitHub/dotFiles/editors/emacs/.spacemacs ~/.spacemacs
+
+rm ~/notes
+ln -s ~/Dropbox/notes/orgMode/ ~/notes
+
 rm ~/.vim/colors/monokai.vim
 mkdir ~/.vim/colors
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
 
 rm ~/.vim/colors/solarized.vim
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
+
+
+rm -rf ~/.vim/templates
+ln -s ~/Documents/GitHub/dotFiles/editors/vim/templates ~/.vim/templates
 
 ln -s ~/Documents/GitHub/dotFiles/.gitconfig ~/.gitconfig
 ln -s ~/Documents/GitHub/dotFiles/.gitignore_global ~/.gitignore_global
@@ -59,3 +69,11 @@ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
 defaults delete -g ApplePressAndHoldEnabled
 # now link to the user settings.json
 ln -s ~/Documents/GitHub/dotFiles/editors/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
+# brew
+# brew install ansible cscope gdbm gettext git git-credential-manager glib gmp gnutls libevent libffi libtasn1 libunistring libyaml lua luajit macvim nettle nmap openconnect openssl p11-kit pcre pcre2 perl python readline ruby sqlite sshfs stoken terraform the_silver_searcher tree unbound vim xz z --HEAD universal-ctags/universal-ctags/universal-ctags emacs aspell imgur-screenshot.sh terminal-notifier
+
+# emacs - spacemacs
+# git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
+
