@@ -2,8 +2,7 @@
 set nocompatible
 filetype plugin indent on
 syntax on
-colorscheme monokai
-" set background=dark
+colorscheme solarized
 
 " allows jumping between matches like if and end with %
 runtime macros/matchit.vim
@@ -14,7 +13,6 @@ let &softtabstop = &tabstop
 set expandtab
 set shiftwidth=4
 let mapleader = " "                     " Leader - ( Space bar )
-let maplocalleader = " "                     " Leader - ( Space bar )
 set autoindent
 set backspace=indent,eol,start
 set complete+=d
@@ -42,6 +40,50 @@ set wildcharm=<C-z>
 set wildmenu                            " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
 
+" easier beginning and ending of line
+map H ^
+map L $
+
+" Use tab to switch between current and last buffer
+nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+
+
+"move to the split in the direction shown, or create a new split
+nnoremap <leader>wh :call WinMove('h')<cr>
+nnoremap <leader>wj :call WinMove('j')<cr>
+nnoremap <leader>wk :call WinMove('k')<cr>
+nnoremap <leader>wl :call WinMove('l')<cr>
+
+function! WinMove(key)
+  let t:curwin = winnr()
+  exec "wincmd ".a:key
+  if (t:curwin == winnr())
+    if (match(a:key,'[jk]'))
+      wincmd v
+    else
+      wincmd s
+    endif
+    exec "wincmd ".a:key
+  endif
+endfunction
+
+" make current window fullscreen
+nnoremap <leader>wf :only<cr>
+" Close current window
+nnoremap <leader>wd <C-W>q<cr>
+" rotate windows right
+nnoremap <leader>wr <C-W>r<cr>
+" rotate windoss left
+nnoremap <leader>wR <C-W>R<cr>
+
+"create a new buffer (save it with :w ./path/to/FILENAME)
+nnoremap <leader>be :enew<cr>
+"close current buffer
+nnoremap <leader>bd :bp <bar> bd! #<cr>
+"close all open buffers
+nnoremap <leader>bq :bufdo bd!<cr>
+
 " remove blank lines in current visual selection
 vnoremap <leader>rml :v/./d
 
@@ -64,14 +106,22 @@ nnoremap <Leader>P :set paste<CR>"+P:set nopaste<CR>
 vnoremap <Leader>p :set paste<CR>"+p:set nopaste<CR>
 vnoremap <Leader>P :set paste<CR>"+P:set nopaste<CR>
 
+" Move lines around
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
 " Insert current date with leader+d
- nnoremap <C-d> a<C-R>=strftime("%y%m%d ")<CR><Esc>
- inoremap <C-d> <C-R>=strftime("%y%m%d ")<CR>
- nnoremap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
+nnoremap <C-d> a<C-R>=strftime("%y%m%d ")<CR><Esc>
+inoremap <C-d> <C-R>=strftime("%y%m%d ")<CR>
+nnoremap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
 
 " Resize panes with arrow keys
-nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
+nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
 
@@ -81,10 +131,13 @@ nnoremap <leader>tw :.s/TODO/WAITING/<CR> ea [<C-R>=strftime("%y%m%d")<CR>
 nnoremap <leader>tt :.s/* /TODO /<CR><C-O>
 
 " Vimwiki style bindings
-nnoremap <leader>ww :e ~/Documents/gitHub/notes/index.markdown<CR> 
+nnoremap <leader>ww :e ~/Documents/gitHub/notes/todo.markdown<CR> 
 
-" Enter task list
+" Import task list
 nnoremap <leader>t :read ! php ~/Documents/gitHub/notes/code/my-myit/rd-myit-001.php<CR>
+
+" Run the current line as if it were a command. Often more convenient than q: when experimenting.
+nnoremap <leader>e :exe getline(line('.'))<cr>
 
 " various autocommands
 augroup minivimrc
@@ -106,11 +159,18 @@ augroup minivimrc
 	autocmd VimResized * :wincmd = 
 augroup END
 
-augroup remember_folds
+" augroup remember_folds
+"   autocmd!
+"   au BufWinLeave ?* mkview 1
+"   au BufWinEnter ?* silent! loadview 1
+" augroup END
+
+augroup md
   autocmd!
-  au BufWinLeave ?* mkview 1
-  au BufWinEnter ?* silent! loadview 1
+  au BufNewFile,BufRead *.md syntax keyword todo TODO
+  au BufNewFile,BufRead *.md inoremap <buffer> ;` ```<cr><cr>```<Up><Up>
 augroup END
+
 
 " OS Specific Commands
 if has("unix")
@@ -127,8 +187,6 @@ if has("unix")
 else
     " Windows
 endif
-
-
                                           " Start Plugins 
 set rtp+=~/.vim/bundle/Vundle.vim/        " To install Vundle:  git clone https://github.com/VundleVim/Vundle.vim.git 
 call vundle#begin()                       " Set the runtime path to include Vundle and initialize
