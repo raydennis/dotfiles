@@ -17,8 +17,7 @@ ZSH_THEME="robbyrussell"
 # https://github.com/zsh-users/zsh-autosuggestions.git
 # not working and...not necesary?
 # plugins=(
-#   git python zsh-autosuggestions 
-#   zsh-syntax-highlighting)
+#   git python zsh-autosuggestions #   zsh-syntax-highlighting)
 
 # source the plugins
 source $ZSH/oh-my-zsh.sh 

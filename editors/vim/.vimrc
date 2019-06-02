@@ -18,7 +18,6 @@ set backspace=indent,eol,start
 set complete+=d
 set directory^=$HOME/.vim/swapfiles//   " Where to save swap files
 set foldlevelstart=1
-set foldmethod=syntax
 set grepprg=LC_ALL=C\ grep\ -nrsH
 set hidden                              " When ON a buffer becomes hidden when it is |abandon|ed. 
 set hlsearch                            " When there is a previous search pattern, highlight all its matches.
@@ -40,20 +39,27 @@ set wildcharm=<C-z>
 set wildmenu                            " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
 
+" Foldmethod based on syntax
+autocmd FileType py setlocal foldmethod=indent
+autocmd FileType markdown setlocal foldmethod=syntax
+
 " easier beginning and ending of line
 map H ^
 map L $
+
+" opem terminal
+nnoremap <leader>' :terminal<cr>
 
 " Use tab to switch between current and last buffer
 nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
 nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
 
 
-"move to the split in the direction shown, or create a new split
-nnoremap <leader>wh :call WinMove('h')<cr>
-nnoremap <leader>wj :call WinMove('j')<cr>
-nnoremap <leader>wk :call WinMove('k')<cr>
-nnoremap <leader>wl :call WinMove('l')<cr>
+" move to the split in the direction shown, or create a new split
+nnoremap <C-w>h :call WinMove('h')<cr>
+nnoremap <C-w>j :call WinMove('j')<cr>
+nnoremap <C-w>k :call WinMove('k')<cr>
+nnoremap <C-w>l :call WinMove('l')<cr>
 
 function! WinMove(key)
   let t:curwin = winnr()
@@ -68,20 +74,11 @@ function! WinMove(key)
   endif
 endfunction
 
-" make current window fullscreen
-nnoremap <leader>wf :only<cr>
-" Close current window
-nnoremap <leader>wd <C-W>q<cr>
-" rotate windows right
-nnoremap <leader>wr <C-W>r<cr>
-" rotate windoss left
-nnoremap <leader>wR <C-W>R<cr>
-
-"create a new buffer (save it with :w ./path/to/FILENAME)
+" create a new buffer (save it with :w ./path/to/FILENAME)
 nnoremap <leader>be :enew<cr>
-"close current buffer
+" close current buffer
 nnoremap <leader>bd :bp <bar> bd! #<cr>
-"close all open buffers
+" close all open buffers
 nnoremap <leader>bq :bufdo bd!<cr>
 
 " remove blank lines in current visual selection
@@ -114,10 +111,19 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" Insert current date with leader+d
+nnoremap <C-h> <<
+nnoremap <C-l> >>
+inoremap <C-h> <<
+inoremap <C-l> >>
+vnoremap <C-l> >>
+vnoremap <C-h> <<
+
+" Insert current date
 nnoremap <C-d> a<C-R>=strftime("%y%m%d ")<CR><Esc>
-inoremap <C-d> <C-R>=strftime("%y%m%d ")<CR>
+inoremap <C-d> <C-R>=strftime("%y%m%d")<CR>
+cnoremap <C-d> <C-R>=strftime("%y%m%d")<CR>
 nnoremap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
+
 
 " Resize panes with arrow keys
 nnoremap <silent> <Left> :vertical resize -5<cr>
@@ -125,20 +131,25 @@ nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
 
-" Org-Mode style bindings
+" SpaceMacs Org-Mode style bindings
 nnoremap <leader>td :.s/TODO/DONE/<CR> ea [<C-R>=strftime("%y%m%d")<CR>]<Esc><C-O>
 nnoremap <leader>tw :.s/TODO/WAITING/<CR> ea [<C-R>=strftime("%y%m%d")<CR>
-nnoremap <leader>tt :.s/* /TODO /<CR><C-O>
+nnoremap <leader>dd :.s/* /* TODO /<CR><C-O>
+nnoremap <leader>th :.s/* /* HTODO /<CR><C-O>
+nnoremap <leader>at :grep "* TODO" *<cr>
+nnoremap <leader>ah :grep HTODO *<cr>
+nnoremap <leader>aw :grep WAITING *<cr>
+nnoremap <leader>ad :grep DONE *<cr>
+
 
 " Vimwiki style bindings
-nnoremap <leader>ww :e ~/Documents/gitHub/notes/todo.markdown<CR> 
+nnoremap <leader>ww :e ~/Documents/gitHub/notes/todo.md<CR> 
 
 " Import task list
 nnoremap <leader>t :read ! php ~/Documents/gitHub/notes/code/my-myit/rd-myit-001.php<CR>
 
 " Run the current line as if it were a command. Often more convenient than q: when experimenting.
-nnoremap <leader>e :exe getline(line('.'))<cr>
-
+nnoremap <leader>e :exe getline(line('.'))<cr> 
 " various autocommands
 augroup minivimrc
 	autocmd!
