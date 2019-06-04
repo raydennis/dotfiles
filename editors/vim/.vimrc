@@ -1,8 +1,7 @@
-" filetype support
 set nocompatible
-filetype plugin indent on
 syntax on
-colorscheme solarized
+filetype plugin indent on                 " Required
+colorscheme nord
 
 " allows jumping between matches like if and end with %
 runtime macros/matchit.vim
@@ -40,8 +39,12 @@ set wildmenu                            " When 'wildmenu' is on, command-line co
 set wildmode=list:longest,full
 
 " Foldmethod based on syntax
-autocmd FileType py setlocal foldmethod=indent
+autocmd FileType python setlocal foldmethod=indent
 autocmd FileType markdown setlocal foldmethod=syntax
+
+" F5 executes file based on type
+autocmd FileType python nnoremap <buffer> <F5> :!python %:p<cr>
+autocmd FileType markdown noremap <buffer> <F5> :!open %:p<cr>
 
 " easier beginning and ending of line
 map H ^
@@ -51,8 +54,8 @@ map L $
 nnoremap <leader>' :terminal<cr>
 
 " Use tab to switch between current and last buffer
-nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
-nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
+nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
 
 
 " move to the split in the direction shown, or create a new split
@@ -98,18 +101,18 @@ nnoremap <Leader>y "+y
 nnoremap <Leader>d "+d
 vnoremap <Leader>y "+y
 vnoremap <Leader>d "+d 
-nnoremap <Leader>p :set paste<CR>"+p:set nopaste<CR>
-nnoremap <Leader>P :set paste<CR>"+P:set nopaste<CR>
-vnoremap <Leader>p :set paste<CR>"+p:set nopaste<CR>
-vnoremap <Leader>P :set paste<CR>"+P:set nopaste<CR>
+nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
+nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
+vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
+vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 
 " Move lines around
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <C-j> :m .+1<cr>==
+nnoremap <C-k> :m .-2<cr>==
+inoremap <C-j> <Esc>:m .+1<cr>==gi
+inoremap <C-k> <Esc>:m .-2<cr>==gi
+vnoremap <C-j> :m '>+1<cr>gv=gv
+vnoremap <C-k> :m '<-2<cr>gv=gv
 
 nnoremap <C-h> <<
 nnoremap <C-l> >>
@@ -119,10 +122,10 @@ vnoremap <C-l> >>
 vnoremap <C-h> <<
 
 " Insert current date
-nnoremap <C-d> a<C-R>=strftime("%y%m%d ")<CR><Esc>
-inoremap <C-d> <C-R>=strftime("%y%m%d")<CR>
-cnoremap <C-d> <C-R>=strftime("%y%m%d")<CR>
-nnoremap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<CR><Esc>
+nnoremap <C-d> a<C-R>=strftime("%y%m%d ")<cr><Esc>
+inoremap <C-d> <C-R>=strftime("%y%m%d")<cr>
+cnoremap <C-d> <C-R>=strftime("%y%m%d")<cr>
+nnoremap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<cr><Esc>
 
 
 " Resize panes with arrow keys
@@ -132,10 +135,10 @@ nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
 
 " SpaceMacs Org-Mode style bindings
-nnoremap <leader>td :.s/TODO/DONE/<CR> ea [<C-R>=strftime("%y%m%d")<CR>]<Esc><C-O>
-nnoremap <leader>tw :.s/TODO/WAITING/<CR> ea [<C-R>=strftime("%y%m%d")<CR>
-nnoremap <leader>dd :.s/* /* TODO /<CR><C-O>
-nnoremap <leader>th :.s/* /* HTODO /<CR><C-O>
+nnoremap <leader>td :.s/TODO/DONE/<cr> ea [<C-R>=strftime("%y%m%d")<cr>]<Esc><C-O>
+nnoremap <leader>tw :.s/TODO/WAITING/<cr> ea [<C-R>=strftime("%y%m%d")<cr>
+nnoremap <leader>dd :.s/* /* TODO /<cr><C-O>
+nnoremap <leader>th :.s/* /* HTODO /<cr><C-O>
 nnoremap <leader>at :grep "* TODO" *<cr>
 nnoremap <leader>ah :grep HTODO *<cr>
 nnoremap <leader>aw :grep WAITING *<cr>
@@ -143,10 +146,10 @@ nnoremap <leader>ad :grep DONE *<cr>
 
 
 " Vimwiki style bindings
-nnoremap <leader>ww :e ~/Documents/gitHub/notes/todo.md<CR> 
+nnoremap <leader>ww :e ~/Documents/gitHub/notes/todo.md<cr>:cd %:h<cr>
 
 " Import task list
-nnoremap <leader>t :read ! php ~/Documents/gitHub/notes/code/my-myit/rd-myit-001.php<CR>
+nnoremap <leader>t :read ! php ~/Documents/gitHub/notes/code/my-myit/rd-myit-001.php<cr>
 
 " Run the current line as if it were a command. Often more convenient than q: when experimenting.
 nnoremap <leader>e :exe getline(line('.'))<cr> 
@@ -158,7 +161,7 @@ augroup minivimrc
 	autocmd QuickFixCmdPost    l* lwindow
 	autocmd VimEnter            * cwindow
 	" Git-specific settings
-	autocmd FileType gitcommit nnoremap <buffer> { ?^@@<CR>|nnoremap <buffer> } /^@@<CR>|setlocal iskeyword+=-
+	autocmd FileType gitcommit nnoremap <buffer> { ?^@@<cr>|nnoremap <buffer> } /^@@<cr>|setlocal iskeyword+=-
 	" When editing a file, always jump to the last known cursor position.
 	" Don't do it for commit messages, when the position is invalid, or when
 	" inside an event handler (happens when dropping a file on gvim).
@@ -169,6 +172,9 @@ augroup minivimrc
 	" Automatically rebalance windows on vim resize
 	autocmd VimResized * :wincmd = 
 augroup END
+
+
+
 
 " augroup remember_folds
 "   autocmd!
@@ -208,6 +214,7 @@ Plugin 'dhruvasagar/vim-table-mode'       " Tables
 Plugin 'jkramer/vim-checkbox'             " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'                 " Fuzzy finding 
+Plugin 'junegunn/goyo.vim'                " Distraction-free writing in Vim.
 Plugin 'mbbill/undotree'                  " Visual representation of undo tree
 Plugin 'plasticboy/vim-markdown'          " Needed for markdown folding
 Plugin 'tommcdo/vim-lion'                 " Align based on a character ex: glip(char)
@@ -217,10 +224,9 @@ Plugin 'tpope/vim-surround'               " provides mappings to easily delete, 
 Plugin 'vim-scripts/VisIncr'              " Allows incrementation of numbers in a line.  Visually select then press :I
 
 call vundle#end()                         " Required, All of the Plugins must be added before this line
-filetype plugin indent on                 " Required
 
 " Setup FZF
-map <leader><Space> :FZF <CR>
+map <leader><Space> :FZF <cr>
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -234,7 +240,7 @@ xmap <c-x><c-x> <plug>(fzf-maps-x)
 omap <c-x><c-o> <plug>(fzf-maps-o)
 
 " Setup Undotree
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<cr>
 
 " Setup netwr
 let g:netrw_liststyle=3                   " Tree View

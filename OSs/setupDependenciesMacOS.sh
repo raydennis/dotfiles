@@ -31,7 +31,8 @@ rm ~/.spacemacs
 ln -s ~/Documents/GitHub/dotFiles/editors/emacs/.spacemacs ~/.spacemacs
 
 rm ~/notes
-ln -s ~/Dropbox/notes/orgMode/ ~/notes
+ln -s ~/Documents/gitHub/notes ~/notes
+
 
 rm ~/.vim/colors/monokai.vim
 mkdir ~/.vim/colors
@@ -40,6 +41,8 @@ ln -s ~/Documents/GitHub/dotFiles/editors/vim/vim-monokai/colors/monokai.vim ~/.
 rm ~/.vim/colors/solarized.vim
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
 
+rm ~/.vim/colors/nord.vim
+ln -s ~/Documents/GitHub/dotFiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors/nord.vim
 
 rm -rf ~/.vim/templates
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/templates ~/.vim/templates
