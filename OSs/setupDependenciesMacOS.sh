@@ -27,8 +27,6 @@ ln -s ~/Documents/GitHub/dotFiles/editors/vim/.vimrc ~/.vimrc
 rm ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/.zshrc ~/.zshrc
 
-rm ~/.spacemacs
-ln -s ~/Documents/GitHub/dotFiles/editors/emacs/.spacemacs ~/.spacemacs
 
 rm ~/notes
 ln -s ~/Documents/gitHub/notes ~/notes
