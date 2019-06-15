@@ -42,6 +42,9 @@ ln -s ~/Documents/GitHub/dotfiles/editors/vim/vim-monokai/colors/monokai.vim ~/.
 rm ~/.vim/colors/solarized.vim
 ln -s ~/Documents/GitHub/dotfiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
 
+rm ~/.vim/colors/nord.vim
+ln -s ~/Documents/GitHub/dotfiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors/nord.vim
+
 ln -s ~/Documents/GitHub/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/Documents/GitHub/dotfiles/.gitignore_global ~/.gitignore_global
 rm ~/.vim/spell/en.utf-8.add
@@ -52,11 +55,11 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +BundleInstall +qall
 ~/.vim/bundle/fzf/install
 
-# Terminator setup
-sudo apt-get install terminator
-mkdir ~/.config/terminator
-rm ~/.config/terminator/config
-ln -s ~/Documents/GitHub/dotfiles/shells/terminator/config ~/.config/terminator/
+# # Terminator setup
+# sudo apt-get install terminator
+# mkdir ~/.config/terminator
+# rm ~/.config/terminator/config
+# ln -s ~/Documents/GitHub/dotfiles/shells/terminator/config ~/.config/terminator/
 
 # Python setup
 # sudo pip install pep8 flake8 pyflakes isort yapf jedi 
@@ -100,11 +103,11 @@ sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/fire
 # allows USB passthrough
 sudo adduser $USER vboxusers
 
-# Virtualbox Extension Pack
-# Download
-LatestVirtualBoxVersion=$(wget -qO - http://download.virtualbox.org/virtualbox/LATEST.TXT) && wget "http://download.virtualbox.org/virtualbox/${LatestVirtualBoxVersion}/Oracle_VM_VirtualBox_Extension_Pack-${LatestVirtualBoxVersion}.vbox-extpack"
-# Install
-sudo VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-${LatestVirtualBoxVersion}.vbox-extpack
+# # Virtualbox Extension Pack
+# # Download
+# LatestVirtualBoxVersion=$(wget -qO - http://download.virtualbox.org/virtualbox/LATEST.TXT) && wget "http://download.virtualbox.org/virtualbox/${LatestVirtualBoxVersion}/Oracle_VM_VirtualBox_Extension_Pack-${LatestVirtualBoxVersion}.vbox-extpack"
+# # Install
+# sudo VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-${LatestVirtualBoxVersion}.vbox-extpack
 
 # Install nvidia drivers
 # sudo ubuntu-drivers autoinstall 
