@@ -53,6 +53,7 @@ values."
      php
      python
      yaml
+     ranger
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -326,6 +327,12 @@ you should place your code here."
   ;;    '("melpa" . "http://melpa.milkbox.net/packages/")
   ;;    t))
 
+  (setq scroll-margin 20)
+
+  ;; Ranger: Show previews literally when ranger starts. The preview can also be toggled between literal and fully formatted, by pressing: zi.
+  (setq ranger-show-literal t)
+  (ranger-override-dired-mode t)
+  
   ;; Targets include this file and any file contributing to the agenda - up to 5 levels deep
   (setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
 
@@ -445,7 +452,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
   (define-key evil-normal-state-map (kbd "SPC o f") (lambda () (interactive) (insert "\[\[file:x\]\[description\]")))
 
-  (define-key evil-normal-state-map (kbd "SPC o w") (lambda () (interactive) (find-file "~/notes/index.org")))
+  (define-key evil-normal-state-map (kbd "SPC o w") (lambda () (interactive) (find-file "~/notes/todo.org")))
 
   ;; / evil-mode key bindings
 
@@ -460,9 +467,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+    ("~/notes/personal/h_home.org" "~/notes/todo.org" "~/notes/n_190607_ArgosMapsSetup.org")))
  '(package-selected-packages
    (quote
-    (powerline spinner hydra lv parent-mode projectile pkg-info epl flx highlight smartparens iedit anzu evil goto-chg undo-tree bind-map bind-key packed f dash s helm avy helm-core async popup dactyl-mode autothemer websocket yapfify yaml-mode pyvenv pytest pyenv-mode py-isort pip-requirements phpunit phpcbf php-extras php-auto-yasnippets live-py-mode hy-mode dash-functional helm-pydoc drupal-mode php-mode cython-mode company-anaconda anaconda-mode pythonic csv-mode yasnippet-snippets web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data xterm-color unfill smeargle shell-pop orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (ranger powerline spinner hydra lv parent-mode projectile pkg-info epl flx highlight smartparens iedit anzu evil goto-chg undo-tree bind-map bind-key packed f dash s helm avy helm-core async popup dactyl-mode autothemer websocket yapfify yaml-mode pyvenv pytest pyenv-mode py-isort pip-requirements phpunit phpcbf php-extras php-auto-yasnippets live-py-mode hy-mode dash-functional helm-pydoc drupal-mode php-mode cython-mode company-anaconda anaconda-mode pythonic csv-mode yasnippet-snippets web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data xterm-color unfill smeargle shell-pop orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
