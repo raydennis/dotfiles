@@ -72,9 +72,10 @@ defaults delete -g ApplePressAndHoldEnabled
 ln -s ~/Documents/GitHub/dotFiles/editors/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
 # brew
-# brew install ansible cscope gdbm gettext git git-credential-manager glib gmp gnutls libevent libffi libtasn1 libunistring libyaml lua luajit macvim nettle nmap openconnect openssl p11-kit pcre pcre2 perl python readline ruby sqlite sshfs stoken terraform the_silver_searcher tree unbound vim xz z --HEAD universal-ctags/universal-ctags/universal-ctags emacs aspell imgur-screenshot.sh terminal-notifier
+# brew install ansible cscope gdbm gettext git git-credential-manager glib gmp gnutls libevent libffi libtasn1 libunistring libyaml lua luajit macvim nettle nmap openconnect openssl p11-kit pcre pcre2 perl python readline ruby sqlite sshfs stoken terraform the_silver_searcher tree unbound vim xz z --HEAD universal-ctags/universal-ctags/universal-ctags aspell imgur-screenshot.sh terminal-notifier
+# brew cask install emacs
 
 # emacs - spacemacs
 # git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
+# ln -s ~/Documents/gitHub/dotfiles/editors/emacs/.spacemacs ~/.spacemacs
 
