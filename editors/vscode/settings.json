@@ -26,5 +26,6 @@
     "python.linting.pep8Enabled": true,
     "python.linting.enabled": true,
     "phpSniffer.run": "onType",
-    "phpSniffer.standard": "PSR2"
+    "phpSniffer.standard": "PSR2",
+    "workbench.colorTheme": "Nord"
 }
