@@ -6,6 +6,11 @@ colorscheme nord
 " allows jumping between matches like if and end with %
 runtime macros/matchit.vim
 
+let g:netrw_altv          = 1
+let g:netrw_fastbrowse    = 2
+let g:netrw_keepdir       = 0
+let g:netrw_special_syntax= 1
+
 let mapleader = " "                     " Leader - ( Space bar )
 let maplocalleader = " "                     " Leader - ( Space bar )
 set path& | let &path .= "**"
@@ -125,7 +130,8 @@ nnoremap <leader>bq :bufdo bd!<cr>
 " remove blank lines in current visual selection
 vnoremap <leader>rml :v/./d
 " Spell check for previous misspelled word, accept first choice.
-nnoremap <leader>z [s1z=]
+inoremap <c-z> <esc>[s1z=<c-o>a
+nnoremap <c-z> [s1z=e
 
 " Stop highlight after searching
 nnoremap <silent> <leader>, :noh<cr>
@@ -167,7 +173,9 @@ nnoremap <leader>aw :grep WAITING *<cr>
 nnoremap <leader>ad :grep DONE *<cr>
 
 " vimwiki style bindings
-nnoremap <leader>ww :e ~/notes/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>w1 :e ~/notes/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>wd :e ~/notes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>w2 :e ~/notes/personal/home.md<cr>:cd %:h<cr>
 
 " Run the current line as if it were a command. Often more convenient than q: when experimenting.
 nnoremap <leader>e :exe getline(line('.'))<cr>
@@ -200,7 +208,8 @@ augroup END
 
 augroup md
   autocmd!
-  au BufNewFile,BufRead *.md syntax keyword todo TODO
+  au BufNewFile,BufRead *.md syntax keyword todo TODO HTODO
+  au BufNewFile,BufRead *.md syntax keyword error WAITING
   au BufNewFile,BufRead *.md inoremap <buffer> ;` ```<cr><cr>```<Up><Up>
 augroup END
 
@@ -225,22 +234,23 @@ set rtp+=~/.vim/bundle/Vundle.vim/        " To install Vundle:  git clone https:
 call vundle#begin()                       " Set the runtime path to include Vundle and initialize
 Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 
-Plugin 'airblade/vim-gitgutter'           " Adds signs in the gutter if there are changes to the current workspace
-Plugin 'ap/vim-buftabline'                " buffer list that lives in the tabline
-Plugin 'dhruvasagar/vim-table-mode'       " Tables
-Plugin 'easymotion/vim-easymotion'        " Vim motions on speed
-Plugin 'jkramer/vim-checkbox'             " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
+Plugin 'airblade/vim-gitgutter'             " Adds signs in the gutter if there are changes to the current workspace
+Plugin 'ajh17/VimCompletesMe'               " Vim Completes Me! A super simple, super minimal, super light-weight tab completion plugin for Vim.
+Plugin 'ap/vim-buftabline'                  " buffer list that lives in the tabline
+Plugin 'dhruvasagar/vim-table-mode'         " Tables
+Plugin 'easymotion/vim-easymotion'          " Vim motions on speed
+Plugin 'jkramer/vim-checkbox'               " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'                 " Fuzzy finding
-Plugin 'junegunn/goyo.vim'                " Distraction-free writing in Vim.
-Plugin 'mbbill/undotree'                  " Visual representation of undo tree
-Plugin 'tommcdo/vim-lion'                 " Align based on a character ex : glip(char)
-Plugin 'tpope/vim-commentary'             " Comment out code with gcc
-Plugin 'tpope/vim-fugitive'               " Adds git functionality to vim ex. :Gdiff
-Plugin 'tpope/vim-surround'               " provides mappings to easily delete, change and add such surroundings in pairs
-Plugin 'vim-scripts/VisIncr'              " Allows incrementation of numbers in a line.  Visually select then press :I
+Plugin 'junegunn/fzf.vim'                   " Fuzzy finding
+Plugin 'junegunn/goyo.vim'                  " Distraction-free writing in Vim.
+Plugin 'mbbill/undotree'                    " Visual representation of undo tree
+Plugin 'tommcdo/vim-lion'                   " Align based on a character ex : glip(char)
+Plugin 'tpope/vim-commentary'               " Comment out code with gcc
+Plugin 'tpope/vim-fugitive'                 " Adds git functionality to vim ex. :Gdiff
+Plugin 'tpope/vim-surround'                 " provides mappings to easily delete, change and add such surroundings in pairs
+Plugin 'tpope/vim-unimpaired'               " provides mappings 
+Plugin 'vim-scripts/VisIncr'                " Allows incrementation of numbers in a line.  Visually select then press :I
 Plugin 'w0rp/ale'
-" Plugin 'SirVer/ultisnips'                 " The ultimate snippet solution for Vim
 
 call vundle#end()                         " Required, All of the Plugins must be added before this line
 
