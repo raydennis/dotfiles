@@ -7,3 +7,7 @@ alias vup="vagrant up"
 alias e="vim"
 
 alias q="exit"
+
+alias o="xdg-open"
+
+alias grd="git add * || git commit -am "fast update" && git push"

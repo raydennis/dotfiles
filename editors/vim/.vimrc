@@ -150,11 +150,11 @@ vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 
 " Insert current date
-nnoremap <C-d> a<C-R>=strftime("%y%m%d ")<cr><Esc>
-tnoremap <C-d> a<C-R>=strftime("%y%m%d ")<cr><Esc>
-inoremap <C-d> <C-R>=strftime("%y%m%d")<cr>
-cnoremap <C-d> <C-R>=strftime("%y%m%d")<cr>
-nnoremap <leader>d a<C-R>=strftime("%m/\%d/\%y ")<cr><Esc>
+nnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+tnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+inoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
+cnoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
+nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 
 " Resize panes with arrow keys
 nnoremap <silent> <Left> :vertical resize -5<cr>
