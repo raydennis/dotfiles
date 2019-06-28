@@ -130,8 +130,8 @@ nnoremap <leader>bq :bufdo bd!<cr>
 " remove blank lines in current visual selection
 vnoremap <leader>rml :v/./d
 " Spell check for previous misspelled word, accept first choice.
-inoremap <c-z> <esc>[s1z=<c-o>a
-nnoremap <c-z> [s1z=e
+inoremap <c-z> <esc>:set spell<cr>[s1z=<c-o>a
+nnoremap <c-z> :set spell<cr>[s1z=e
 
 " Stop highlight after searching
 nnoremap <silent> <leader>, :noh<cr>
