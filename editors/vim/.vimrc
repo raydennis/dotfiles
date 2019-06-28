@@ -163,10 +163,10 @@ nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
 
 " SpaceMacs Org-Mode style bindings
-nnoremap <leader>dd :.s/TODO\\|WAITING/DONE<cr> ea [d:<C-R>=strftime("%y%m%d")<cr>]<Esc><C-O>
-nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%y%m%d")<cr>]<Esc><C-O>
-nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%y%m%d")<cr>]<Esc><C-O>
-nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%y%m%d")<cr>]<Esc><C-O>
+nnoremap <leader>dd :.s/TODO\\|WAITING/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
 nnoremap <leader>at :grep " TODO" *<cr>
 nnoremap <leader>ah :grep HTODO *<cr>
 nnoremap <leader>aw :grep WAITING *<cr>
