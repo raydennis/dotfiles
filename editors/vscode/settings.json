@@ -27,5 +27,8 @@
     "python.linting.enabled": true,
     "phpSniffer.run": "onType",
     "phpSniffer.standard": "PSR2",
-    "workbench.colorTheme": "Nord"
+    "workbench.colorTheme": "Nord",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false
 }
