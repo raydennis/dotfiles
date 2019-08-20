@@ -3,34 +3,24 @@ syntax on
 filetype plugin indent on                 " Required
 colorscheme nord
 
-setlocal foldmethod=marker
-set modelines=1
+let mapleader = " "                       " Leader - ( Space bar )
+let maplocalleader = " "                  " LocalLeader - ( Space bar )
 
-let mapleader = " "                      " Leader - ( Space bar )
-let maplocalleader = " "                 " LocalLeader - ( Space bar )
-set path& | let &path .= "**"
-
-set tabstop=8                             " Number of spaces that a <Tab> in the file counts for.
-set softtabstop=4                         " Number of spaces that a <Tab> counts for while performing editing operations
-set shiftwidth=4
-set expandtab                             " In Insert mode: Use the appropriate number of spaces to insert a <tab>
-set nowrap                                " When on, lines longer than the width of the window will wrap and displaying continues on the next line.  When off lines will not wrap
-set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
-set autoindent                            " Copy indent from current line when starting a new line
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
+set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
 set directory^=$HOME/.vim/swapfiles//     " Where to save swap files
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| command.
 set hidden                                " When ON a buffer becomes hidden when it is |abandon|ed.
 set hlsearch                              " When there is a previous search pattern, highlight all its matches.
 set incsearch                             " While typing a search command, show where pattern, as it was typed
-
+set mouse=a                               " Enable the use of the mouse
+set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
-set mouse=a                               " Enable the use of the mouse.{{{
-set noswapfile                            " The 'swapfile' option can be reset to avoid creating a swapfile.}}}
 set showcmd                               " Display incomplete command
 set showmatch                             " When a bracket is inserted, briefly jump to the matching one.
 set smartcase                             " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
+set spell                                 " Enable spellcheck
 set splitbelow                            " Open new split panes to right
 set splitright                            " Open new split panes to the bottom
 set tagcase=smart                         " smart	Ignore case unless an upper case letter is used
@@ -40,50 +30,40 @@ set undofile                              " Save undos after file closes
 set visualbell                            " Switch from sound on error to flash
 set wildmenu                              " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
+" }}}
 
+" {{{ tab stuff
+
+set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=4                          " This allows you to use the < and > keys from VIM's visual (marking) mode to block indent/unindent regions
+set expandtab                             " Insert spaces instead of tab
+set softtabstop=4                         " allows backspace to delete the spaces of an expanded tab with one keypress
+set autoindent                            " Copy indent from current line when starting a new line
 
 " }}}
 
-" statusline {{{
-set laststatus=2
-set statusline=
-set statusline+=%m
-set statusline+=[
-set statusline+=%{StatuslineMode()}
-set statusline+=]
-set statusline+=%f
-set statusline+=%=
-set statusline+=%l
-set statusline+=/
-set statusline+=%L
-set statusline+=[
-set statusline+=%c
-set statusline+=]
-
-function! StatuslineMode()
-  let l:mode=mode()
-  if l:mode==#"n"
-    return "NORMAL"
-  elseif l:mode==?"v"
-    return "VISUAL"
-  elseif l:mode==#"i"
-    return "INSERT"
-  elseif l:mode==#"R"
-    return "REPLACE"
-  elseif l:mode==?"s"
-    return "SELECT"
-  elseif l:mode==#"t"
-    return "TERMINAL"
-  elseif l:mode==#"c"
-    return "COMMAND"
-  elseif l:mode==#"!"
-    return "SHELL"
-  endif
-endfunction
-
-" }}}
+" " statusline {{{
+" set laststatus=2
+" set statusline=
+" set statusline+=%m
+" set statusline+=%f
+" set statusline+=%=
+" set statusline+=%l
+" set statusline+=/
+" set statusline+=%L
+" set statusline+=[
+" set statusline+=%c
+" set statusline+=]
+" " }}}
 
 " mappings {{{
+
+" window movement with control + hjkl{{{
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
+" }}}
 
 " easier beginning and ending of line {{{
 nnoremap H ^
@@ -98,7 +78,7 @@ nnoremap <leader>v' :vertical terminal<cr>
 " }}}
 
 " buffers {{{
-" Use tab to switch between current and last buffer 
+" Use leader tab to switch between current and last buffer 
 nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
 nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
 
@@ -155,14 +135,16 @@ nnoremap <silent> <Down> :resize -5<cr>
 " }}}
 
 " SpaceMacs Org-Mode style agenda bindings {{{
-nnoremap <leader>dd :.s/TODO\\|WAITING/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
 nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>ts :.s/\(TODO\\|WAITING\)/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
 nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
 nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
 nnoremap <leader>at :grep " TODO" *<cr>
 nnoremap <leader>ah :grep HTODO *<cr>
 nnoremap <leader>aw :grep WAITING *<cr>
 nnoremap <leader>ad :grep DONE *<cr>
+nnoremap <leader>as :grep SCHEDULED *<cr>
 " }}}
 
 " vimwiki style jump bindings {{{
@@ -178,7 +160,6 @@ nnoremap <leader>e :exe getline(line('.'))<cr>
 " }}}
 
 " augroups {{{
-"
 " augroup minivmrc {{{
 
 augroup minivimrc
@@ -223,7 +204,7 @@ augroup END
 " augroup markdown {{{
 augroup md
   autocmd!
-  au BufNewFile,BufRead *.md syntax keyword todo TODO HTODO
+  au BufNewFile,BufRead *.md syntax keyword todo TODO HTODO SCHEDULED
   au BufNewFile,BufRead *.md syntax keyword error WAITING
   au BufNewFile,BufRead *.md inoremap <buffer> ;` ```<cr><cr>```<Up><Up>
 
@@ -282,12 +263,12 @@ Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 
 Plugin 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
 Plugin 'ajh17/VimCompletesMe'                  " Vim Completes Me! A super simple, super minimal, super light-weight tab completion plugin for Vim.
-Plugin 'ap/vim-buftabline'                     " buffer list that lives in the tabline
+" Plugin 'ap/vim-buftabline'                     " buffer list that lives in the tabline
 Plugin 'dhruvasagar/vim-table-mode'            " Tables
 Plugin 'easymotion/vim-easymotion'             " Vim motions on speed
 Plugin 'francoiscabrol/ranger.vim'             " Ranger integration
 Plugin 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
-Plugin 'junegunn/fzf', { 'dir'                                                                                           : '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'                      " Fuzzy finding
 Plugin 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
 Plugin 'markonm/traces.vim'                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
@@ -301,9 +282,10 @@ Plugin 'tpope/vim-repeat'                      " enable repeating supported plug
 Plugin 'tpope/vim-surround'                    " provides mappings to easily delete, change and add such surroundings in pairs
 Plugin 'tpope/vim-unimpaired'                  " provides mappings
 Plugin 'tpope/vim-vinegar'                     " Combine with netrw to create a delicious salad dressing
+Plugin 'vim-airline/vim-airline'               " Statusline
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
 Plugin 'w0rp/ale'                              " Asynchronous linting engine
-Plugin 'cocopon/iceberg.vim'
 
 
 call vundle#end()                         " Required, All of the Plugins must be added before this line
@@ -333,15 +315,13 @@ nnoremap <leader>u :UndotreeToggle<cr>
 " }}}
 
 " netwr {{{
-let g:netrw_liststyle      =3                        " Tree View
-let g:netrw_winsize        =80                       " Make split 20 (100-80) characters wide
-let g:netrw_banner         =0                        " Remove Banner
-let g:netrw_altv           =1                        " Open Splits to the right
-let g:netwr_browse_split   =4                        " Open in prior window
-let g:netrw_altv           = 1
-let g:netrw_fastbrowse     = 2
-let g:netrw_keepdir        = 0
-let g:netrw_special_syntax = 1
+let g:netrw_liststyle      = 3     " Tree View
+let g:netrw_winsize        = 80    " Make split 20 (100-80) characters wide
+let g:netrw_banner         = 0     " Remove Banner
+let g:netrw_altv           = 1     " Open Splits to the right
+let g:netrw_fastbrowse     = 2     " fast browsing (re-use directory buffer listings as often as possible).
+let g:netrw_keepdir        = 0     " =0 keep the current directory the same as the browsing directory.
+let g:netrw_special_syntax = 1     " certain files will be shown using special syntax in the browser:
 
 " }}}
 
@@ -359,6 +339,22 @@ nnoremap <leader>A :ALEFix<cr>
 
 " Goyo {{{
 nnoremap <leader>G :Goyo<cr>
+" }}}
+
+" Startify {{{
+let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'z': '~/.zshrc'}, {'d': '~/Documents/gitHub/dotfiles/'} ]
+" }}}
+
+" Auto-Save {{{
+let g:auto_save        = 1
+let g:auto_save_silent = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
+" }}}
+
+" Airline {{{
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
 " }}}
 
 " }}}
