@@ -11,8 +11,8 @@ export TERM="xterm-256color"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # https://github.com/zsh-users/zsh-autosuggestions.git
 # not working and...not necesary?
@@ -75,6 +75,8 @@ HISTTIMEFORMAT="%F %R%z "
 
 
 # fzf
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
@@ -97,4 +99,7 @@ fo() {
   fi
 }
 
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
