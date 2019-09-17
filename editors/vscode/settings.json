@@ -1,34 +1,57 @@
 {
-    "telemetry.enableTelemetry": false,
-    "team.showWelcomeMessage": false,
-    "gitlens.advanced.messages": {
-        "suppressShowKeyBindingsNotice": true
-    },
-    "team.appInsights.enabled": false,
-    "editor.lineNumbers": "relative",
-    "window.zoomLevel": 1,
-    "files.autoSave": "afterDelay",
-    "editor.tabSize": 4, 
-    "editor.insertSpaces": true, 
-    "editor.renderWhitespace": "all",
-    "[markdown]": {
-        "editor.quickSuggestions": true
-    },
-    "markdown.extension.preview.autoShowPreviewToSide": true,
-    "python.pythonPath": "/usr/local/bin/python3",
-    "explorer.confirmDelete": false,
-    "editor.minimap.enabled": false,
     "cSpell.language": "en",
-    "gitlens.historyExplorer.enabled": true,
-    "editor.fontFamily": "Fira Mono for Powerline",
+    "editor.fontFamily": "Fira Code , Menlo", 
+    "editor.fontLigatures": true,
+    "editor.insertSpaces": true, 
+    "editor.lineNumbers": "off",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 4, 
+    "explorer.confirmDelete": false,
+    "files.autoSave": "afterDelay",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.js": {
+            "when": "$(basename).ts"
+          },
+          "**/*.js.map": {
+            "when": "$(basename)"
+          }
+    },
     "git.autofetch": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.pep8Enabled": true,
-    "python.linting.enabled": true,
+    "git.enableSmartCommit": true,
+    "gitlens.advanced.messages": {"suppressShowKeyBindingsNotice": true},
+    "gitlens.historyExplorer.enabled": true,
+    "[markdown]": {"editor.quickSuggestions": true},
+    "markdown.extension.preview.autoShowPreviewToSide": true,
     "phpSniffer.run": "onType",
     "phpSniffer.standard": "PSR2",
-    "workbench.colorTheme": "Nord",
-    "editor.suggestSelection": "first",
+    "python.jediEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.pep8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "team.appInsights.enabled": false,
+    "team.showWelcomeMessage": false,
+    "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.jediEnabled": false
+    "workbench.colorTheme": "Winter is Coming (Dark Blue)",
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": [
+          "<leader>",
+          "'"
+        ],
+        "commands": [
+          "workbench.action.terminal.focus",
+        ]
+      }
+    ],
+    "window.zoomLevel": 2,
 }
