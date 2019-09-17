@@ -1,6 +1,8 @@
 " set and let {{{
 syntax on
 filetype plugin indent on                 " Required
+
+let g:solarized_termtrans = 1             " This get's rid of the grey background.
 colorscheme nord
 
 let mapleader = " "                       " Leader - ( Space bar )
@@ -151,6 +153,7 @@ nnoremap <leader>as :grep SCHEDULED *<cr>
 nnoremap <leader>ww :e ~/notes/todo.md<cr>:cd %:h<cr>
 nnoremap <leader>wd :e ~/notes/done.md<cr>:cd %:h<cr>
 nnoremap <leader>wh :e ~/notes/personal/home.md<cr>:cd %:h<cr>
+" nnoremap <leader>wm :!mv "~/OneDrive - University of New Mexico/OneDrive - University of New Mexico/Meetings"/
 " }}}
 
 " Run the current line as if it were a command {{{
@@ -208,6 +211,9 @@ augroup md
   au BufNewFile,BufRead *.md syntax keyword error WAITING
   au BufNewFile,BufRead *.md inoremap <buffer> ;` ```<cr><cr>```<Up><Up>
 
+  " Dictionary Completions
+  autocmd FileType markdown,txt setlocal complete+=k~/.vim/spell/en.utf-8.add
+
   " Fold method based on syntax
   autocmd FileType markdown setlocal foldmethod=syntax
 
@@ -263,7 +269,6 @@ Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 
 Plugin 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
 Plugin 'ajh17/VimCompletesMe'                  " Vim Completes Me! A super simple, super minimal, super light-weight tab completion plugin for Vim.
-" Plugin 'ap/vim-buftabline'                     " buffer list that lives in the tabline
 Plugin 'dhruvasagar/vim-table-mode'            " Tables
 Plugin 'easymotion/vim-easymotion'             " Vim motions on speed
 Plugin 'francoiscabrol/ranger.vim'             " Ranger integration
@@ -297,6 +302,8 @@ call vundle#end()                         " Required, All of the Plugins must be
 " FZF {{{
 map <leader>g :FZF <cr>
 
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -308,6 +315,15 @@ nmap <c-x><c-n> <plug>(fzf-maps-n)
 xmap <c-x><c-x> <plug>(fzf-maps-x)
 omap <c-x><c-o> <plug>(fzf-maps-o)
 
+" }}}
+
+" Surround {{{
+
+" Custom surrounds
+let g:surround_{char2nr('c')} = "```\r```"
+let g:surround_{char2nr('g')} = "<font face=\"verdana\" color=\"green\">\r</font>"
+let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
+let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
 " }}}
 
 " Undotree {{{
@@ -359,4 +375,3 @@ let g:airline_theme='solarized'
 
 " }}}
 
-" vim:foldmethod=marker:foldlevel=0
