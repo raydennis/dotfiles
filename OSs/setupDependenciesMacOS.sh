@@ -54,22 +54,34 @@ ln -s ~/Documents/GitHub/dotFiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8
 # on Mac or Linux (WSL = ?) type: 
 # code --list-extensions | xargs -L 1 echo code --install-extension
 # to get the following list
+code --install-extension PKief.material-icon-theme
+code --install-extension Sophisticode.php-formatter
 code --install-extension bbenoist.vagrant
+code --install-extension christian-kohler.path-intellisense
+code --install-extension dbaeumer.vscode-eslint
 code --install-extension eamodio.gitlens
-code --install-extension ms-vscode.PowerShell
+code --install-extension esbenp.prettier-vscode
+code --install-extension johnpapa.winteriscoming
+code --install-extension ms-python.python
+code --install-extension ms-vscode.powershell
+code --install-extension ms-vscode.vscode-typescript-tslint-plugin
 code --install-extension ms-vsts.team
-code --install-extension robertohuertasm.vscode-icons
 code --install-extension ryu1kn.partial-diff
 code --install-extension vscodevim.vim
 code --install-extension waderyan.gitblame
 code --install-extension yzhang.dictionary-completion
 code --install-extension yzhang.markdown-all-in-one
+
+
+# code --install-extension nord
 # To enable key-repeating execute the following in your Terminal and restart VS Code.
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
+defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
 defaults delete -g ApplePressAndHoldEnabled
 # now link to the user settings.json
-ln -s ~/Documents/GitHub/dotFiles/editors/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -s ~/Documents/GitHub/dotFiles/editors/vscode/settings.json ~/Library/Application\ Support/VSCodium/User/settings.json
+ln -s ~/Documents/GitHub/dotFiles/editors/vscode/keybindings.json ~/Library/Application\ Support/VSCodium/User/keybindings.json
 
 # brew
 # brew install ansible cscope gdbm gettext git git-credential-manager glib gmp gnutls libevent libffi libtasn1 libunistring libyaml lua luajit macvim nettle nmap openconnect openssl p11-kit pcre pcre2 perl python readline ruby sqlite sshfs stoken terraform the_silver_searcher tree unbound vim xz z --HEAD universal-ctags/universal-ctags/universal-ctags aspell imgur-screenshot.sh terminal-notifier
@@ -84,3 +96,6 @@ brew tap eddieantonio/eddieantonio
 brew install libcaca highlight atool lynx w3m elinks poppler transmission mediainfo exiftool imgcat
 ln -s ~/Documents/gitHub/dotfiles/shells/ranger ~/.config/ranger
 
+# font
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
