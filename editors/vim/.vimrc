@@ -2,7 +2,7 @@
 syntax on
 filetype plugin indent on                 " Required
 
-let g:solarized_termtrans = 1             " This get's rid of the grey background.
+" let g:s;larized_termtrans = 1             " This gets rid of the grey background in solarized.
 colorscheme nord
 
 let mapleader = " "                       " Leader - ( Space bar )
@@ -150,8 +150,8 @@ nnoremap <leader>as :grep SCHEDULED *<cr>
 " }}}
 
 " vimwiki style jump bindings {{{
-nnoremap <leader>ww :e ~/notes/todo.md<cr>:cd %:h<cr>
-nnoremap <leader>wd :e ~/notes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>ww :e ~/notes/work/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>wd :e ~/notes/work/done.md<cr>:cd %:h<cr>
 nnoremap <leader>wh :e ~/notes/personal/home.md<cr>:cd %:h<cr>
 " nnoremap <leader>wm :!mv "~/OneDrive - University of New Mexico/OneDrive - University of New Mexico/Meetings"/
 " }}}
@@ -248,7 +248,7 @@ if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " macOS
-    set guifont=FiraMonoForPowerline-Regular:h12
+    set guifont=FuraCodeNerdFontMono-Regular:h16
   else
     " Linux/WSL
   endif
@@ -263,37 +263,42 @@ endif
 " allows jumping between matches like if and end with %
 runtime macros/matchit.vim
 
-set rtp+=~/.vim/bundle/Vundle.vim/        " To install Vundle:  git clone https://github.com/VundleVim/Vundle.vim.git
-call vundle#begin()                       " Set the runtime path to include Vundle and initialize
-Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
+" Install vim-plug if unavailable
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-Plugin 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
-Plugin 'ajh17/VimCompletesMe'                  " Vim Completes Me! A super simple, super minimal, super light-weight tab completion plugin for Vim.
-Plugin 'dhruvasagar/vim-table-mode'            " Tables
-Plugin 'easymotion/vim-easymotion'             " Vim motions on speed
-Plugin 'francoiscabrol/ranger.vim'             " Ranger integration
-Plugin 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
-Plugin 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'                      " Fuzzy finding
-Plugin 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
-Plugin 'markonm/traces.vim'                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
-Plugin 'mbbill/undotree'                       " Visual representation of undo tree
-Plugin 'mhinz/vim-startify'                    "provides a start screen for Vim
-Plugin 'tommcdo/vim-lion'                      " Align based on a character ex                                           : glip(char)
-Plugin 'tpope/vim-commentary'                  " Comment out code with gcc
-Plugin 'tpope/vim-fugitive'                    " Adds git functionality to vim ex.                                       :Gdiff
-Plugin 'tpope/vim-obsession'                   " continuously updated session files
-Plugin 'tpope/vim-repeat'                      " enable repeating supported plugin maps with
-Plugin 'tpope/vim-surround'                    " provides mappings to easily delete, change and add such surroundings in pairs
-Plugin 'tpope/vim-unimpaired'                  " provides mappings
-Plugin 'tpope/vim-vinegar'                     " Combine with netrw to create a delicious salad dressing
-Plugin 'vim-airline/vim-airline'               " Statusline
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
-Plugin 'w0rp/ale'                              " Asynchronous linting engine
+call plug#begin('~/.vim/plugged')
+
+Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
+Plug 'ajh17/VimCompletesMe'                  " Vim Completes Me! A super simple, super minimal, super light-weight tab completion plugin for Vim.
+Plug 'dhruvasagar/vim-table-mode'            " Tables
+Plug 'easymotion/vim-easymotion'             " Vim motions on speed
+Plug 'francoiscabrol/ranger.vim'             " Ranger integration
+Plug 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'                      " Fuzzy finding
+Plug 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
+Plug 'markonm/traces.vim'                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
+Plug 'mbbill/undotree'                       " Visual representation of undo tree
+Plug 'mhinz/vim-startify'                    " provides a start screen for Vim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tommcdo/vim-lion'                      " Align based on a character ex :glip(char)
+Plug 'tpope/vim-commentary'                  " Comment out code with gcc
+Plug 'tpope/vim-fugitive'                    " Adds git functionality to vim ex. :Gdiff
+Plug 'tpope/vim-obsession'                   " continuously updated session files
+Plug 'tpope/vim-repeat'                      " enable repeating supported plugin maps with
+Plug 'tpope/vim-surround'                    " provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'vim-airline/vim-airline'               " Statusline
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
+Plug 'w0rp/ale'                              " Asynchronous linting engin
+Plug 'liuchengxu/vista.vim'                  " View and search LSP symbols, tags in Vim/NeoVim.
 
 
-call vundle#end()                         " Required, All of the Plugins must be added before this line
+call plug#end() " Required, All of the Plugins must be added before this line
 
 " }}}
 
@@ -370,8 +375,72 @@ let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
 " Airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
+let g:airline_theme='cool'
 " }}}
+
+" Vista {{{
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\ 'augroup': 'פּ',
+\ 'autocommand groups': 'פּ',
+\ 'class': '',
+\ 'classes': '',
+\ 'const': '',
+\ 'constant': '',
+\ 'default': '',
+\ 'enum': '',
+\ 'enumerator': '',
+\ 'field': '',
+\ 'fields': '',
+\ 'func': '',
+\ 'function': '',
+\ 'functions': '',
+\ 'implementation': '',
+\ 'interface': '',
+\ 'macro': '',
+\ 'macros': '',
+\ 'map': 'פּ',
+\ 'maps': 'פּ',
+\ 'member': '',
+\ 'members': '',
+\ 'method': '',
+\ 'module': '',
+\ 'modules': '',
+\ 'namespace': '',
+\ 'package': '',
+\ 'packages': '',
+\ 'property': '襁',
+\ 'struct': '',
+\ 'subroutine': '羚',
+\ 'target': '',
+\ 'type': '',
+\ 'typeParameter': '',
+\ 'typedef': '',
+\ 'types': '',
+\ 'union': '鬒',
+\ 'var': '',
+\ 'variable': '',
+\ 'variables': '',
+\  }
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+let g:vista_fzf_preview = ['right:50%']
+
+let g:vista_executive_for = {
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ 'javascript.jsx': 'coc',
+  \ 'python': 'coc',
+  \ 'php': 'coc',
+  \ }
+
+" Keybinding
+nnoremap <leader>v :Vista show<cr>
 
 " }}}
 
+" vim:foldmethod=marker:foldlevel=0
