@@ -11,8 +11,8 @@ export TERM="xterm-256color"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-# ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # https://github.com/zsh-users/zsh-autosuggestions.git
 # not working and...not necesary?
@@ -27,7 +27,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='/usr/local/Cellar/macvim/8.1-155/MacVim.app/Contents/MacOS/Vim'
+    alias vim='/usr/local/Cellar/macvim/8.1-157/MacVim.app/Contents/MacOS/Vim'
     # setup "Z" on MACOS
     # brew install z
     . `brew --prefix`/etc/profile.d/z.sh
