@@ -10,23 +10,5 @@
   "suggest.noselect": false,
   "suggest.snippetIndicator": "★",
   "suggest.triggerCompletionWait": 100,
-  "suggest.echodocSupport": true,
-
-  "languageserver": {
-    "bash": {
-      "command": "bash-language-server",
-      "filetypes": ["sh"],
-      "args": ["start"],
-      "ignoredRootPaths": ["~"]
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
-    },
-    "lua": {
-      "command": "lua-lsp",
-      "filetypes": ["lua"]
-    }
-  }
+  "suggest.echodocSupport": true
 }

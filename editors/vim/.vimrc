@@ -272,15 +272,17 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
+Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
-Plug 'ajh17/VimCompletesMe'                  " Vim Completes Me! A super simple, super minimal, super light-weight tab completion plugin for Vim.
 Plug 'dhruvasagar/vim-table-mode'            " Tables
-Plug 'easymotion/vim-easymotion'             " Vim motions on speed
 Plug 'francoiscabrol/ranger.vim'             " Ranger integration
+Plug 'scrooloose/nerdtree'                   " Tree scrooloose/nerdtreeFile Explorer
 Plug 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                      " Fuzzy finding
 Plug 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
+Plug 'liuchengxu/vista.vim'                  " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'mbbill/undotree'                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                    " provides a start screen for Vim
@@ -294,9 +296,21 @@ Plug 'tpope/vim-surround'                    " provides mappings to easily delet
 Plug 'vim-airline/vim-airline'               " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
-Plug 'w0rp/ale'                              " Asynchronous linting engin
-Plug 'liuchengxu/vista.vim'                  " View and search LSP symbols, tags in Vim/NeoVim.
+Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugins such as: NERDTree
 
+" coc.plugins {{{
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
+Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+" }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
 
@@ -344,18 +358,6 @@ let g:netrw_fastbrowse     = 2     " fast browsing (re-use directory buffer list
 let g:netrw_keepdir        = 0     " =0 keep the current directory the same as the browsing directory.
 let g:netrw_special_syntax = 1     " certain files will be shown using special syntax in the browser:
 
-" }}}
-
-" ALE {{{
-" let g:ale_open_list = 1
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'markdown': ['prettier'],
-\   'php': ['phpcbf'],
-\   'python': ['autopep8'],
-\}
-let g:ale_completion_enabled = 1
-nnoremap <leader>A :ALEFix<cr>
 " }}}
 
 " Goyo {{{
@@ -439,8 +441,120 @@ let g:vista_executive_for = {
   \ }
 
 " Keybinding
-nnoremap <leader>v :Vista show<cr>
+nnoremap <leader>vi :Vista!! <cr>
 
+" }}}
+
+" UltiSnips {{{
+
+if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
+        let g:UltiSnipsEditSplit = "context"
+        call mkdir($HOME . "/.vim/UltiSnips", "p")
+        let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+        let g:UltiSnipsExpandTrigger = '\'
+    endif
+
+" }}}
+
+" coc {{{
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" }}}
+
+" nerdtree {{{
+nnoremap - :NERDTreeToggle<CR>
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
