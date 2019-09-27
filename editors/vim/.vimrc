@@ -297,20 +297,21 @@ Plug 'vim-airline/vim-airline'               " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
 Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugins such as: NERDTree
+Plug 'Xuyuanp/nerdtree-git-plugin'                   " A plugin of NERDTree showing git status flags.
 
-" coc.plugins {{{
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
-Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-" }}}
+" " coc.plugins {{{
+" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+" " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
 
@@ -522,8 +523,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>af  <Plug>(coc-format-selected)
+nmap <leader>af  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -551,6 +552,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " }}}
 
 " nerdtree {{{
