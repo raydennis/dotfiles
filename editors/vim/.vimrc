@@ -1,4 +1,4 @@
-" set and let {{{
+" Set and Let {{{
 syntax on
 filetype plugin indent on                 " Required
 
@@ -34,7 +34,7 @@ set wildmenu                              " When 'wildmenu' is on, command-line 
 set wildmode=list:longest,full
 " }}}
 
-" {{{ tab stuff
+" {{{ Tab 
 
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4                          " This allows you to use the < and > keys from VIM's visual (marking) mode to block indent/unindent regions
@@ -44,42 +44,28 @@ set autoindent                            " Copy indent from current line when s
 
 " }}}
 
-" " statusline {{{
-" set laststatus=2
-" set statusline=
-" set statusline+=%m
-" set statusline+=%f
-" set statusline+=%=
-" set statusline+=%l
-" set statusline+=/
-" set statusline+=%L
-" set statusline+=[
-" set statusline+=%c
-" set statusline+=]
-" " }}}
+" Mappings {{{
 
-" mappings {{{
-
-" window movement with control + hjkl{{{
+" Window movement with control + hjkl{{{
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
 " }}}
 
-" easier beginning and ending of line {{{
+" Easier beginning and ending of line {{{
 nnoremap H ^
 vnoremap H ^
 nnoremap L $
 vnoremap L $
 " }}}
 
-" open terminal {{{
+" Open terminal {{{
 nnoremap <leader>' :terminal<cr>
 nnoremap <leader>v' :vertical terminal<cr>
 " }}}
 
-" buffers {{{
+" Buffers {{{
 " Use leader tab to switch between current and last buffer 
 nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
 nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
@@ -93,7 +79,7 @@ nnoremap <leader>bq :bufdo bd!<cr>
 
 " }}}
 
-" remove blank lines in current visual selection {{{
+" Remove blank lines in current visual selection {{{
 vnoremap <leader>rml :v/./d
 " }}}
 
@@ -106,10 +92,6 @@ nnoremap <c-z> :set spell<cr>[s1z=e
 nnoremap <silent> <leader>, :noh<cr>
 " }}}
 
-" change directory to current file's directory {{{
-nnoremap <leader>cd :cd %:h<cr>
-" }}}
-
 " Quicker clipboard control {{{
 nnoremap <Leader>y "+y
 nnoremap <Leader>d "+d
@@ -119,14 +101,6 @@ nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
-" }}}
-
-" Insert current date {{{
-nnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
-tnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
-inoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
-cnoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
-nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 " }}}
 
 " Resize panes with arrow keys {{{
@@ -149,7 +123,7 @@ nnoremap <leader>ad :grep DONE *<cr>
 nnoremap <leader>as :grep SCHEDULED *<cr>
 " }}}
 
-" vimwiki style jump bindings {{{
+" Vimwiki style jump bindings {{{
 nnoremap <leader>ww :e ~/notes/work/todo.md<cr>:cd %:h<cr>
 nnoremap <leader>wd :e ~/notes/work/done.md<cr>:cd %:h<cr>
 nnoremap <leader>wh :e ~/notes/personal/home.md<cr>:cd %:h<cr>
@@ -162,7 +136,7 @@ nnoremap <leader>e :exe getline(line('.'))<cr>
 
 " }}}
 
-" augroups {{{
+" Augroups {{{
 " augroup minivmrc {{{
 
 augroup minivimrc
@@ -240,7 +214,7 @@ augroup END
 
 " }}}
 
-" os specific commands {{{
+" OS specific commands {{{
 if has("unix")
   " *nix
   set list listchars=tab:»·,trail:·       " Display tabs as '-' and trailing white space as '.'
@@ -258,7 +232,7 @@ endif
 
 " }}}
 
-" plugins {{{
+" Plugins {{{
 
 " allows jumping between matches like if and end with %
 runtime macros/matchit.vim
@@ -298,6 +272,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
 Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugins such as: NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'                   " A plugin of NERDTree showing git status flags.
+Plug 'tpope/vim-speeddating'                 " Quickly modify dates.
 
 " " coc.plugins {{{
 " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
@@ -317,56 +292,12 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " }}}
 
-" plugin settings {{{
+" Plugin settings {{{
 
-" FZF {{{
-map <leader>g :FZF <cr>
-
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Mapping selecting mappings
-nmap <c-x><c-n> <plug>(fzf-maps-n)
-xmap <c-x><c-x> <plug>(fzf-maps-x)
-omap <c-x><c-o> <plug>(fzf-maps-o)
-
-" }}}
-
-" Surround {{{
-
-" Custom surrounds
-let g:surround_{char2nr('c')} = "```\r```"
-let g:surround_{char2nr('g')} = "<font face=\"verdana\" color=\"green\">\r</font>"
-let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
-let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
-" }}}
-
-" Undotree {{{
-nnoremap <leader>u :UndotreeToggle<cr>
-" }}}
-
-" netwr {{{
-let g:netrw_liststyle      = 3     " Tree View
-let g:netrw_winsize        = 80    " Make split 20 (100-80) characters wide
-let g:netrw_banner         = 0     " Remove Banner
-let g:netrw_altv           = 1     " Open Splits to the right
-let g:netrw_fastbrowse     = 2     " fast browsing (re-use directory buffer listings as often as possible).
-let g:netrw_keepdir        = 0     " =0 keep the current directory the same as the browsing directory.
-let g:netrw_special_syntax = 1     " certain files will be shown using special syntax in the browser:
-
-" }}}
-
-" Goyo {{{
-nnoremap <leader>G :Goyo<cr>
-" }}}
-
-" Startify {{{
-let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'z': '~/.zshrc'}, {'d': '~/Documents/gitHub/dotfiles/'} ]
+" Airline {{{
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='cool'
 " }}}
 
 " Auto-Save {{{
@@ -375,89 +306,7 @@ let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
 " }}}
 
-" Airline {{{
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='cool'
-" }}}
-
-" Vista {{{
-let g:vista#renderer#enable_icon = 1
-
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-let g:vista#renderer#icons = {
-\ 'augroup': 'פּ',
-\ 'autocommand groups': 'פּ',
-\ 'class': '',
-\ 'classes': '',
-\ 'const': '',
-\ 'constant': '',
-\ 'default': '',
-\ 'enum': '',
-\ 'enumerator': '',
-\ 'field': '',
-\ 'fields': '',
-\ 'func': '',
-\ 'function': '',
-\ 'functions': '',
-\ 'implementation': '',
-\ 'interface': '',
-\ 'macro': '',
-\ 'macros': '',
-\ 'map': 'פּ',
-\ 'maps': 'פּ',
-\ 'member': '',
-\ 'members': '',
-\ 'method': '',
-\ 'module': '',
-\ 'modules': '',
-\ 'namespace': '',
-\ 'package': '',
-\ 'packages': '',
-\ 'property': '襁',
-\ 'struct': '',
-\ 'subroutine': '羚',
-\ 'target': '',
-\ 'type': '',
-\ 'typeParameter': '',
-\ 'typedef': '',
-\ 'types': '',
-\ 'union': '鬒',
-\ 'var': '',
-\ 'variable': '',
-\ 'variables': '',
-\  }
-
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-let g:vista_fzf_preview = ['right:50%']
-
-let g:vista_executive_for = {
-  \ 'javascript': 'coc',
-  \ 'typescript': 'coc',
-  \ 'javascript.jsx': 'coc',
-  \ 'python': 'coc',
-  \ 'php': 'coc',
-  \ }
-
-" Keybinding
-nnoremap <leader>vi :Vista!! <cr>
-
-" }}}
-
-" UltiSnips {{{
-
-if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
-        let g:UltiSnipsEditSplit = "context"
-        call mkdir($HOME . "/.vim/UltiSnips", "p")
-        let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
-        let g:UltiSnipsExpandTrigger = '\'
-    endif
-
-" }}}
-
-" coc {{{
+" Coc {{{
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -555,8 +404,135 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " }}}
 
-" nerdtree {{{
+" FZF {{{
+map <leader>g :FZF <cr>
+
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Mapping selecting mappings
+nmap <c-x><c-n> <plug>(fzf-maps-n)
+xmap <c-x><c-x> <plug>(fzf-maps-x)
+omap <c-x><c-o> <plug>(fzf-maps-o)
+
+" }}}
+
+" Goyo {{{
+nnoremap <leader>G :Goyo<cr>
+" }}}
+
+" Nerdtree {{{
 nnoremap - :NERDTreeToggle<CR>
+" }}}
+
+" Netwr {{{
+let g:netrw_liststyle      = 3     " Tree View
+let g:netrw_winsize        = 80    " Make split 20 (100-80) characters wide
+let g:netrw_banner         = 0     " Remove Banner
+let g:netrw_altv           = 1     " Open Splits to the right
+let g:netrw_fastbrowse     = 2     " fast browsing (re-use directory buffer listings as often as possible).
+let g:netrw_keepdir        = 0     " =0 keep the current directory the same as the browsing directory.
+let g:netrw_special_syntax = 1     " certain files will be shown using special syntax in the browser:
+
+" }}}
+
+" Startify {{{
+let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'z': '~/.zshrc'}, {'d': '~/Documents/gitHub/dotfiles/'} ]
+" }}}
+
+" Surround {{{
+
+" Custom surrounds
+let g:surround_{char2nr('c')} = "```\r```"
+let g:surround_{char2nr('g')} = "<font face=\"verdana\" color=\"green\">\r</font>"
+let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
+let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
+" }}}
+
+" UltiSnips {{{
+
+if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
+        let g:UltiSnipsEditSplit = "context"
+        call mkdir($HOME . "/.vim/UltiSnips", "p")
+        let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+        let g:UltiSnipsExpandTrigger = '\'
+    endif
+
+" }}}
+
+" Undotree {{{
+nnoremap <leader>u :UndotreeToggle<cr>
+" }}}
+
+" Vista {{{
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\ 'augroup': 'פּ',
+\ 'autocommand groups': 'פּ',
+\ 'class': '',
+\ 'classes': '',
+\ 'const': '',
+\ 'constant': '',
+\ 'default': '',
+\ 'enum': '',
+\ 'enumerator': '',
+\ 'field': '',
+\ 'fields': '',
+\ 'func': '',
+\ 'function': '',
+\ 'functions': '',
+\ 'implementation': '',
+\ 'interface': '',
+\ 'macro': '',
+\ 'macros': '',
+\ 'map': 'פּ',
+\ 'maps': 'פּ',
+\ 'member': '',
+\ 'members': '',
+\ 'method': '',
+\ 'module': '',
+\ 'modules': '',
+\ 'namespace': '',
+\ 'package': '',
+\ 'packages': '',
+\ 'property': '襁',
+\ 'struct': '',
+\ 'subroutine': '羚',
+\ 'target': '',
+\ 'type': '',
+\ 'typeParameter': '',
+\ 'typedef': '',
+\ 'types': '',
+\ 'union': '鬒',
+\ 'var': '',
+\ 'variable': '',
+\ 'variables': '',
+\  }
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+let g:vista_fzf_preview = ['right:50%']
+
+let g:vista_executive_for = {
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ 'javascript.jsx': 'coc',
+  \ 'python': 'coc',
+  \ 'php': 'coc',
+  \ }
+
+" Keybinding
+nnoremap <leader>vi :Vista!! <cr>
+nnoremap <leader>vt :Vista toc <cr>
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
