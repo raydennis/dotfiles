@@ -65,6 +65,14 @@ nnoremap <leader>' :terminal<cr>
 nnoremap <leader>v' :vertical terminal<cr>
 " }}}
 
+" Insert current date {{{
+nnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+tnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+inoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
+cnoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
+nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
+" }}}
+
 " Buffers {{{
 " Use leader tab to switch between current and last buffer 
 nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
