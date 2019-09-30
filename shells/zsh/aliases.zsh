@@ -4,7 +4,7 @@ alias o="xdg-open"
 alias e="vim"
 alias q="exit"
 
-alias grd="git add . && git commit -am "fast update" && git push"
+alias grd="git add . && git commit -am \"fast update\" && git push"
 alias gs="git status"
 
 alias r="ranger"
