@@ -134,6 +134,7 @@ nnoremap <leader>as :grep SCHEDULED *<cr>
 " Vimwiki style jump bindings {{{
 nnoremap <leader>ww :e ~/notes/work/todo.md<cr>:cd %:h<cr>
 nnoremap <leader>wd :e ~/notes/work/done.md<cr>:cd %:h<cr>
+nnoremap <leader>wt :cd ~/notes/personal/daily<cr> :RangerWorkingDirectory<cr>
 nnoremap <leader>wh :e ~/notes/personal/home.md<cr>:cd %:h<cr>
 " nnoremap <leader>wm :!mv "~/OneDrive - University of New Mexico/OneDrive - University of New Mexico/Meetings"/
 " }}}
@@ -468,7 +469,6 @@ if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
         let g:UltiSnipsEditSplit = "context"
         call mkdir($HOME . "/.vim/UltiSnips", "p")
         let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
-        let g:UltiSnipsExpandTrigger = '\'
     endif
 
 " }}}
