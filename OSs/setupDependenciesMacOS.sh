@@ -2,11 +2,6 @@
 sudo apt-get install zsh -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# install vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 
-vim +BundleInstall +qall
-~/.vim/bundle/fzf/install
-
 # link the dotfiles
 rm ~/.oh-my-zsh/themes/powerlevel9k
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/powerlevel9k ~/.oh-my-zsh/themes
@@ -24,9 +19,16 @@ ln -s ~/Documents/GitHub/dotFiles/shells/zsh/z/z.sh ~/z.sh
 rm ~/.vimrc
 ln -s ~/Documents/GitHub/dotFiles/editors/vim/.vimrc ~/.vimrc
 
+rm ~/.vim/coc-settings.json
+ln -s ~/Documents/GitHub/dotFiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
+
+rm -rf ~/.vim/UltiSnips
+ln -s ~/Documents/GitHub/dotFiles/editors/vim/ultisnips ~/.vim/plugged/UltiSnips
+
+
+
 rm ~/.zshrc
 ln -s ~/Documents/GitHub/dotFiles/shells/zsh/.zshrc ~/.zshrc
-
 
 rm ~/notes
 ln -s ~/Documents/gitHub/notes ~/notes
@@ -95,6 +97,8 @@ ln -s ~/Documents/GitHub/dotFiles/editors/vscode/keybindings.json ~/Library/Appl
 brew tap eddieantonio/eddieantonio
 brew install libcaca highlight atool lynx w3m elinks poppler transmission mediainfo exiftool imgcat
 ln -s ~/Documents/gitHub/dotfiles/shells/ranger ~/.config/ranger
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+
 
 # font
 brew tap homebrew/cask-fonts
