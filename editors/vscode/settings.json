@@ -28,7 +28,7 @@
     "gitlens.advanced.messages": {"suppressShowKeyBindingsNotice": true},
     "gitlens.historyExplorer.enabled": true,
     "[markdown]": {"editor.quickSuggestions": true},
-    "markdown.extension.preview.autoShowPreviewToSide": true,
+    "markdown.extension.preview.autoShowPreviewToSide": false,
     "phpSniffer.run": "onType",
     "phpSniffer.standard": "PSR2",
     "python.jediEnabled": false,
@@ -53,5 +53,6 @@
         ]
       }
     ],
-    "window.zoomLevel": 2,
+    "window.zoomLevel": 1,
+    "git.confirmSync": false,
 }
