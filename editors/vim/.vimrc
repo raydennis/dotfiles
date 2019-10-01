@@ -12,6 +12,7 @@ set backspace=indent,eol,start            " Make backspace act as it does on oth
 set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
 set directory^=$HOME/.vim/swapfiles//     " Where to save swap files
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set gdefault                              " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| command.
 set hidden                                " When ON a buffer becomes hidden when it is |abandon|ed.
 set hlsearch                              " When there is a previous search pattern, highlight all its matches.
@@ -32,6 +33,7 @@ set undofile                              " Save undos after file closes
 set visualbell                            " Switch from sound on error to flash
 set wildmenu                              " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
+
 " }}}
 
 " {{{ Tab 
@@ -283,19 +285,9 @@ Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugi
 Plug 'Xuyuanp/nerdtree-git-plugin'                   " A plugin of NERDTree showing git status flags.
 Plug 'tpope/vim-speeddating'                 " Quickly modify dates.
 
-" " coc.plugins {{{
-" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-" " }}}
+" coc.plugins {{{
+let g:coc_global_extensions = ['neoclide/coc-tsserver', 'marlonfan/coc-phpls', 'josa42/coc-docker', 'neoclide/coc-git', 'neoclide/coc-html', 'neoclide/coc-json', 'neoclide/coc-prettier', 'neoclide/coc-python', 'neoclide/coc-tslint-plugin', 'neoclide/coc-tsserver', 'neoclide/coc-snippets']
+ " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
 
