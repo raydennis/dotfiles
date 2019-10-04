@@ -28,9 +28,11 @@ set splitbelow                            " Open new split panes to right
 set splitright                            " Open new split panes to the bottom
 set tagcase=smart                         " smart	Ignore case unless an upper case letter is used
 set tags=./tags;,tags;
+set timeoutlen=400
 set undodir=$HOME/.vim/undo               " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
 set undofile                              " Save undos after file closes
-set visualbell                            " Switch from sound on error to flash
+set belloff=all
+" set visualbell                            " Switch from sound on error to flash
 set wildmenu                              " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
 
@@ -86,6 +88,8 @@ nnoremap <leader>be :enew<cr>
 nnoremap <leader>bd :bp <bar> bd! #<cr>
 " close all open buffers
 nnoremap <leader>bq :bufdo bd!<cr>
+" search for open buffer
+nnoremap <leader>b :Buffers<cr>
 
 " }}}
 
@@ -286,7 +290,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'                   " A plugin of NERDTree show
 Plug 'tpope/vim-speeddating'                 " Quickly modify dates.
 
 " coc.plugins {{{
-let g:coc_global_extensions = ['neoclide/coc-tsserver', 'marlonfan/coc-phpls', 'josa42/coc-docker', 'neoclide/coc-git', 'neoclide/coc-html', 'neoclide/coc-json', 'neoclide/coc-prettier', 'neoclide/coc-python', 'neoclide/coc-tslint-plugin', 'neoclide/coc-tsserver', 'neoclide/coc-snippets']
+" let g:coc_global_extensions = ['neoclide/coc-tsserver', 'marlonfan/coc-phpls', 'josa42/coc-docker', 'neoclide/coc-git', 'neoclide/coc-html', 'neoclide/coc-json', 'neoclide/coc-prettier', 'neoclide/coc-python', 'neoclide/coc-tslint-plugin', 'neoclide/coc-tsserver', 'neoclide/coc-snippets']
  " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
@@ -421,6 +425,9 @@ nmap <c-x><c-n> <plug>(fzf-maps-n)
 xmap <c-x><c-x> <plug>(fzf-maps-x)
 omap <c-x><c-o> <plug>(fzf-maps-o)
 
+" fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
+nmap <c-P> :Commands<cr>
+
 " }}}
 
 " Goyo {{{
@@ -444,6 +451,12 @@ let g:netrw_special_syntax = 1     " certain files will be shown using special s
 
 " Startify {{{
 let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'z': '~/.zshrc'}, {'d': '~/Documents/gitHub/dotfiles/'} ]
+let g:startify_skiplist = [
+    \ 'COMMIT_EDITMSG',
+    \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
+    \ 'bundle/.*/doc',
+    \ '/Dropbox/notes/personal/*',
+    \ ]
 " }}}
 
 " Surround {{{
