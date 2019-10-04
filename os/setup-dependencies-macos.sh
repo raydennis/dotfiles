@@ -104,4 +104,4 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger
 
 # font
 brew tap homebrew/cask-fonts
-brew cask install font-fira-code
+brew cask install font-firacode-nerd-font
