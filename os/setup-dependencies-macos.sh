@@ -57,32 +57,48 @@ ln -s ~/github/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 # setup dependencies for vscode
 # on Mac or Linux (WSL = ?) type: 
 # code --list-extensions | xargs -L 1 echo code --install-extension
-# to get the following list
-code --install-extension PKief.material-icon-theme
-code --install-extension Sophisticode.php-formatter
+code --install-extension 2gua.rainbow-brackets
+code --install-extension arcticicestudio.nord-visual-studio-code
 code --install-extension bbenoist.vagrant
+code --install-extension calebporzio.better-phpunit
 code --install-extension christian-kohler.path-intellisense
 code --install-extension dbaeumer.vscode-eslint
 code --install-extension eamodio.gitlens
 code --install-extension esbenp.prettier-vscode
+code --install-extension humao.rest-client
+code --install-extension ikappas.composer
 code --install-extension johnpapa.winteriscoming
+code --install-extension ms-azure-devops.azure-pipelines
+code --install-extension ms-azuretools.vscode-apimanagement
+code --install-extension ms-azuretools.vscode-azureappservice
+code --install-extension ms-azuretools.vscode-azurefunctions
+code --install-extension ms-azuretools.vscode-azurestorage
+code --install-extension ms-azuretools.vscode-cosmosdb
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension ms-mssql.mssql
 code --install-extension ms-python.python
+code --install-extension ms-vscode.azure-account
+code --install-extension ms-vscode.azurecli
 code --install-extension ms-vscode.powershell
+code --install-extension ms-vscode.vscode-node-azure-pack
 code --install-extension ms-vscode.vscode-typescript-tslint-plugin
 code --install-extension ms-vsts.team
+code --install-extension msazurermtools.azurerm-vscode-tools
+code --install-extension PKief.material-icon-theme
 code --install-extension ryu1kn.partial-diff
+code --install-extension Sophisticode.php-formatter
+code --install-extension vsciot-vscode.azure-iot-toolkit
 code --install-extension vscodevim.vim
 code --install-extension waderyan.gitblame
 code --install-extension yzhang.dictionary-completion
 code --install-extension yzhang.markdown-all-in-one
 
-
-# code --install-extension nord
 # To enable key-repeating execute the following in your Terminal and restart VS Code.
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
 defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
 defaults delete -g ApplePressAndHoldEnabled
+
 # now link to the user settings.json
 ln -s ~/github/dotfiles/editors/vscode/settings.json ~/Library/Application\ Support/VSCodium/User/settings.json
 ln -s ~/github/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ Support/VSCodium/User/keybindings.json
@@ -98,10 +114,16 @@ ln -s ~/github/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ S
 # ranger
 brew tap eddieantonio/eddieantonio
 brew install libcaca highlight atool lynx w3m elinks poppler transmission mediainfo exiftool imgcat
+rm -rf ~/.config/ranger
 ln -s ~/gitHub/dotfiles/shells/ranger ~/.config/ranger
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-
 
 # font
 brew tap homebrew/cask-fonts
 brew cask install font-firacode-nerd-font
+
+# gitk theme
+rm -rf ~/.config/git/gitk
+mkdir -p ~/.config/git
+cp ~/github/dotfiles/tools/gitk/gitk ~/.config/git/
+
