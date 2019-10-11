@@ -10,3 +10,5 @@ alias gs="git status"
 alias r="ranger"
 
 alias rgrep="ag -il 'first' | xargs ag -il 'second' | xargs ag -il 'third'"
+
+alias c="clear"
