@@ -6,7 +6,7 @@ export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
 
 #set vim keybindings (seems to break when used with oh-my-zsh)
-#bindkey -v
+# set -o vi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
