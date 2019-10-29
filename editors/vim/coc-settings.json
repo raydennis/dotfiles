@@ -10,5 +10,8 @@
   "suggest.noselect": false,
   "suggest.snippetIndicator": "★",
   "suggest.triggerCompletionWait": 100,
-  "suggest.echodocSupport": true
+  "suggest.echodocSupport": true,
+
+  "python.jediEnabled": false,
+  "python.envFile": "~/.virtualenv/${workspaceFolder}/.env",
 }

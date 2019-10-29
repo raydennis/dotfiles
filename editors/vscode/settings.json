@@ -32,10 +32,7 @@
     "phpSniffer.run": "onType",
     "phpSniffer.standard": "PSR2",
     "python.jediEnabled": false,
-    "python.linting.enabled": true,
-    "python.linting.pep8Enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.pythonPath": "/usr/local/bin/python3",
+    "python.pythonPath": "/Users/raydennis/.virtualenvs/test/bin/python",
     "team.appInsights.enabled": false,
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
@@ -55,4 +52,5 @@
     ],
     "window.zoomLevel": 1,
     "git.confirmSync": false,
+    "python.linting.flake8Enabled": true,
 }

@@ -107,9 +107,10 @@ ln -s ~/github/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ S
 # brew install ansible cscope gdbm gettext git git-credential-manager glib gmp gnutls libevent libffi libtasn1 libunistring libyaml lua luajit macvim nettle nmap openconnect openssl p11-kit pcre pcre2 perl python readline ruby sqlite sshfs stoken terraform the_silver_searcher tree unbound vim xz z --HEAD universal-ctags/universal-ctags/universal-ctags aspell imgur-screenshot.sh terminal-notifier
 
 # emacs - spacemacs
-## brew cask install emacs
-## git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-## ln -s ~/gitHub/dotfiles/editors/emacs/.spacemacs ~/.spacemacs
+# brew cask install emacs
+# git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+# rm -rf ~/.spacemacs
+# ln -s ~/gitHub/dotfiles/editors/emacs/.spacemacs ~/.spacemacs
 
 # ranger
 brew tap eddieantonio/eddieantonio

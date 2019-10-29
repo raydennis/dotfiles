@@ -2,13 +2,17 @@
 syntax on
 filetype plugin indent on                 " Required
 
-let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
-colorscheme solarized
+" let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
+" colorscheme solarized
+
+colorscheme nord
 
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
 
+" set visualbell                          " Switch from sound on error to flash
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
+set belloff=all                           " Turn off all error notifications (both bell and flash)
 set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
 set directory^=$HOME/.vim/swapfiles//     " Where to save swap files
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
@@ -18,6 +22,7 @@ set hidden                                " When ON a buffer becomes hidden when
 set hlsearch                              " When there is a previous search pattern, highlight all its matches.
 set incsearch                             " While typing a search command, show where pattern, as it was typed
 set mouse=a                               " Enable the use of the mouse
+set nonumber                              " No numbers on the left by defualt
 set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
 set showcmd                               " Display incomplete command
@@ -31,8 +36,6 @@ set tags=./tags;,tags;
 set timeoutlen=500
 set undodir=$HOME/.vim/undo               " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
 set undofile                              " Save undos after file closes
-set belloff=all                           " Turn off all error notifications (both bell and flash)
-" set visualbell                          " Switch from sound on error to flash
 set wildmenu                              " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
 
@@ -70,6 +73,7 @@ Plug 'honza/vim-snippets'
 Plug 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                      " Fuzzy finding
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'liuchengxu/vista.vim'                  " View and search LSP symbols, tags in Vim/NeoVim.
@@ -89,6 +93,11 @@ Plug 'tpope/vim-surround'                    " provides mappings to easily delet
 Plug 'vim-airline/vim-airline'               " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
+Plug 'stefandtw/quickfix-reflector.vim'      " Change code right in the quickfix window
+
+" coc.plugins {{{
+let g:coc_global_extensions = ['coc-tsserver', 'coc-phpls', 'coc-docker', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets']
+ " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
 
@@ -99,13 +108,19 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " Airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
+let g:airline_theme='base16_nord'
 " }}}
 
 " Ale {{{
 map <leader>A :ALEFix <cr>
 let g:ale_fixers = {
 \   'markdown': ['prettier'],
+\   'javascript': [
+\       'DoSomething',
+\       'eslint',
+\       {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+\   ],
+\   'python': ['autopep8'],
 \}
 " }}}
 
@@ -113,6 +128,104 @@ let g:ale_fixers = {
 let g:auto_save        = 1
 let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
+" }}}
+
+" Coc {{{
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>af  <Plug>(coc-format-selected)
+nmap <leader>af  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " }}}
 
 " ColorScheme {{{
@@ -136,6 +249,7 @@ omap <c-x><c-o> <plug>(fzf-maps-o)
 
 " fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
 nmap <c-P> :Commands<cr>
+nmap <c-B> :Buffers<cr>
 
 " }}}
 
@@ -159,7 +273,7 @@ let g:netrw_special_syntax = 1     " certain files will be shown using special s
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'z': '~/.zshrc'}, {'d': '~/Documents/gitHub/dotfiles/'} ]
+let g:startify_bookmarks = [ {'v': '~/github/dotfiles/editors/vim/.vimrc'}, {'z': '~/github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/Documents/gitHub/dotfiles/'} ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
@@ -172,6 +286,7 @@ let g:startify_skiplist = [
 
 " Custom surrounds
 let g:surround_{char2nr('c')} = "```\r```"
+let g:surround_{char2nr('b')} = "**\r**"
 let g:surround_{char2nr('g')} = "<font face=\"verdana\" color=\"green\">\r</font>"
 let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
 let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
@@ -288,18 +403,18 @@ nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 " }}}
 
 " Buffers {{{
-" Use leader tab to switch between current and last buffer 
-nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
-nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
+" " Use leader tab to switch between current and last buffer 
+" nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
+" nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
 
-" create a new buffer (save it with :w ./path/to/FILENAME)
-nnoremap <leader>be :enew<cr>
-" close current buffer
-nnoremap <leader>bd :bp <bar> bd! #<cr>
-" close all open buffers
-nnoremap <leader>bq :bufdo bd!<cr>
-" search for open buffer
-nnoremap <leader>b :Buffers<cr>
+" " create a new buffer (save it with :w ./path/to/FILENAME)
+" nnoremap <leader>be :enew<cr>
+" " close current buffer
+" nnoremap <leader>bd :bp <bar> bd! #<cr>
+" " close all open buffers
+" nnoremap <leader>bq :bufdo bd!<cr>
+" " search for open buffer
+" nnoremap <leader>b :Buffers<cr>
 
 " }}}
 
@@ -359,10 +474,6 @@ nnoremap <leader>wh :e ~/notes/personal/home.md<cr>:cd %:h<cr>
 nnoremap <leader>e :exe getline(line(! + '.'))<cr>
 " }}}
 
-" repeat last macro instead of entering ex mode {{{
-nnoremap Q @@
-" }}}
-
 " }}}
 
 " Augroups {{{
@@ -402,8 +513,10 @@ augroup END
 
 " augroup python {{{
 augroup python
-  autocmd FileType python setlocal foldmethod=indent
-  autocmd FileType python nnoremap <leader>r :!python %:p<cr>
+    autocmd FileType python setlocal number
+    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python nnoremap <leader>r :CocCommand python.execInTerminal<cr>
+    autocmd FileType python vnoremap <leader>r :CocCommand python.execSelectionInTerminal<cr>
 augroup END
 " }}}
 
@@ -455,7 +568,8 @@ if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " macOS
-    set guifont=FuraCodeNerdFontMono-Regular:h16
+    set guifont=FuraCodeNerdFontComplete-Regular:h18
+    nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
     " Linux/WSL
   endif
