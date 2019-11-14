@@ -106,6 +106,9 @@ ln -s ~/github/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ S
 # brew
 # brew install ansible cscope gdbm gettext git git-credential-manager glib gmp gnutls libevent libffi libtasn1 libunistring libyaml lua luajit macvim nettle nmap openconnect openssl p11-kit pcre pcre2 perl python readline ruby sqlite sshfs stoken terraform the_silver_searcher tree unbound vim xz z --HEAD universal-ctags/universal-ctags/universal-ctags aspell imgur-screenshot.sh terminal-notifier
 
+# sshfs
+# brew install osxfuse sshfs
+
 # emacs - spacemacs
 # brew cask install emacs
 # git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -127,4 +130,3 @@ brew cask install font-firacode-nerd-font
 rm -rf ~/.config/git/gitk
 mkdir -p ~/.config/git
 cp ~/github/dotfiles/tools/gitk/gitk ~/.config/git/
-
