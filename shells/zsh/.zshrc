@@ -6,18 +6,20 @@ export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
 
 # set vim keybindings (seems to break when used with oh-my-zsh)
-# set -o vi
+set -o vi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="terminalparty"
 
 # https://github.com/zsh-users/zsh-autosuggestions.git
-# not working and...not necesary?
 # plugins=(
 #   git python zsh-autosuggestions #   zsh-syntax-highlighting)
+
+plugins=(git, zsh-autosuggestions, zsh-syntax-highlighting)
 
 # source the plugins
 source $ZSH/oh-my-zsh.sh 
@@ -27,7 +29,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='/usr/local/Cellar/macvim/8.1-159/MacVim.app/Contents/MacOS/Vim'
+    alias vim='/usr/local/Cellar/macvim/8.1-161/MacVim.app/Contents/MacOS/Vim'
     # setup "Z" on MACOS
     # brew install z
     . `brew --prefix`/etc/profile.d/z.sh
@@ -99,6 +101,25 @@ fo() {
   fi
 }
 
+fp(){
+  fzf --preview="cat {}" --preview-window=right:70%:wrap
+}
+
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+# panscrape
+# function panscrape() {
+#     pandoc -f html --wrap=none -t markdown_github+backtick_code_blocks+autolink_bare_uris $1
+# }
+
+em() {
+# Checks if there's a frame open
+emacsclient -n -e "(if (> (length (frame-list)) 1) ‘t)" 2> /dev/null | grep t &> /dev/null
+if [ "$?" -eq "1" ]; then
+ emacsclient -a '' -nqc "$@" &> /dev/null
+else
+ emacsclient -nq "$@" &> /dev/null
+fi
+}
