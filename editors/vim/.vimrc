@@ -564,6 +564,10 @@ augroup md
       \ fold contains=TOP
 
   autocmd FileType markdown syn sync fromstart
+
+  " allow markdown to syntax highlight inside code blocks.
+  autocmd FileType markdown let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
 augroup END
 " }}}
 
