@@ -275,7 +275,7 @@ let g:netrw_special_syntax = 1     " certain files will be shown using special s
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'v': '~/github/dotfiles/editors/vim/.vimrc'}, {'z': '~/github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/Documents/gitHub/dotfiles/'} ]
+let g:startify_bookmarks = [ {'v': '~/github/dotfiles/editors/vim/.vimrc'}, {'z': '~/github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
