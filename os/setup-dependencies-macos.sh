@@ -29,7 +29,7 @@ ln -s ~/github/dotfiles/editors/vim/ultisnips ~/.vim/plugged/UltiSnips
 rm ~/.zshrc
 ln -s ~/github/dotfiles/shells/zsh/.zshrc ~/.zshrc
 
-rm ~/notes
+rm -rf ~/notes
 ln -s ~/github/notes ~/notes
 
 rm ~/.vim/colors/monokai.vim
