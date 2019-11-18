@@ -595,8 +595,13 @@ gradle-app.setting
 
 
 
-
-
+# 4. Virtual Machines  #####################################################################################
+*.vmx
+*.vmdk
+*.vmsd
+*.mvxf
+*.nvram
+*.vhd
 
 # References
 # https://www.gitignore.io/api/osx,linux,windows,netbeans,intellij,visualstudio,visualstudiocode
