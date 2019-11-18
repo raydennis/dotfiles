@@ -47,7 +47,7 @@ set expandtab                             " Insert spaces instead of tab
 set softtabstop=4                         " allows backspace to delete the spaces of an expanded tab with one keypress
 set autoindent                            " Copy indent from current line when starting a new line
 " }}}
-"
+
 " }}}
 
 " Plugins {{{
@@ -65,7 +65,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
-Plug 'Xuyuanp/nerdtree-git-plugin'                   " A plugin of NERDTree showing git status flags.
+Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dense-analysis/ale'                    " linting engine
 Plug 'dhruvasagar/vim-table-mode'            " Tables
@@ -74,15 +74,17 @@ Plug 'honza/vim-snippets'
 Plug 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                      " Fuzzy finding
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'liuchengxu/vista.vim'                  " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'mbbill/undotree'                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                    " provides a start screen for Vim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'reedes/vim-pencil'                     " Rethinking Vim as a tool for writers
 Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugins such as: NERDTree
 Plug 'scrooloose/nerdtree'                   " Tree scrooloose/nerdtreeFile Explorer
+Plug 'stefandtw/quickfix-reflector.vim'      " Change code right in the quickfix window
 Plug 'tommcdo/vim-lion'                      " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                  " Comment out code with gcc
 Plug 'tpope/vim-fugitive'                    " Adds git functionality to vim ex. :Gdiff
@@ -91,10 +93,10 @@ Plug 'tpope/vim-repeat'                      " enable repeating supported plugin
 Plug 'tpope/vim-scriptease'                  " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                 " Quickly modify dates.
 Plug 'tpope/vim-surround'                    " provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'tpope/vim-unimpaired'                  " Pairs of handy bracket mappings
 Plug 'vim-airline/vim-airline'               " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
-Plug 'stefandtw/quickfix-reflector.vim'      " Change code right in the quickfix window
 
 " coc.plugins {{{
 let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets']
