@@ -478,6 +478,10 @@ nnoremap <leader>wh :e ~/notes/personal/home.md<cr>:cd %:h<cr>
 nnoremap <leader>e :exe getline(line(! + '.'))<cr>
 " }}}
 
+" remote file management {{{
+nnoremap <leader>es ":e scp://user@127.0.0.1:22//home/"
+" }}}
+
 " }}}
 
 " Augroups {{{
