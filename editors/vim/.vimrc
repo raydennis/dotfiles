@@ -122,6 +122,7 @@ let g:ale_fixers = {
 \       {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
 \   ],
 \   'python': ['autopep8'],
+\   'php': ['phpcbf'],
 \}
 " }}}
 
