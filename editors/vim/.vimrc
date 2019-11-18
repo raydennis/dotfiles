@@ -405,9 +405,11 @@ nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 " }}}
 
 " Buffers {{{
-" " Use leader tab to switch between current and last buffer 
-" nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
-" nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
+" Use leader tab to switch between current and last buffer 
+nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
+nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
+tnoremap <silent><leader><tab> :bn<CR>
+tnoremap <silent><leader><s-tab> :bp<CR> 
 
 " " create a new buffer (save it with :w ./path/to/FILENAME)
 " nnoremap <leader>be :enew<cr>
