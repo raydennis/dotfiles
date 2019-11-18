@@ -22,7 +22,7 @@ set hidden                                " When ON a buffer becomes hidden when
 set hlsearch                              " When there is a previous search pattern, highlight all its matches.
 set incsearch                             " While typing a search command, show where pattern, as it was typed
 set mouse=a                               " Enable the use of the mouse
-set nonumber                              " No numbers on the left by defualt
+set nonumber                              " No numbers on the left by default
 set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
 set showcmd                               " Display incomplete command
