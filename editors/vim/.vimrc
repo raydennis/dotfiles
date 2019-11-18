@@ -592,4 +592,15 @@ endif
 
 " }}}
 
+" functions {{{
+function Mkindex()
+    :read !ls
+    :%norm I[
+    :%norm A]()
+    :%norm t]yi]t)p
+    :%norm ^f.dt]
+endfunction
+
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
