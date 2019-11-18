@@ -492,6 +492,7 @@ augroup minivimrc
   " automatic location/quickfix window
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost    l* lwindow
+  autocmd QuickFixCmdPost grep cwindow
   autocmd VimEnter            * cwindow
 
   " Git-specific settings
