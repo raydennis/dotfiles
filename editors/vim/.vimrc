@@ -411,14 +411,14 @@ nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr
 tnoremap <silent><leader><tab> :bn<CR>
 tnoremap <silent><leader><s-tab> :bp<CR> 
 
-" " create a new buffer (save it with :w ./path/to/FILENAME)
-" nnoremap <leader>be :enew<cr>
-" " close current buffer
-" nnoremap <leader>bd :bp <bar> bd! #<cr>
-" " close all open buffers
-" nnoremap <leader>bq :bufdo bd!<cr>
-" " search for open buffer
-" nnoremap <leader>b :Buffers<cr>
+" create a new buffer (save it with :w ./path/to/FILENAME)
+nnoremap <leader>be :enew<cr>
+" close current buffer
+nnoremap <leader>bd :bp <bar> bd! #<cr>
+" close all open buffers
+nnoremap <leader>bq :bufdo bd!<cr>
+" search for open buffer
+nnoremap <leader>bb :Buffers<cr>
 
 " }}}
 
