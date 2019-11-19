@@ -1,15 +1,30 @@
 # set vim keybindings (seems to break when used with oh-my-zsh)
 set -o vi
 
-# completions for zsh
 autoload -U compinit
 compinit -u
 
+# completions for zsh
 # Make completion:
 # - Case-insensitive.
 # - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
 # - Substring complete (ie. bar -> foobar).
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+#
+# Correction
+#
+
+# exceptions to auto-correction
+alias bundle='nocorrect bundle'
+alias cabal='nocorrect cabal'
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias stack='nocorrect stack'
+alias sudo='nocorrect sudo'
+alias ps='nocorrect ps'
+alias docker='nocorrect docker'
 
 #
 # Prompt

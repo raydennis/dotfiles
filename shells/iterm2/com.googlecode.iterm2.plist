@@ -1136,7 +1136,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>127 443 592 584 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>226 130 730 538 0 0 1920 1057 </string>
+	<string>456 195 730 538 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 525 730 502 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -2112,6 +2112,29 @@
 							<dict>
 								<key>algorithm</key>
 								<integer>0</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
+							</dict>
+						</dict>
+					</dict>
+					<dict>
+						<key>class</key>
+						<string>iTermStatusBarClockComponent</string>
+						<key>configuration</key>
+						<dict>
+							<key>knobs</key>
+							<dict>
+								<key>base: compression resistance</key>
+								<integer>1</integer>
+								<key>base: priority</key>
+								<real>5</real>
+								<key>format</key>
+								<string>M/dd h:mm</string>
+							</dict>
+							<key>layout advanced configuration dictionary value</key>
+							<dict>
+								<key>algorithm</key>
+								<integer>0</integer>
 							</dict>
 						</dict>
 					</dict>
@@ -2851,9 +2874,9 @@
 		<string>3.3.1</string>
 		<string>3.3.3</string>
 		<string>3.3.5</string>
-		<string>3.3.0</string>
 		<string>3.2.9</string>
 		<string>3.3.2</string>
+		<string>3.3.0</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -2865,9 +2888,9 @@
 	<key>NoSyncFrame_SessionsPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{-1920, 0}, {1920, 1080}}</string>
+		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{-1651, 595}</string>
+		<string>{269, 595}</string>
 	</dict>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
@@ -2885,7 +2908,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>594165183.50639498</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>217</integer>
+	<integer>239</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3670,7 +3693,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-10-31T15:45:07Z</date>
+	<date>2019-11-15T16:34:07Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
