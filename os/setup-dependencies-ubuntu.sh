@@ -7,23 +7,20 @@ apt install curl -y
 # install zsh
 apt-get install zsh -y
 
-# get oh-my-zsh installed
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Install nerdfont
 mkdir -p ~/.fonts
 cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
 
-# link the dotfiles
-rm ~/.oh-my-zsh/themes/powerlevel9k
-ln -s ~/github/dotfiles/editors/vim/powerlevel9k ~/.oh-my-zsh/themes
+# setup zsh-syntax-highlighting
+rm -rf ~/.zsh/plugins/zsh-syntax-highlighting
+mkdir ~/.zsh/plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/plugins/zsh-syntax-highlighting
 
-rm ~/.oh-my-zsh/custom/aliases.zsh
-ln -s ~/github/dotfiles/shells/zsh/aliases.zsh ~/.oh-my-zsh/custom
-
-rm ~/.oh-my-zsh/zsh-*
-ln -s ~/github/dotfiles/shells/zsh/zsh-autosuggestions ~/.oh-my-zsh/
-ln -s ~/github/dotfiles/shells/zsh/zsh-syntax-highlighting ~/.oh-my-zsh/
+# setup zsh autosuggestisons
+mkdir ~/.zsh/plugins
+rm -rf ~/.zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/plugins/zsh-autosuggestions
 
 rm ~/z.sh
 ln -s ~/github/dotfiles/shells/zsh/z/z.sh ~/z.sh
