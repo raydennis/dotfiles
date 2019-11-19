@@ -1,12 +1,5 @@
 # install vim-gtk3
-apt install vim-gtk3 -y
-
-# install curl
-apt install curl -y
-
-# install zsh
-apt-get install zsh -y
-
+apt install vim-gtk3, curl, zsh, silversearcher-ag, wget -y
 
 # Install nerdfont
 mkdir -p ~/.fonts
