@@ -35,7 +35,7 @@ rm ~/.vim/colors/nord.vim
 ln -s ~/github/dotfiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors/nord.vim
 
 rm -rf ~/.vim/UltiSnips
-ln -s ~/github/dotfiles/editors/vim/ultisnips ~/.vim/plugged/UltiSnips
+ln -s ~/github/dotfiles/editors/vim/ultisnips ~/.vim/UltiSnips
 
 ln -s ~/github/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/github/dotfiles/.gitignore_global ~/.gitignore_global
