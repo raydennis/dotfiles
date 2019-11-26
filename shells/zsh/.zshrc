@@ -181,8 +181,8 @@ case `uname` in
     . ~/z.sh
     unsetopt BG_NICE # fixes "zsh: nice(5) failed: operation not permitted" issue when running z on WSL
     #zsh plugins
-    source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source ~/.oh-my-zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     alias o="xdg-open"
   ;;
   FreeBSD)
