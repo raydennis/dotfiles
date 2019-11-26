@@ -219,6 +219,18 @@ fo() {
 fp(){
   fzf --preview="cat {}" --preview-window=right:70%:wrap
 }
+#
+# search using ag on multiple keywords recursively
+#
+function agr() {
+    if [ -n "$3" ]
+    then
+        Ag -il $1 | xargs ag -il $2 | xargs ag -il $3
+    elif [ -n "$2" ]
+    then
+        Ag -il $1 | xargs ag -il $2
+    fi
+}
 
 #
 # Make CTRL-Z background things and unbackground them.
@@ -305,7 +317,9 @@ function auto-ls-after-cd() {
 }
 add-zsh-hook chpwd auto-ls-after-cd
 
+#
 # for prompt
+#
 add-zsh-hook precmd vcs_info
 
 # 
