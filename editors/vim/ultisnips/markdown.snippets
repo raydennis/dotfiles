@@ -1,4 +1,4 @@
-snippet fmatter
+snippet title
 ---
 title: ${1:Meeting}
 date: ${2:`date +%Y-%m-%d`}
@@ -6,4 +6,33 @@ tags: $3
 ---
 # $1
 $0
+endsnippet
+
+snippet table
+| $1 | $2 |
+|--- |--- |
+| $3 | $4 |
+endsnippet
+
+snippet link-video
+<iframe width="${2:400}" height="${3:315}"
+src="https://${1:www.youtube.com/embed/tgbNymZ7vqY}">
+</iframe>
+endsnippet
+
+snippet flow
+st=>start: Start
+e=>end
+op=>operation: My Operation
+cond=>condition: Yes or No?
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+endsnippet
+
+snippet sequence
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
 endsnippet
