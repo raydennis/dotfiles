@@ -143,6 +143,7 @@ alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test1
 alias t="tree"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vir="vi -- *(D.om[1])"
+alias gp="git pull && git push"
 
 #
 # Bindings

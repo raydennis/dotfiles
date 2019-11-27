@@ -1,4 +1,4 @@
-snippet title
+snippet tit "Title" b
 ---
 title: ${1:Meeting}
 date: ${2:`date +%Y-%m-%d`}
@@ -8,19 +8,20 @@ tags: $3
 $0
 endsnippet
 
-snippet table
+snippet tab "Table" b
 | $1 | $2 |
 |--- |--- |
 | $3 | $4 |
 endsnippet
 
-snippet link-video
+snippet linkv "Link video with html" b
 <iframe width="${2:400}" height="${3:315}"
 src="https://${1:www.youtube.com/embed/tgbNymZ7vqY}">
 </iframe>
 endsnippet
 
-snippet flow
+snippet flow "flow chart" !b
+\`\`\`flow
 st=>start: Start
 e=>end
 op=>operation: My Operation
@@ -29,10 +30,13 @@ cond=>condition: Yes or No?
 st->op->cond
 cond(yes)->e
 cond(no)->op
+\`\`\`
 endsnippet
 
-snippet sequence
+snippet seq "sequence" b
+\`\`\`sequence
 Alice->Bob: Hello Bob, how are you?
 Note right of Bob: Bob thinks
 Bob-->Alice: I am good thanks!
+\`\`\`
 endsnippet
