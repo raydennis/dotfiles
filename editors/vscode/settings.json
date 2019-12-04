@@ -37,7 +37,7 @@
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.colorTheme": "Nord",
+    "workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
       {
