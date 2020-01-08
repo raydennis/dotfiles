@@ -2,10 +2,9 @@
 syntax on
 filetype plugin indent on                 " Required
 
-" let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
-" colorscheme solarized
+let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
+colorscheme solarized
 
-colorscheme nord
 
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )

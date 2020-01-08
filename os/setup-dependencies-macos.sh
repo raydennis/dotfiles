@@ -1,42 +1,42 @@
 # install zsh
-brew install zsh
+brew install zsh z zsh-syntax-highlighting zsh-autosuggestions
 
 rm ~/z.sh
-ln -s ~/github/dotfiles/shells/zsh/z/z.sh ~/z.sh
+ln -s ~/Github/dotfiles/shells/zsh/z/z.sh ~/z.sh
 
 rm ~/.vimrc
-ln -s ~/github/dotfiles/editors/vim/.vimrc ~/.vimrc
+ln -s ~/Github/dotfiles/editors/vim/.vimrc ~/.vimrc
 
 rm ~/.vim/coc-settings.json
-ln -s ~/github/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
+ln -s ~/Github/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
 
 rm -rf ~/.vim/UltiSnips
-ln -s ~/github/dotfiles/editors/vim/ultisnips ~/.vim/plugged/UltiSnips
+ln -s ~/Github/dotfiles/editors/vim/ultisnips ~/.vim/plugged/UltiSnips
 
 rm ~/.zshrc
-ln -s ~/github/dotfiles/shells/zsh/.zshrc ~/.zshrc
+ln -s ~/Github/dotfiles/shells/zsh/.zshrc ~/.zshrc
 
 rm -rf ~/notes
-ln -s ~/github/notes ~/notes
+ln -s ~/Github/notes ~/notes
 
 rm ~/.vim/colors/monokai.vim
 mkdir ~/.vim/colors
-ln -s ~/github/dotfiles/editors/vim/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
+ln -s ~/Github/dotfiles/editors/vim/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
 
 rm ~/.vim/colors/solarized.vim
-ln -s ~/github/dotfiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
+ln -s ~/Github/dotfiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
 
 rm ~/.vim/colors/nord.vim
-ln -s ~/github/dotfiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors/nord.vim
+ln -s ~/Github/dotfiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors/nord.vim
 
 rm ~/.gitconfig
-ln -s ~/github/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/Github/dotfiles/.gitconfig ~/.gitconfig
 
 rm ~/.gitignore_global
-ln -s ~/github/dotfiles/.gitignore_global ~/.gitignore_global
+ln -s ~/Github/dotfiles/.gitignore_global ~/.gitignore_global
 
 rm ~/.vim/spell/en.utf-8.add
-ln -s ~/github/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
+ln -s ~/Github/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
 # # setup dependencies for vscode
 # on Mac or Linux (WSL = ?) type: 
@@ -84,15 +84,15 @@ ln -s ~/github/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 # defaults delete -g ApplePressAndHoldEnabled
 
 # now link to the user settings.json
-# ln -s ~/github/dotfiles/editors/vscode/settings.json ~/Library/Application\ Support/VSCodium/User/settings.json
-# ln -s ~/github/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ Support/VSCodium/User/keybindings.json
+# ln -s ~/Github/dotfiles/editors/vscode/settings.json ~/Library/Application\ Support/VSCodium/User/settings.json
+# ln -s ~/Github/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ Support/VSCodium/User/keybindings.json
 
 # brew
 # brew install git git-credential-manager macvim nmap openconnect openssl python sshfs the_silver_searcher tree z aspell osxfuse 
 
 # emacs - spacemacs
 # brew cask install emacs
-# git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+# git clone https://Github.com/syl20bnr/spacemacs ~/.emacs.d
 # rm -rf ~/.spacemacs
 # ln -s ~/gitHub/dotfiles/editors/emacs/.spacemacs ~/.spacemacs
 
@@ -101,7 +101,7 @@ brew tap eddieantonio/eddieantonio
 brew install libcaca highlight atool lynx w3m elinks poppler transmission mediainfo exiftool imgcat
 rm -rf ~/.config/ranger
 ln -s ~/gitHub/dotfiles/shells/ranger ~/.config/ranger
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+git clone https://Github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
 # font
 brew tap homebrew/cask-fonts
@@ -110,4 +110,4 @@ brew cask install font-firacode-nerd-font
 # gitk theme
 rm -rf ~/.config/git/gitk
 mkdir -p ~/.config/git
-cp ~/github/dotfiles/tools/gitk/gitk ~/.config/git/
+cp ~/Github/dotfiles/tools/gitk/gitk ~/.config/git/
