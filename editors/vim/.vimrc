@@ -5,7 +5,7 @@ filetype plugin indent on                 " Required
 " let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
 " colorscheme solarized
 
-colorscheme nord
+colorscheme monokai 
 
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
@@ -277,7 +277,7 @@ let g:netrw_special_syntax = 1     " certain files will be shown using special s
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'v': '~/github/dotfiles/editors/vim/.vimrc'}, {'z': '~/github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
+let g:startify_bookmarks = [ {'v': '~/Github/dotfiles/editors/vim/.vimrc'}, {'z': '~/Github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
