@@ -300,7 +300,7 @@ let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</fo
 
 if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
         let g:UltiSnipsEditSplit = "context"
-        " call mkdir($HOME . "/.vim/UltiSnips", "p")
+        " call mkdir($HOME . "~/.vim/UltiSnips", "p")
         let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
     endif
 

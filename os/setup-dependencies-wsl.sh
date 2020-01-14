@@ -25,7 +25,7 @@ rm ~/.vim/coc-settings.json
 ln -s ~/Github/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
 
 rm -rf ~/.vim/UltiSnips
-ln -s ~/Github/dotfiles/editors/vim/ultisnips ~/.vim/plugged/UltiSnips
+ln -s ~/Github/dotfiles/editors/vim/ultisnips ~/.vim/UltiSnips
 
 rm ~/.vim/colors/monokai.vim
 mkdir ~/.vim/colors
