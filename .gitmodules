@@ -34,3 +34,9 @@
 [submodule "shells/iterm2/iterm"]
 	path = shells/iterm2/iterm
 	url = https://github.com/dracula/iterm.git
+[submodule "shells/zsh/zsh-syntax-highlighting"]
+	path = shells/zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "shells/zsh/zsh-autosuggestions"]
+	path = shells/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions

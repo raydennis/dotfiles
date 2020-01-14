@@ -328,3 +328,7 @@ add-zsh-hook precmd vcs_info
 #
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+
+export https_proxy=http://wwwproxy.sandia.gov:80/
+export http_proxy=http://wwwproxy.sandia.gov:80/
+export no_proxy=127.0.0.1,localhost,.sandia.gov
