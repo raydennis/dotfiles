@@ -131,11 +131,10 @@ setopt sharehistory         # share history across shells
 # Alias
 #
 alias c="clear"
-alias e="vim"
 alias grd="git add . && git commit -am \"fast update\" && git push"
 alias gs="git status"
-alias ll="ls -Glha"
-alias ls="ls -G"
+alias ll="ls -Glha --color=auto"
+alias ls="ls -G --color=auto"
 alias q="exit"
 alias r="ranger"
 alias rgrep="ag -il 'first' | xargs ag -il 'second' | xargs ag -il 'third'"
@@ -144,6 +143,7 @@ alias t="tree"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vir="vi -- *(D.om[1])"
 alias gp="git pull && git push"
+alias vi="vim"
 
 #
 # Bindings

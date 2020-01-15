@@ -63,7 +63,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
-Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
+" Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
 Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dense-analysis/ale'                    " linting engine

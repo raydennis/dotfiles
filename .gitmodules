@@ -40,3 +40,6 @@
 [submodule "shells/zsh/zsh-autosuggestions"]
 	path = shells/zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "editors/vim/vim"]
+	path = editors/vim/vim
+	url = https://github.com/vim/vim.git
