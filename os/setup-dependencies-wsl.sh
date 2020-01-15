@@ -1,4 +1,4 @@
-# install ash 
+# install zsh 
 sudo apt-get install zsh -y
 
 rm ~/.zshrc
