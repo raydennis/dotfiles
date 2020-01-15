@@ -5,8 +5,6 @@ filetype plugin indent on                 " Required
 " let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
 " colorscheme solarized
 
-colorscheme monokai 
-
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
 
@@ -64,6 +62,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
 Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
 Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
@@ -108,6 +107,25 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Plugin settings {{{
 
+" Gruvbox-Materia {{{
+" important!!
+set termguicolors
+
+" for dark version
+set background=dark
+
+" for light version
+" set background=light
+
+" set contrast
+" this configuration option should be placed before `colorscheme gruvbox-material`
+" available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'soft'
+
+colorscheme gruvbox-material 
+
+
+" }}}
 " Airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
