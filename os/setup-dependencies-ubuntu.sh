@@ -1,19 +1,19 @@
 # install vim-gtk3
-apt install vim-gtk3, curl, zsh, silversearcher-ag, wget -y
+apt install vim-gtk3, curl, zsh, silversearcher-ag, wget, zsh, ctags, npm -y
 
 # Install nerdfont
 mkdir -p ~/.fonts
 cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://Github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
 
+# setup zsh autosuggestisons
+rm -rf ~/.zsh/plugins/zsh-autosuggestions
+mkdir ~/.zsh/plugins/zsh-autosuggestions
+ln -s ~/Github/dotfiles/shells/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # setup zsh-syntax-highlighting
 rm -rf ~/.zsh/plugins/zsh-syntax-highlighting
-mkdir ~/.zsh/plugins
-git clone https://Github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/plugins/zsh-syntax-highlighting
-
-# setup zsh autosuggestisons
-mkdir ~/.zsh/plugins
-rm -rf ~/.zsh/plugins/zsh-autosuggestions
-git clone https://Github.com/zsh-users/zsh-autosuggestions ~/.zsh/plugins/zsh-autosuggestions
+mkdir ~/.zsh/plugins/zsh-syntax-highlighting
+ln -s ~/Github/dotfiles/shells/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 rm ~/z.sh
 ln -s ~/Github/dotfiles/shells/zsh/z/z.sh ~/z.sh
@@ -47,11 +47,18 @@ ln -s ~/Github/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
 rm ~/.vim/spell/en.utf-8.add
 ln -s /mnt/c/Users/Ray/Github/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
+# ranger
+sudo apt install ranger
+rm -rf ~/.config/ranger
+ln -s ~/Github/dotfiles/shells/ranger ~/.config/ranger
+git clone https://Github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+
 # # Terminator setup
 apt-get install terminator
 mkdir ~/.config/terminator
 rm ~/.config/terminator/config
 ln -s ~/Github/dotfiles/shells/terminator/config ~/.config/terminator/
+
 
 # Python setup
 pip install pep8 flake8 pyflakes isort yapf jedi 
@@ -91,7 +98,7 @@ pip install pep8 flake8 pyflakes isort yapf jedi
 # snap install intellij-idea-ultimate --classic
 
 # allows USB passthrough
-adduser $USER vboxusers
+# adduser $USER vboxusers
 
 # # Virtualbox Extension Pack
 # # Download
