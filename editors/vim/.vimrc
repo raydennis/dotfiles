@@ -5,7 +5,6 @@ filetype plugin indent on                 " Required
 let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
 colorscheme solarized
 
-
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
 
@@ -63,7 +62,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
+Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
+" Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
 Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dense-analysis/ale'                    " linting engine
@@ -107,6 +107,25 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Plugin settings {{{
 
+" Gruvbox-Materia {{{
+" important!!
+set termguicolors
+
+" for dark version
+set background=dark
+
+" for light version
+" set background=light
+
+" set contrast
+" this configuration option should be placed before `colorscheme gruvbox-material`
+" available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'soft'
+
+colorscheme gruvbox-material 
+
+
+" }}}
 " Airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -276,7 +295,7 @@ let g:netrw_special_syntax = 1     " certain files will be shown using special s
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'v': '~/github/dotfiles/editors/vim/.vimrc'}, {'z': '~/github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
+let g:startify_bookmarks = [ {'v': '~/Github/dotfiles/editors/vim/.vimrc'}, {'z': '~/Github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
@@ -299,7 +318,7 @@ let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</fo
 
 if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
         let g:UltiSnipsEditSplit = "context"
-        call mkdir($HOME . "/.vim/UltiSnips", "p")
+        " call mkdir($HOME . "~/.vim/UltiSnips", "p")
         let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
     endif
 

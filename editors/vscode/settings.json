@@ -1,6 +1,6 @@
 {
     "cSpell.language": "en",
-    "editor.fontFamily": "Fira Code , Menlo", 
+    
     "editor.fontLigatures": true,
     "editor.insertSpaces": true, 
     "editor.lineNumbers": "off",
@@ -53,4 +53,5 @@
     "window.zoomLevel": 1,
     "git.confirmSync": false,
     "python.linting.flake8Enabled": true,
+    "editor.fontFamily": "Fira Code Retina, Consolas, Menlo, monospace",
 }

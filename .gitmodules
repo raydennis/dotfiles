@@ -25,12 +25,18 @@
 [submodule "editors/vim/nord/nord-vim"]
 	path = editors/vim/nord/nord-vim
 	url = git@github.com:arcticicestudio/nord-vim.git
-[submodule "shells/ranger/plugins/ranger_devicons"]
-	path = shells/ranger/plugins/ranger_devicons
-	url = git@github.com:alexanderjeurissen/ranger_devicons.git
 [submodule "tools/gitk"]
 	path = tools/gitk
 	url = https://github.com/dracula/gitk.git
 [submodule "shells/iterm2/iterm"]
 	path = shells/iterm2/iterm
 	url = https://github.com/dracula/iterm.git
+[submodule "shells/zsh/zsh-syntax-highlighting"]
+	path = shells/zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "shells/zsh/zsh-autosuggestions"]
+	path = shells/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "editors/vim/vim"]
+	path = editors/vim/vim
+	url = https://github.com/vim/vim.git

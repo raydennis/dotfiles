@@ -25,6 +25,8 @@ alias stack='nocorrect stack'
 alias sudo='nocorrect sudo'
 alias ps='nocorrect ps'
 alias docker='nocorrect docker'
+alias ll="ls -Glha"
+alias ls="ls -G"
 
 #
 # Prompt
@@ -67,10 +69,10 @@ function +vi-hg-message() {
 function +vi-git-untracked() {
   emulate -L zsh
   if [[ -n $(git ls-files --exclude-standard --others 2> /dev/null) ]]; then
-    hook_com[unstaged]+="%F{blue}●%f"
+    hook_com[unstaged]+="%F{cyan}●%f"
   fi
 }
-RPROMPT_BASE="\${vcs_info_msg_0_}%F{blue}%~%f"
+RPROMPT_BASE="\${vcs_info_msg_0_}%F{cyan}%~%f"
 setopt PROMPT_SUBST
 # Anonymous function to avoid leaking NBSP variable.
 function () {
@@ -88,12 +90,12 @@ function () {
     # Note use a non-breaking space at the end of the prompt because we can use it as
     # a find pattern to jump back in tmux.
     local NBSP=' '
-    export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f${NBSP}"
+    export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{cyan}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f${NBSP}"
     export ZLE_RPROMPT_INDENT=0
   else
     # Don't bother with ZLE_RPROMPT_INDENT here, because it ends up eating the
     # space after PS1.
-    export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{blue}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f "
+    export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{cyan}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f "
   fi
 }
 export RPROMPT=$RPROMPT_BASE
@@ -131,11 +133,8 @@ setopt sharehistory         # share history across shells
 # Alias
 #
 alias c="clear"
-alias e="vim"
 alias grd="git add . && git commit -am \"fast update\" && git push"
 alias gs="git status"
-alias ll="ls -Glha"
-alias ls="ls -G"
 alias q="exit"
 alias r="ranger"
 alias rgrep="ag -il 'first' | xargs ag -il 'second' | xargs ag -il 'third'"
@@ -144,6 +143,7 @@ alias t="tree"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vir="vi -- *(D.om[1])"
 alias gp="git pull && git push"
+alias vi="vim"
 
 #
 # Bindings
@@ -185,6 +185,8 @@ case `uname` in
     source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     alias o="xdg-open"
+    alias ll="ls -Glha --color=auto"
+    alias ls="ls -G --color=auto"
   ;;
   FreeBSD)
     # commands for FreeBSD go here
@@ -328,3 +330,7 @@ add-zsh-hook precmd vcs_info
 #
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+
+export https_proxy=http://wwwproxy.sandia.gov:80/
+export http_proxy=http://wwwproxy.sandia.gov:80/
+export no_proxy=127.0.0.1,localhost,.sandia.gov
