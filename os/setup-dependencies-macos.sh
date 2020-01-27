@@ -29,8 +29,31 @@ ln -s ~/Github/dotfiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~/
 rm ~/.vim/colors/nord.vim
 ln -s ~/Github/dotfiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors/nord.vim
 
+# git
 rm ~/.gitconfig
 ln -s ~/Github/dotfiles/.gitconfig ~/.gitconfig
+
+## git-madge
+### Dependencies
+
+### Requires that madge and jq are on your path:
+
+sudo npm install -g madge
+brew install jq
+
+### If we want to use any of the visual features, we'll also need graphviz:
+
+brew install graphviz
+
+### If you're using iTerm2 and you want to display images in the terminal, install imgcat:
+
+brew install imgcat
+
+### Installation
+
+### Copy the git-madge file to your path. Alternatively, using Homebrew:
+
+brew install jez/formulae/git-madge
 
 rm ~/.gitignore_global
 ln -s ~/Github/dotfiles/.gitignore_global ~/.gitignore_global
@@ -111,3 +134,4 @@ brew cask install font-firacode-nerd-font
 rm -rf ~/.config/git/gitk
 mkdir -p ~/.config/git
 cp ~/Github/dotfiles/tools/gitk/gitk ~/.config/git/
+
