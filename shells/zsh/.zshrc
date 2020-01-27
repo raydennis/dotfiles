@@ -25,8 +25,18 @@ alias stack='nocorrect stack'
 alias sudo='nocorrect sudo'
 alias ps='nocorrect ps'
 alias docker='nocorrect docker'
+alias wnotes='nocorrect wnotes'
 alias ll="ls -Glha"
 alias ls="ls -G"
+
+
+# # Review between 'gh-pages' and the current branch
+# REVIEW_BASE=gh-pages git stat
+
+# # Review changes made by the last commit of this branch:
+# REVIEW_BASE=HEAD^ git stat
+export REVIEW_BASE=master
+
 
 #
 # Prompt
@@ -330,7 +340,10 @@ add-zsh-hook precmd vcs_info
 #
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 
-export https_proxy=http://wwwproxy.sandia.gov:80/
-export http_proxy=http://wwwproxy.sandia.gov:80/
-export no_proxy=127.0.0.1,localhost,.sandia.gov
+# env vars
+source ~/Github/dotfiles/shells/zsh/.env
+
+
+
