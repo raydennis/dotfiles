@@ -2,9 +2,6 @@
 syntax on
 filetype plugin indent on                 " Required
 
-let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
-colorscheme solarized
-
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
 
@@ -62,8 +59,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
-" Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
+Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
 Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dense-analysis/ale'                    " linting engine
@@ -97,8 +93,13 @@ Plug 'vim-airline/vim-airline'               " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
 
+Plug 'arcticicestudio/nord-vim'              " Nord theme
+" let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
+" colorscheme solarized
+colorscheme nord
+
 " coc.plugins {{{
-let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets']
+let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint']
 " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
@@ -107,25 +108,6 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Plugin settings {{{
 
-" Gruvbox-Materia {{{
-" important!!
-set termguicolors
-
-" for dark version
-set background=dark
-
-" for light version
-" set background=light
-
-" set contrast
-" this configuration option should be placed before `colorscheme gruvbox-material`
-" available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'soft'
-
-colorscheme gruvbox-material 
-
-
-" }}}
 " Airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -275,6 +257,12 @@ nmap <c-B> :Buffers<cr>
 
 " }}}
 
+" Fugitive Conflict Resolution{{{
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+" }}}
+
 " Goyo {{{
 nnoremap <leader>G :Goyo<cr>
 " }}}
@@ -411,9 +399,10 @@ nnoremap L $
 vnoremap L $
 " }}}
 
-" Open terminal {{{
+" terminal {{{
 nnoremap <leader>' :terminal<cr>
 nnoremap <leader>v' :vertical terminal<cr>
+tnoremap <C-]> <C-W>"+
 " }}}
 
 " Insert current date {{{
