@@ -1,3 +1,21 @@
 rename zr.sh
 rename z.sh
+search azure
+mkdir
+mkdir dev-stack
+mkdir done
+rename doner.md
+rename done.md
 wqa
+e 
+cd ~/.ssh
+e .config
+e config
+rename id_rsa
+wq
+search 
+cd ~/.vim
+
+mkdir Licenses
+e jetbrains.md
+open_with%spaceAr

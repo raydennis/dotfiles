@@ -84,10 +84,12 @@ handle_extension() {
             elinks -dump "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
 
-        # Markdown files
+        # Markdown files (requires the mdv python script (brew install mdv)
         markdown|md)
-            mdv "${FILE_PATH}" && exit 5
-            exit 1;;
+		    # mdless -w ${PV_WIDTH} "${FILE_PATH}" && exit 5
+            # mdv "${FILE_PATH}" && exit 5
+            mdv  -c "${PV_WIDTH}" "${FILE_PATH}"  && exit 0
+            ;;
     esac
 }
 
