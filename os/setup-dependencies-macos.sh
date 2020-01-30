@@ -107,6 +107,8 @@ ln -s ~/Github/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 # defaults delete -g ApplePressAndHoldEnabled
 
 # now link to the user settings.json
+# rm ~/Library/Application\ Support/VSCodium/User/settings.json
+# rm ~/Library/Application\ Support/VSCodium/User/keybindings.json
 # ln -s ~/Github/dotfiles/editors/vscode/settings.json ~/Library/Application\ Support/VSCodium/User/settings.json
 # ln -s ~/Github/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ Support/VSCodium/User/keybindings.json
 
