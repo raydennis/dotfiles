@@ -54,4 +54,7 @@
     "git.confirmSync": false,
     "python.linting.flake8Enabled": true,
     "editor.fontFamily": "Fira Code Retina, Consolas, Menlo, monospace",
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }
