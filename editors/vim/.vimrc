@@ -9,7 +9,7 @@ let maplocalleader = " "                  " LocalLeader - ( Space bar )
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
 set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
-set directory^=$HOME/.vim/swapfiles//     " Where to save swap files
+set directory=$HOME/.vim/swapfiles//     " Where to save swap files
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                              " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| command.
@@ -94,9 +94,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
 
 Plug 'arcticicestudio/nord-vim'              " Nord theme
-" let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
-" colorscheme solarized
-colorscheme nord
 
 " coc.plugins {{{
 let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint']
@@ -107,6 +104,13 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " }}}
 
 " Plugin settings {{{
+
+" Colorscheme {{{
+" let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
+" colorscheme solarized
+colorscheme nord
+
+" }}}
 
 " Airline {{{
 let g:airline#extensions#tabline#enabled = 1
@@ -476,10 +480,9 @@ nnoremap <leader>as :grep SCHEDULED *<cr>
 " }}}
 
 " Vimwiki style jump bindings {{{
-nnoremap <leader>ww :e ~/notes/work/todo.md<cr>:cd %:h<cr>
-nnoremap <leader>wd :e ~/notes/work/done.md<cr>:cd %:h<cr>
-nnoremap <leader>wt :cd ~/notes/personal/daily<cr> :RangerWorkingDirectory<cr>
-nnoremap <leader>wh :e ~/notes/personal/home.md<cr>:cd %:h<cr>
+nnoremap <leader>ww :e ~/Azure-repos/wnotes/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>wd :e ~/Azure-repos/wnotes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>wh :e ~/Github/notes/personal/home.md<cr>:cd %:h<cr>
 " nnoremap <leader>wm :!mv "~/OneDrive - University of New Mexico/OneDrive - University of New Mexico/Meetings"/
 " }}}
 
