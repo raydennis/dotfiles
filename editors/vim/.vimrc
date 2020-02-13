@@ -9,7 +9,7 @@ let maplocalleader = " "                  " LocalLeader - ( Space bar )
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
 set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
-set directory=$HOME/.vim/swapfiles//     " Where to save swap files
+set directory=$HOME/.vim/swapfiles/       " Where to save swap files
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                              " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| command.
@@ -92,6 +92,9 @@ Plug 'tpope/vim-unimpaired'                  " Pairs of handy bracket mappings
 Plug 'vim-airline/vim-airline'               " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
+Plug 'hashivim/vim-terraform'                " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands.
+Plug 'hashivim/vim-vagrant'
+Plug 'hashivim/vim-packer'
 
 Plug 'arcticicestudio/nord-vim'              " Nord theme
 
@@ -314,77 +317,82 @@ if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
         let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
     endif
 
+" Set ultisnips triggers
+let g:UltiSnipsExpandTrigger="<tab>"                                            
+let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"                   
+
 " }}}
 
 " Undotree {{{
 nnoremap <leader>u :UndotreeToggle<cr>
 " }}}
 
-" Vista {{{
-let g:vista#renderer#enable_icon = 1
+" " Vista {{{
+" let g:vista#renderer#enable_icon = 1
 
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-let g:vista#renderer#icons = {
-\ 'augroup': 'פּ',
-\ 'autocommand groups': 'פּ',
-\ 'class': '',
-\ 'classes': '',
-\ 'const': '',
-\ 'constant': '',
-\ 'default': '',
-\ 'enum': '',
-\ 'enumerator': '',
-\ 'field': '',
-\ 'fields': '',
-\ 'func': '',
-\ 'function': '',
-\ 'functions': '',
-\ 'implementation': '',
-\ 'interface': '',
-\ 'macro': '',
-\ 'macros': '',
-\ 'map': 'פּ',
-\ 'maps': 'פּ',
-\ 'member': '',
-\ 'members': '',
-\ 'method': '',
-\ 'module': '',
-\ 'modules': '',
-\ 'namespace': '',
-\ 'package': '',
-\ 'packages': '',
-\ 'property': '襁',
-\ 'struct': '',
-\ 'subroutine': '羚',
-\ 'target': '',
-\ 'type': '',
-\ 'typeParameter': '',
-\ 'typedef': '',
-\ 'types': '',
-\ 'union': '鬒',
-\ 'var': '',
-\ 'variable': '',
-\ 'variables': '',
-\  }
+" " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+" let g:vista#renderer#icons = {
+" \ 'augroup': 'פּ',
+" \ 'autocommand groups': 'פּ',
+" \ 'class': '',
+" \ 'classes': '',
+" \ 'const': '',
+" \ 'constant': '',
+" \ 'default': '',
+" \ 'enum': '',
+" \ 'enumerator': '',
+" \ 'field': '',
+" \ 'fields': '',
+" \ 'func': '',
+" \ 'function': '',
+" \ 'functions': '',
+" \ 'implementation': '',
+" \ 'interface': '',
+" \ 'macro': '',
+" \ 'macros': '',
+" \ 'map': 'פּ',
+" \ 'maps': 'פּ',
+" \ 'member': '',
+" \ 'members': '',
+" \ 'method': '',
+" \ 'module': '',
+" \ 'modules': '',
+" \ 'namespace': '',
+" \ 'package': '',
+" \ 'packages': '',
+" \ 'property': '襁',
+" \ 'struct': '',
+" \ 'subroutine': '羚',
+" \ 'target': '',
+" \ 'type': '',
+" \ 'typeParameter': '',
+" \ 'typedef': '',
+" \ 'types': '',
+" \ 'union': '鬒',
+" \ 'var': '',
+" \ 'variable': '',
+" \ 'variables': '',
+" \  }
 
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-let g:vista_fzf_preview = ['right:50%']
+" " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" let g:vista_fzf_preview = ['right:50%']
 
-let g:vista_executive_for = {
-  \ 'javascript': 'coc',
-  \ 'typescript': 'coc',
-  \ 'javascript.jsx': 'coc',
-  \ 'python': 'coc',
-  \ 'php': 'coc',
-  \ }
+" let g:vista_executive_for = {
+"   \ 'javascript': 'coc',
+"   \ 'typescript': 'coc',
+"   \ 'javascript.jsx': 'coc',
+"   \ 'python': 'coc',
+"   \ 'php': 'coc',
+"   \ }
 
-" Keybinding
-nnoremap <leader>vi :Vista!! <cr>
-nnoremap <leader>vt :Vista toc <cr>
+" " Keybinding
+" nnoremap <leader>vi :Vista!! <cr>
+" nnoremap <leader>vt :Vista toc <cr>
 
-" }}}
+" " }}}
 " }}}
 
 " Mappings {{{
@@ -419,7 +427,7 @@ nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 
 " Buffers {{{
 " Use leader tab to switch between current and last buffer 
-nnoremap <silent><leader><tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bnext<cr>
+nnoremap <silent><leader><tab> :Buffers<cr>
 nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
 tnoremap <silent><leader><tab> :bn<CR>
 tnoremap <silent><leader><s-tab> :bp<CR> 
@@ -431,7 +439,7 @@ nnoremap <leader>bd :bp <bar> bd! #<cr>
 " close all open buffers
 nnoremap <leader>bq :bufdo bd!<cr>
 " search for open buffer
-nnoremap <leader>bb :Buffers<cr>
+" nnoremap <leader>bb :Buffers<cr>
 
 " }}}
 
@@ -457,6 +465,8 @@ nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
+" Control [ pastes into terminal
+tnoremap C-[> <C-W>"+ 
 " }}}
 
 " Resize panes with arrow keys {{{
@@ -491,9 +501,11 @@ nnoremap <leader>e :exe getline(line(! + '.'))<cr>
 " }}}
 
 " remote file management {{{
-nnoremap <leader>es ":e scp://user@127.0.0.1:22//home/"
+nnoremap <leader>es :e scp://user@127.0.0.1:22//home/
 " }}}
 
+" move screenshots to current directory {{{
+nnoremap <leader>ss :! mv ~/Desktop/Screen* ./
 " }}}
 
 " Augroups {{{

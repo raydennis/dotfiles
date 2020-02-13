@@ -26,8 +26,6 @@ alias sudo='nocorrect sudo'
 alias ps='nocorrect ps'
 alias docker='nocorrect docker'
 alias wnotes='nocorrect wnotes'
-alias ll="ls -Glha"
-alias ls="ls -G"
 
 
 # # Review between 'gh-pages' and the current branch
@@ -142,6 +140,8 @@ setopt sharehistory         # share history across shells
 #
 # Alias
 #
+alias ll="ls -Glha"
+alias ls="ls -G"
 alias c="clear"
 alias grd="git add . && git commit -am \"fast update\" && git push"
 alias gs="git status"
@@ -154,6 +154,11 @@ alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vir="vi -- *(D.om[1])"
 alias gp="git pull && git push"
 alias vi="vim"
+alias cls="clear && ls"
+alias ti="terraform init"
+alias tp="terraform plan"
+alias ta="terraform apply"
+alias td="terraform destroy"
 
 #
 # Bindings
@@ -344,6 +349,3 @@ export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 
 # env vars
 source ~/Github/dotfiles/shells/zsh/.env
-
-
-

@@ -1,0 +1,4 @@
+export https_proxy=http://proxy.proxy.proxy:443
+export http_proxy=http://proxy.proxy.proxy:80
+export no_proxy=127.0.0.1,localhost,.proxy.proxy
+

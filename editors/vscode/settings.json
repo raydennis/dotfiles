@@ -39,16 +39,12 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
     "vim.leader": "<space>",
+    "http.proxyStrictSSL":false,
     "vim.normalModeKeyBindingsNonRecursive": [
       {
-        "before": [
-          "<leader>",
-          "'"
-        ],
-        "commands": [
-          "workbench.action.terminal.focus",
-        ]
-      }
+        "before": ["<leader>", "'"],
+        "commands": ["workbench.action.terminal.focus"],
+      },
     ],
     "window.zoomLevel": 1,
     "git.confirmSync": false,
@@ -57,4 +53,18 @@
     "[javascriptreact]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "terraform.indexing": {
+      "enabled": false,
+      "liveIndexing": false,
+      "delay": 500,
+      "exclude": [
+        ".terraform/**/*",
+        "**/.terraform/**/*"
+      ]
+    },
+    "terraform.languageServer": {
+      "enabled": true,
+      "args": []
+    },
+    "diffEditor.renderSideBySide": true,
 }

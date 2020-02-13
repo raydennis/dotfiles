@@ -6,7 +6,6 @@ mkdir dev-stack
 mkdir done
 rename doner.md
 rename done.md
-wqa
 e 
 cd ~/.ssh
 e .config
@@ -15,7 +14,30 @@ rename id_rsa
 wq
 search 
 cd ~/.vim
-
 mkdir Licenses
 e jetbrains.md
 open_with%spaceAr
+search az
+search azu
+search markdown
+wqa
+rename 
+rename Screen Shot 2020-02-06 at 1.34.27 PM.png
+touch 
+rename database-location.png
+e V
+rename NWM-2020-1001-signed-by-ray.pdf
+open_with%spacen
+open_with%space
+rename test.tf
+deleteddddddddd
+rename wintest.tf
+rename demor.tf
+rename demo
+cd demo.tf
+rename demo.tf
+rename both-module
+deletedddd
+delete
+q
+

@@ -1,0 +1,55 @@
+snippet li "markdown link" b
+[$1]($2)
+endsnippet
+
+snippet image-w "Image with width" b
+<img src="$1"  width="400"/>
+endsnippet
+
+snippet title
+---
+title: markdown cheatsheet
+date: 2019-11-27
+tags:cheatsheet:markdown:
+---
+endsnippet
+
+snippet iframe
+<iframe width="420" height="315"
+src="$1">
+</iframe>
+endsnippet
+
+# snippet flow
+# ```flow
+# st=>start: Start
+# e=>end
+# op=>operation: My Operation
+# cond=>condition: Yes or No?
+
+# st->op->cond
+# cond(yes)->e
+# cond(no)->op
+# ```
+# endsnippet
+
+# snippet sequence "sequence" b
+# ```sequence
+# Alice->Bob: Hello Bob, how are you?
+# Note right of Bob: Bob thinks
+# Bob-->Alice: I am good thanks!
+# ```
+# endsnippet
+
+
+snippet meeting
+## Participants:
+
+- [x] Ray Dennis
+
+## Agenda
+
+## Reference Documents
+
+## Notes
+endsnippet
