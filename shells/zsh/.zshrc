@@ -59,6 +59,9 @@ zstyle ':vcs_info:hg*:*' get-revision true
 zstyle ':vcs_info:hg*:*' get-mq false
 zstyle ':vcs_info:hg*+gen-hg-bookmark-string:*' hooks hg-bookmarks
 zstyle ':vcs_info:hg*+set-message:*' hooks hg-message
+
+
+# functions
 function +vi-hg-bookmarks() {
   emulate -L zsh
   if [[ -n "${hook_com[hg-active-bookmark]}" ]]; then
@@ -156,9 +159,11 @@ alias gp="git pull && git push"
 alias vi="vim"
 alias cls="clear && ls"
 alias ti="terraform init"
-alias tp="terraform plan"
+alias tp="terraform plan -compact-warnings"
 alias ta="terraform apply"
+alias taa="terraform apply -auto-approve"
 alias td="terraform destroy"
+alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 
 #
 # Bindings
@@ -349,3 +354,8 @@ export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 
 # env vars
 source ~/Github/dotfiles/shells/zsh/.env
+
+
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

@@ -38,6 +38,6 @@ cd demo.tf
 rename demo.tf
 rename both-module
 deletedddd
-delete
 q
 
+delete
