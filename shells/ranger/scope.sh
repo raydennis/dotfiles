@@ -86,9 +86,9 @@ handle_extension() {
 
         # Markdown files (requires the mdv python script (brew install mdv)
         markdown|md)
-		    # mdless -w ${PV_WIDTH} "${FILE_PATH}" && exit 5
+		    mdless -w ${PV_WIDTH} "${FILE_PATH}" && exit 5
             # mdv "${FILE_PATH}" && exit 5
-            mdv  -c "${PV_WIDTH}" "${FILE_PATH}"  && exit 0
+            # mdv  -c "${PV_WIDTH}" "${FILE_PATH}"  && exit 0
             ;;
     esac
 }
