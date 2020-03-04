@@ -164,6 +164,10 @@ alias ta="terraform apply"
 alias taa="terraform apply -auto-approve"
 alias td="terraform destroy"
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
+alias vup="vagrant up"
+alias vh="vagrant halt"
+alias vd="vagrant destroy"
+alias vp="vagrant provision"
 
 #
 # Bindings
@@ -180,7 +184,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='/usr/local/Cellar/macvim/8.1-161/MacVim.app/Contents/MacOS/Vim'
+    alias vim='/usr/local/Cellar/macvim/8.2-162/MacVim.app/Contents/MacOS/Vim'
     # setup "Z" on MACOS
     # brew install z
     . `brew --prefix`/etc/profile.d/z.sh
@@ -350,6 +354,7 @@ add-zsh-hook precmd vcs_info
 #
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin/terraform-lsp_0.0.10_darwin_amd64:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 
 # env vars

@@ -1,6 +1,5 @@
 snippet resource
-resource "${1:}" "${2:}" 
-{
+resource "${1:}" "${2:}" {
 }
 endsnippet
 
@@ -149,6 +148,10 @@ resource "azurerm_virtual_machine" "myterraformvm" {
         admin_password = "complexPassW0rd!"
     }
 
+	# with secret
+	# admin_username = "${var.keyvault_secret}"
+	# admin_password = "${data.azurerm_key_vault_secret.secret.value}"
+
     os_profile_windows_config {
       provision_vm_agent = true
     }
@@ -161,5 +164,35 @@ resource "azurerm_virtual_machine" "myterraformvm" {
     tags = {
         environment = "Terraform Demo"
     }
+}
+endsnippet
+
+snippet keyvault-secret
+# variables (can be moved to another file if needed)
+variable "keyvault-resourcegroup" {
+  default = "nwm-keyvault-rg"
+}
+
+variable "keyvault_name" {
+  default = "nwm-admin-key-vault"
+}
+
+variable "keyvault_secret" {
+  default = "nwmadmin"
+}
+
+# data
+data "azurerm_resource_group" "keyvault-resourcegroup" {
+  name = "${var.keyvault-resourcegroup}"
+}
+
+data "azurerm_key_vault" "keyvault" {
+  name = "${var.keyvault_name}" 
+  resource_group_name = "${data.azurerm_resource_group.keyvault-resourcegroup.name}" 
+}
+
+data "azurerm_key_vault_secret" "secret" {
+  name = "${var.keyvault_secret}"
+  vault_uri = "${data.azurerm_key_vault.keyvault.vault_uri}"
 }
 endsnippet

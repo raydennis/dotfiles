@@ -4,7 +4,6 @@ filetype plugin indent on                 " Required
 
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
-
 " set visualbell                          " Switch from sound on error to flash
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
@@ -62,24 +61,30 @@ call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
 Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
+Plug 'camspiers/animate.vim'                 " A Vim Window Animation Library
 Plug 'dense-analysis/ale'                    " linting engine
 Plug 'dhruvasagar/vim-table-mode'            " Tables
+Plug 'flazz/vim-colorschemes'
 Plug 'francoiscabrol/ranger.vim'             " Ranger integration
+Plug 'hashivim/vim-packer'
+Plug 'hashivim/vim-terraform'                " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands.
+Plug 'hashivim/vim-vagrant'
 Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
 Plug 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                      " Fuzzy finding
 Plug 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/vim-peekaboo'                 " Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
 Plug 'liuchengxu/vista.vim'                  " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'mbbill/undotree'                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                    " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'reedes/vim-pencil'                     " Rethinking Vim as a tool for writers
+Plug 'psliwka/vim-smoothie'                  " Smooth scrolling
 Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugins such as: NERDTree
 Plug 'scrooloose/nerdtree'                   " Tree scrooloose/nerdtreeFile Explorer
-Plug 'stefandtw/quickfix-reflector.vim'      " Change code right in the quickfix window
 Plug 'tommcdo/vim-lion'                      " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                  " Comment out code with gcc
 Plug 'tpope/vim-fugitive'                    " Adds git functionality to vim ex. :Gdiff
@@ -89,15 +94,11 @@ Plug 'tpope/vim-scriptease'                  " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                 " Quickly modify dates.
 Plug 'tpope/vim-surround'                    " provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                  " Pairs of handy bracket mappings
-Plug 'vim-airline/vim-airline'               " Statusline
-Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
-Plug 'hashivim/vim-terraform'                " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands.
-Plug 'hashivim/vim-vagrant'
-Plug 'hashivim/vim-packer'
 
-Plug 'arcticicestudio/nord-vim'              " Nord theme
-
+" colorschemes
+Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
+Plug 'arcticicestudio/nord-vim'
 " coc.plugins {{{
 let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint']
 " }}}
@@ -111,14 +112,8 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " Colorscheme {{{
 " let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
 " colorscheme solarized
-colorscheme nord
+colorscheme gruvbox-material 
 
-" }}}
-
-" Airline {{{
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16_nord'
 " }}}
 
 " Ale {{{
@@ -133,6 +128,16 @@ let g:ale_fixers = {
 \   'python': ['autopep8'],
 \   'php': ['phpcbf'],
 \}
+" }}}
+
+" Animator {{{
+nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
+nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
+nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
+nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
+let g:fzf_layout = {
+ \ 'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'
+\ }
 " }}}
 
 " Auto-Save {{{
@@ -274,6 +279,13 @@ nnoremap gdl :diffget //3<CR>
 nnoremap <leader>G :Goyo<cr>
 " }}}
 
+" Lightline {{{
+set noshowmode
+set laststatus=2
+let g:lightline = {}
+let g:lightline.colorscheme = 'nord'
+" }}}
+
 " Nerdtree {{{
 nnoremap - :NERDTreeToggle<CR>
 " }}}
@@ -287,6 +299,12 @@ let g:netrw_fastbrowse     = 2     " fast browsing (re-use directory buffer list
 let g:netrw_keepdir        = 0     " =0 keep the current directory the same as the browsing directory.
 let g:netrw_special_syntax = 1     " certain files will be shown using special syntax in the browser:
 
+" }}}
+
+" Quickfix-reflector {{{
+let g:qf_modifiable = 1
+let g:qf_join_changes = 1
+let g:qf_write_changes = 1
 " }}}
 
 " Startify {{{
@@ -309,6 +327,15 @@ let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
 let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
 " }}}
 
+" Terraform {{{
+" Allow vim-terraform to align settings automatically with Tabularize.
+let g:terraform_align=1
+" Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
+let g:terraform_fold_sections=1
+" Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
+let g:terraform_fmt_on_save=1
+" }}}
+
 " UltiSnips {{{
 
 if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
@@ -328,185 +355,74 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 nnoremap <leader>u :UndotreeToggle<cr>
 " }}}
 
-" " Vista {{{
-" let g:vista#renderer#enable_icon = 1
+" Vista {{{
+let g:vista#renderer#enable_icon = 1
 
-" " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-" let g:vista#renderer#icons = {
-" \ 'augroup': 'פּ',
-" \ 'autocommand groups': 'פּ',
-" \ 'class': '',
-" \ 'classes': '',
-" \ 'const': '',
-" \ 'constant': '',
-" \ 'default': '',
-" \ 'enum': '',
-" \ 'enumerator': '',
-" \ 'field': '',
-" \ 'fields': '',
-" \ 'func': '',
-" \ 'function': '',
-" \ 'functions': '',
-" \ 'implementation': '',
-" \ 'interface': '',
-" \ 'macro': '',
-" \ 'macros': '',
-" \ 'map': 'פּ',
-" \ 'maps': 'פּ',
-" \ 'member': '',
-" \ 'members': '',
-" \ 'method': '',
-" \ 'module': '',
-" \ 'modules': '',
-" \ 'namespace': '',
-" \ 'package': '',
-" \ 'packages': '',
-" \ 'property': '襁',
-" \ 'struct': '',
-" \ 'subroutine': '羚',
-" \ 'target': '',
-" \ 'type': '',
-" \ 'typeParameter': '',
-" \ 'typedef': '',
-" \ 'types': '',
-" \ 'union': '鬒',
-" \ 'var': '',
-" \ 'variable': '',
-" \ 'variables': '',
-" \  }
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\ 'augroup': 'פּ',
+\ 'autocommand groups': 'פּ',
+\ 'class': '',
+\ 'classes': '',
+\ 'const': '',
+\ 'constant': '',
+\ 'default': '',
+\ 'enum': '',
+\ 'enumerator': '',
+\ 'field': '',
+\ 'fields': '',
+\ 'func': '',
+\ 'function': '',
+\ 'functions': '',
+\ 'implementation': '',
+\ 'interface': '',
+\ 'macro': '',
+\ 'macros': '',
+\ 'map': 'פּ',
+\ 'maps': 'פּ',
+\ 'member': '',
+\ 'members': '',
+\ 'method': '',
+\ 'module': '',
+\ 'modules': '',
+\ 'namespace': '',
+\ 'package': '',
+\ 'packages': '',
+\ 'property': '襁',
+\ 'struct': '',
+\ 'subroutine': '羚',
+\ 'target': '',
+\ 'type': '',
+\ 'typeParameter': '',
+\ 'typedef': '',
+\ 'types': '',
+\ 'union': '鬒',
+\ 'var': '',
+\ 'variable': '',
+\ 'variables': '',
+\  }
 
-" let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
-" " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" let g:vista_fzf_preview = ['right:50%']
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+let g:vista_fzf_preview = ['right:50%']
 
-" let g:vista_executive_for = {
-"   \ 'javascript': 'coc',
-"   \ 'typescript': 'coc',
-"   \ 'javascript.jsx': 'coc',
-"   \ 'python': 'coc',
-"   \ 'php': 'coc',
-"   \ }
+let g:vista_executive_for = {
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ 'javascript.jsx': 'coc',
+  \ 'python': 'coc',
+  \ 'php': 'coc',
+  \ }
 
-" " Keybinding
-" nnoremap <leader>vi :Vista!! <cr>
-" nnoremap <leader>vt :Vista toc <cr>
+" Keybinding
+nnoremap <leader>vi :Vista!! <cr>
+nnoremap <leader>vt :Vista toc <cr>
 
-" " }}}
+" }}}
 " }}}
 
 " Mappings {{{
-
-" Window movement with control + hjkl{{{
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
-" }}}
-
-" Easier beginning and ending of line {{{
-nnoremap H ^
-vnoremap H ^
-nnoremap L $
-vnoremap L $
-" }}}
-
-" terminal {{{
-nnoremap <leader>' :terminal<cr>
-nnoremap <leader>v' :vertical terminal<cr>
-tnoremap <C-]> <C-W>"+
-" }}}
-
-" Insert current date {{{
-nnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
-tnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
-inoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
-cnoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
-nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
-" }}}
-
-" Buffers {{{
-" Use leader tab to switch between current and last buffer 
-nnoremap <silent><leader><tab> :Buffers<cr>
-nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
-tnoremap <silent><leader><tab> :bn<CR>
-tnoremap <silent><leader><s-tab> :bp<CR> 
-
-" create a new buffer (save it with :w ./path/to/FILENAME)
-nnoremap <leader>be :enew<cr>
-" close current buffer
-nnoremap <leader>bd :bp <bar> bd! #<cr>
-" close all open buffers
-nnoremap <leader>bq :bufdo bd!<cr>
-" search for open buffer
-" nnoremap <leader>bb :Buffers<cr>
-
-" }}}
-
-" Remove blank lines in current visual selection {{{
-vnoremap <leader>rml :v/./d
-" }}}
-
-" Spell check for previous misspelled word, accept first choice {{{
-inoremap <c-z> <esc>:set spell<cr>[s1z=<c-o>a
-nnoremap <c-z> :set spell<cr>[s1z=e
-" }}}
-
-" Stop highlight after searching {{{
-nnoremap <silent> <leader>, :noh<cr>
-" }}}
-
-" Quicker clipboard control {{{
-nnoremap <Leader>y "+y
-nnoremap <Leader>d "+d
-vnoremap <Leader>y "+y
-vnoremap <Leader>d "+d
-nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
-nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
-vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
-vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
-" Control [ pastes into terminal
-tnoremap C-[> <C-W>"+ 
-" }}}
-
-" Resize panes with arrow keys {{{
-nnoremap <silent> <Left> :vertical resize -5<cr>
-nnoremap <silent> <Right> :vertical resize +5<cr>
-nnoremap <silent> <Up> :resize +5<cr>
-nnoremap <silent> <Down> :resize -5<cr>
-" }}}
-
-" SpaceMacs Org-Mode style agenda bindings {{{
-nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>ts :.s/\(TODO\\|WAITING\)/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>at :grep " TODO" *<cr>
-nnoremap <leader>ah :grep HTODO *<cr>
-nnoremap <leader>aw :grep WAITING *<cr>
-nnoremap <leader>ad :grep DONE *<cr>
-nnoremap <leader>as :grep SCHEDULED *<cr>
-" }}}
-
-" Vimwiki style jump bindings {{{
-nnoremap <leader>ww :e ~/Azure-repos/wnotes/todo.md<cr>:cd %:h<cr>
-nnoremap <leader>wd :e ~/Azure-repos/wnotes/done.md<cr>:cd %:h<cr>
-nnoremap <leader>wh :e ~/Github/notes/personal/home.md<cr>:cd %:h<cr>
-" nnoremap <leader>wm :!mv "~/OneDrive - University of New Mexico/OneDrive - University of New Mexico/Meetings"/
-" }}}
-
-" Run the current line as if it were a command {{{
-nnoremap <leader>e :exe getline(line(! + '.'))<cr>
-" }}}
-
-" remote file management {{{
-nnoremap <leader>es :e scp://user@127.0.0.1:22//home/
-" }}}
-
-" move screenshots to current directory {{{
-nnoremap <leader>ss :! mv ~/Desktop/Screen* ./
-" }}}
 
 " Augroups {{{
 " augroup minivmrc {{{
@@ -597,6 +513,54 @@ augroup END
 
 " }}}
 
+" Buffers {{{
+" Use leader tab to switch between current and last buffer 
+nnoremap <silent><leader><tab> :Buffers<cr>
+nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
+tnoremap <silent><leader><tab> :bn<CR>
+tnoremap <silent><leader><s-tab> :bp<CR> 
+
+" create a new buffer (save it with :w ./path/to/FILENAME)
+nnoremap <leader>be :enew<cr>
+" close current buffer
+nnoremap <leader>bd :bp <bar> bd! #<cr>
+" close all open buffers
+nnoremap <leader>bq :bufdo bd!<cr>
+" search for open buffer
+" nnoremap <leader>bb :Buffers<cr>
+
+" }}}
+
+" Easier beginning and ending of line {{{
+nnoremap H ^
+vnoremap H ^
+nnoremap L $
+vnoremap L $
+" }}}
+
+" Functions {{{
+function Mkindex()
+    :read !ls
+    :%norm I[
+    :%norm A]()
+    :%norm t]yi]t)p
+    :%norm ^f.dt]
+endfunction
+
+" }}}
+
+" Insert current date {{{
+nnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+tnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+inoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
+cnoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
+nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
+" }}}
+
+" Move screenshots to current directory {{{
+nnoremap <leader>ss :! mv ~/Desktop/Screen* ./
+" }}}
+
 " OS specific commands {{{
 if has("unix")
   " *nix
@@ -616,14 +580,83 @@ endif
 
 " }}}
 
-" functions {{{
-function Mkindex()
-    :read !ls
-    :%norm I[
-    :%norm A]()
-    :%norm t]yi]t)p
-    :%norm ^f.dt]
-endfunction
+" Registers {{{
+nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
+nnoremap <Leader>y "+y
+nnoremap <Leader>d "+d
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
+nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
+vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
+vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
+nnoremap <leader>rp "0p"
+
+" Control [ pastes into terminal
+tnoremap <C-]> <C-W>"+
+" }}}
+
+" Remote file management {{{
+nnoremap <leader>es :e scp://user@127.0.0.1:22//home/
+" }}}
+
+" Remove blank lines in current visual selection {{{
+vnoremap <leader>rml :v/./d
+" }}}
+
+" Resize panes with arrow keys [deprecated while using animate]{{{
+"
+" nnoremap <silent> <Left> :vertical resize -5<cr>
+" nnoremap <silent> <Right> :vertical resize +5<cr>
+" nnoremap <silent> <Up> :resize +5<cr>
+" nnoremap <silent> <Down> :resize -5<cr>
+" }}}
+
+" Run the current line as if it were a command {{{
+nnoremap <leader>e :exe getline(line(! + '.'))<cr>
+" }}}
+
+" SpaceMacs Org-Mode style agenda bindings {{{
+nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>ts :.s/\(TODO\\|WAITING\)/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>at :grep " TODO" *<cr>
+nnoremap <leader>ah :grep HTODO *<cr>
+nnoremap <leader>aw :grep WAITING *<cr>
+nnoremap <leader>ad :grep DONE *<cr>
+nnoremap <leader>as :grep SCHEDULED *<cr>
+" }}}
+
+" Spell check for previous misspelled word, accept first choice {{{
+inoremap <c-z> <esc>:set spell<cr>[s1z=<c-o>a
+nnoremap <c-z> :set spell<cr>[s1z=e
+" }}}
+
+" Stop highlight after searching {{{
+nnoremap <silent> <leader>, :noh<cr>
+" }}}
+
+" Terminal {{{
+nnoremap <leader>' :terminal<cr>
+nnoremap <leader>v' :vertical terminal<cr>
+tnoremap <C-]> <C-W>"+
+" }}}
+
+" Vimwiki style jump bindings {{{
+nnoremap <leader>ww :e ~/Azure-repos/wnotes/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>wd :e ~/Azure-repos/wnotes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>wh :e ~/Github/notes/personal/home.md<cr>:cd %:h<cr>
+" nnoremap <leader>wm :!mv "~/OneDrive - University of New Mexico/OneDrive - University of New Mexico/Meetings"/
+" }}}
+
+" Window movement with control + hjkl{{{
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
+" }}}
 
 " }}}
 

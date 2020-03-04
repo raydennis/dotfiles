@@ -28,7 +28,7 @@
     "gitlens.advanced.messages": {"suppressShowKeyBindingsNotice": true},
     "gitlens.historyExplorer.enabled": true,
     "[markdown]": {"editor.quickSuggestions": true},
-    "markdown.extension.preview.autoShowPreviewToSide": false,
+    "markdown.extension.preview.autoShowPreviewToSide": true,
     "phpSniffer.run": "onType",
     "phpSniffer.standard": "PSR2",
     "python.jediEnabled": false,
@@ -37,7 +37,7 @@
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
+    "workbench.colorTheme": "Gruvbox Material Dark",
     "vim.leader": "<space>",
     "http.proxyStrictSSL":false,
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -67,4 +67,5 @@
       "args": []
     },
     "diffEditor.renderSideBySide": true,
+    "http.proxyStrictSSL":false
 }

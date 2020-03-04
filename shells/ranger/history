@@ -1,22 +1,3 @@
-rename zr.sh
-rename z.sh
-search azure
-mkdir
-mkdir dev-stack
-mkdir done
-rename doner.md
-rename done.md
-e 
-cd ~/.ssh
-e .config
-e config
-rename id_rsa
-wq
-search 
-cd ~/.vim
-mkdir Licenses
-e jetbrains.md
-open_with%spaceAr
 search az
 search azu
 search markdown
@@ -40,6 +21,30 @@ rename both-module
 deletedddd
 q
 
-delete
 open_with 
 rename Examplerq.md
+mkdir azure-cli-windows
+rename Vagrantfiler
+rename Vagrantfile
+rename windowsraaqqq.json
+rename curproj-packer-terraform-examples
+rename curproj-packer-terraform-example
+rename curproj-packer-terraform
+mkdir basic
+rename variablesr.json
+rename powershell-examples
+find 
+rename nwm-apps.md
+search lihnk
+mkdir test
+rename windowsr.json
+search scn
+search scm
+search cap
+delete
+rename packer-buildr.bash
+rename packer-build.bash
+rename winmainr.tf
+rename winmainrr.tf
+rename winmain.tf
+search doc

@@ -8,9 +8,10 @@ endsnippet
 
 snippet title
 ---
-title: markdown cheatsheet
-date: 2019-11-27
-tags:cheatsheet:markdown:
+title: ${1:}
+date: ${2:`date +%Y/%m/%d`}
+tags:${3:markdown}
+test
 ---
 endsnippet
 
@@ -20,36 +21,22 @@ src="$1">
 </iframe>
 endsnippet
 
-# snippet flow
-# ```flow
-# st=>start: Start
-# e=>end
-# op=>operation: My Operation
-# cond=>condition: Yes or No?
-
-# st->op->cond
-# cond(yes)->e
-# cond(no)->op
-# ```
-# endsnippet
-
-# snippet sequence "sequence" b
-# ```sequence
-# Alice->Bob: Hello Bob, how are you?
-# Note right of Bob: Bob thinks
-# Bob-->Alice: I am good thanks!
-# ```
-# endsnippet
-
 
 snippet meeting
+# date: ${1:`date +%Y/%m/%d`}
+
 ## Participants:
 
 - [x] Ray Dennis
+${2:}
 
 ## Agenda
+${3:}
 
 ## Reference Documents
 
 ## Notes
+
+${4:}
+
 endsnippet

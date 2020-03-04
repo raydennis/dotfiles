@@ -14,4 +14,11 @@
 
   "python.jediEnabled": false,
   "python.envFile": "~/.virtualenv/${workspaceFolder}/.env",
+  "languageserver": {
+      "terraform": {
+        "command": "terraform-lsp",
+        "filetypes": ["terraform"],
+        "initializationOptions": {}
+      }
+    }
 }
