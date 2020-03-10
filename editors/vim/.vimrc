@@ -62,6 +62,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
 Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
+Plug 'dhruvasagar/vim-table-mode'            " Tables
 Plug 'flazz/vim-colorschemes'
 Plug 'francoiscabrol/ranger.vim'             " Ranger integration
 Plug 'hashivim/vim-packer'
@@ -581,7 +582,7 @@ nnoremap <leader>es :e scp://user@127.0.0.1:22//home/
 vnoremap <leader>rml :v/./d
 " }}}
 
-" Resize panes with arrow keys [deprecated while using animate]{{{
+" Resize panes with arrow keys {{{
  nnoremap <silent> <Left> :vertical resize -5<cr>
  nnoremap <silent> <Right> :vertical resize +5<cr>
  nnoremap <silent> <Up> :resize +5<cr>
