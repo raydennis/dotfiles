@@ -4,7 +4,9 @@ filetype plugin indent on                 " Required
 
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
-" set visualbell                          " Switch from sound on error to flash
+set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
+
+set visualbell                            " Switch from sound on error to flash
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
 set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
@@ -17,7 +19,6 @@ set hlsearch                              " When there is a previous search patt
 set incsearch                             " While typing a search command, show where pattern, as it was typed
 set mouse=a                               " Enable the use of the mouse
 set nonumber                              " No numbers on the left by default
-set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
 set showcmd                               " Display incomplete command
 set showmatch                             " When a bracket is inserted, briefly jump to the matching one.
@@ -61,9 +62,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
 Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
-Plug 'camspiers/animate.vim'                 " A Vim Window Animation Library
-Plug 'dense-analysis/ale'                    " linting engine
-Plug 'dhruvasagar/vim-table-mode'            " Tables
 Plug 'flazz/vim-colorschemes'
 Plug 'francoiscabrol/ranger.vim'             " Ranger integration
 Plug 'hashivim/vim-packer'
@@ -82,7 +80,6 @@ Plug 'markonm/traces.vim'                    " This plugin highlights patterns a
 Plug 'mbbill/undotree'                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                    " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'psliwka/vim-smoothie'                  " Smooth scrolling
 Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugins such as: NERDTree
 Plug 'scrooloose/nerdtree'                   " Tree scrooloose/nerdtreeFile Explorer
 Plug 'tommcdo/vim-lion'                      " Align based on a character ex :glip(char)
@@ -100,7 +97,7 @@ Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers 
 Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
 Plug 'arcticicestudio/nord-vim'
 " coc.plugins {{{
-let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint']
+let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-markdownlint', 'coc-yank', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint']
 " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
@@ -112,32 +109,8 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " Colorscheme {{{
 " let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
 " colorscheme solarized
-colorscheme gruvbox-material 
+colorscheme nord
 
-" }}}
-
-" Ale {{{
-map <leader>A :ALEFix <cr>
-let g:ale_fixers = {
-\   'markdown': ['prettier'],
-\   'javascript': [
-\       'DoSomething',
-\       'eslint',
-\       {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
-\   ],
-\   'python': ['autopep8'],
-\   'php': ['phpcbf'],
-\}
-" }}}
-
-" Animator {{{
-nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
-nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
-nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
-nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
-let g:fzf_layout = {
- \ 'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'
-\ }
 " }}}
 
 " Auto-Save {{{
@@ -234,6 +207,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+map <leader>A :Format <cr>
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -308,7 +282,7 @@ let g:qf_write_changes = 1
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'v': '~/Github/dotfiles/editors/vim/.vimrc'}, {'z': '~/Github/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Github/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
+let g:startify_bookmarks = [ {'v': '~/Repsitories/Github/raydennis/dotfiles/editors/vim/.vimrc'}, {'z': '~/Repsitories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Repsitories/Github/raydennis/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
@@ -413,6 +387,9 @@ let g:vista_executive_for = {
   \ 'javascript.jsx': 'coc',
   \ 'python': 'coc',
   \ 'php': 'coc',
+  \ 'terraform': 'coc',
+  \ 'markdown': 'coc',
+  \ 'json': 'coc',
   \ }
 
 " Keybinding
@@ -605,11 +582,10 @@ vnoremap <leader>rml :v/./d
 " }}}
 
 " Resize panes with arrow keys [deprecated while using animate]{{{
-"
-" nnoremap <silent> <Left> :vertical resize -5<cr>
-" nnoremap <silent> <Right> :vertical resize +5<cr>
-" nnoremap <silent> <Up> :resize +5<cr>
-" nnoremap <silent> <Down> :resize -5<cr>
+ nnoremap <silent> <Left> :vertical resize -5<cr>
+ nnoremap <silent> <Right> :vertical resize +5<cr>
+ nnoremap <silent> <Up> :resize +5<cr>
+ nnoremap <silent> <Down> :resize -5<cr>
 " }}}
 
 " Run the current line as if it were a command {{{
@@ -645,10 +621,9 @@ tnoremap <C-]> <C-W>"+
 " }}}
 
 " Vimwiki style jump bindings {{{
-nnoremap <leader>ww :e ~/Azure-repos/wnotes/todo.md<cr>:cd %:h<cr>
-nnoremap <leader>wd :e ~/Azure-repos/wnotes/done.md<cr>:cd %:h<cr>
-nnoremap <leader>wh :e ~/Github/notes/personal/home.md<cr>:cd %:h<cr>
-" nnoremap <leader>wm :!mv "~/OneDrive - University of New Mexico/OneDrive - University of New Mexico/Meetings"/
+nnoremap <leader>ww :e ~/Repsitories/Azure-repos/wnotes/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>wd :e ~/Repsitories/Azure-repos/wnotes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>wh :e ~/Repsitories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
 " }}}
 
 " Window movement with control + hjkl{{{
