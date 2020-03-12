@@ -226,3 +226,8 @@ matrixed
 lpa
 winrm
 Sandia
+SaaS
+azurerm
+keyvault
+resourcegroup
+randomId
