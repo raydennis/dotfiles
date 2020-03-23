@@ -59,44 +59,43 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips'                      " Ultimate snippet solution for Vim
-Plug 'Xuyuanp/nerdtree-git-plugin'           " A plugin of NERDTree showing git status flags.
-Plug 'airblade/vim-gitgutter'                " Adds signs in the gutter if there are changes to the current workspace
-Plug 'dhruvasagar/vim-table-mode'            " Tables
-Plug 'flazz/vim-colorschemes'
-Plug 'francoiscabrol/ranger.vim'             " Ranger integration
-Plug 'hashivim/vim-packer'
-Plug 'hashivim/vim-terraform'                " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands.
-Plug 'hashivim/vim-vagrant'
-Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
-Plug 'jkramer/vim-checkbox'                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
+Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
+Plug 'airblade/vim-gitgutter'                 " Adds signs in the gutter if there are changes to the current workspace
+Plug 'dhruvasagar/vim-table-mode'             " Tables
+Plug 'francoiscabrol/ranger.vim'              " Ranger integration
+Plug 'hashivim/vim-packer'                    " packer
+Plug 'hashivim/vim-terraform'                 " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands
+Plug 'liuchengxu/vim-which-key'               " displays available keybindings in popup
+Plug 'hashivim/vim-vagrant'                   " vagrant
+Plug 'honza/vim-snippets'                     " snippets for ultisnips
+Plug 'itchyny/lightline.vim'                  " Bottom bar
+Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'                      " Fuzzy finding
-Plug 'junegunn/goyo.vim'                     " Distraction-free writing in Vim.
-Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'junegunn/vim-peekaboo'                 " Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
-Plug 'liuchengxu/vista.vim'                  " View and search LSP symbols, tags in Vim/NeoVim.
-Plug 'markonm/traces.vim'                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
-Plug 'mbbill/undotree'                       " Visual representation of undo tree
-Plug 'mhinz/vim-startify'                    " provides a start screen for Vim
+Plug 'junegunn/fzf.vim'                       " Fuzzy finding
+Plug 'junegunn/goyo.vim'                      " Distraction-free writing in Vim.
+Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow paranteses
+Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+Plug 'liuchengxu/vista.vim'                   " View and search LSP symbols, tags in Vim/NeoVim.
+Plug 'markonm/traces.vim'                     " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
+Plug 'mbbill/undotree'                        " Visual representation of undo tree
+Plug 'mhinz/vim-startify'                     " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ryanoasis/vim-devicons'                " Adds file type icons to Vim plugins such as: NERDTree
-Plug 'scrooloose/nerdtree'                   " Tree scrooloose/nerdtreeFile Explorer
-Plug 'tommcdo/vim-lion'                      " Align based on a character ex :glip(char)
-Plug 'tpope/vim-commentary'                  " Comment out code with gcc
-Plug 'tpope/vim-fugitive'                    " Adds git functionality to vim ex. :Gdiff
-Plug 'tpope/vim-obsession'                   " continuously updated session files
-Plug 'tpope/vim-repeat'                      " enable repeating supported plugin maps with
-Plug 'tpope/vim-scriptease'                  " A Vim plugin for Vim plugins
-Plug 'tpope/vim-speeddating'                 " Quickly modify dates.
-Plug 'tpope/vim-surround'                    " provides mappings to easily delete, change and add such surroundings in pairs
-Plug 'tpope/vim-unimpaired'                  " Pairs of handy bracket mappings
-Plug 'vim-scripts/VisIncr'                   " Allows incrementation of numbers in a line.  Visually select then press :I
+Plug 'tommcdo/vim-lion'                       " Align based on a character ex :glip(char)
+Plug 'tpope/vim-commentary'                   " Comment out code with gcc
+Plug 'tpope/vim-fugitive'                     " Adds git functionality to vim ex. :Gdiff
+Plug 'tpope/vim-obsession'                    " continuously updated session files
+Plug 'tpope/vim-repeat'                       " enable repeating supported plugin maps with
+Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
+Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
+Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
+Plug 'tpope/vim-eunuch'                       " Vim sugar for the UNIX shell commands that need it the most
+Plug 'tpope/vim-vinegar'                      " Netrw wrapper
+Plug 'vim-scripts/VisIncr'                    " Allows incrementation of numbers in a line.  Visually select then press :I
 
 " colorschemes
-Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
-Plug 'arcticicestudio/nord-vim'
+Plug 'flazz/vim-colorschemes'                " All the colorschems!
+
 " coc.plugins {{{
 let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-markdownlint', 'coc-yank', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint']
 " }}}
@@ -245,7 +244,7 @@ nmap <c-B> :Buffers<cr>
 " }}}
 
 " Fugitive Conflict Resolution{{{
-nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gd :Gvdiffsplit!<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 " }}}
@@ -257,12 +256,16 @@ nnoremap <leader>G :Goyo<cr>
 " Lightline {{{
 set noshowmode
 set laststatus=2
-let g:lightline = {}
-let g:lightline.colorscheme = 'nord'
-" }}}
-
-" Nerdtree {{{
-nnoremap - :NERDTreeToggle<CR>
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
 " }}}
 
 " Netwr {{{
@@ -283,7 +286,7 @@ let g:qf_write_changes = 1
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'v': '~/Repsitories/Github/raydennis/dotfiles/editors/vim/.vimrc'}, {'z': '~/Repsitories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Repsitories/Github/raydennis/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'} ]
+let g:startify_bookmarks = [ {'v': '~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc'}, {'z': '~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'}, {'c': '/Users/rsdenni/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json'} ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
@@ -320,9 +323,9 @@ if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
     endif
 
 " Set ultisnips triggers
-let g:UltiSnipsExpandTrigger="<tab>"                                            
-let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"                   
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " }}}
 
@@ -388,7 +391,7 @@ let g:vista_executive_for = {
   \ 'javascript.jsx': 'coc',
   \ 'python': 'coc',
   \ 'php': 'coc',
-  \ 'terraform': 'coc',
+  \ 'tf': 'coc',
   \ 'markdown': 'coc',
   \ 'json': 'coc',
   \ }
@@ -398,6 +401,11 @@ nnoremap <leader>vi :Vista!! <cr>
 nnoremap <leader>vt :Vista toc <cr>
 
 " }}}
+
+" which-key {{{
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" }}}
+
 " }}}
 
 " Mappings {{{
@@ -504,6 +512,8 @@ nnoremap <leader>be :enew<cr>
 nnoremap <leader>bd :bp <bar> bd! #<cr>
 " close all open buffers
 nnoremap <leader>bq :bufdo bd!<cr>
+" make this the only buffer
+nnoremap <leader>bo :only<cr>
 " search for open buffer
 " nnoremap <leader>bb :Buffers<cr>
 
@@ -516,14 +526,17 @@ nnoremap L $
 vnoremap L $
 " }}}
 
-" Functions {{{
-function Mkindex()
-    :read !ls
-    :%norm I[
-    :%norm A]()
-    :%norm t]yi]t)p
-    :%norm ^f.dt]
-endfunction
+" Functions {{{ 
+"
+" This was used to grab all files in an directory and make an index to them in
+" a markdown file.  Haven't used this is a long time [2020-03-11].
+" function Mkindex()
+"     :read !ls
+"     :%norm I[
+"     :%norm A]()
+"     :%norm t]yi]t)p
+"     :%norm ^f.dt]
+" endfunction
 
 " }}}
 
@@ -622,9 +635,9 @@ tnoremap <C-]> <C-W>"+
 " }}}
 
 " Vimwiki style jump bindings {{{
-nnoremap <leader>ww :e ~/Repsitories/Azure-repos/wnotes/todo.md<cr>:cd %:h<cr>
-nnoremap <leader>wd :e ~/Repsitories/Azure-repos/wnotes/done.md<cr>:cd %:h<cr>
-nnoremap <leader>wh :e ~/Repsitories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
+nnoremap <leader>ww :e ~/Repositories/Azure/Sandia/wnotes/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>wd :e ~/Repositories/Azure/Sandia/wnotes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
 " }}}
 
 " Window movement with control + hjkl{{{
