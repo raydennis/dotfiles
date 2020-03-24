@@ -156,7 +156,7 @@ alias t="tree"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vir="vi -- *(D.om[1])"
 alias gp="git pull && git push"
-alias vi="vim"
+alias v="vim"
 alias cls="clear && ls"
 alias ti="terraform init"
 alias tp="terraform plan -compact-warnings"
@@ -168,6 +168,7 @@ alias vup="vagrant up"
 alias vh="vagrant halt"
 alias vd="vagrant destroy"
 alias vp="vagrant provision"
+alias vino="vim -u NONE"
 
 #
 # Bindings
@@ -358,8 +359,7 @@ export PATH="/usr/local/sbin/terraform-lsp_0.0.10_darwin_amd64:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 
 # env vars
-source ~/Github/dotfiles/shells/zsh/.env
-
+source ~/Repositories/Azure/Sandia/dotfiles/shells/zsh/.env
 
 
 autoload -U +X bashcompinit && bashcompinit
