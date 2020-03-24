@@ -452,7 +452,6 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Augroups {{{
 " augroup minivmrc {{{
-
 augroup minivimrc
   autocmd!
   " automatic location/quickfix window
@@ -492,6 +491,21 @@ augroup python
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python nnoremap <leader>r :CocCommand python.execInTerminal<cr>
     autocmd FileType python vnoremap <leader>r :CocCommand python.execSelectionInTerminal<cr>
+augroup END
+" }}}
+
+" augroup powershell {{{
+augroup ps1
+    autocmd FileType ps1 setlocal number
+    autocmd FileType ps1 nnoremap <leader>r :CocCommand powershell.execute<cr>
+    autocmd FileType ps1 vnoremap <leader>r :CocCommand powershell.evaluateSelection<cr>
+augroup END
+" }}}
+
+" augroup terraform {{{
+augroup terraform
+    autocmd FileType terraform setlocal number
+    autocmd FileType terraform nnoremap <leader>r :terminal terraform apply<cr>
 augroup END
 " }}}
 
