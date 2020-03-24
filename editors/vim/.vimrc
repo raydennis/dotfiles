@@ -98,7 +98,7 @@ Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple
 Plug 'flazz/vim-colorschemes'                " All the colorschems!
 
 " coc.plugins {{{
-let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-markdownlint', 'coc-yank', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint']
+let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-markdownlint', 'coc-yank', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint', 'coc-powershell']
 " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
