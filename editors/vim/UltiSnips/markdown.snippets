@@ -2,16 +2,22 @@ snippet li "markdown link" b
 [$1]($2)
 endsnippet
 
+snippet link_selected "surround selected text with a markdown link"
+[$1](${0:${VISUAL})}
+endsnippet
+
 snippet image-w "Image with width" b
 <img src="$1"  width="400"/>
 endsnippet
 
 snippet title
+# ${1:`!p snip.rv = snip.basename`}
+
 ---
-title: ${1:}
+
 date: ${2:`date +%Y/%m/%d`}
 tags:${3:markdown}
-test
+
 ---
 endsnippet
 
@@ -23,20 +29,16 @@ endsnippet
 
 
 snippet meeting
-# date: ${1:`date +%Y/%m/%d`}
+## date: ${1:`date +%Y/%m/%d`}
 
-## Participants:
+## Participants
 
 - [x] Ray Dennis
 ${2:}
-
 ## Agenda
 ${3:}
-
 ## Reference Documents
 
 ## Notes
-
 ${4:}
-
 endsnippet

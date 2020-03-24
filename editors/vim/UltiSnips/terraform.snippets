@@ -196,3 +196,29 @@ data "azurerm_key_vault_secret" "secret" {
   vault_uri = "${data.azurerm_key_vault.keyvault.vault_uri}"
 }
 endsnippet
+
+snippet provider_azurerm
+provider "azurerm" {
+  features {}
+}
+endsnippet
+
+snippet module_compute
+module "my-compute" {
+  source = "../modules/compute"
+  name = "sandbox"
+}
+endsnippet
+
+snippet variable
+variable "${1:name}" {
+  description = "${2:The name of this resource, will be prefixed to each resource}"
+  type        = ${3:string}
+}
+endsnippet
+
+snippet locals
+locals {
+  name_env = "${var.name}_${var.env}"
+}
+endsnippet
