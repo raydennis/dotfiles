@@ -92,6 +92,7 @@ Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
 Plug 'tpope/vim-eunuch'                       " Vim sugar for the UNIX shell commands that need it the most
 Plug 'tpope/vim-vinegar'                      " Netrw wrapper
 Plug 'vim-scripts/VisIncr'                    " Allows incrementation of numbers in a line.  Visually select then press :I
+Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple languages
 
 " colorschemes
 Plug 'flazz/vim-colorschemes'                " All the colorschems!
