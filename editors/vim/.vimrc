@@ -688,4 +688,30 @@ nnoremap <C-L> <C-W>l
 
 " }}}
 
+" Functions {{{ 
+"
+" This was used to grab all files in an directory and make an index to them in
+" a markdown file.  Haven't used this is a long time [2020-03-11].
+" function Mkindex()
+"     :read !ls
+"     :%norm I[
+"     :%norm A]()
+"     :%norm t]yi]t)p
+"     :%norm ^f.dt]
+" endfunction
+
+
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
