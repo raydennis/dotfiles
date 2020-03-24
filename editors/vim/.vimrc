@@ -580,20 +580,6 @@ nnoremap L $
 vnoremap L $
 " }}}
 
-" Functions {{{ 
-"
-" This was used to grab all files in an directory and make an index to them in
-" a markdown file.  Haven't used this is a long time [2020-03-11].
-" function Mkindex()
-"     :read !ls
-"     :%norm I[
-"     :%norm A]()
-"     :%norm t]yi]t)p
-"     :%norm ^f.dt]
-" endfunction
-
-" }}}
-
 " Insert current date {{{
 nnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
 tnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
@@ -626,7 +612,6 @@ endif
 " }}}
 
 " Registers {{{
-nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 nnoremap <Leader>y "+y
 nnoremap <Leader>d "+d
 vnoremap <Leader>y "+y
@@ -695,10 +680,10 @@ nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr
 " }}}
 
 " Window movement with control + hjkl{{{
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
 " }}}
 
 " }}}
