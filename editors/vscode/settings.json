@@ -37,7 +37,7 @@
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.colorTheme": "Gruvbox Material Dark",
+    "workbench.colorTheme": "Winter is Coming (Dark Blue)",
     "vim.leader": "<space>",
     "http.proxyStrictSSL":false,
     "vim.normalModeKeyBindingsNonRecursive": [
