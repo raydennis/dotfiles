@@ -426,13 +426,14 @@ let g:vista_fzf_preview = ['right:50%']
 
 let g:vista_executive_for = {
   \ 'javascript': 'coc',
-  \ 'typescript': 'coc',
   \ 'javascript.jsx': 'coc',
-  \ 'python': 'coc',
-  \ 'php': 'coc',
-  \ 'tf': 'coc',
-  \ 'markdown': 'coc',
   \ 'json': 'coc',
+  \ 'markdown': 'coc',
+  \ 'php': 'coc',
+  \ 'ps1': 'coc',
+  \ 'python': 'coc',
+  \ 'tf': 'coc',
+  \ 'typescript': 'coc',
   \ }
 
 " Keybinding
