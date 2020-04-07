@@ -1,12 +1,19 @@
 " Set and Let {{{
+
+" Syntax {{{
 syntax on
+autocmd Syntax * syntax keyword myTodo TODO FIXME NOTE NOTES RAY containedin=ALL | highlight def link myTodo TODO
+autocmd Syntax * syntax keyword myError WAITING SCHEDULED containedin=ALL | highlight def link myError ERROR
+autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight def link myUnderlined String
+" }}}
+
+
 filetype plugin indent on                 " Required
 
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
 set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 
-set visualbell                            " Switch from sound on error to flash
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
 set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
