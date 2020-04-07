@@ -617,10 +617,11 @@ vnoremap L $
 " }}}
 
 " Insert current date {{{
-nnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
-tnoremap <C-d> a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
-inoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
-cnoremap <C-d> <C-R>=strftime("%Y-%m-%d")<cr>
+nnoremap <C-d>a a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+tnoremap <C-d>a a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+inoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
+cnoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
+
 nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 " }}}
 
