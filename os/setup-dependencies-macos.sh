@@ -33,6 +33,9 @@ ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/nord/nord-vim/colors/
 rm ~/.gitconfig
 ln -s ~/Repositories/Github/raydennis/dotfiles/.gitconfig ~/.gitconfig
 
+rm ~/.gitignore_global
+ln -s ~/Repositories/Github/raydennis/dotfiles/.gitignore ~/.gitignore_global
+
 ## git-madge
 ### Dependencies
 
@@ -56,8 +59,6 @@ brew install imgcat
 
 # brew install jez/formulae/git-madge
 
-rm ~/.gitignore_global
-ln -s ~/Repositories/Github/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 
 rm ~/.vim/spell/en.utf-8.add
 ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
