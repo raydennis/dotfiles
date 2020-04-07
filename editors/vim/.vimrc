@@ -285,6 +285,7 @@ omap <c-x><c-o> <plug>(fzf-maps-o)
 
 " fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
 nmap <c-P> :Commands<cr>
+
 nmap <c-B> :Buffers<cr>
 
 " }}}
