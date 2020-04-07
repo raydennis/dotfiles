@@ -42,7 +42,6 @@ set undodir=$HOME/.vim/undo               " Where to save undo histories (THIS f
 set undofile                              " Save undos after file closes
 set wildmenu                              " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
-set grepprg=ag\ --vimgrep                 " use ag instead of grep
 
 " Default Tab settings (file specific ones also set in the augroups) {{{ 
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
