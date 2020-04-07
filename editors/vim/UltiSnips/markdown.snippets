@@ -11,12 +11,13 @@ snippet image-w "Image with width" b
 endsnippet
 
 snippet title
-# ${1:`!p snip.rv = snip.basename`}
+$1 ${2:`!p snip.rv = snip.basename`}
 
 ---
 
-date: ${2:`date +%Y/%m/%d`}
-tags:${3:markdown}
+Start date: ${3:`date +%Y-%m-%d`}
+tags:${4:markdown:meeting}
+[toc]
 
 ---
 endsnippet
@@ -27,18 +28,17 @@ src="$1">
 </iframe>
 endsnippet
 
-
 snippet meeting
-## date: ${1:`date +%Y/%m/%d`}
+## meeting date: ${1:`date +%Y-%m-%d`}
 
-## Participants
+### Participants
 
 - [x] Ray Dennis
 ${2:}
-## Agenda
+### Agenda
 ${3:}
-## Reference Documents
+### Reference Documents
 
-## Notes
+### Notes
 ${4:}
 endsnippet
