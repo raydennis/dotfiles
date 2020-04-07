@@ -695,6 +695,13 @@ vnoremap <leader>rml :v/./d
 nnoremap <leader>e :exe getline(line(! + '.'))<cr>
 " }}}
 
+" Search results centered {{{
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+" }}}
+
 " SpaceMacs Org-Mode style agenda bindings {{{
 nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
 nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
