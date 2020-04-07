@@ -21,9 +21,11 @@ set directory=$HOME/.vim/swapfiles/       " Where to save swap files
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                              " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| command.
+set grepprg=ag\ --vimgrep                 " use ag instead of grep
 set hidden                                " When ON a buffer becomes hidden when it is |abandon|ed.
 set hlsearch                              " When there is a previous search pattern, highlight all its matches.
 set incsearch                             " While typing a search command, show where pattern, as it was typed
+set lazyredraw                            " Don't redaw screen while executing macro
 set mouse=a                               " Enable the use of the mouse
 set nonumber                              " No numbers on the left by default
 set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
