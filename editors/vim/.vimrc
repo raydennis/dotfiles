@@ -108,16 +108,13 @@ Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
 Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
-Plug 'tpope/vim-eunuch'                       " Vim sugar for the UNIX shell commands that need it the most
 Plug 'tpope/vim-vinegar'                      " Netrw wrapper
-Plug 'vim-scripts/VisIncr'                    " Allows incrementation of numbers in a line.  Visually select then press :I
-Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple languages
 
 " colorschemes
 Plug 'flazz/vim-colorschemes'                " All the colorschems!
 
 " coc.plugins {{{
-let g:coc_global_extensions = ['coc-phpls', 'coc-docker', 'coc-markdownlint', 'coc-yank', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint', 'coc-powershell']
+let g:coc_global_extensions = [ 'coc-phpls', 'coc-docker', 'coc-markdownlint', 'coc-yank', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint', 'coc-json', 'coc-yaml', 'coc-powershell']
 " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
@@ -127,16 +124,8 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " Plugin settings {{{
 
 " Colorscheme {{{
-" let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
-" colorscheme solarized
-colorscheme nord
+colorscheme gruvbox
 
-" }}}
-
-" Auto-Save {{{
-let g:auto_save        = 1
-let g:auto_save_silent = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
 " }}}
 
 " Coc {{{
