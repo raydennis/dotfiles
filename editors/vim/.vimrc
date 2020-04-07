@@ -526,6 +526,7 @@ augroup END
 
 " augroup python {{{
 augroup python
+    autocmd!
     autocmd FileType python setlocal number
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python nnoremap <leader>r :CocCommand python.execInTerminal<cr>
@@ -552,6 +553,7 @@ augroup END
 
 " augroup terraform {{{
 augroup terraform
+    autocmd!
     autocmd FileType terraform setlocal number
     autocmd FileType terraform nnoremap <leader>r :terminal terraform apply<cr>
 augroup END
