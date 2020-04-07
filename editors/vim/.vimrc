@@ -409,6 +409,7 @@ if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
 
 " Undotree {{{
 nnoremap <leader>u :UndotreeToggle<cr>
+let g:undotree_SetFocusWhenToggle = 1
 " }}}
 
 " Vista {{{
