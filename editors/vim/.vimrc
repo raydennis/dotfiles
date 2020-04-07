@@ -80,23 +80,27 @@ Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
 Plug 'hashivim/vim-packer'                    " packer
 Plug 'hashivim/vim-terraform'                 " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands
-Plug 'liuchengxu/vim-which-key'               " displays available keybindings in popup
 Plug 'hashivim/vim-vagrant'                   " vagrant
 Plug 'honza/vim-snippets'                     " snippets for ultisnips
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'itchyny/lightline.vim'                  " Bottom bar
 Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                       " Fuzzy finding
 Plug 'junegunn/goyo.vim'                      " Distraction-free writing in Vim.
 Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow paranteses
-Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+Plug 'liuchengxu/vim-which-key'               " displays available keybindings in popup
 Plug 'liuchengxu/vista.vim'                   " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                     " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
+Plug 'masukomi/vim-markdown-folding'
 Plug 'mbbill/undotree'                        " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                     " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple languages
 Plug 'tommcdo/vim-lion'                       " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                   " Comment out code with gcc
+Plug 'tpope/vim-eunuch'                       " Vim sugar for the UNIX shell commands that need it the most
 Plug 'tpope/vim-fugitive'                     " Adds git functionality to vim ex. :Gdiff
 Plug 'tpope/vim-obsession'                    " continuously updated session files
 Plug 'tpope/vim-repeat'                       " enable repeating supported plugin maps with
