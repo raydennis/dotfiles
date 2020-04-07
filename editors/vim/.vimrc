@@ -563,41 +563,26 @@ augroup END
 " augroup markdown {{{
 augroup md
   autocmd!
-  au BufNewFile,BufRead *.md syntax keyword todo TODO HTODO SCHEDULED
-  au BufNewFile,BufRead *.md syntax keyword error WAITING
-  au BufNewFile,BufRead *.md inoremap <buffer> ;` ```<cr><cr>```<Up><Up>
 
   " Dictionary Completions
   autocmd FileType markdown,txt setlocal complete+=k~/.vim/spell/en.utf-8.add
 
-  " Fold method based on syntax
-  autocmd FileType markdown setlocal foldmethod=syntax
-
   " indentation for markdown files 
   autocmd FileType markdown setlocal shiftwidth=2
   autocmd FileType markdown setlocal tabstop=2
+  autocmd FileType markdown setlocal softtabstop=2
 
   " executes file based on type
-  autocmd FileType markdown noremap <leader>r :!open %:p<cr>
-
-  " fold region for headings
-  autocmd FileType markdown syn region mkdHeaderFold
-      \ start="^\s*\z(#\+\)"
-      \ skip="^\s*\z1#\+"
-      \ end="^\(\s*#\)\@="
-      \ fold contains=TOP
-
-  " fold region for lists
-  autocmd FileType markdown syn region mkdListFold
-      \ start="^\z(\s*\)\*\z(\s*\)"
-      \ skip="^\z1 \z2\s*[^#]"
-      \ end="^\(.\)\@="
-      \ fold contains=TOP
-
-  autocmd FileType markdown syn sync fromstart
+  autocmd FileType markdown noremap <leader>r :MarkdownPreview<cr>
+  autocmd FileType markdown noremap <leader>rq :MarkdownPreviewStop<cr>
 
   " allow markdown to syntax highlight inside code blocks.
-  autocmd FileType markdown let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+  autocmd FileType markdown let g:markdown_fenced_languages = ['powershell', 'html', 'python', 'bash=sh']
+  
+  set nocompatible
+  if has("autocmd")
+    filetype plugin indent on
+  endif
 
 augroup END
 " }}}
