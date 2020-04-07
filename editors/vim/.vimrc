@@ -658,8 +658,9 @@ nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 nnoremap <leader>rp "0p"
+" }}}
 
-" Control [ pastes into terminal
+" Control [ pastes into terminal {{{
 tnoremap <C-]> <C-W>"+
 " }}}
 
@@ -751,11 +752,11 @@ nnoremap <C-L> <C-W>l
     autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
             \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 
-" Notification after file change
+" Notification after file change {{{
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
 " }}}
+
 
 " vim:foldmethod=marker:foldlevel=0
