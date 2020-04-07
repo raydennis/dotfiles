@@ -533,8 +533,17 @@ augroup python
 augroup END
 " }}}
 
+" augroup json{{{
+augroup json
+    autocmd!
+    autocmd FileType json setlocal number
+    autocmd FileType json setlocal foldmethod=syntax
+augroup END
+" }}}
+
 " augroup powershell {{{
 augroup ps1
+    autocmd!
     autocmd FileType ps1 setlocal number
     autocmd FileType ps1 nnoremap <leader>r :CocCommand powershell.execute<cr>
     autocmd FileType ps1 vnoremap <leader>r :CocCommand powershell.evaluateSelection<cr>
