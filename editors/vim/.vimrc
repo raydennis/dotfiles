@@ -751,6 +751,7 @@ tnoremap <C-]> <C-W>"+
 " Vimwiki style jump bindings {{{
 nnoremap <leader>ww :e ~/Repositories/Azure/Sandia/wnotes/todo.md<cr>:cd %:h<cr>
 nnoremap <leader>wd :e ~/Repositories/Azure/Sandia/wnotes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people.md<cr>:cd %:h<cr>
 nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
 " }}}
 
