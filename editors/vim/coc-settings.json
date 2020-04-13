@@ -26,4 +26,6 @@
       "line-length": false,
       "no-duplicate-heading": false
   }
+
+  "explorer.icon.enableNerdfont": true
 }
