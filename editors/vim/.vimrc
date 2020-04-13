@@ -108,13 +108,34 @@ Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
 Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
-Plug 'tpope/vim-vinegar'                      " Netrw wrapper
+Plug 'shinchu/lightline-gruvbox.vim'
 
 " colorschemes
-Plug 'flazz/vim-colorschemes'                " All the colorschems!
+Plug 'flazz/vim-colorschemes'                " All the colorschemes!
 
 " coc.plugins {{{
-let g:coc_global_extensions = [ 'coc-phpls', 'coc-docker', 'coc-markdownlint', 'coc-yank', 'coc-git', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-snippets', 'coc-tslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-eslint', 'coc-json', 'coc-yaml', 'coc-powershell']
+
+let g:coc_global_extensions = [
+            \ 'coc-docker',
+            \ 'coc-eslint',
+            \ 'coc-explorer',
+            \ 'coc-git',
+            \ 'coc-highlight',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-lists',
+            \ 'coc-markdownlint',
+            \ 'coc-phpls',
+            \ 'coc-powershell',
+            \ 'coc-prettier',
+            \ 'coc-python',
+            \ 'coc-snippets',
+            \ 'coc-tslint-plugin',
+            \ 'coc-tsserver',
+            \ 'coc-yaml',
+            \ 'coc-yank'
+            \ ]
+
 " }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
