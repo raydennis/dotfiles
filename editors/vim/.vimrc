@@ -145,11 +145,19 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " Plugin settings {{{
 
 " Colorscheme {{{
-colorscheme gruvbox
+let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
+colorscheme solarized
 
 " }}}
 
 " Coc {{{
+
+" Coc-Explorer {{{
+
+nmap - :CocCommand explorer<CR>
+
+" }}}
+
 
 " Some servers have issues with backup files, see #649
 set nobackup
