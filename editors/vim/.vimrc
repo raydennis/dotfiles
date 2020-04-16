@@ -131,6 +131,7 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-lists',
             \ 'coc-markdownlint',
+            \ 'coc-marketplace',
             \ 'coc-phpls',
             \ 'coc-powershell',
             \ 'coc-prettier',
@@ -250,8 +251,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>a  <Plug>(coc-format-selected)
+nmap <leader>a  <Plug>(coc-format-selected)
 
 augroup cocgroup
   autocmd!
