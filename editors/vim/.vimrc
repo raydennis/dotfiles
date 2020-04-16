@@ -377,7 +377,7 @@ let g:mkdp_preview_options = {
 " }}}
 
 " Markdown folding {{{
-let g:markdown_fold_style = 'nested'
+let g:markdown_fold_style = 'stacked'
 " }}}
 
 " Netwr {{{
