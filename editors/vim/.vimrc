@@ -25,7 +25,7 @@ set grepprg=ag\ --vimgrep                 " use ag instead of grep
 set hidden                                " When ON a buffer becomes hidden when it is |abandon|ed.
 set hlsearch                              " When there is a previous search pattern, highlight all its matches.
 set incsearch                             " While typing a search command, show where pattern, as it was typed
-set lazyredraw                            " Don't redaw screen while executing macro
+set lazyredraw                            " Don't redraw screen while executing macro
 set mouse=a                               " Enable the use of the mouse
 set nonumber                              " No numbers on the left by default
 set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
@@ -45,9 +45,9 @@ set wildmode=list:longest,full
 
 " Default Tab settings (file specific ones also set in the augroups) {{{ 
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
-set shiftwidth=4                          " This allows you to use the < and > keys from VIM's visual (marking) mode to block indent/unindent regions
+set shiftwidth=4                          " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
 set expandtab                             " Insert spaces instead of tab
-set softtabstop=4                         " allows backspace to delete the spaces of an expanded tab with one keypress
+set softtabstop=4                         " allows backspace to delete the spaces of an expanded tab with one key press
 set autoindent                            " Copy indent from current line when starting a new line
 " }}}
 
@@ -88,12 +88,12 @@ Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                       " Fuzzy finding
 Plug 'junegunn/goyo.vim'                      " Distraction-free writing in Vim.
-Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow paranteses
+Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow parentheses
 Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
-Plug 'liuchengxu/vim-which-key'               " displays available keybindings in popup
+Plug 'liuchengxu/vim-which-key'               " displays available keybindings in pop-up
 Plug 'liuchengxu/vista.vim'                   " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                     " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
-Plug 'masukomi/vim-markdown-folding'
+Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold markdown documents by section headings.
 Plug 'mbbill/undotree'                        " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                     " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -639,9 +639,13 @@ nnoremap <leader>bo :only<cr>
 
 " }}}
 
+" Control [ pastes into terminal {{{
+tnoremap <C-]> <C-W>"+
+" }}}
+
 " Easier beginning and ending of line {{{
-nnoremap H ^
-vnoremap H ^
+nnoremap H 0
+vnoremap H 0
 nnoremap L $
 vnoremap L $
 " }}}
