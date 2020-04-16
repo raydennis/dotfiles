@@ -516,7 +516,7 @@ nnoremap <leader>vt :Vista toc <cr>
 
 " }}}
 
-" which-key {{{
+" Which-key {{{
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " }}}
 
@@ -551,8 +551,6 @@ augroup END
 " }}}
 
 " augroup remember folds [disabled]{{{
-
-" augroup remember_folds
 "   autocmd!
 "   au BufWinLeave ?* mkview 1
 "   au BufWinEnter ?* silent! loadview 1
@@ -701,10 +699,6 @@ nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 nnoremap <leader>rp "0p"
-" }}}
-
-" Control [ pastes into terminal {{{
-tnoremap <C-]> <C-W>"+
 " }}}
 
 " Remote file management {{{
