@@ -108,10 +108,16 @@ Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
 Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
-Plug 'shinchu/lightline-gruvbox.vim'
 
-" colorschemes
-Plug 'flazz/vim-colorschemes'                " All the colorschemes!
+" color schemes
+Plug 'altercation/vim-colors-solarized'
+Plug 'arcticicestudio/nord-vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'morhetz/gruvbox'
+Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'sickill/vim-monokai'
+Plug 'zaayer/lightline-monokai-pro'
+Plug 'xltan/lightline-colors.vim'
 
 " coc.plugins {{{
 
@@ -144,9 +150,25 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Plugin settings {{{
 
-" Colorscheme {{{
-let solarized_termtrans = 1               " This gets rid of the grey background in solarized.
-colorscheme solarized
+" Color scheme and Lightline{{{
+" let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
+colorscheme nord
+
+
+" Lightline
+set noshowmode
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
 
 " }}}
 
@@ -293,9 +315,6 @@ nnoremap <silent> ;p  :<C-u>CocListResume<CR>
 
 " }}}
 
-" ColorScheme {{{
-" }}}
-
 " FZF {{{
 map <leader>g :FZF <cr>
 
@@ -327,22 +346,6 @@ nnoremap <leader>l :diffget //3<CR>
 
 " Goyo {{{
 nnoremap <leader>G :Goyo<cr>
-" }}}
-
-" Lightline {{{
-set noshowmode
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'default',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
 " }}}
 
 " Markdown Preview {{{
