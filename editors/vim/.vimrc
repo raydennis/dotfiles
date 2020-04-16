@@ -622,6 +622,11 @@ augroup END
 
 " }}}
 
+" Azure {{{
+nnoremap <leader>aq :read ! az boards query --id 87a49530-01c0-40f0-b218-d96ab7be0be1 -o table<cr>
+nnoremap <leader>ls :read ! ls<cr>
+" }}}
+
 " Buffers {{{
 " Use leader tab to switch between current and last buffer 
 nnoremap <silent><leader><tab> :Buffers<cr>
