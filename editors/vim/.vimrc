@@ -7,13 +7,20 @@ autocmd Syntax * syntax keyword myError WAITING SCHEDULED containedin=ALL | high
 autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight def link myUnderlined String
 " }}}
 
-
+" {{{ Required?
 filetype plugin indent on                 " Required
+" }}}
 
+" let {{{
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
-set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
+" }}}
 
+" set {{{
+
+set autoindent                            " Copy indent from current line when starting a new line
+set autoread
+set autowriteall
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
 set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
@@ -24,10 +31,12 @@ set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| comma
 set grepprg=ag\ --vimgrep                 " use ag instead of grep
 set hidden                                " When ON a buffer becomes hidden when it is |abandon|ed.
 set hlsearch                              " When there is a previous search pattern, highlight all its matches.
+set ignorecase                            " the case of normal letters is ignored.
 set incsearch                             " While typing a search command, show where pattern, as it was typed
 set lazyredraw                            " Don't redraw screen while executing macro
 set mouse=a                               " Enable the use of the mouse
 set nonumber                              " No numbers on the left by default
+set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
 set showcmd                               " Display incomplete command
 set showmatch                             " When a bracket is inserted, briefly jump to the matching one.
@@ -43,28 +52,52 @@ set undofile                              " Save undos after file closes
 set wildmenu                              " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
 
+" }}}
+
 " Default Tab settings (file specific ones also set in the augroups) {{{ 
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4                          " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
 set expandtab                             " Insert spaces instead of tab
 set softtabstop=4                         " allows backspace to delete the spaces of an expanded tab with one key press
-set autoindent                            " Copy indent from current line when starting a new line
 " }}}
-
-" Auto-Save {{{
-let g:auto_save        = 1
-let g:auto_save_silent = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
-" }}}
-
 
 " }}}
 
 " Plugins {{{
 
+" Built in {{{
+
 " allows jumping between matches like if and end with %
 runtime macros/matchit.vim
 
+" }}}
+" COC {{{
+
+let g:coc_global_extensions = [
+            \ 'coc-docker',
+            \ 'coc-eslint',
+            \ 'coc-explorer',
+            \ 'coc-git',
+            \ 'coc-highlight',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-lists',
+            \ 'coc-go',
+            \ 'coc-markdownlint',
+            \ 'coc-marketplace',
+            \ 'coc-phpls',
+            \ 'coc-powershell',
+            \ 'coc-prettier',
+            \ 'coc-python',
+            \ 'coc-snippets',
+            \ 'coc-tslint-plugin',
+            \ 'coc-tsserver',
+            \ 'coc-yaml',
+            \ 'coc-yank'
+            \ ]
+
+" }}}
+" The rest {{{
 " Install vim-plug if unavailable
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -75,22 +108,25 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
+Plug 'pearofducks/ansible-vim'                " Adds ansible syntax highlighting to yaml
 Plug 'airblade/vim-gitgutter'                 " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dhruvasagar/vim-table-mode'             " Tables
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
 Plug 'hashivim/vim-packer'                    " packer
 Plug 'hashivim/vim-terraform'                 " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands
 Plug 'hashivim/vim-vagrant'                   " vagrant
-Plug 'honza/vim-snippets'                     " snippets for ultisnips
+Plug 'honza/vim-snippets'                     " snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'itchyny/lightline.vim'                  " Bottom bar
 Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                       " Fuzzy finding
 Plug 'junegunn/goyo.vim'                      " Distraction-free writing in Vim.
+Plug 'junegunn/gv.vim'                        " A git commit browser.
+Plug 'junegunn/limelight.vim'                 " Hyperfocus-writing in Vim.
 Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow parentheses
 Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
-Plug 'liuchengxu/vim-which-key'               " displays available keybindings in pop-up
 Plug 'liuchengxu/vista.vim'                   " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                     " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold markdown documents by section headings.
@@ -108,6 +144,7 @@ Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
 Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
+Plug 'will133/vim-dirdiff'                    " Recursively diff on two directories
 
 " color schemes
 Plug 'altercation/vim-colors-solarized'
@@ -116,54 +153,34 @@ Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'sickill/vim-monokai'
-Plug 'zaayer/lightline-monokai-pro'
 Plug 'xltan/lightline-colors.vim'
+Plug 'zaayer/lightline-monokai-pro'
+Plug 'srcery-colors/srcery-vim'
 
-" coc.plugins {{{
-
-let g:coc_global_extensions = [
-            \ 'coc-docker',
-            \ 'coc-eslint',
-            \ 'coc-explorer',
-            \ 'coc-git',
-            \ 'coc-highlight',
-            \ 'coc-html',
-            \ 'coc-json',
-            \ 'coc-lists',
-            \ 'coc-markdownlint',
-            \ 'coc-marketplace',
-            \ 'coc-phpls',
-            \ 'coc-powershell',
-            \ 'coc-prettier',
-            \ 'coc-python',
-            \ 'coc-snippets',
-            \ 'coc-tslint-plugin',
-            \ 'coc-tsserver',
-            \ 'coc-yaml',
-            \ 'coc-yank'
-            \ ]
-
-" }}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
+" }}}
 
 " }}}
 
 " Plugin settings {{{
 
 " Color scheme and Lightline{{{
-" let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
-colorscheme nord
+let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
+
+" let g:srcery_italic = 1
+" let g:srcery_inverse_match_paren = 1
+colorscheme gruvbox
 
 
 " Lightline
 set noshowmode
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'cocstatus', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
@@ -257,7 +274,7 @@ nmap <leader>a  <Plug>(coc-format-selected)
 augroup cocgroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,python, setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json,python,golang setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -340,13 +357,19 @@ nmap <c-B> :Buffers<cr>
 " }}}
 
 " Fugitive Conflict Resolution{{{
-nnoremap <leader>gd :Gvdiffsplit!<CR>
+nnoremap <leader>ds :Gvdiffsplit!<CR>
 nnoremap <leader>h :diffget //2<CR>
 nnoremap <leader>l :diffget //3<CR>
 " }}}
 
 " Goyo {{{
 nnoremap <leader>G :Goyo<cr>
+" }}}
+
+" Lightline {{{
+" Goyo.vim integration
+autocmd! User GoyoEnter Limelight 
+autocmd! User GoyoLeave Limelight!
 " }}}
 
 " Markdown Preview {{{
@@ -377,7 +400,7 @@ let g:mkdp_preview_options = {
 " }}}
 
 " Markdown folding {{{
-let g:markdown_fold_style = 'stacked'
+let g:markdown_fold_style = 'nested'
 " }}}
 
 " Netwr {{{
@@ -397,6 +420,11 @@ let g:qf_join_changes = 1
 let g:qf_write_changes = 1
 " }}}
 
+" Rainbow Parenthesis {{{
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+nnoremap yop :RainbowParentheses!!<cr>
+" }}}
+
 " Startify {{{
 let g:startify_bookmarks = [ {'v': '~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc'}, {'z': '~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'}, {'c': '/Users/rsdenni/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json'} ]
 let g:startify_skiplist = [
@@ -405,6 +433,10 @@ let g:startify_skiplist = [
     \ 'bundle/.*/doc',
     \ '/Dropbox/notes/personal/*',
     \ ]
+
+nnoremap <leader>s :Startify<cr>
+nnoremap <leader>ss :SSave<cr>
+nnoremap <leader>sl :SLoad<cr>
 " }}}
 
 " Surround {{{
@@ -415,6 +447,12 @@ let g:surround_{char2nr('b')} = "**\r**"
 let g:surround_{char2nr('g')} = "<font face=\"verdana\" color=\"green\">\r</font>"
 let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
 let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
+let g:surround_{char2nr('u')} = "<li>\r</li>"
+let g:surround_{char2nr('l')} = "[link](\r)"
+" }}}
+
+" Table-mode {{{
+vnoremap <leader>ti :Tableize/	
 " }}}
 
 " Terraform {{{
@@ -499,10 +537,10 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_fzf_preview = ['right:50%']
 
 let g:vista_executive_for = {
+  \ 'golang': 'coc',
   \ 'javascript': 'coc',
   \ 'javascript.jsx': 'coc',
   \ 'json': 'coc',
-  \ 'markdown': 'coc',
   \ 'php': 'coc',
   \ 'ps1': 'coc',
   \ 'python': 'coc',
@@ -514,10 +552,6 @@ let g:vista_executive_for = {
 nnoremap <leader>vi :Vista!! <cr>
 nnoremap <leader>vt :Vista toc <cr>
 
-" }}}
-
-" Which-key {{{
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " }}}
 
 " }}}
@@ -555,6 +589,17 @@ augroup END
 "   au BufWinLeave ?* mkview 1
 "   au BufWinEnter ?* silent! loadview 1
 " augroup END
+" }}}
+
+" augroup golang{{{
+augroup go
+    autocmd!
+    autocmd FileType go setlocal number
+    autocmd FileType go setlocal foldmethod=indent
+    autocmd FileType go nnoremap <leader>r :GoRun
+    autocmd FileType go nnoremap <leader>b :GoBuild
+    autocmd FileType go nnoremap <leader>t :GoTest
+augroup END
 " }}}
 
 " augroup python {{{
@@ -609,7 +654,7 @@ augroup md
   autocmd FileType markdown noremap <leader>rq :MarkdownPreviewStop<cr>
 
   " allow markdown to syntax highlight inside code blocks.
-  autocmd FileType markdown let g:markdown_fenced_languages = ['powershell', 'html', 'python', 'bash=sh']
+  autocmd FileType markdown let g:markdown_fenced_languages = ['powershell', 'html', 'python', 'bash=sh', 'ruby']
   
   set nocompatible
   if has("autocmd")
@@ -650,11 +695,24 @@ nnoremap <leader>bo :only<cr>
 tnoremap <C-]> <C-W>"+
 " }}}
 
+" delete swap files {{{
+nnoremap <leader>rms :! rm $HOME/.vim/swapfiles/*
+" }}}
+
+" Easier up and down {{{
+nnoremap <C-K> {
+vnoremap <C-K> {
+nnoremap <C-J> }
+vnoremap <C-J> }
+" }}}
+
 " Easier beginning and ending of line {{{
-nnoremap H 0
-vnoremap H 0
-nnoremap L $
-vnoremap L $
+nnoremap <C-H> 0
+vnoremap <C-H> 0
+inoremap <C-H> <C-O>0
+nnoremap <C-L> $
+vnoremap <C-L> $
+inoremap <C-L> <C-O>$
 " }}}
 
 " Insert current date {{{
@@ -667,7 +725,7 @@ nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 " }}}
 
 " Move screenshots to current directory {{{
-nnoremap <leader>ss :! mv ~/Desktop/Screen* ./
+nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
 " }}}
 
 " OS specific commands {{{
@@ -762,39 +820,22 @@ nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people.md<cr>:cd %:h<c
 nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
 " }}}
 
-" Window movement with control + hjkl{{{
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
-" }}}
 
 " }}}
 
 " Functions {{{ 
-"
+
+" function Mkindex() {{{
 " This was used to grab all files in an directory and make an index to them in
 " a markdown file.  Haven't used this is a long time [2020-03-11].
-" function Mkindex()
 "     :read !ls
 "     :%norm I[
 "     :%norm A]()
 "     :%norm t]yi]t)p
 "     :%norm ^f.dt]
 " endfunction
-
-
-" Triger `autoread` when files changes on disk
-" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
-" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
-    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
-            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
-
-" Notification after file change {{{
-" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
-autocmd FileChangedShellPost *
-  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 " }}}
 
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
