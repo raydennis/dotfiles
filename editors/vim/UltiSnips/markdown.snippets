@@ -7,16 +7,16 @@ snippet link_selected "surround selected text with a markdown link"
 endsnippet
 
 snippet image-w "Image with width" b
-<img src="$1"  width="400"/>
+<img src="$1"  width="800"/>
 endsnippet
 
 snippet title
-$1 ${2:`!p snip.rv = snip.basename`}
+${1} `!p snip.rv = snip.basename`
 
 ---
 
-Start Date: ${3:`date +%Y-%m-%d`}
-tags:${4:markdown:meeting}
+Start Date: `date +%Y-%m-%d`
+tags:${2:meeting:}
 [toc]
 
 ---
@@ -41,4 +41,24 @@ ${4:}
 
 ### Notes
 ${5:}
+endsnippet
+
+snippet incident
+## ${1:`date +%Y-%m-%d`} **${2:Topic}**
+
+## Incident Report
+
+### Summary
+
+| Task                             | Description |
+| ---                              | ---         |
+| **Description**                  | ${3}        |
+| **Scope**                        | ${4}        |
+| **Time Reported**                | ${5}        |
+| **Time fixed**                   | ${6}        |
+| **Error Message**                | ${7}        |
+| **Fix**                          | ${8}        |
+| **Root Cause [Suspected/Final]** | ${9}        |
+
+### Additional information
 endsnippet

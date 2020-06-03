@@ -1,0 +1,53 @@
+snippet ansible-galaxy-dependencies
+---
+dependencies: []
+
+galaxy_info:
+  author: Ray Dennis
+  description: IIS for windows
+  company: "Sandia National Labs"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platform:{$1}
+    - name:
+      versions:
+        - {$2}
+  galaxy_tags:
+    - {$3}
+endsnippet
+
+snippet ansible-task-win-ping-crash
+- name: Induce an exception
+  win_ping:
+    data: crash
+endsnippet
+
+snippet ansible-task-win_copy
+- name: copy
+  win_copy:
+    src: ColdFusion_2018_WWEJ_win64.exe
+    dest: C:\tmp\
+endsnippet
+
+snippet ansible-task-win_package
+- name: Ensure package is installed
+  win_package:
+    path: C:\tmp\ColdFusion_2018_WWEJ_win64.exe
+    product_id: "{e06c3978-1f05-11b2-bd72-ea85898257ea}"
+    arguments: "-f silent.properties"
+    state: present
+endsnippet
+
+snippet ansible-task-win_find
+- name: Find files
+  win_find:
+    paths: C:\tmp
+endsnippet
+
+snippet ansible-playbook
+---
+- hosts: all
+  tasks:
+    - name: ping
+	    win_ping:
+endsnippet
