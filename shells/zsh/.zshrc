@@ -27,14 +27,12 @@ alias ps='nocorrect ps'
 alias docker='nocorrect docker'
 alias wnotes='nocorrect wnotes'
 
-
 # # Review between 'gh-pages' and the current branch
 # REVIEW_BASE=gh-pages git stat
 
 # # Review changes made by the last commit of this branch:
 # REVIEW_BASE=HEAD^ git stat
 export REVIEW_BASE=master
-
 
 #
 # Prompt
@@ -144,6 +142,7 @@ setopt sharehistory         # share history across shells
 # Alias
 #
 alias :q="exit"
+alias q="exit"
 alias c="clear"
 alias cls="clear && ls"
 alias e="vim"
@@ -152,7 +151,7 @@ alias grd="git add . && git commit -am \"fast update\" && git push"
 alias gs="git status"
 alias ll="ls -Glha"
 alias ls="ls -G"
-alias r="ranger"
+alias f=". ranger"
 alias rgrep="ag -il 'first' | xargs ag -il 'second' | xargs ag -il 'third'"
 alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 alias t="tree"
@@ -186,7 +185,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='/usr/local/Cellar/macvim/8.2-162/MacVim.app/Contents/MacOS/Vim'
+    alias vim='mvim -v'
     # setup "Z" on MACOS
     # brew install z
     . `brew --prefix`/etc/profile.d/z.sh
@@ -356,11 +355,13 @@ add-zsh-hook precmd vcs_info
 #
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/sbin/terraform-lsp_0.0.10_darwin_amd64:$PATH"
+export PATH="/usr/local/sbin/terraform-lsp_0.0.11-beta1_darwin_amd64:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
+
 
 # env vars
 source ~/Repositories/Azure/Sandia/dotfiles/shells/zsh/.env
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 
 autoload -U +X bashcompinit && bashcompinit

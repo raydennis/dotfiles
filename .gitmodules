@@ -1,30 +1,15 @@
-[submodule "zsh-syntax-highlighting"]
-	path = zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "zsh-autosuggestions"]
-	path = zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "z"]
 	path = z
 	url = https://github.com/rupa/z.git
 [submodule "powerlevel9k"]
 	path = powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
-[submodule "vim-monokai"]
-	path = vim-monokai
-	url = https://github.com/crusoexia/vim-monokai.git
-[submodule "vim-colors-solarized"]
-	path = vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "fonts"]
 	path = fonts
 	url = https://github.com/powerline/fonts
 [submodule "editors/vim/nord/nord-iterm2"]
 	path = editors/vim/nord/nord-iterm2
 	url = git@github.com:arcticicestudio/nord-iterm2.git
-[submodule "editors/vim/nord/nord-vim"]
-	path = editors/vim/nord/nord-vim
-	url = git@github.com:arcticicestudio/nord-vim.git
 [submodule "tools/gitk"]
 	path = tools/gitk
 	url = https://github.com/dracula/gitk.git
@@ -40,3 +25,6 @@
 [submodule "editors/vim/vim"]
 	path = editors/vim/vim
 	url = https://github.com/vim/vim.git
+[submodule "editors/vim/vim-terraform-snippets"]
+	path = editors/vim/vim-terraform-snippets
+	url = https://git@github.com/juliosueiras/vim-terraform-snippets.git
