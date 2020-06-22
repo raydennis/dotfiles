@@ -109,6 +109,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
 Plug 'pearofducks/ansible-vim'                " Adds ansible syntax highlighting to yaml
+Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
 Plug 'airblade/vim-gitgutter'                 " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -149,7 +150,6 @@ Plug 'will133/vim-dirdiff'                    " Recursively diff on two director
 " color schemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
-Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'sickill/vim-monokai'
@@ -166,18 +166,17 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " Plugin settings {{{
 
 " Color scheme and Lightline{{{
-let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
+" let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
 
 " let g:srcery_italic = 1
 " let g:srcery_inverse_match_paren = 1
-colorscheme gruvbox
-
+colorscheme nord
 
 " Lightline
 set noshowmode
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
@@ -442,13 +441,14 @@ nnoremap <leader>sl :SLoad<cr>
 " Surround {{{
 
 " Custom surrounds
-let g:surround_{char2nr('c')} = "```\r```"
 let g:surround_{char2nr('b')} = "**\r**"
+let g:surround_{char2nr('c')} = "```\r```"
 let g:surround_{char2nr('g')} = "<font face=\"verdana\" color=\"green\">\r</font>"
-let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
-let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
-let g:surround_{char2nr('u')} = "<li>\r</li>"
 let g:surround_{char2nr('l')} = "[link](\r)"
+let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
+let g:surround_{char2nr('s')} = "snippet\rendsnippet"
+let g:surround_{char2nr('u')} = "<li>\r</li>"
+let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
 " }}}
 
 " Table-mode {{{
@@ -596,9 +596,12 @@ augroup go
     autocmd!
     autocmd FileType go setlocal number
     autocmd FileType go setlocal foldmethod=indent
-    autocmd FileType go nnoremap <leader>r :GoRun
-    autocmd FileType go nnoremap <leader>b :GoBuild
-    autocmd FileType go nnoremap <leader>t :GoTest
+    autocmd FileType go nmap <leader>r <Plug>(go-run)
+    autocmd FileType go nmap <leader>b :GoBuild<cr>
+    autocmd FileType go nmap <leader>t :GoTest<cr>
+    autocmd FileType go nmap <leader>A :GoLint<cr>
+    autocmd FileType go  <f9> :GoDebugBreakpoint<cr>
+    autocmd FileType go  <f5> :GoDebugContinue<cr>
 augroup END
 " }}}
 
@@ -798,6 +801,14 @@ nnoremap <leader>ad :grep DONE *<cr>
 nnoremap <leader>as :grep SCHEDULED *<cr>
 " }}}
 
+" source and reload current file {{{
+nnoremap <leader>so :w<cr> :so %<cr>
+nnoremap <leader>sor :w<cr> :so %<cr> e %
+nnoremap <leader>pi :w<cr> :so %<cr> :PlugInstall<cr>
+nnoremap <leader>pu :w<cr> :so %<cr> :PlugUpdate<cr>
+nnoremap <leader>pc :w<cr> :so %<cr> :PlugClean<cr>
+" }}}
+
 " Spell check for previous misspelled word, accept first choice {{{
 inoremap <c-z> <esc>:set spell<cr>[s1z=<c-o>a
 nnoremap <c-z> :set spell<cr>[s1z=e
@@ -820,7 +831,6 @@ nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people.md<cr>:cd %:h<c
 nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
 " }}}
 
-
 " }}}
 
 " Functions {{{ 
@@ -838,4 +848,4 @@ nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr
 
 " }}}
 
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker
