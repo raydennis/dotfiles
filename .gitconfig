@@ -4,16 +4,12 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = Ray
-	email = raydennis@outlook.com
-	name = Ray
 	name = Ray Dennis
+	email = raydennis@outlook.com
 [credential]
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore_global
-[merge]
-	conflictstyle = diff3
 [alias]
 	co = checkout
 	br = branch
@@ -45,5 +41,23 @@ review = !vim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_d
 # git reviewone foo.js bar.js
 reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[pull]
+	rebase = false
+
+# Diff
+[diff]
+    tool = vimdiff
+[difftool "vimdiff"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[difftool]
+	prompt = false
+
+# Merge
 [merge "ours"]
 	driver = true
+[merge]
+	tool = vimdiff
+[merge]
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
