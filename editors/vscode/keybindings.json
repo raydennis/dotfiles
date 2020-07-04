@@ -1,6 +1,4 @@
-// Place your key bindings in this file to override the defaults
 [
-    // Leave terminal
     { 
         "key": "ctrl+w", 
         "command": "workbench.action.focusActiveEditorGroup", 

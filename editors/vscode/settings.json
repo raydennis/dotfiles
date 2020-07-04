@@ -32,14 +32,13 @@
     "phpSniffer.run": "onType",
     "phpSniffer.standard": "PSR2",
     "python.jediEnabled": false,
-    "python.pythonPath": "/Users/raydennis/.virtualenvs/test/bin/python",
+    "python.pythonPath": "/usr/local/bin/python3",
     "team.appInsights.enabled": false,
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.colorTheme": "Winter is Coming (Dark Blue)",
     "vim.leader": "<space>",
-    "http.proxyStrictSSL":false,
     "vim.normalModeKeyBindingsNonRecursive": [
       {
         "before": ["<leader>", "'"],
@@ -49,7 +48,8 @@
     "window.zoomLevel": 1,
     "git.confirmSync": false,
     "python.linting.flake8Enabled": true,
-    "editor.fontFamily": "Fira Code Retina, Consolas, Menlo, monospace",
+    "editor.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
     "[javascriptreact]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -62,10 +62,10 @@
         "**/.terraform/**/*"
       ]
     },
-    "terraform.languageServer": {
-      "enabled": true,
-      "args": []
-    },
     "diffEditor.renderSideBySide": true,
-    "http.proxyStrictSSL":false
-}
+    "http.proxyStrictSSL": false,
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": true,
+    "editor.multiCursorModifier": "alt",
+    "python.languageServer": "Microsoft"
+  }
