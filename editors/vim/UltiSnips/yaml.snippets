@@ -51,3 +51,88 @@ snippet ansible-playbook
     - name: ping
 	    win_ping:
 endsnippet
+
+snippet ansible-task-win_copy
+- name: Copy $1
+  win_copy:
+    src: $2
+    dest: $3
+endsnippet
+
+snippet ansible-task-win_feature
+- name: Install IIS
+  win_feature:
+      name: web-server
+      include_management_tools: yes
+      include_sub_features: yes
+      state: present
+endsnippet
+
+snippet ansible-task-win_iis_webapppool
+- name: Create an application pool, sets attributes and starts it win_iis_webapppool
+  win_iis_webapppool:
+    name: Prosperity
+    attributes:
+        managedRuntimeVersion: v4.0
+        autoStart: yes
+endsnippet
+
+snippet ansible-task-win_iis_website
+- name: create Prosperity site
+  win_iis_website:
+    name: Prosperity
+    state: started
+    port: 80
+    ip:
+    hostname: Prosperity.com
+    application_pool: Prosperity
+    physical_path: C:\inetpub\wwwroot\prosperity
+  register: website
+endsnippet
+
+snippet ansible-task-win_iis_webbinding
+- name: Add a HTTPS binding for x_content site
+  win_iis_webbinding:
+    name: x_content
+    protocol: https
+    port: 443
+    ip:
+    state: present
+endsnippet
+
+snippet ansible-task-win_acl
+- name: Add IIS_IUSRS allow rights
+  win_acl:
+    path: C:\inetpub\wwwroot\
+    user: IIS_IUSRS
+    rights: FullControl
+    type: allow
+    state: present
+    inherit: ContainerInherit, ObjectInherit
+    propagation: 'None'
+endsnippet
+
+snippet ansible-task-win_scheduled_task
+- name: Create a scheduled task in order to run interactive install
+win_scheduled_task:
+name: InstallBlueDragon
+actions:
+- path: python 
+arguments: C:\tmp\pywinauto-install-bluedragon.py
+endsnippet
+
+snippet ansible-task-win_shell-run-scheduled-task
+- name: run it
+win_shell: Start-ScheduledTask -TaskName "InstallBlueDragon"
+endsnippet
+
+
+snippet ansible-role-win_psexec
+- name: install bluedragon with pywinauto
+win_psexec:
+interactive: yes
+nobanner: yes
+elevated: yes
+chdir: C:\tmp\
+		command: python pywinauto-install-bluedragon.py
+endsnippet
