@@ -2,9 +2,4 @@ set surround
 set visualbell
 set noerrorbells
 
-map <C-e> :action RecentFiles<CR>
-map <C-n> :action GotoClass<CR>
-map <C-s> :action EditorSelectWord<CR>
-map <Leader>s :action SaveAll<CR>
-map <Leader>b :action GotoDeclaration<CR>
-map <Leader>u :action GotoSuperMethod<CR>
+source ~/.vimrc
