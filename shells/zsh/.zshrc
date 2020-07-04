@@ -26,6 +26,9 @@ alias sudo='nocorrect sudo'
 alias ps='nocorrect ps'
 alias docker='nocorrect docker'
 alias wnotes='nocorrect wnotes'
+alias wnotes='nocorrect wnotes'
+alias vagrant='nocorrect vagrant'
+alias local='nocorrect local'
 
 # # Review between 'gh-pages' and the current branch
 # REVIEW_BASE=gh-pages git stat
@@ -154,21 +157,13 @@ alias ls="ls -G"
 alias f=". ranger"
 alias rgrep="ag -il 'first' | xargs ag -il 'second' | xargs ag -il 'third'"
 alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
-alias t="tree"
-alias ta="terraform apply"
-alias taa="terraform apply -auto-approve"
-alias td="terraform destroy"
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 alias ti="terraform init"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias tp="terraform plan -compact-warnings"
 alias v="vim"
-alias vd="vagrant destroy"
-alias vh="vagrant halt"
 alias vino="vim -u NONE"
 alias vir="vi -- *(D.om[1])"
-alias vp="vagrant provision"
-alias vup="vagrant up"
 
 #
 # Bindings
@@ -185,7 +180,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='mvim -v'
+    alias vim='nvim'
     # setup "Z" on MACOS
     # brew install z
     . `brew --prefix`/etc/profile.d/z.sh
@@ -355,7 +350,7 @@ add-zsh-hook precmd vcs_info
 #
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/sbin/terraform-lsp_0.0.11-beta1_darwin_amd64:$PATH"
+export PATH="/usr/local/sbin/terraform-lsp:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 
 
@@ -363,6 +358,7 @@ export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 source ~/Repositories/Azure/Sandia/dotfiles/shells/zsh/.env
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
+export TERM="xterm-256color"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
