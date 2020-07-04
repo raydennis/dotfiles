@@ -1,0 +1,35 @@
+snippet config.vm.box
+  config.vm.box = "StefanScherer/windows_2019"
+endsnippet
+
+snippet config.vm.network
+  config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
+endsnippet
+
+snippet vb.gui
+  vb.gui = true
+endsnippet
+
+snippet config.vm.synced_folder
+config.vm.synced_folder "./data", "/vagrant_data"
+endsnippet
+
+snippet vb.memory
+vb.memory = "4096"
+endsnippet
+
+snippet vb.cpu
+vb.cpus = 4
+endsnippet
+
+snippet config.vm.provisoin
+config.vm.provision "ansible" do |ansible|
+	ansible.playbook = "playbook.yml"
+end
+endsnippet
+
+snippet vagrant.configure
+Vagrant.configure("2") do |config|
+end
+endsnippet
+
