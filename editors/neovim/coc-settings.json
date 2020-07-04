@@ -1,0 +1,43 @@
+{
+  "coc.preferences.formatOnType": true,
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true,
+  "signature.target": "echo",
+
+  "suggest.triggerAfterInsertEnter": false,
+  "suggest.timeout": 500,
+  "suggest.noselect": false,
+  "suggest.snippetIndicator": "★",
+  "suggest.triggerCompletionWait": 100,
+  "suggest.echodocSupport": true,
+
+  "python.jediEnabled": false,
+  "python.envFile": "~/.virtualenv/${workspaceFolder}/.env",
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "initializationOptions": {}
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  },
+
+  "markdownlint.config": {
+    "default": true,
+    "line-length": false,
+    "no-duplicate-heading": false,
+    "no-inline-html": false,
+    "blanks-around-lists": false
+  },
+
+  "go.goplsOptions": {
+    "completeUnimported": true
+  },
+
+  "explorer.icon.enableNerdfont": true
+}
