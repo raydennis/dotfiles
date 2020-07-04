@@ -25,6 +25,3 @@
 [submodule "editors/vim/vim"]
 	path = editors/vim/vim
 	url = https://github.com/vim/vim.git
-[submodule "editors/vim/vim-terraform-snippets"]
-	path = editors/vim/vim-terraform-snippets
-	url = https://git@github.com/juliosueiras/vim-terraform-snippets.git
