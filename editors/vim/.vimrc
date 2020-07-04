@@ -2,9 +2,10 @@
 
 " Syntax {{{
 syntax on
-autocmd Syntax * syntax keyword myTodo TODO FIXME NOTE NOTES RAY containedin=ALL | highlight def link myTodo TODO
-autocmd Syntax * syntax keyword myError WAITING SCHEDULED containedin=ALL | highlight def link myError ERROR
+autocmd Syntax * syntax keyword myTodo QUESTION TODO FIXME NOTE NOTES RAY containedin=ALL | highlight def link myTodo TODO
+autocmd Syntax * syntax keyword myError ERROR WAITING SCHEDULED containedin=ALL | highlight def link myError ERROR
 autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight def link myUnderlined String
+
 " }}}
 
 " {{{ Required?
@@ -23,7 +24,6 @@ set autoread
 set autowriteall
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
-set colorcolumn=80                        " comma separated list of screen columns that are highlighted with ColorColumn
 set directory=$HOME/.vim/swapfiles/       " Where to save swap files
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                              " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
@@ -41,7 +41,6 @@ set scrolloff=20                          " Minimal number of screen lines to ke
 set showcmd                               " Display incomplete command
 set showmatch                             " When a bracket is inserted, briefly jump to the matching one.
 set smartcase                             " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
-set spell                                 " Enable spellcheck
 set splitbelow                            " Open new split panes to right
 set splitright                            " Open new split panes to the bottom
 set tagcase=smart                         " smart	Ignore case unless an upper case letter is used
@@ -108,15 +107,11 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
-Plug 'pearofducks/ansible-vim'                " Adds ansible syntax highlighting to yaml
-Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
 Plug 'airblade/vim-gitgutter'                 " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
-Plug 'hashivim/vim-packer'                    " packer
-Plug 'hashivim/vim-terraform'                 " This plugin adds a :Terraform command that runs terraform, with tab completion of subcommands
-Plug 'hashivim/vim-vagrant'                   " vagrant
+Plug 'rbgrouleff/bclose.vim'                  " ranger dependency for neovim
 Plug 'honza/vim-snippets'                     " snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'itchyny/lightline.vim'                  " Bottom bar
@@ -134,12 +129,13 @@ Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold
 Plug 'mbbill/undotree'                        " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                     " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pearofducks/ansible-vim'                " Adds ansible syntax highlighting to yaml
+Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
 Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple languages
 Plug 'tommcdo/vim-lion'                       " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                   " Comment out code with gcc
 Plug 'tpope/vim-eunuch'                       " Vim sugar for the UNIX shell commands that need it the most
 Plug 'tpope/vim-fugitive'                     " Adds git functionality to vim ex. :Gdiff
-Plug 'tpope/vim-obsession'                    " continuously updated session files
 Plug 'tpope/vim-repeat'                       " enable repeating supported plugin maps with
 Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
@@ -170,6 +166,9 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " let g:srcery_italic = 1
 " let g:srcery_inverse_match_paren = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_uniform_diff_background = 1
 colorscheme nord
 
 " Lightline
@@ -185,6 +184,8 @@ let g:lightline = {
       \   'gitbranch': 'FugitiveHead',
       \   'cocstatus': 'coc#status'
       \ },
+      \  'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
 
 " }}}
@@ -273,7 +274,7 @@ nmap <leader>a  <Plug>(coc-format-selected)
 augroup cocgroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,python,golang setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json,python,go setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -537,21 +538,27 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_fzf_preview = ['right:50%']
 
 let g:vista_executive_for = {
-  \ 'golang': 'coc',
+  \ 'python': 'coc',
+  \ 'go': 'coc',
   \ 'javascript': 'coc',
   \ 'javascript.jsx': 'coc',
   \ 'json': 'coc',
   \ 'php': 'coc',
   \ 'ps1': 'coc',
-  \ 'python': 'coc',
   \ 'tf': 'coc',
-  \ 'typescript': 'coc',
+  \ 'typescript': 'coc'
   \ }
 
 " Keybinding
 nnoremap <leader>vi :Vista!! <cr>
 nnoremap <leader>vt :Vista toc <cr>
 
+" }}}
+
+" Vim-go {{{
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
 " }}}
 
 " }}}
@@ -600,8 +607,10 @@ augroup go
     autocmd FileType go nmap <leader>b :GoBuild<cr>
     autocmd FileType go nmap <leader>t :GoTest<cr>
     autocmd FileType go nmap <leader>A :GoLint<cr>
-    autocmd FileType go  <f9> :GoDebugBreakpoint<cr>
-    autocmd FileType go  <f5> :GoDebugContinue<cr>
+    autocmd FileType go nmap <leader>db :GoDebugStart<cr>
+    autocmd FileType go nmap <leader>ds :GoDebugStop<cr>
+    autocmd FileType go nmap <f9> :GoDebugBreakpoint<cr>
+    autocmd FileType go nmap <f5> :GoDebugContinue<cr>
 augroup END
 " }}}
 
@@ -646,6 +655,7 @@ augroup md
 
   " Dictionary Completions
   autocmd FileType markdown,txt setlocal complete+=k~/.vim/spell/en.utf-8.add
+  autocmd FileType markdown,txt setlocal spell
 
   " indentation for markdown files 
   autocmd FileType markdown setlocal shiftwidth=2
@@ -723,8 +733,6 @@ nnoremap <C-d>a a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
 tnoremap <C-d>a a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
 inoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
 cnoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
-
-nnoremap <leader>d a<C-R>=strftime("% m/\%d/\%y  ")<cr><Esc>
 " }}}
 
 " Move screenshots to current directory {{{
@@ -752,9 +760,7 @@ endif
 
 " Registers {{{
 nnoremap <Leader>y "+y
-nnoremap <Leader>d "+d
 vnoremap <Leader>y "+y
-vnoremap <Leader>d "+d
 nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
