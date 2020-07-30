@@ -10,6 +10,7 @@
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = nvim
 [alias]
 	co = checkout
 	br = branch
@@ -34,13 +35,15 @@ depgraph = !git madge image --webpack-config webpack.config.js --basedir . src
 # Open all files changed since REVIEW_BASE in Vim tabs
 # Then, run fugitive's :Gdiff in each tab, and finally
 # tell vim-gitgutter to show +/- for changes since REVIEW_BASE
-review = !vim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+review = !nvim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 
 # Same as the above, except specify names of files as arguments,
 # instead of opening all files:
 # git reviewone foo.js bar.js
-reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
-	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+reviewone = !nvim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+
+logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
 [pull]
 	rebase = false
 
@@ -48,7 +51,7 @@ reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base =
 [diff]
     tool = vimdiff
 [difftool "vimdiff"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+    cmd = nvim -d $LOCAL $REMOTE
 [difftool]
 	prompt = false
 
@@ -61,3 +64,5 @@ reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base =
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
