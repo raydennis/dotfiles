@@ -768,7 +768,7 @@ nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
 " OS specific commands {{{
 if has("unix")
   " *nix
-  set list listchars=tab:»·,trail:·       " Display tabs as '-' and trailing white space as '.'
+  set list listchars=tab:\|\ ,trail:·       " Display tabs as '-' and trailing white space as '.'
   " *nix subsets
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
