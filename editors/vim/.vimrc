@@ -631,7 +631,8 @@ augroup go
     autocmd FileType go setlocal foldmethod=indent
     autocmd FileType go nmap <leader>r <Plug>(go-run)
     autocmd FileType go nmap <leader>b :GoBuild<cr>
-    autocmd FileType go nmap <leader>t :GoTest<cr>
+    autocmd FileType go nmap <leader>T :GoTest<cr>
+    autocmd FileType go nmap <leader>t :GoTestFunc<cr>
     autocmd FileType go nmap <leader>A :GoLint<cr>
     autocmd FileType go nmap <leader>db :GoDebugStart<cr>
     autocmd FileType go nmap <leader>ds :GoDebugStop<cr>
