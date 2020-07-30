@@ -1,5 +1,3 @@
-" Set and Let {{{
-
 " Syntax {{{
 syntax on
 autocmd Syntax * syntax keyword myTodo QUESTION TODO FIXME NOTE NOTES RAY containedin=ALL | highlight def link myTodo TODO
@@ -8,9 +6,11 @@ autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight de
 
 " }}}
 
-" {{{ Required?
+" Required? {{{ 
 filetype plugin indent on                 " Required
 " }}}
+
+" Set and Let {{{
 
 " let {{{
 let mapleader = " "                       " Leader - ( Space bar )
@@ -18,46 +18,49 @@ let maplocalleader = " "                  " LocalLeader - ( Space bar )
 " }}}
 
 " set {{{
-set autoindent                            " Copy indent from current line when starting a new line
+
+set autoindent                                           " Copy indent from current line when starting a new line
 set autoread
 set autowriteall
-set backspace=indent,eol,start            " Make backspace act as it does on other editors
-set belloff=all                           " Turn off all error notifications (both bell and flash)
-set directory=$HOME/.vim/swapfiles/       " Where to save swap files
-set fillchars+=vert:\                     " Change vertical fill character from | to nothing
-set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
-set gdefault                              " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
-set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| command.
-set grepprg=ag\ --vimgrep                 " use ag instead of grep
-set hidden                                " When ON a buffer becomes hidden when it is |abandon|ed.
-set hlsearch                              " When there is a previous search pattern, highlight all its matches.
-set ignorecase                            " the case of normal letters is ignored.
-set incsearch                             " While typing a search command, show where pattern, as it was typed
-set lazyredraw                            " Don't redraw screen while executing macro
-set mouse=a                               " Enable the use of the mouse
-set nonumber                              " No numbers on the left by default
-set path& | let &path .= "**"             " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
-set scrolloff=20                          " Minimal number of screen lines to keep above and below the cursor.
-set showcmd                               " Display incomplete command
-set showmatch                             " When a bracket is inserted, briefly jump to the matching one.
-set smartcase                             " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
-set splitbelow                            " Open new split panes to right
-set splitright                            " Open new split panes to the bottom
-set tagcase=smart                         " smart	Ignore case unless an upper case letter is used
+set backspace=indent,eol,start                           " Make backspace act as it does on other editors
+set belloff=all                                          " Turn off all error notifications (both bell and flash)
+set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
+set fillchars+=vert:\ ,fold:\ 
+set foldlevelstart=0                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
+set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
+set grepprg=ag\ --vimgrep                                " use ag instead of grep
+set hidden                                               " When ON a buffer becomes hidden when it is |abandon|ed.
+set hlsearch                                             " When there is a previous search pattern, highlight all its matches.
+set ignorecase                                           " the case of normal letters is ignored.
+set incsearch                                            " While typing a search command, show where pattern, as it was typed
+set lazyredraw                                           " Don't redraw screen while executing macro
+set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
+set mouse=a                                              " Enable the use of the mouse
+set nonumber                                             " No numbers on the left by default
+set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
+set scrolloff=20                                         " Minimal number of screen lines to keep above and below the cursor.
+set showcmd                                              " Display incomplete command
+set showmatch                                            " When a bracket is inserted, briefly jump to the matching one.
+set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
+set splitbelow                                           " Open new split panes to right
+set splitright                                           " Open new split panes to the bottom
+set tagcase=smart                                        " smart	Ignore case unless an upper case letter is used
 set tags=./tags;,tags;
 set timeoutlen=500
-set undodir=$HOME/.vim/undo               " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
-set undofile                              " Save undos after file closes
-set wildmenu                              " When 'wildmenu' is on, command-line completion operates in an enhanced mode
+set undodir=$HOME/.vim/undo                              " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
+set undofile                                             " Save undos after file closes
+set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
 
-" }}}
 
-" Default Tab settings (file specific ones also set in the augroups) {{{ 
+" Default Tab settings (file specific ones also set in the augroups) {{{{
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4                          " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
 set expandtab                             " Insert spaces instead of tab
 set softtabstop=4                         " allows backspace to delete the spaces of an expanded tab with one key press
+" }}}}
+
 " }}}
 
 " }}}
@@ -107,7 +110,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
-Plug 'airblade/vim-gitgutter'                 " Adds signs in the gutter if there are changes to the current workspace
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
@@ -163,8 +165,8 @@ call plug#end() " Required, All of the Plugins must be added before this line
 " Color scheme and Airline{{{
 
 " srcery {{{
-let g:srcery_italic = 1
-let g:srcery_inverse_match_paren = 1
+" let g:srcery_italic = 1
+" let g:srcery_inverse_match_paren = 1
 " }}}
 
 " Nord {{{
@@ -373,7 +375,7 @@ nnoremap <leader>l :diffget //3<CR>
 nnoremap <leader>G :Goyo<cr>
 " }}}
 
-" Lightline {{{
+" Limelight {{{
 " Goyo.vim integration
 autocmd! User GoyoEnter Limelight 
 autocmd! User GoyoLeave Limelight!
@@ -730,7 +732,6 @@ nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
 " OS specific commands {{{
 if has("unix")
   " *nix
-  set list listchars=tab:\|\ ,trail:·       " Display tabs as '-' and trailing white space as '.'
   " *nix subsets
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
