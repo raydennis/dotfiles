@@ -184,35 +184,17 @@ let g:nord_uniform_diff_background = 1
 " set background=light
 " }}}
 
-colorscheme srcery
+colorscheme nord
 
 " Airline {{{
 let g:airline#extensions#term#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='srcery'
+let g:airline_theme='nord'
 let g:airline#extensions#coc#enabled = 1
 " }}}
 
 
-" }}}
-
-" Lightline [disabled] {{{
-" set noshowmode
-" set laststatus=2
-" let g:lightline = {
-"        \ 'colorscheme': 'nord',
-"        \ 'active': {
-"        \   'left': [ [ 'mode', 'paste' ],
-"        \             [ 'cocstatus', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
-"        \ },
-"        \ 'component_function': {
-"        \   'gitbranch': 'FugitiveHead',
-"        \   'cocstatus': 'coc#status'
-"        \ },
-"        \ 'separator': { 'left': "  \ue0b0", 'right': "\ue0b2" },
-"        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-"        \ }
 " }}}
 
 " Coc {{{
