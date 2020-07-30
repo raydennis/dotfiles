@@ -730,28 +730,8 @@ nnoremap <leader>bo :only<cr>
 
 " }}}
 
-" Control [ pastes into terminal {{{
-tnoremap <C-]> <C-W>"+
-" }}}
-
 " delete swap files {{{
 nnoremap <leader>rms :! rm $HOME/.vim/swapfiles/*
-" }}}
-
-" Easier up and down {{{
-nnoremap <C-K> {
-vnoremap <C-K> {
-nnoremap <C-J> }
-vnoremap <C-J> }
-" }}}
-
-" Easier beginning and ending of line {{{
-nnoremap <C-H> 0
-vnoremap <C-H> 0
-inoremap <C-H> <C-O>0
-nnoremap <C-L> $
-vnoremap <C-L> $
-inoremap <C-L> <C-O>$
 " }}}
 
 " Insert current date {{{
