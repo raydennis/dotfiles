@@ -40,7 +40,7 @@ rm ~/.gitconfig
 ln -s ~/Repositories/Github/raydennis/dotfiles/.gitconfig ~/.gitconfig
 
 rm ~/.gitignore_global
-ln -s ~/Repositories/Github/raydennis/dotfiles/.gitignore ~/.gitignore_global
+ln -s ~/Repositories/Github/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 
 ## git-madge
 ### Dependencies
