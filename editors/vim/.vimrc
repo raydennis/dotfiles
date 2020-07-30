@@ -108,7 +108,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
 Plug 'airblade/vim-gitgutter'                 " Adds signs in the gutter if there are changes to the current workspace
-Plug 'justinmk/vim-sneak'
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
