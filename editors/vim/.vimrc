@@ -108,13 +108,15 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
 Plug 'airblade/vim-gitgutter'                 " Adds signs in the gutter if there are changes to the current workspace
+Plug 'justinmk/vim-sneak'
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
 Plug 'rbgrouleff/bclose.vim'                  " ranger dependency for neovim
 Plug 'honza/vim-snippets'                     " snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'itchyny/lightline.vim'                  " Bottom bar
+Plug 'vim-airline/vim-airline'                " Status and buffer bars
+Plug 'vim-airline/vim-airline-themes'         " themes
 Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                       " Fuzzy finding
@@ -147,11 +149,9 @@ Plug 'will133/vim-dirdiff'                    " Recursively diff on two director
 Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
-Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'sickill/vim-monokai'
-Plug 'xltan/lightline-colors.vim'
-Plug 'zaayer/lightline-monokai-pro'
 Plug 'srcery-colors/srcery-vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 
 call plug#end() " Required, All of the Plugins must be added before this line
@@ -161,33 +161,59 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Plugin settings {{{
 
-" Color scheme and Lightline{{{
-" let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
+" Color scheme and Airline{{{
 
-" let g:srcery_italic = 1
-" let g:srcery_inverse_match_paren = 1
+" srcery {{{
+let g:srcery_italic = 1
+let g:srcery_inverse_match_paren = 1
+" }}}
+
+" Nord {{{
 let g:nord_italic = 1
 let g:nord_italic_comments = 1
 let g:nord_uniform_diff_background = 1
-colorscheme nord
+" }}}
 
-" Lightline
-set noshowmode
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'cocstatus': 'coc#status'
-      \ },
-      \  'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-      \ }
+" Solarized {{{
+" Color name (:help cterm-colors) or ANSI code
+" let g:limelight_conceal_ctermfg = 'gray'
+" let g:limelight_conceal_ctermfg = 240
+" let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
+" }}}
 
+" Papercolor {{{
+" set background=light
+" }}}
+
+colorscheme srcery
+
+" Airline {{{
+let g:airline#extensions#term#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='srcery'
+let g:airline#extensions#coc#enabled = 1
+" }}}
+
+
+" }}}
+
+" Lightline [disabled] {{{
+" set noshowmode
+" set laststatus=2
+" let g:lightline = {
+"        \ 'colorscheme': 'nord',
+"        \ 'active': {
+"        \   'left': [ [ 'mode', 'paste' ],
+"        \             [ 'cocstatus', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
+"        \ },
+"        \ 'component_function': {
+"        \   'gitbranch': 'FugitiveHead',
+"        \   'cocstatus': 'coc#status'
+"        \ },
+"        \ 'separator': { 'left': "  \ue0b0", 'right': "\ue0b2" },
+"        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"        \ }
 " }}}
 
 " Coc {{{
