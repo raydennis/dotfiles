@@ -18,13 +18,13 @@ let maplocalleader = " "                  " LocalLeader - ( Space bar )
 " }}}
 
 " set {{{
-
 set autoindent                            " Copy indent from current line when starting a new line
 set autoread
 set autowriteall
 set backspace=indent,eol,start            " Make backspace act as it does on other editors
 set belloff=all                           " Turn off all error notifications (both bell and flash)
 set directory=$HOME/.vim/swapfiles/       " Where to save swap files
+set fillchars+=vert:\                     " Change vertical fill character from | to nothing
 set foldlevelstart=0                      " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                              " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH         " Program to use for the |:grep| command.
