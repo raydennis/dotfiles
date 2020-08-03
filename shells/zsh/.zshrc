@@ -145,7 +145,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+  [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
