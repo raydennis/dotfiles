@@ -14,24 +14,6 @@ compinit -u
 # - Substring complete (ie. bar -> foobar).
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-#
-# Correction
-#
-
-# exceptions to auto-correction
-alias bundle='nocorrect bundle'
-alias cabal='nocorrect cabal'
-alias man='nocorrect man'
-alias mkdir='nocorrect mkdir'
-alias mv='nocorrect mv'
-alias stack='nocorrect stack'
-alias sudo='nocorrect sudo'
-alias ps='nocorrect ps'
-alias docker='nocorrect docker'
-alias wnotes='nocorrect wnotes'
-alias wnotes='nocorrect wnotes'
-alias vagrant='nocorrect vagrant'
-alias local='nocorrect local'
 
 #
 # History
@@ -47,8 +29,6 @@ setopt autocd               # .. is shortcut for cd .. (etc)
 setopt autoparamslash       # tab completing directory appends a slash
 setopt autopushd            # cd automatically pushes old dir onto dir stack
 setopt clobber              # allow clobbering with >, no need to use >!
-setopt correct              # command auto-correction
-setopt correctall           # argument auto-correction
 setopt noflowcontrol        # disable start (C-s) and stop (C-q) characters
 setopt nonomatch            # unmatched patterns are left unchanged
 setopt histignorealldups    # filter duplicates from history
