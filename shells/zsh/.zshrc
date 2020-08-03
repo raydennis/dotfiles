@@ -269,6 +269,23 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/sbin/terraform-lsp:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 
+#
+# Go development
+#
+
+export GOPATH="${HOME}/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+test -d "${GOPATH}" || mkdir "${GOPATH}"
+test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+
+#
+# Mage
+#
+export MAGEFILE_ENABLE_COLOR=1 # magefile to print the list of target when you run mage or mage -l in ANSI colors.
+export MAGEFILE_IGNOREDEFAULT=1 # tells the compiled magefile to ignore the default target and print the list of targets when you run mage.
+
+
 # env vars
 source ~/Repositories/Azure/Sandia/dotfiles/shells/zsh/.env
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
