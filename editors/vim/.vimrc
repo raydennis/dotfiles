@@ -618,16 +618,12 @@ augroup END
 augroup go
     autocmd!
     autocmd FileType go setlocal number
-    autocmd FileType go setlocal foldmethod=indent
-    autocmd FileType go nmap <leader>r <Plug>(go-run)
-    autocmd FileType go nmap <leader>b :GoBuild<cr>
-    autocmd FileType go nmap <leader>T :GoTest<cr>
-    autocmd FileType go nmap <leader>t :GoTestFunc<cr>
-    autocmd FileType go nmap <leader>A :GoLint<cr>
-    autocmd FileType go nmap <leader>db :GoDebugStart<cr>
-    autocmd FileType go nmap <leader>ds :GoDebugStop<cr>
-    autocmd FileType go nmap <f9> :GoDebugBreakpoint<cr>
-    autocmd FileType go nmap <f5> :GoDebugContinue<cr>
+    autocmd FileType go setlocal foldmethod=syntax
+    autocmd FileType go nmap <f9> :DlvToggleBreakpoint<cr>
+    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+    autocmd BufWritePre *.go :silent ! "gofmt -w" %
+    autocmd BufWritePre *.go :e<cr>
+    autocmd FileType go nmap <f5> :DlvTest<cr>
 augroup END
 " }}}
 
