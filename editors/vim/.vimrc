@@ -123,6 +123,7 @@ Plug 'junegunn/gv.vim'                        " A git commit browser.
 Plug 'junegunn/limelight.vim'                 " Hyperfocus-writing in Vim.
 Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow parentheses
 Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+Plug 'liuchengxu/vim-which-key'               " vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
 Plug 'liuchengxu/vista.vim'                   " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                     " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold markdown documents by section headings.
