@@ -112,13 +112,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'             " Tables
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
-Plug 'rbgrouleff/bclose.vim'                  " ranger dependency for neovim
 Plug 'honza/vim-snippets'                     " snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'vim-airline/vim-airline'                " Status and buffer bars
-Plug 'vim-airline/vim-airline-themes'         " themes
 Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                       " Fuzzy finding
@@ -135,6 +131,8 @@ Plug 'mhinz/vim-startify'                     " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pearofducks/ansible-vim'                " Adds ansible syntax highlighting to yaml
 Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
+Plug 'rbgrouleff/bclose.vim'                  " ranger dependency for neovim
+Plug 'sebdah/vim-delve'
 Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple languages
 Plug 'tommcdo/vim-lion'                       " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                   " Comment out code with gcc
