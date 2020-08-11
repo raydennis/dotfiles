@@ -242,10 +242,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap <leader>a  <Plug>(coc-format-selected)
-nmap <leader>a  <Plug>(coc-format-selected)
-
 augroup cocgroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -255,8 +251,8 @@ augroup cocgroup
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>A  <Plug>(coc-codeaction-selected)
+nmap <leader>A  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
