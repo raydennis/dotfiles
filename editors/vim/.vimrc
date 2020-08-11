@@ -732,6 +732,17 @@ inoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
 cnoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
 " }}}
 
+" Movement {{{
+nnoremap <C-h> 0
+vnoremap <C-h> 0
+nnoremap <C-j> }
+vnoremap <C-j> }
+nnoremap <C-k> {
+vnoremap <C-k> {
+nnoremap <C-l> $
+vnoremap <C-l> $
+" }}}
+
 " Move screenshots to current directory {{{
 nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
 " }}}
