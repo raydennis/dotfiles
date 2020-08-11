@@ -92,7 +92,7 @@ let g:coc_global_extensions = [
             \ 'coc-powershell',
             \ 'coc-prettier',
             \ 'coc-python',
-            \ 'coc-snippets',
+            \ 'coc-ultisnips',
             \ 'coc-tslint-plugin',
             \ 'coc-tsserver',
             \ 'coc-yaml',
