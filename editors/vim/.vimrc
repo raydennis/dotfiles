@@ -399,7 +399,7 @@ let g:qf_write_changes = 1
 
 " Rainbow Parenthesis {{{
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-nnoremap yop :RainbowParentheses!!<cr>
+nnoremap yrp :RainbowParentheses!!<cr>
 " }}}
 
 " Startify {{{
