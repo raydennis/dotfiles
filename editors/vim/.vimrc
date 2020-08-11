@@ -6,7 +6,7 @@ autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight de
 
 " }}}
 
-" Required? {{{ 
+" Required {{{ 
 filetype plugin indent on                 " Required
 " }}}
 
