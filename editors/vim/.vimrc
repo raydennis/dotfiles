@@ -22,6 +22,7 @@ let maplocalleader = " "                  " LocalLeader - ( Space bar )
 set autoindent                                           " Copy indent from current line when starting a new line
 set autoread
 set autowriteall
+set cursorline
 set backspace=indent,eol,start                           " Make backspace act as it does on other editors
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
