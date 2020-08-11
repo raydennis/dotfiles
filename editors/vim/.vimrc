@@ -165,43 +165,6 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Plugin settings {{{
 
-" Color scheme and Airline{{{
-
-" srcery {{{
-" let g:srcery_italic = 1
-" let g:srcery_inverse_match_paren = 1
-" }}}
-
-" Nord {{{
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_uniform_diff_background = 1
-" }}}
-
-" Solarized {{{
-" Color name (:help cterm-colors) or ANSI code
-" let g:limelight_conceal_ctermfg = 'gray'
-" let g:limelight_conceal_ctermfg = 240
-" let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
-" }}}
-
-" Papercolor {{{
-" set background=light
-" }}}
-
-colorscheme nord
-
-" Airline {{{
-let g:airline#extensions#term#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='nord'
-let g:airline#extensions#coc#enabled = 1
-" }}}
-
-
-" }}}
-
 " Coc {{{
 
 " Coc-Explorer {{{
@@ -572,6 +535,45 @@ nnoremap <leader>vt :Vista toc <cr>
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 " }}}
+
+" Which-key {{{
+noremap <silent> <leader> :WhichKey '<Space>'<CR>
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" }}}
+
+" }}}
+
+" Color scheme + Airline{{{
+
+" Airline {{{
+let g:airline#extensions#term#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='nord'
+let g:airline#extensions#coc#enabled = 1
+" }}}
+
+" Nord https://www.nordtheme.com/ports/vim {{{ 
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+" }}}
+
+" Papercolor {{{
+" set background=light
+" }}}
+
+" Solarized {{{
+let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
+" }}}
+
+"  {{{
+let g:_italic = 1
+let g:_inverse_match_paren = 1
+" }}}
+
+colorscheme nord
 
 " }}}
 
