@@ -717,8 +717,12 @@ nnoremap <leader>bo :only<cr>
 
 " }}}
 
-" delete swap files {{{
+" Delete swap files {{{
 nnoremap <leader>rms :! rm $HOME/.vim/swapfiles/*
+" }}}
+
+" Diffthis {{{
+nnoremap <leader>dw :windo diffthis<cr>
 " }}}
 
 " Insert current date {{{
