@@ -451,9 +451,9 @@ if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
     endif
 
 " Set ultisnips triggers
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<Nop>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " }}}
 
