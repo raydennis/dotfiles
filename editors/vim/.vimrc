@@ -337,8 +337,14 @@ nnoremap <leader>l :diffget //3<CR>
 nnoremap <leader>G :Goyo<cr>
 " }}}
 
+" IndentLine {{{
+let g:indentLine_char = '|'
+" }}}
+
 " Limelight {{{
 " Goyo.vim integration
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
 autocmd! User GoyoEnter Limelight 
 autocmd! User GoyoLeave Limelight!
 " }}}
