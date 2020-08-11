@@ -143,14 +143,17 @@ Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
 Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
+Plug 'vim-airline/vim-airline'                " Status and buffer bars
+Plug 'vim-airline/vim-airline-themes'         " themes
 Plug 'will133/vim-dirdiff'                    " Recursively diff on two directories
+Plug 'Yggdroot/indentLine'                    " displaying thin vertical lines at each indentation level for code indented with spaces.
 
 " color schemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'sickill/vim-monokai'
-Plug 'srcery-colors/srcery-vim'
+Plug '-colors/-vim'
 Plug 'NLKNguyen/papercolor-theme'
 
 
