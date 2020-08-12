@@ -84,9 +84,12 @@ let g:coc_global_extensions = [
             \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
+            \ 'coc-fzf-preview',
             \ 'coc-go',
+            \ 'coc-gocode',
             \ 'coc-markdownlint',
             \ 'coc-marketplace',
+            \ 'coc-pairs',
             \ 'coc-phpls',
             \ 'coc-powershell',
             \ 'coc-prettier',
@@ -167,10 +170,19 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Coc-Explorer {{{
 
-nmap - :CocCommand explorer<CR>
+nmap - :CocCommand explorer<cr>
 
 " }}}
 
+" Coc-fzf-preview {{{
+nmap <Leader><space> :CocCommand fzf-preview.ProjectFiles<cr>
+xmap <Leader><space> :CocCommand fzf-preview.ProjectFiles<cr>
+
+nnoremap <Leader><tab>    :CocCommand fzf-preview.AllBuffers<cr>
+nnoremap <Leader>g :CocCommand fzf-preview.FromResources project_mru git<cr>
+nnoremap <Leader>/ :CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<cr>
+nnoremap <Leader>* :CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<cr>"<cr>
+" }}}
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -294,16 +306,15 @@ nnoremap <silent> ;o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent> ;s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> ;j  :<C-u>CocNext<CR>
+nnoremap <silent> ;j  :<C-u>CocNext<cr>
 " Do default action for previous item.
-nnoremap <silent> ;k  :<C-u>CocPrev<CR>
+nnoremap <silent> ;k  :<C-u>CocPrev<cr>
 " Resume latest coc list.
-nnoremap <silent> ;p  :<C-u>CocListResume<CR>
+nnoremap <silent> ;p  :<C-u>CocListResume<cr>
 
 " }}}
 
 " FZF {{{
-map <leader>g :FZF <cr>
 
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 
@@ -697,13 +708,6 @@ augroup END
 nnoremap <leader>aq :read ! az boards query --id 87a49530-01c0-40f0-b218-d96ab7be0be1 -o table<cr>
 nnoremap <leader>ls :read ! ls<cr>
 " }}}
-
-" Buffers {{{
-" Use leader tab to switch between current and last buffer 
-nnoremap <silent><leader><tab> :Buffers<cr>
-nnoremap <silent><leader><s-tab>  :if &modifiable && !&readonly && &modified <cr> :write<cr> :endif<cr>:bprevious<cr>
-tnoremap <silent><leader><tab> :bn<CR>
-tnoremap <silent><leader><s-tab> :bp<CR> 
 
 " create a new buffer (save it with :w ./path/to/FILENAME)
 nnoremap <leader>be :enew<cr>
