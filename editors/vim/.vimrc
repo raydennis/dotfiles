@@ -460,6 +460,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Undotree {{{
 nnoremap <leader>u :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
+if !exists('g:undotree_WindowLayout')
+    let g:undotree_WindowLayout = 2
+endif
 " }}}
 
 " Vista {{{
