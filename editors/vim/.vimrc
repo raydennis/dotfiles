@@ -84,7 +84,6 @@ let g:coc_global_extensions = [
             \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
-            \ 'coc-lists',
             \ 'coc-go',
             \ 'coc-markdownlint',
             \ 'coc-marketplace',
@@ -130,7 +129,6 @@ Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold
 Plug 'mbbill/undotree'                        " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                     " provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pearofducks/ansible-vim'                " Adds ansible syntax highlighting to yaml
 Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
 Plug 'rbgrouleff/bclose.vim'                  " ranger dependency for neovim
 Plug 'sebdah/vim-delve'
@@ -154,7 +152,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'sickill/vim-monokai'
-Plug '-colors/-vim'
+Plug 'srcery-colors/srcery-vim'
 Plug 'NLKNguyen/papercolor-theme'
 
 
