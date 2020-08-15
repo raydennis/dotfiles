@@ -1,8 +1,13 @@
 {
   "coc.preferences.formatOnType": true,
   "codeLens.enable": true,
+
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": true,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+
   "signature.target": "echo",
 
   "suggest.triggerAfterInsertEnter": false,
@@ -19,6 +24,11 @@
       "command": "terraform-lsp",
       "filetypes": ["terraform"],
       "initializationOptions": {}
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
     }
   },
 
@@ -34,5 +44,12 @@
     "completeUnimported": true
   },
 
-  "explorer.icon.enableNerdfont": true
+  "git.addGBlameToVirtualText": true,
+  "git.changedSign.text":"ﰣ",
+  "git.addedSign.text": "",
+  "git.removedSign.text": "",
+
+  "explorer.icon.enableNerdfont": true,
+
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true
 }
