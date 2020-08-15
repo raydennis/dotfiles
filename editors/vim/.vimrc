@@ -580,9 +580,9 @@ let g:nord_italic_comments = 1
 let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
 " }}}
 
-"  {{{
-let g:_italic = 1
-let g:_inverse_match_paren = 1
+"  Srcry {{{
+let g:srcry_italic = 1
+let g:srcry_inverse_match_paren = 1
 " }}}
 
 colorscheme nord
