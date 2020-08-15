@@ -707,6 +707,7 @@ nnoremap <leader>aq :read ! az boards query --id 87a49530-01c0-40f0-b218-d96ab7b
 nnoremap <leader>ls :read ! ls<cr>
 " }}}
 
+" Buffers {{{
 " create a new buffer (save it with :w ./path/to/FILENAME)
 nnoremap <leader>be :enew<cr>
 " close current buffer
@@ -871,7 +872,7 @@ nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr
 
 " }}}
 
-" Functions {{{ 
+" Functions [disabled] {{{ 
 
 " function Mkindex() {{{
 " This was used to grab all files in an directory and make an index to them in
