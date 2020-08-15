@@ -718,21 +718,6 @@ augroup END
 
 " Azure {{{
 nnoremap <leader>aq :read ! az boards query --id 87a49530-01c0-40f0-b218-d96ab7be0be1 -o table<cr>
-nnoremap <leader>ls :read ! ls<cr>
-" }}}
-
-" Buffers {{{
-" create a new buffer (save it with :w ./path/to/FILENAME)
-nnoremap <leader>be :enew<cr>
-" close current buffer
-nnoremap <leader>bd :bp <bar> bd! #<cr>
-" close all open buffers
-nnoremap <leader>bq :bufdo bd!<cr>
-" make this the only buffer
-nnoremap <leader>bo :only<cr>
-" search for open buffer
-" nnoremap <leader>bb :Buffers<cr>
-
 " }}}
 
 " Delete swap files {{{
