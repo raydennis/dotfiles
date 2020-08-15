@@ -180,8 +180,6 @@ xmap <Leader><space> :CocCommand fzf-preview.ProjectFiles<cr>
 
 nnoremap <Leader><tab>    :CocCommand fzf-preview.AllBuffers<cr>
 nnoremap <Leader>g :CocCommand fzf-preview.FromResources project_mru git<cr>
-nnoremap <Leader>/ :CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<cr>
-nnoremap <Leader>* :CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<cr>"<cr>
 " }}}
 
 " Some servers have issues with backup files, see #649
