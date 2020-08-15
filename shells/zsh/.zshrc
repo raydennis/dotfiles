@@ -48,7 +48,7 @@ alias :q="exit"
 alias q="exit"
 alias c="clear"
 alias cls="clear && ls"
-alias e="vim"
+alias e="nvim"
 alias gp="git pull && git push"
 alias grd="git add . && git commit -am \"fast update\" && git push"
 alias gs="git status"
@@ -58,12 +58,10 @@ alias f=". ranger"
 alias rgrep="ag -il 'first' | xargs ag -il 'second' | xargs ag -il 'third'"
 alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
-alias ti="terraform init"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
-alias tp="terraform plan -compact-warnings"
-alias v="vim"
-alias vino="vim -u NONE"
-alias vir="vi -- *(D.om[1])"
+alias v="nvim"
+alias vino="nvim -u NONE"
+alias weather="curl wttr.in"
 
 #
 # Bindings
@@ -136,7 +134,7 @@ fo() {
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-nvim} "$file"
   fi
 }
 fp(){
