@@ -113,10 +113,12 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
+Plug 'Yggdroot/indentLine'                    " displaying thin vertical lines at each indentation level for code indented with spaces.
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
 Plug 'honza/vim-snippets'                     " snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'itchyny/lightline.vim'                  " Statusbar
 Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                       " Fuzzy finding
@@ -145,10 +147,7 @@ Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
 Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
 Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
-Plug 'vim-airline/vim-airline'                " Status and buffer bars
-Plug 'vim-airline/vim-airline-themes'         " themes
 Plug 'will133/vim-dirdiff'                    " Recursively diff on two directories
-Plug 'Yggdroot/indentLine'                    " displaying thin vertical lines at each indentation level for code indented with spaces.
 
 " color schemes
 Plug 'altercation/vim-colors-solarized'
@@ -557,14 +556,30 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " }}}
 
-" Color scheme + Airline{{{
+" Color scheme + Lightline {{{
 
-" Airline {{{
-let g:airline#extensions#term#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='nord'
-let g:airline#extensions#coc#enabled = 1
+" Lightline {{{
+set noshowmode
+set laststatus=2
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+let g:lightline = {
+       \ 'colorscheme': 'nord',
+       \ 'active': {
+       \   'left': [ [ 'paste' ],
+       \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
+       \ },
+       \ 'component_function': {
+       \   'gitbranch': 'FugitiveHead',
+       \   'cocstatus': 'coc#status',
+       \   'currentfunction': 'CocCurrentFunction'
+       \ },
+       \ 'separator': { 'left': "  \ue0b0", 'right': "\ue0b2" },
+       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+       \ }
 " }}}
 
 " Nord https://www.nordtheme.com/ports/vim {{{ 
