@@ -804,6 +804,10 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 " }}}
 
+" Search and Replace {{{
+nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
+" }}}
+
 " SpaceMacs Org-Mode style agenda bindings {{{
 nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
 nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
