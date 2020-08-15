@@ -631,8 +631,7 @@ augroup go
     autocmd FileType go setlocal foldmethod=syntax
     autocmd FileType go nmap <f9> :DlvToggleBreakpoint<cr>
     autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-    autocmd BufWritePre *.go :silent ! "gofmt -w" %
-    autocmd BufWritePre *.go :e<cr>
+    autocmd BufWritePre *.go :silent ! "gofmt -w" % <cr> :e % <cr>
     autocmd FileType go nmap <f5> :DlvTest<cr>
 augroup END
 " }}}
