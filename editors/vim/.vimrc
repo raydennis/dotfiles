@@ -12,12 +12,12 @@ filetype plugin indent on                 " Required
 
 " Set and Let {{{
 
-" let {{{
+" Let {{{
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
 " }}}
 
-" set {{{
+" Set {{{
 
 set autoindent                                           " Copy indent from current line when starting a new line
 set autoread
@@ -30,10 +30,10 @@ set fillchars+=vert:\ ,fold:\
 set foldlevelstart=0                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
-set grepprg=ag\ --vimgrep                                " use ag instead of grep
+set grepprg=ag\ --vimgrep                                " Use ag instead of grep
 set hidden                                               " When ON a buffer becomes hidden when it is |abandon|ed.
 set hlsearch                                             " When there is a previous search pattern, highlight all its matches.
-set ignorecase                                           " the case of normal letters is ignored.
+set ignorecase                                           " The case of normal letters is ignored.
 set incsearch                                            " While typing a search command, show where pattern, as it was typed
 set lazyredraw                                           " Don't redraw screen while executing macro
 set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
@@ -46,7 +46,7 @@ set showmatch                                            " When a bracket is ins
 set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
 set splitbelow                                           " Open new split panes to right
 set splitright                                           " Open new split panes to the bottom
-set tagcase=smart                                        " smart	Ignore case unless an upper case letter is used
+set tagcase=smart                                        " Smart	Ignore case unless an upper case letter is used
 set tags=./tags;,tags;
 set timeoutlen=500
 set undodir=$HOME/.vim/undo                              " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
@@ -54,12 +54,11 @@ set undofile                                             " Save undos after file
 set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
 
-
 " Default Tab settings (file specific ones also set in the augroups) {{{{
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4                          " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
 set expandtab                             " Insert spaces instead of tab
-set softtabstop=4                         " allows backspace to delete the spaces of an expanded tab with one key press
+set softtabstop=4                         " Allows backspace to delete the spaces of an expanded tab with one key press
 " }}}}
 
 " }}}
@@ -68,11 +67,63 @@ set softtabstop=4                         " allows backspace to delete the space
 
 " Plugins {{{
 
-" Built in {{{
+" The rest {{{
+" Install vim-plug if unavailable
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" allows jumping between matches like if and end with %
-runtime macros/matchit.vim
+call plug#begin('~/.vim/plugged')
 
+Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
+" Plug 'Yggdroot/indentLine'                    " Displaying thin vertical lines at each indentation level for code indented with spaces.
+Plug 'dhruvasagar/vim-table-mode'             " Tables
+Plug 'francoiscabrol/ranger.vim'              " Ranger integration
+Plug 'honza/vim-snippets'                     " Snippets for UltiSnips
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'itchyny/lightline.vim'                  " Statusbar
+Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'                       " Fuzzy finding
+Plug 'junegunn/goyo.vim'                      " Distraction-free writing in Vim.
+Plug 'junegunn/gv.vim'                        " A git commit browser.
+Plug 'junegunn/limelight.vim'                 " Hyperfocus-writing in Vim.
+Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow parentheses
+Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+Plug 'liuchengxu/vim-which-key'               " Vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
+Plug 'liuchengxu/vista.vim'                   " View and search LSP symbols, tags in Vim/NeoVim.
+Plug 'markonm/traces.vim'                     " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
+Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold markdown documents by section headings.
+Plug 'mbbill/undotree'                        " Visual representation of undo tree
+Plug 'mhinz/vim-startify'                     " Provides a start screen for Vim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
+Plug 'rbgrouleff/bclose.vim'                  " Ranger dependency for neovim
+Plug 'sebdah/vim-delve'
+Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple languages
+Plug 'tommcdo/vim-lion'                       " Align based on a character ex :glip(char)
+Plug 'tpope/vim-commentary'                   " Comment out code with gcc
+Plug 'tpope/vim-eunuch'                       " Vim sugar for the UNIX shell commands that need it the most
+Plug 'tpope/vim-fugitive'                     " Adds git functionality to vim ex. :Gdiff
+Plug 'tpope/vim-repeat'                       " Enable repeating supported plugin maps with
+Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
+Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
+Plug 'tpope/vim-surround'                     " Provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
+Plug 'will133/vim-dirdiff'                    " Recursively diff on two directories
+
+" Color schemes
+Plug 'altercation/vim-colors-solarized'
+Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
+Plug 'sickill/vim-monokai'
+Plug 'srcery-colors/srcery-vim'
+Plug 'NLKNguyen/papercolor-theme'
+
+
+call plug#end() " Required, All of the Plugins must be added before this line
 " }}}
 " COC {{{
 
@@ -102,63 +153,11 @@ let g:coc_global_extensions = [
             \ ]
 
 " }}}
-" The rest {{{
-" Install vim-plug if unavailable
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" Built in {{{
 
-call plug#begin('~/.vim/plugged')
+" Allows jumping between matches like if and end with %
+runtime macros/matchit.vim
 
-Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
-Plug 'Yggdroot/indentLine'                    " displaying thin vertical lines at each indentation level for code indented with spaces.
-Plug 'dhruvasagar/vim-table-mode'             " Tables
-Plug 'francoiscabrol/ranger.vim'              " Ranger integration
-Plug 'honza/vim-snippets'                     " snippets for UltiSnips
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'itchyny/lightline.vim'                  " Statusbar
-Plug 'jkramer/vim-checkbox'                   " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'                       " Fuzzy finding
-Plug 'junegunn/goyo.vim'                      " Distraction-free writing in Vim.
-Plug 'junegunn/gv.vim'                        " A git commit browser.
-Plug 'junegunn/limelight.vim'                 " Hyperfocus-writing in Vim.
-Plug 'junegunn/rainbow_parentheses.vim'       " Rainbow parentheses
-Plug 'junegunn/vim-peekaboo'                  " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
-Plug 'liuchengxu/vim-which-key'               " vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
-Plug 'liuchengxu/vista.vim'                   " View and search LSP symbols, tags in Vim/NeoVim.
-Plug 'markonm/traces.vim'                     " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
-Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold markdown documents by section headings.
-Plug 'mbbill/undotree'                        " Visual representation of undo tree
-Plug 'mhinz/vim-startify'                     " provides a start screen for Vim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
-Plug 'rbgrouleff/bclose.vim'                  " ranger dependency for neovim
-Plug 'sebdah/vim-delve'
-Plug 'sheerun/vim-polyglot'                   " Syntax highlighting for multiple languages
-Plug 'tommcdo/vim-lion'                       " Align based on a character ex :glip(char)
-Plug 'tpope/vim-commentary'                   " Comment out code with gcc
-Plug 'tpope/vim-eunuch'                       " Vim sugar for the UNIX shell commands that need it the most
-Plug 'tpope/vim-fugitive'                     " Adds git functionality to vim ex. :Gdiff
-Plug 'tpope/vim-repeat'                       " enable repeating supported plugin maps with
-Plug 'tpope/vim-scriptease'                   " A Vim plugin for Vim plugins
-Plug 'tpope/vim-speeddating'                  " Quickly modify dates.
-Plug 'tpope/vim-surround'                     " provides mappings to easily delete, change and add such surroundings in pairs
-Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
-Plug 'will133/vim-dirdiff'                    " Recursively diff on two directories
-
-" color schemes
-Plug 'altercation/vim-colors-solarized'
-Plug 'arcticicestudio/nord-vim'
-Plug 'morhetz/gruvbox'
-Plug 'sickill/vim-monokai'
-Plug 'srcery-colors/srcery-vim'
-Plug 'NLKNguyen/papercolor-theme'
-
-
-call plug#end() " Required, All of the Plugins must be added before this line
 " }}}
 
 " }}}
@@ -174,8 +173,8 @@ nmap - :CocCommand explorer<cr>
 " }}}
 
 " Coc-fzf-preview {{{
-nmap <Leader><space> :CocCommand fzf-preview.ProjectFiles<cr>
-xmap <Leader><space> :CocCommand fzf-preview.ProjectFiles<cr>
+nmap <Leader><space> :CocCommand fzf-preview.DirectoryFiles<cr>
+xmap <Leader><space> :CocCommand fzf-preview.DirectoryFiles<cr>
 
 nnoremap <Leader><tab>    :CocCommand fzf-preview.AllBuffers<cr>
 nnoremap <Leader>g :CocCommand fzf-preview.FromResources project_mru git<cr>
@@ -191,10 +190,10 @@ set cmdheight=2
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 
-" don't give |ins-completion-menu| messages.
+" Don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-" always show signcolumns
+" Always show signcolumns
 set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -214,7 +213,7 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
+" Position. Coc only does snippet and additional edit on confirm.
 if has('patch8.1.1068')
   " Use `complete_info` if your (Neo)Vim version supports it.
   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
@@ -275,7 +274,7 @@ omap af <Plug>(coc-funcobj-a)
 
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
+" Coc-tsserver, coc-python are the examples of servers that support it.
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 
@@ -286,7 +285,7 @@ map <leader>A :Format <cr>
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-" use `:OR` for organize import of current buffer
+" Use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -326,7 +325,7 @@ nmap <c-x><c-n> <plug>(fzf-maps-n)
 xmap <c-x><c-x> <plug>(fzf-maps-x)
 omap <c-x><c-o> <plug>(fzf-maps-o)
 
-" fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
+" Fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
 nmap <c-P> :Commands<cr>
 
 nmap <c-B> :Buffers<cr>
@@ -357,18 +356,18 @@ autocmd! User GoyoLeave Limelight!
 
 " Markdown Preview {{{
 
-" options for markdown render
-" mkit: markdown-it options for render
-" katex: katex options for math
-" uml: markdown-it-plantuml options
-" maid: mermaid options
-" disable_sync_scroll: if disable sync scroll, default 0
-" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+" Options for markdown render
+" Mkit: markdown-it options for render
+" Katex: katex options for math
+" Uml: markdown-it-plantuml options
+" Maid: mermaid options
+" Disable_sync_scroll: if disable sync scroll, default 0
+" Sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
 "   middle: mean the cursor position alway show at the middle of the preview page
 "   top: mean the vim top viewport alway show at the top of the preview page
 "   relative: mean the cursor position alway show at the relative positon of the preview page
-" hide_yaml_meta: if hide yaml metadata, default is 1
-" sequence_diagrams: js-sequence-diagrams options
+" Hide_yaml_meta: if hide yaml metadata, default is 1
+" Sequence_diagrams: js-sequence-diagrams options
 let g:mkdp_preview_options = {
     \ 'mkit': {},
     \ 'katex': {},
@@ -391,9 +390,9 @@ let g:netrw_liststyle      = 3     " Tree View
 let g:netrw_winsize        = 80    " Make split 20 (100-80) characters wide
 let g:netrw_banner         = 0     " Remove Banner
 let g:netrw_altv           = 1     " Open Splits to the right
-let g:netrw_fastbrowse     = 2     " fast browsing (re-use directory buffer listings as often as possible).
+let g:netrw_fastbrowse     = 2     " Fast browsing (re-use directory buffer listings as often as possible).
 let g:netrw_keepdir        = 0     " =0 keep the current directory the same as the browsing directory.
-let g:netrw_special_syntax = 1     " certain files will be shown using special syntax in the browser:
+let g:netrw_special_syntax = 1     " Certain files will be shown using special syntax in the browser:
 
 " }}}
 
@@ -452,7 +451,7 @@ let g:terraform_fmt_on_save=1
 
 if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
         let g:UltiSnipsEditSplit = "context"
-        " call mkdir($HOME . "~/.vim/UltiSnips", "p")
+        " Call mkdir($HOME . "~/.vim/UltiSnips", "p")
         let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
     endif
 
@@ -469,6 +468,12 @@ let g:undotree_SetFocusWhenToggle = 1
 if !exists('g:undotree_WindowLayout')
     let g:undotree_WindowLayout = 2
 endif
+" }}}
+
+" Vim-go {{{
+" Disable vim-go :GoDef short cut (gd)
+" This is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
 " }}}
 
 " Vista {{{
@@ -541,12 +546,6 @@ nnoremap <leader>vt :Vista toc <cr>
 
 " }}}
 
-" Vim-go {{{
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-" }}}
-
 " Which-key {{{
 noremap <silent> <leader> :WhichKey '<Space>'<cr>
 autocmd! FileType which_key
@@ -577,7 +576,7 @@ let g:lightline = {
        \   'cocstatus': 'coc#status',
        \   'currentfunction': 'CocCurrentFunction'
        \ },
-       \ 'separator': { 'left': "  \ue0b0", 'right': "\ue0b2" },
+       \ 'separator': { 'left': "   \ue0b0", 'right': "\ue0b2" },
        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
        \ }
 " }}}
@@ -607,10 +606,10 @@ colorscheme nord
 " Mappings {{{
 
 " Augroups {{{
-" augroup minivmrc {{{
+" Augroup minivmrc {{{
 augroup minivimrc
   autocmd!
-  " automatic location/quickfix window
+  " Automatic location/quickfix window
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost    l* lwindow
   autocmd QuickFixCmdPost grep cwindow
@@ -621,7 +620,7 @@ augroup minivimrc
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
+  " Inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
    \   exe "normal g`\"" |
@@ -694,16 +693,16 @@ augroup md
   autocmd FileType markdown,txt setlocal complete+=k~/.vim/spell/en.utf-8.add
   autocmd FileType markdown,txt setlocal spell
 
-  " indentation for markdown files 
+  " Indentation for markdown files 
   autocmd FileType markdown setlocal shiftwidth=2
   autocmd FileType markdown setlocal tabstop=2
   autocmd FileType markdown setlocal softtabstop=2
 
-  " executes file based on type
+  " Executes file based on type
   autocmd FileType markdown noremap <leader>r :MarkdownPreview<cr>
   autocmd FileType markdown noremap <leader>rq :MarkdownPreviewStop<cr>
 
-  " allow markdown to syntax highlight inside code blocks.
+  " Allow markdown to syntax highlight inside code blocks.
   autocmd FileType markdown let g:markdown_fenced_languages = ['powershell', 'html', 'python', 'bash=sh', 'ruby']
   
   set nocompatible
@@ -750,13 +749,13 @@ vnoremap <C-l> $
 nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
 " }}}
 
-" OS specific commands {{{
+" [unused] OS specific commands {{{
 if has("unix")
   " *nix
   " *nix subsets
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
-    " macOS
+    " MacOS
     set guifont=FuraCodeNerdFontComplete-Regular:h18
     nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
@@ -809,11 +808,11 @@ nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
 " }}}
 
 " SpaceMacs Org-Mode style agenda bindings {{{
-nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>ts :.s/\(TODO\\|WAITING\)/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
-nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc><C-O>
+nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>tw :.s/TODO/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>ts :.s/\(TODO\\|WAITING\)/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
 nnoremap <leader>at :grep " TODO" *<cr>
 nnoremap <leader>ah :grep HTODO *<cr>
 nnoremap <leader>aw :grep WAITING *<cr>
@@ -821,7 +820,7 @@ nnoremap <leader>ad :grep DONE *<cr>
 nnoremap <leader>as :grep SCHEDULED *<cr>
 " }}}
 
-" source and reload current file {{{
+" Source and reload current file {{{
 nnoremap <leader>so :w<cr> :so %<cr>
 nnoremap <leader>sor :w<cr> :so %<cr> e %
 nnoremap <leader>pi :w<cr> :so %<cr> :PlugInstall<cr>
@@ -864,16 +863,15 @@ nnoremap <A-l> <C-w>l
 " Vimwiki style jump bindings {{{
 nnoremap <leader>ww :e ~/Repositories/Azure/Sandia/wnotes/todo.md<cr>:cd %:h<cr>
 nnoremap <leader>wd :e ~/Repositories/Azure/Sandia/wnotes/done.md<cr>:cd %:h<cr>
-nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people.md<cr>:cd %:h<cr>
-nnoremap <leader>wl :e ~/Repositories/Azure/Sandia/wnotes/quicklinks/go<cr>:cd %:h<cr>
+nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people/people.md<cr>:cd %:h<cr>
+nnoremap <leader>wl :e ~/Repositories/Azure/Sandia/wnotes/quicklinks.md<cr>:cd %:h<cr>
 nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
 " }}}
 
 " }}}
 
-" Functions [disabled] {{{ 
-
-" function Mkindex() {{{
+" [unused] Functions {{{ 
+" Function Mkindex() {{{
 " This was used to grab all files in an directory and make an index to them in
 " a markdown file.  Haven't used this is a long time [2020-03-11].
 "     :read !ls
