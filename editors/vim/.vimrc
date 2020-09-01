@@ -78,7 +78,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
-" Plug 'Yggdroot/indentLine'                    " Displaying thin vertical lines at each indentation level for code indented with spaces.
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
 Plug 'honza/vim-snippets'                     " Snippets for UltiSnips
@@ -115,12 +114,13 @@ Plug 'tpope/vim-unimpaired'                   " Pairs of handy bracket mappings
 Plug 'will133/vim-dirdiff'                    " Recursively diff on two directories
 
 " Color schemes
-Plug 'altercation/vim-colors-solarized'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
+Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
+Plug 'romainl/flattened'
 Plug 'sickill/vim-monokai'
 Plug 'srcery-colors/srcery-vim'
-Plug 'NLKNguyen/papercolor-theme'
 
 
 call plug#end() " Required, All of the Plugins must be added before this line
@@ -159,7 +159,6 @@ let g:coc_global_extensions = [
 runtime macros/matchit.vim
 
 " }}}
-
 " }}}
 
 " Plugin settings {{{
@@ -459,6 +458,7 @@ if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
 let g:UltiSnipsExpandTrigger="<Nop>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+imap <C-u> * <C-R>=UltiSnips#ListSnippets()<CR>
 
 " }}}
 
@@ -588,10 +588,6 @@ let g:nord_italic_comments = 1
 
 " Papercolor {{{
 " set background=light
-" }}}
-
-" Solarized {{{
-let solarized_termtrans = 1               " This gets rid of the grey background in the terminal when using solarized.
 " }}}
 
 "  Srcry {{{

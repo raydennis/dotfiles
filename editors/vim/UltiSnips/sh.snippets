@@ -1,0 +1,31 @@
+snippet skeletonNewProject
+if [[ ! -a .git/config ]]; then 
+    git init
+fi
+
+mkdir deploy
+mkdir deploy/ansible
+mkdir deploy/ansible/roles
+mkdir deploy/ansible/files
+mkdir deploy/packer
+mkdir deploy/terraform
+mkdir deploy/terraform/root
+mkdir deploy/terraform/root/env
+mkdir deploy/terraform/test
+
+cd deploy/terraform
+git submodule add https://NWMProject@dev.azure.com/NWMProject/Configuration%20Management/_git/terraform-modules modules
+
+echo "skeleton created!!!"
+echo ""
+echo "Next steps:"
+echo "1. add the appropriate terraform modules to ./deploy/terraform/modules"
+echo "example:"
+echo "   cd ./deploy/terraform/"
+echo "   git submodule add https://NWMProject@dev.azure.com/NWMProject/Configuration%20Management/_git/terraform-modules"
+echo ""
+echo "2. add the appropriate ansible roles to ./deploy/ansible/roles"
+echo "example:"
+echo "   cd ./deploy/ansible/roles/"
+echo "   git submodule add https://NWMProject@dev.azure.com/NWMProject/Configuration%20Management/_git/ansible-role-win-iis"
+endsnippet

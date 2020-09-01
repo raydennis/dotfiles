@@ -1,3 +1,6 @@
+# powerlevel10k theme
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
 # set vim keybindings (seems to break when used with oh-my-zsh)
 set -o vi
 
@@ -11,89 +14,6 @@ compinit -u
 # - Substring complete (ie. bar -> foobar).
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-
-# # Review between 'gh-pages' and the current branch
-# REVIEW_BASE=gh-pages git stat
-
-# # Review changes made by the last commit of this branch:
-# REVIEW_BASE=HEAD^ git stat
-export REVIEW_BASE=master
-
-#
-# Prompt
-#
-autoload -U colors
-colors
-# http://zsh.sourceforge.net/Doc/Release/User-Contributions.html
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git hg
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr "%F{green}●%f" # default 'S'
-zstyle ':vcs_info:*' unstagedstr "%F{red}●%f" # default 'U'
-zstyle ':vcs_info:*' use-simple true
-zstyle ':vcs_info:git+set-message:*' hooks git-untracked
-zstyle ':vcs_info:git*:*' formats '[%b%m%c%u] ' # default ' (%s)-[%b]%c%u-'
-zstyle ':vcs_info:git*:*' actionformats '[%b|%a%m%c%u] ' # default ' (%s)-[%b|%a]%c%u-'
-zstyle ':vcs_info:hg*:*' formats '[%m%b] '
-zstyle ':vcs_info:hg*:*' actionformats '[%b|%a%m] '
-zstyle ':vcs_info:hg*:*' branchformat '%b'
-zstyle ':vcs_info:hg*:*' get-bookmarks true
-zstyle ':vcs_info:hg*:*' get-revision true
-zstyle ':vcs_info:hg*:*' get-mq false
-zstyle ':vcs_info:hg*+gen-hg-bookmark-string:*' hooks hg-bookmarks
-zstyle ':vcs_info:hg*+set-message:*' hooks hg-message
-
-
-# functions
-function +vi-hg-bookmarks() {
-  emulate -L zsh
-  if [[ -n "${hook_com[hg-active-bookmark]}" ]]; then
-    hook_com[hg-bookmark-string]="${(Mj:,:)@}"
-    ret=1
-  fi
-}
-function +vi-hg-message() {
-  emulate -L zsh
-  # Suppress hg branch display if we can display a bookmark instead.
-  if [[ -n "${hook_com[misc]}" ]]; then
-    hook_com[branch]=''
-  fi
-  return 0
-}
-function +vi-git-untracked() {
-  emulate -L zsh
-  if [[ -n $(git ls-files --exclude-standard --others 2> /dev/null) ]]; then
-    hook_com[unstaged]+="%F{cyan}●%f"
-  fi
-}
-RPROMPT_BASE="\${vcs_info_msg_0_}%F{cyan}%~%f"
-setopt PROMPT_SUBST
-# Anonymous function to avoid leaking NBSP variable.
-function () {
-  if [[ -n "$TMUX" ]]; then
-    local LVL=$(($SHLVL - 1))
-  else
-    local LVL=$SHLVL
-  fi
-  if [[ $EUID -eq 0 ]]; then
-    local SUFFIX=$(printf '#%.0s' {1..$LVL})
-  else
-    local SUFFIX=$(printf '\$%.0s' {1..$LVL})
-  fi
-  if [[ -n "$TMUX" ]]; then
-    # Note use a non-breaking space at the end of the prompt because we can use it as
-    # a find pattern to jump back in tmux.
-    local NBSP=' '
-    export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{cyan}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f${NBSP}"
-    export ZLE_RPROMPT_INDENT=0
-  else
-    # Don't bother with ZLE_RPROMPT_INDENT here, because it ends up eating the
-    # space after PS1.
-    export PS1="%F{green}${SSH_TTY:+%n@%m}%f%B${SSH_TTY:+:}%b%F{cyan}%1~%F{yellow}%B%(1j.*.)%(?..!)%b%f%F{red}%B${SUFFIX}%b%f "
-  fi
-}
-export RPROMPT=$RPROMPT_BASE
-export SPROMPT="zsh: correct %F{red}'%R'%f to %F{red}'%r'%f [%B%Uy%u%bes, %B%Un%u%bo, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
 
 #
 # History
@@ -140,6 +60,7 @@ alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test1
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias v="nvim"
+alias vim="nvim"
 alias vino="nvim -u NONE"
 alias weather="curl wttr.in"
 
@@ -247,65 +168,6 @@ zle -N fg-bg
 bindkey '^Z' fg-bg
 
 #
-# Hooks
-#
-autoload -U add-zsh-hook
-function set-tab-and-window-title() {
-  emulate -L zsh
-  local CMD="${1:gs/$/\\$}"
-  print -Pn "\e]0;$CMD:q\a"
-}
-function update-window-title-precmd() {
-  emulate -L zsh
-  set-tab-and-window-title `history | tail -1 | cut -b8-`
-}
-add-zsh-hook precmd update-window-title-precmd
-function update-window-title-preexec() {
-  emulate -L zsh
-  setopt extended_glob
-  # skip ENV=settings, sudo, ssh; show first distinctive word of command;
-  # mostly stolen from:
-  #   https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/termsupport.zsh
-  set-tab-and-window-title ${2[(wr)^(*=*|mosh|ssh|sudo)]}
-}
-add-zsh-hook preexec update-window-title-preexec
-typeset -F SECONDS
-function record-start-time() {
-  emulate -L zsh
-  ZSH_START_TIME=${ZSH_START_TIME:-$SECONDS}
-}
-add-zsh-hook preexec record-start-time
-function report-start-time() {
-  emulate -L zsh
-  if [ $ZSH_START_TIME ]; then
-    local DELTA=$(($SECONDS - $ZSH_START_TIME))
-    local DAYS=$((~~($DELTA / 86400)))
-    local HOURS=$((~~(($DELTA - $DAYS * 86400) / 3600)))
-    local MINUTES=$((~~(($DELTA - $DAYS * 86400 - $HOURS * 3600) / 60)))
-    local SECS=$(($DELTA - $DAYS * 86400 - $HOURS * 3600 - $MINUTES * 60))
-    local ELAPSED=''
-    test "$DAYS" != '0' && ELAPSED="${DAYS}d"
-    test "$HOURS" != '0' && ELAPSED="${ELAPSED}${HOURS}h"
-    test "$MINUTES" != '0' && ELAPSED="${ELAPSED}${MINUTES}m"
-    if [ "$ELAPSED" = '' ]; then
-      SECS="$(print -f "%.2f" $SECS)s"
-    elif [ "$DAYS" != '0' ]; then
-      SECS=''
-    else
-      SECS="$((~~$SECS))s"
-    fi
-    ELAPSED="${ELAPSED}${SECS}"
-    local ITALIC_ON=$'\e[3m'
-    local ITALIC_OFF=$'\e[23m'
-    export RPROMPT="%F{cyan}%{$ITALIC_ON%}${ELAPSED}%{$ITALIC_OFF%}%f $RPROMPT_BASE"
-    unset ZSH_START_TIME
-  else
-    export RPROMPT="$RPROMPT_BASE"
-  fi
-}
-add-zsh-hook precmd report-start-time
-
-#
 # auto ls after a cd
 #
 function auto-ls-after-cd() {
@@ -318,10 +180,6 @@ function auto-ls-after-cd() {
 }
 add-zsh-hook chpwd auto-ls-after-cd
 
-#
-# for prompt
-#
-add-zsh-hook precmd vcs_info
 
 # 
 # Path
@@ -334,12 +192,11 @@ export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 #
 # Go development
 #
-
 export GOPATH="${HOME}/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="/usr/local/opt/go/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+# test -d "${GOPATH}" || mkdir "${GOPATH}" 
+# test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
 #
 # Mage
@@ -356,3 +213,6 @@ export TERM="xterm-256color"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

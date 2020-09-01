@@ -146,3 +146,9 @@ cp ~/Repositories/Github/raydennis/dotfiles/tools/gitk/gitk ~/.config/git/
 # rm ~/Library/Application\ Support/VSCodium/User/keybindings.json
 # ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vscode/settings.json ~/Library/Application\ Support/VSCodium/User/settings.json
 # ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ Support/VSCodium/User/keybindings.json
+
+# Node
+brew install node
+mkdir "${HOME}/.npm-packages"
+npm config set prefix "${HOME}/.npm-packages"
+

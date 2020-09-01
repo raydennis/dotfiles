@@ -45,7 +45,7 @@
         "commands": ["workbench.action.terminal.focus"],
       },
     ],
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "git.confirmSync": false,
     "python.linting.flake8Enabled": true,
     "editor.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
@@ -60,12 +60,18 @@
       "exclude": [
         ".terraform/**/*",
         "**/.terraform/**/*"
-      ]
-    },
+      ] },
     "diffEditor.renderSideBySide": true,
     "http.proxyStrictSSL": false,
     "go.formatTool": "goimports",
     "go.useLanguageServer": true,
     "editor.multiCursorModifier": "alt",
-    "python.languageServer": "Microsoft"
+    "python.languageServer": "Microsoft",
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/local/bin/nvim",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
   }

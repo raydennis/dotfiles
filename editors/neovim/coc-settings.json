@@ -10,13 +10,6 @@
 
   "signature.target": "echo",
 
-  "suggest.triggerAfterInsertEnter": false,
-  "suggest.timeout": 500,
-  "suggest.noselect": false,
-  "suggest.snippetIndicator": "★",
-  "suggest.triggerCompletionWait": 100,
-  "suggest.echodocSupport": true,
-
   "python.jediEnabled": false,
   "python.envFile": "~/.virtualenv/${workspaceFolder}/.env",
   "languageserver": {
@@ -50,6 +43,7 @@
   "git.removedSign.text": "",
 
   "explorer.icon.enableNerdfont": true,
+  "explorer.file.autoReveal":true,
 
   "coc.preferences.currentFunctionSymbolAutoUpdate": true
 }
