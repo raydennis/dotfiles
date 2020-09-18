@@ -314,6 +314,9 @@ nnoremap <silent> ;p  :<C-u>CocListResume<cr>
 
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 
+" [Make :Ag not match file names, only the file content](https://github.com/junegunn/fzf.vim/issues/346)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
