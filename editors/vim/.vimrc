@@ -474,12 +474,6 @@ if !exists('g:undotree_WindowLayout')
 endif
 " }}}
 
-" Vim-go {{{
-" Disable vim-go :GoDef short cut (gd)
-" This is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-" }}}
-
 " Vista {{{
 let g:vista#renderer#enable_icon = 1
 
