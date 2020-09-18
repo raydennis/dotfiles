@@ -79,6 +79,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'             " Tables
+Plug 'mzlogin/vim-markdown-toc'               " Create a table of contents for your markdown
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
 Plug 'honza/vim-snippets'                     " Snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
