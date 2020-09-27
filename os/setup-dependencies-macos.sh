@@ -1,3 +1,6 @@
+# install qlmarkdown, a finder plugin to preview markdown
+brew cask install qlmarkdown
+
 # install zsh
 brew install zsh z zsh-syntax-highlighting zsh-autosuggestions
 
