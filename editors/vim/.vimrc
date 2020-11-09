@@ -732,6 +732,9 @@ nnoremap <C-k> {
 vnoremap <C-k> {
 nnoremap <C-l> $
 vnoremap <C-l> $
+
+cnoremap <C-j> <C-g>
+cnoremap <C-k> <C-t>
 " }}}
 
 " Move screenshots to current directory {{{
