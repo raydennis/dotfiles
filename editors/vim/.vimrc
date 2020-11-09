@@ -436,10 +436,6 @@ let g:surround_{char2nr('u')} = "<li>\r</li>"
 let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
 " }}}
 
-" Table-mode {{{
-vnoremap <leader>ti :Tableize/	
-" }}}
-
 " Terraform {{{
 " Allow vim-terraform to align settings automatically with Tabularize.
 let g:terraform_align=1
