@@ -131,13 +131,13 @@ let g:coc_global_extensions = [
             \ 'coc-docker',
             \ 'coc-eslint',
             \ 'coc-explorer',
+            \ 'coc-fzf-preview',
             \ 'coc-git',
+            \ 'coc-go',
+            \ 'coc-gocode',
             \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
-            \ 'coc-fzf-preview',
-            \ 'coc-go',
-            \ 'coc-gocode',
             \ 'coc-markdownlint',
             \ 'coc-marketplace',
             \ 'coc-pairs',
@@ -145,12 +145,14 @@ let g:coc_global_extensions = [
             \ 'coc-powershell',
             \ 'coc-prettier',
             \ 'coc-python',
-            \ 'coc-ultisnips',
             \ 'coc-tslint-plugin',
             \ 'coc-tsserver',
+            \ 'coc-ultisnips',
             \ 'coc-yaml',
             \ 'coc-yank'
             \ ]
+
+
 
 " }}}
 " Built in {{{
