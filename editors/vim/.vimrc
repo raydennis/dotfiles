@@ -80,6 +80,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips'                       " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'             " Tables
 Plug 'francoiscabrol/ranger.vim'              " Ranger integration
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'honza/vim-snippets'                     " Snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'itchyny/lightline.vim'                  " Statusbar
