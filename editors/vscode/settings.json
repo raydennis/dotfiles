@@ -73,5 +73,6 @@
       "other": true,
       "comments": true,
       "strings": true
-    }
+    },
+    "azure.cloud": "AzureCloud"
   }

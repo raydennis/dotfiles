@@ -126,7 +126,6 @@ snippet ansible-task-win_shell-run-scheduled-task
 win_shell: Start-ScheduledTask -TaskName "InstallBlueDragon"
 endsnippet
 
-
 snippet ansible-role-win_psexec
 - name: install bluedragon with pywinauto
 win_psexec:
@@ -135,4 +134,12 @@ nobanner: yes
 elevated: yes
 chdir: C:\tmp\
 		command: python pywinauto-install-bluedragon.py
+endsnippet
+
+snippet ansible-task-win_registry
+- name: Add or update registry path for FSLogix
+win_regedit:
+path: HKLM:\Software\FSLogix\Profiles\
+  name: VHDLocations
+  data: \\netapp-1c7f.nwm.doe.gov\wvdv2-session-volume
 endsnippet
