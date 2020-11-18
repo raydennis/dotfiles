@@ -413,7 +413,14 @@ nnoremap yrp :RainbowParentheses!!<cr>
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'v': '~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc'}, {'z': '~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}, {'r': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rc.conf'}, {'d': '~/gitHub/dotfiles/'}, {'c': '/Users/rsdenni/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json'} ]
+let g:startify_bookmarks = [
+    \ {'c': '/Users/rsdenni/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json'},
+    \ {'d': '~/gitHub/dotfiles/'}, 
+    \ {'r': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rc.conf'},
+    \ {'s': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/scope.sh'},
+    \ {'v': '~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc'},
+    \ {'z': '~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}
+    \ ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
