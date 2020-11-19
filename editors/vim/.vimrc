@@ -6,8 +6,10 @@ autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight de
 
 " }}}
 
-" Required {{{ 
+" Required {{{
+
 filetype plugin indent on                 " Required
+
 " }}}
 
 " Set and Let {{{
@@ -872,7 +874,8 @@ nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr
 
 " }}}
 
-" [unused] Functions {{{ 
+" Functions {{{
+
 " Function Mkindex() {{{
 " This was used to grab all files in an directory and make an index to them in
 " a markdown file.  Haven't used this is a long time [2020-03-11].
@@ -883,6 +886,26 @@ nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr
 "     :%norm ^f.dt]
 " endfunction
 " }}}
+
+" Function Folds {{{
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+" }}}
+hi Folded ctermbg=None ctermfg=Blue guibg=None guifg=Blue
 
 " }}}
 
