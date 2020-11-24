@@ -101,6 +101,7 @@ Plug 'masukomi/vim-markdown-folding'          " This plugins enables you to fold
 Plug 'mbbill/undotree'                        " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                     " Provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'phenomenes/ansible-snippets'            " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
 Plug 'rbgrouleff/bclose.vim'                  " Ranger dependency for neovim
 Plug 'sebdah/vim-delve'
@@ -589,6 +590,7 @@ let g:lightline = {
 " Nord https://www.nordtheme.com/ports/vim {{{ 
 let g:nord_italic = 1
 let g:nord_italic_comments = 1
+let g:nord_uniform_diff_background = 1
 " }}}
 
 " Papercolor {{{
@@ -596,8 +598,8 @@ let g:nord_italic_comments = 1
 " }}}
 
 "  Srcry {{{
-let g:srcry_italic = 1
-let g:srcry_inverse_match_paren = 1
+" let g:srcry_italic = 1
+" let g:srcry_inverse_match_paren = 1
 " }}}
 
 colorscheme nord
