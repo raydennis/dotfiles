@@ -37,7 +37,7 @@
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.colorTheme": "Winter is Coming (Dark Blue)",
+    "workbench.colorTheme": "Visual Studio Dark",
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
       {
