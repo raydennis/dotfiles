@@ -153,7 +153,7 @@ let g:coc_global_extensions = [
             \ 'coc-phpls',
             \ 'coc-powershell',
             \ 'coc-prettier',
-            \ 'coc-python',
+            \ 'coc-pyright',
             \ 'coc-tslint-plugin',
             \ 'coc-tsserver',
             \ 'coc-ultisnips',
