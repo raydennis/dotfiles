@@ -190,6 +190,8 @@ nnoremap <Leader><tab>    :CocCommand fzf-preview.AllBuffers<cr>
 nnoremap <Leader>g :CocCommand fzf-preview.FromResources project_mru git<cr>
 " }}}
 
+nnoremap <leader>cc :CocCommand
+
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -439,6 +441,7 @@ let g:startify_skiplist = [
 nnoremap <leader>s :Startify<cr>
 nnoremap <leader>ss :SSave<cr>
 nnoremap <leader>sl :SLoad<cr>
+nnoremap <leader>sd :SDelete<cr>
 " }}}
 
 " Surround {{{
