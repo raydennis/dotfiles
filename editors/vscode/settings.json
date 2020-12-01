@@ -37,12 +37,16 @@
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Nord Native",
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
       {
         "before": ["<leader>", "'"],
         "commands": ["workbench.action.terminal.focus"],
+      },
+      {
+        "before": ["<leader>", "d"],
+        "commands": ["gitlens.diffWithPreviousInDiffLeft"],
       },
     ],
     "window.zoomLevel": 2,
