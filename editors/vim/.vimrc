@@ -55,6 +55,8 @@ set undodir=$HOME/.vim/undo                              " Where to save undo hi
 set undofile                                             " Save undos after file closes
 set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
+set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
+set foldexpr=nvim_treesitter#foldexpr()
 
 " Default Tab settings (file specific ones also set in the augroups) {{{{
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
@@ -256,7 +258,7 @@ nmap <leader>rn <Plug>(coc-rename)
 augroup cocgroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,python,go setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json,python setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -645,11 +647,12 @@ augroup END
 augroup go
     autocmd!
     autocmd FileType go setlocal number
-    autocmd FileType go setlocal foldmethod=syntax
     autocmd FileType go nmap <f9> :DlvToggleBreakpoint<cr>
     autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
     autocmd BufWritePre *.go :silent ! "gofmt -w" % <cr> :e % <cr>
     autocmd FileType go nmap <f5> :DlvTest<cr>
+    autocmd FileType go nnoremap <leader>r :! go run % <cr>
+    autocmd FileType go nnoremap <leader>gp :CocCommand go.playground <cr>
 augroup END
 " }}}
 
@@ -657,9 +660,7 @@ augroup END
 augroup python
     autocmd!
     autocmd FileType python setlocal number
-    autocmd FileType python setlocal foldmethod=indent
-    autocmd FileType python nnoremap <leader>r :CocCommand python.execInTerminal<cr>
-    autocmd FileType python vnoremap <leader>r :CocCommand python.execSelectionInTerminal<cr>
+    autocmd FileType python nnoremap <leader>r :! python3 % <cr>
 augroup END
 " }}}
 
@@ -667,7 +668,6 @@ augroup END
 augroup json
     autocmd!
     autocmd FileType json setlocal number
-    autocmd FileType json setlocal foldmethod=syntax
 augroup END
 " }}}
 
