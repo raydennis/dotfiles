@@ -81,45 +81,43 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-                                                   " Pinned due to: https://github.com/nvim-treesitter/nvim-treesitter/issues/700 
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Adds Go language support for Vim (no needed with coc-go and treesitter)
-Plug 'SirVer/ultisnips'                            " Ultimate snippet solution for Vim
-Plug 'dhruvasagar/vim-table-mode'                  " Tables
-Plug 'francoiscabrol/ranger.vim'                   " Ranger integration
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'honza/vim-snippets'                          " Snippets for UltiSnips
+Plug 'SirVer/ultisnips'                                      " Ultimate snippet solution for Vim
+Plug 'dhruvasagar/vim-table-mode'                            " Tables
+Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
+Plug 'honza/vim-snippets'                                    " Snippets for UltiSnips
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'itchyny/lightline.vim'                       " Statusbar
-Plug 'jkramer/vim-checkbox'                        " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
+Plug 'itchyny/lightline.vim'                                 " Statusbar
+Plug 'jkramer/vim-checkbox'                                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'                            " Fuzzy finding
-Plug 'junegunn/goyo.vim'                           " Distraction-free writing in Vim.
-Plug 'junegunn/gv.vim'                             " A git commit browser.
-Plug 'junegunn/limelight.vim'                      " Hyperfocus-writing in Vim.
-Plug 'junegunn/vim-peekaboo'                       " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
-Plug 'liuchengxu/vim-which-key'                    " Vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
-Plug 'liuchengxu/vista.vim'                        " View and search LSP symbols, tags in Vim/NeoVim.
-Plug 'markonm/traces.vim'                          " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
-Plug 'mbbill/undotree'                             " Visual representation of undo tree
-Plug 'mhinz/vim-startify'                          " Provides a start screen for Vim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'nvim-treesitter/nvim-treesitter'             " The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it:
-Plug 'phenomenes/ansible-snippets'                 " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
-Plug 'rbgrouleff/bclose.vim'                       " Ranger dependency for neovim
+Plug 'junegunn/fzf.vim'                                      " Fuzzy finding
+Plug 'junegunn/goyo.vim'                                     " Distraction-free writing in Vim.
+Plug 'junegunn/gv.vim'                                       " A git commit browser.
+Plug 'junegunn/limelight.vim'                                " Hyperfocus-writing in Vim.
+Plug 'junegunn/vim-peekaboo'                                 " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+Plug 'liuchengxu/vim-which-key'                              " Vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
+Plug 'liuchengxu/vista.vim'                                  " View and search LSP symbols, tags in Vim/NeoVim.
+Plug 'markonm/traces.vim'                                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
+Plug 'mbbill/undotree'                                       " Visual representation of undo tree
+Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}              " Make your Vim/Neovim as smart as VSCode.
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it:
+Plug 'phenomenes/ansible-snippets'                           " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
+Plug 'rbgrouleff/bclose.vim'                                 " Ranger dependency for neovim
 Plug 'sebdah/vim-delve'
-Plug 'sheerun/vim-polyglot'                        " Syntax highlighting for multiple languages
-Plug 'tommcdo/vim-lion'                            " Align based on a character ex :glip(char)
-Plug 'tpope/vim-commentary'                        " Comment out code with gcc
-Plug 'tpope/vim-eunuch'                            " Vim sugar for the UNIX shell commands that need it the most
-Plug 'tpope/vim-fugitive'                          " Adds git functionality to vim ex. :Gdiff
-Plug 'tpope/vim-repeat'                            " Enable repeating supported plugin maps with
-Plug 'tpope/vim-scriptease'                        " A Vim plugin for Vim plugins
-Plug 'tpope/vim-speeddating'                       " Quickly modify dates.
-Plug 'tpope/vim-surround'                          " Provides mappings to easily delete, change and add such surroundings in pairs
-Plug 'tpope/vim-unimpaired'                        " Pairs of handy bracket mappings
-Plug 'vim-pandoc/vim-pandoc'                       " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
-Plug 'vim-pandoc/vim-pandoc-syntax'                " Needed for the sytnax highlighting
-Plug 'will133/vim-dirdiff'                         " Recursively diff on two directories
+Plug 'sheerun/vim-polyglot'                                  " Syntax highlighting for multiple languages
+Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
+Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
+Plug 'tpope/vim-eunuch'                                      " Vim sugar for the UNIX shell commands that need it the most
+Plug 'tpope/vim-fugitive'                                    " Adds git functionality to vim ex. :Gdiff
+Plug 'tpope/vim-repeat'                                      " Enable repeating supported plugin maps with
+Plug 'tpope/vim-scriptease'                                  " A Vim plugin for Vim plugins
+Plug 'tpope/vim-speeddating'                                 " Quickly modify dates.
+Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
+Plug 'vim-pandoc/vim-pandoc'                                 " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
+Plug 'vim-pandoc/vim-pandoc-syntax'                          " Needed for the sytnax highlighting
+Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
 
 " Color schemes
 Plug 'lifepillar/vim-solarized8'
