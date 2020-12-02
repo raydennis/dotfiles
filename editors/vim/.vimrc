@@ -579,7 +579,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-       \ 'colorscheme': 'solarized',
+       \ 'colorscheme': 'apprentice',
        \ 'active': {
        \   'left': [ [ 'paste' ],
        \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
@@ -594,10 +594,36 @@ let g:lightline = {
        \ }
 " }}}
 
+" Apprentice {{{
+
+" (this is mostly for apprentice, but would apply to others as well)
+function! MyHighlights() abort
+
+    " Use the terminal emulator backround color
+    highlight Normal ctermbg=none
+    " Make comments italic
+    highlight Comment cterm=italic
+
+    hi DiffAdd     cterm=none  ctermbg=DARKGREEN   ctermfg=none
+    hi DiffChange  cterm=none  ctermbg=DARKYELLOW  ctermfg=none
+    hi DiffDelete  cterm=none  ctermbg=DARKRED     ctermfg=none
+    hi DiffText    cterm=none  ctermbg=DARKYELLOW  ctermfg=none
+
+endfunction
+
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * call MyHighlights()
+augroup END
+" }}}
+
+
 " Nord https://www.nordtheme.com/ports/vim {{{ 
 let g:nord_italic = 1
 let g:nord_italic_comments = 1
 let g:nord_uniform_diff_background = 1
+let g:nord_uniform_status_lines = 1
+let &fcs='eob: ' "Changes vertical split differentiator to a blank
 " }}}
 
 " Papercolor {{{
@@ -625,13 +651,14 @@ let g:solarized_termtrans =  1
 let g:solarized_extra_hi_groups =  1
 " }}}
 
-colorscheme solarized8
+colorscheme apprentice
 
 " }}}
 
 " Mappings {{{
 
 " Augroups {{{
+
 " Augroup minivmrc {{{
 augroup minivimrc
   autocmd!
