@@ -14,7 +14,7 @@ rm ~/.vim/coc-settings.json
 ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
 
 rm -rf ~/.config/nvim
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/neovim ~/.config/nvim
+ln -s  ~/.vim  ~/.config/nvim
 
 rm -rf ~/.vim/UltiSnips
 ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/ultisnips ~/.vim/UltiSnips
