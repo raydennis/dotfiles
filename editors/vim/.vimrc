@@ -756,7 +756,7 @@ augroup md
   autocmd FileType markdown noremap <leader>rq :MarkdownPreviewStop<cr>
 
   " Allow markdown to syntax highlight inside code blocks.
-  autocmd FileType markdown let g:markdown_fenced_languages = ['powershell', 'html', 'python', 'bash=sh', 'ruby']
+  autocmd FileType markdown let g:markdown_fenced_languages = ['javascript', 'go', 'powershell', 'html', 'python', 'bash=sh', 'ruby']
   
   set nocompatible
   if has("autocmd")
