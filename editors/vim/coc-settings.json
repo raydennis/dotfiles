@@ -50,6 +50,6 @@
   "git.removedSign.text": "",
 
   "explorer.icon.enableNerdfont": true,
-
+  "explorer.file.autoReveal":true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true
 }
