@@ -605,6 +605,7 @@ function! MyHighlights() abort
     " Make comments italic
     highlight Comment cterm=italic
 
+    " Don't color text on diff.  Make background use emulator dark versions.
     hi DiffAdd     cterm=none  ctermbg=DARKGREEN   ctermfg=none
     hi DiffChange  cterm=none  ctermbg=DARKYELLOW  ctermfg=none
     hi DiffDelete  cterm=none  ctermbg=DARKRED     ctermfg=none
@@ -808,7 +809,7 @@ cnoremap <C-k> <C-t>
 nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
 " }}}
 
-" [unused] OS specific commands {{{
+" OS specific commands {{{
 if has("unix")
   " *nix
   " *nix subsets
