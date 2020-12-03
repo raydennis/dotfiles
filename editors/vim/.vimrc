@@ -46,6 +46,7 @@ set scrolloff=20                                         " Minimal number of scr
 set showcmd                                              " Display incomplete command
 set showmatch                                            " When a bracket is inserted, briefly jump to the matching one.
 set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
+set spellfile=~/.config/nvim/spell/en.utf-8.add          " Name of the word list file where words are added for the \|zg\| and \|zw\| commands.
 set splitbelow                                           " Open new split panes to right
 set splitright                                           " Open new split panes to the bottom
 set tagcase=smart                                        " Smart	Ignore case unless an upper case letter is used
