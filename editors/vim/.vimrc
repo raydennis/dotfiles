@@ -768,10 +768,6 @@ augroup END
 
 " }}}
 
-" Azure {{{
-nnoremap <leader>aq :read ! az boards query --id 87a49530-01c0-40f0-b218-d96ab7be0be1 -o table<cr>
-" }}}
-
 " Buffers {{{
   nnoremap <BS> :buffer#<CR>
 " }}}
