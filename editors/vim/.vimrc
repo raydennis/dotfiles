@@ -153,13 +153,12 @@ let g:coc_global_extensions = [
             \ 'coc-powershell',
             \ 'coc-prettier',
             \ 'coc-pyright',
+            \ 'coc-ultisnips',
             \ 'coc-tslint-plugin',
             \ 'coc-tsserver',
-            \ 'coc-ultisnips',
             \ 'coc-yaml',
             \ 'coc-yank'
             \ ]
-
 
 
 " }}}
@@ -471,6 +470,10 @@ let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
 let g:surround_{char2nr('s')} = "snippet\rendsnippet"
 let g:surround_{char2nr('u')} = "<li>\r</li>"
 let g:surround_{char2nr('y')} = "<font face=\"verdana\" color=\"#CCCC00\">\r</font>"
+" }}}
+
+" Tablemode {{{
+let g:table_mode_corner = '|'
 " }}}
 
 " Terraform {{{
