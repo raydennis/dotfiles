@@ -755,34 +755,6 @@ augroup terraform
 augroup END
 " }}}
 
-" augroup markdown {{{
-augroup md
-  autocmd!
-
-  " Dictionary Completions
-  autocmd FileType markdown,txt setlocal complete+=k~/.vim/spell/en.utf-8.add
-  autocmd FileType markdown,txt setlocal spell
-
-  " Indentation for markdown files 
-  autocmd FileType markdown setlocal shiftwidth=2
-  autocmd FileType markdown setlocal tabstop=2
-  autocmd FileType markdown setlocal softtabstop=2
-
-  " Executes file based on type
-  autocmd FileType markdown noremap <leader>r :MarkdownPreview<cr>
-  autocmd FileType markdown noremap <leader>rq :MarkdownPreviewStop<cr>
-
-  " Allow markdown to syntax highlight inside code blocks.
-  autocmd FileType markdown let g:markdown_fenced_languages = ['javascript', 'go', 'powershell', 'html', 'python', 'bash=sh', 'ruby']
-  
-  set nocompatible
-  if has("autocmd")
-    filetype plugin indent on
-  endif
-
-augroup END
-" }}}
-
 " }}}
 
 " Buffers {{{
