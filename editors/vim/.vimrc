@@ -87,11 +87,11 @@ Plug 'SirVer/ultisnips'                                      " Ultimate snippet 
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
 Plug 'honza/vim-snippets'                                    " Snippets for UltiSnips
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'itchyny/lightline.vim'                                 " Statusbar
 Plug 'jkramer/vim-checkbox'                                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                                      " Fuzzy finding
+Plug 'yuki-ycino/fzf-preview.vim'                            " provides collection of features to assist file management using fzf
 Plug 'junegunn/goyo.vim'                                     " Distraction-free writing in Vim.
 Plug 'junegunn/gv.vim'                                       " A git commit browser.
 Plug 'junegunn/limelight.vim'                                " Hyperfocus-writing in Vim.
@@ -343,6 +343,23 @@ omap <c-x><c-o> <plug>(fzf-maps-o)
 nmap <c-P> :Commands<cr>
 
 nmap <c-B> :Buffers<cr>
+
+" }}}
+
+
+" FzfPreview {{{
+nnoremap <silent> <Leader>fm :<C-u>CocCommand fzf-preview.Marks<CR>
+nnoremap <silent> <Leader>fo :<C-u>CocCommand fzf-preview.OldFiles<CR>
+nnoremap <silent> <Leader>gs :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> <Leader>ga :<C-u>CocCommand fzf-preview.GitActions<CR>
+let g:fzf_preview_disable_mru = 0
+let g:fzf_preview_floating_window_rate = 0.8
+let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzf_preview_default_fzf_options = { '--reverse': v:true, '--preview-window': 'wrap:70%' }
+let g:fzf_preview_git_status_preview_command =
+	\ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | delta || " .
+	\ "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | delta || " .
+	\ g:fzf_preview_command
 
 " }}}
 
