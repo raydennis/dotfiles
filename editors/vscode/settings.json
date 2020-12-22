@@ -60,8 +60,25 @@
     "go.useLanguageServer": true,
     "editor.multiCursorModifier": "alt",
     "python.languageServer": "Pylance",
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<leader>", "'"],
+        "commands": ["workbench.action.terminal.focus"],
+      },
+      {
+        "before": ["<leader>", "d"],
+        "commands": ["gitlens.diffWithPreviousInDiffLeft"],
+      },
+    ],
     "vim.enableNeovim": true,
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "vim.smartcase": true,
     "vim.neovimPath": "/usr/local/bin/nvim",
+    "vim.highlightedyank.enable": true,
+    "vim.useSystemClipboard": true,
+    "vim.foldfix": true,
     "editor.quickSuggestions": {
       "other": true,
       "comments": true,
