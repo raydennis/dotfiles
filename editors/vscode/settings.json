@@ -37,18 +37,7 @@
     "team.showWelcomeMessage": false,
     "telemetry.enableTelemetry": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.colorTheme": "Nord Native",
-    "vim.leader": "<space>",
-    "vim.normalModeKeyBindingsNonRecursive": [
-      {
-        "before": ["<leader>", "'"],
-        "commands": ["workbench.action.terminal.focus"],
-      },
-      {
-        "before": ["<leader>", "d"],
-        "commands": ["gitlens.diffWithPreviousInDiffLeft"],
-      },
-    ],
+    "workbench.colorTheme": "Srcery",
     "window.zoomLevel": 2,
     "git.confirmSync": false,
     "python.linting.flake8Enabled": true,
