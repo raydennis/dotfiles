@@ -84,5 +84,6 @@
       "comments": true,
       "strings": true
     },
-    "azure.cloud": "AzureCloud"
+    "azure.cloud": "AzureCloud",
+    "todo-tree.tree.showScanModeButton": false
   }
