@@ -59,7 +59,7 @@
     "go.formatTool": "goimports",
     "go.useLanguageServer": true,
     "editor.multiCursorModifier": "alt",
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Pylance",
     "vim.enableNeovim": true,
     "vim.neovimPath": "/usr/local/bin/nvim",
     "editor.quickSuggestions": {
