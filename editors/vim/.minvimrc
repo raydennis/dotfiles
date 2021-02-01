@@ -1,0 +1,159 @@
+" Syntax {{{
+syntax on
+autocmd Syntax * syntax keyword myTodo QUESTION TODO FIXME NOTE NOTES RAY containedin=ALL | highlight def link myTodo TODO
+autocmd Syntax * syntax keyword myError ERROR WAITING SCHEDULED containedin=ALL | highlight def link myError ERROR
+autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight def link myUnderlined String
+
+" }}}
+
+" Required {{{
+
+" Set and Let {{{
+
+" Let {{{
+let mapleader = " "                       " Leader - ( Space bar )
+let maplocalleader = " "                  " LocalLeader - ( Space bar )
+" }}}
+
+" Set {{{
+
+set autoindent                                           " Copy indent from current line when starting a new line
+set autoread
+set autowriteall
+set cursorline
+set backspace=indent,eol,start                           " Make backspace act as it does on other editors
+set belloff=all                                          " Turn off all error notifications (both bell and flash)
+set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
+set fillchars+=vert:\ ,fold:\ 
+set foldlevelstart=0                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
+set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
+set grepprg=ag\ --vimgrep                                " Use ag instead of grep
+set hidden                                               " When ON a buffer becomes hidden when it is |abandon|ed.
+set hlsearch                                             " When there is a previous search pattern, highlight all its matches.
+set ignorecase                                           " The case of normal letters is ignored.
+set incsearch                                            " While typing a search command, show where pattern, as it was typed
+set lazyredraw                                           " Don't redraw screen while executing macro
+set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
+set mouse=a                                              " Enable the use of the mouse
+set nonumber                                             " No numbers on the left by default
+set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
+set scrolloff=20                                         " Minimal number of screen lines to keep above and below the cursor.
+set showcmd                                              " Display incomplete command
+set showmatch                                            " When a bracket is inserted, briefly jump to the matching one.
+set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
+set spellfile=~/.vim/spell/en.utf-8.add
+set splitbelow                                           " Open new split panes to right
+set splitright                                           " Open new split panes to the bottom
+set tagcase=smart                                        " Smart	Ignore case unless an upper case letter is used
+set tags=./tags;,tags;
+set timeoutlen=500
+set undodir=$HOME/.vim/undo                              " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
+set undofile                                             " Save undos after file closes
+set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
+set wildmode=list:longest,full
+set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
+set foldexpr=nvim_treesitter#foldexpr()
+
+" Default Tab settings (file specific ones also set in the augroups) {{{{
+set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=4                          " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
+set expandtab                             " Insert spaces instead of tab
+set softtabstop=4                         " Allows backspace to delete the spaces of an expanded tab with one key press
+" }}}}
+
+" }}}
+
+" }}}
+
+" Mappings {{{
+
+" Buffers {{{
+  nnoremap <BS> :buffer#<CR>
+" }}}
+
+" Delete swap files {{{
+nnoremap <leader>rms :! rm $HOME/.vim/swapfiles/*
+" }}}
+
+" Diffthis {{{
+nnoremap <leader>dw :windo diffthis<cr>
+" }}}
+
+" Insert current date {{{
+nnoremap <C-d>a a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+tnoremap <C-d>a a<C-R>=strftime("%Y-%m-%d")<cr><Esc>
+inoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
+cnoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
+" }}}
+
+" Movement {{{
+nnoremap <C-h> 0
+vnoremap <C-h> 0
+nnoremap <C-j> }
+vnoremap <C-j> }
+nnoremap <C-k> {
+vnoremap <C-k> {
+nnoremap <C-l> $
+vnoremap <C-l> $
+
+cnoremap <C-j> <C-g>
+cnoremap <C-k> <C-t>
+" }}}
+
+" Registers {{{
+nnoremap <Leader>y "+y
+vnoremap <Leader>y "+y
+nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
+nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
+vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
+vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
+nnoremap <leader>rp "0p"
+" }}}
+
+" Remote file management {{{
+nnoremap <leader>es :e scp://user@127.0.0.1:22//home/
+" }}}
+
+" Remove blank lines in current visual selection {{{
+vnoremap <leader>rml :v/./d
+" }}}
+
+" Resize panes with arrow keys {{{
+ nnoremap <silent> <Left> :vertical resize -5<cr>
+ nnoremap <silent> <Right> :vertical resize +5<cr>
+ nnoremap <silent> <Up> :resize +5<cr>
+ nnoremap <silent> <Down> :resize -5<cr>
+" }}}
+
+" Run the current line as if it were a command {{{
+nnoremap <leader>e :exe getline(line(! + '.'))<cr>
+" }}}
+
+" Search results centered {{{
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+" }}}
+
+" Search and Replace {{{
+nnoremap <Leader>* :%s/\<<C-r>=expand("<cword>")<CR>\>/
+" }}}
+
+" Source and reload current file {{{
+nnoremap <leader>so :w<cr> :so %<cr>
+nnoremap <leader>sor :w<cr> :so %<cr> e %
+nnoremap <leader>pi :w<cr> :so %<cr> :PlugInstall<cr>
+nnoremap <leader>pu :w<cr> :so %<cr> :PlugUpdate<cr>
+nnoremap <leader>pc :w<cr> :so %<cr> :PlugClean<cr>
+" }}}
+
+" Spell check for previous misspelled word, accept first choice {{{
+inoremap <c-z> <esc>:set spell<cr>[s1z=<c-o>a
+nnoremap <c-z> :set spell<cr>[s1z=e
+" }}}
+
+" Stop highlight after searching {{{
+nnoremap <silent> <leader>, :noh<cr>
+" }}}
