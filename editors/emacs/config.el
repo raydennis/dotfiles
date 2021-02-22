@@ -80,17 +80,18 @@
   (setq
         savehist-file "~/.emacs.d/tmp/savehist"
         org-image-actual-width 600
-        org-archive-location "~/notes/archive.org"
+        org-archive-location "~/Repositories/Azure/Sandia/wnotes/archive.org::* From %s"
         org-ellipsis "…"
         org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ" "Ⅺ" "Ⅻ")
         org-startup-folded t
         org-todo-keywords
         '((sequence "TODO(t!)"
-                    "WAITING(w@/!)"
+                    "BLOCKED(w@/!)"
                     "STARTED(s!)"
                     "|" "DONE(d!)"
                     "CANCELLED(c!)"
                     ))
+        org-attach-id-dir "./.attach"
   )
 )
 
