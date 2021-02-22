@@ -99,11 +99,11 @@
 
 ;; mappings
 (map! :leader :prefix "y" :desc "toggle word wrap" "w" #'toggle-word-wrap)
+(map! :leader :desc "evil show regisers" "r" #'evil-show-registers)
 (map! :leader :desc "show undow tree" "u" #'undo-tree-visualize)
 (map! :leader :desc "show treemacs" "-" #'treemacs)
 (map! :leader :prefix "z" :desc "correct previous word" "p" #'flyspell-check-previous-highlighted-word)
 (map! :leader :prefix "z" :desc "correct previous word" "z" #'flyspell-auto-correct-word)
-(map! :leader :prefix "y" :desc "org display inline images" "i" #'org-display-inline-images)
 
 
 ;; For some reason Doom disables auto-save and backup files by default. Let’s reenable them.
