@@ -23,7 +23,11 @@
        company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+       (ivy                ; a search engine for love and lif)
+        +fuzzy             ; Enables fuzzy completion for Ivy searches.
+        +prescient         ; Enables prescient filtering and sorting for Ivy searches.
+        +childframe        ; Causes Ivy to display in a floating child frame, above Emacs.
+        +icons)            ; Enables file icons for switch-{buffer,project}/find-file counsel
 
        :ui
        ;;deft              ; notational velocity for Emacs
