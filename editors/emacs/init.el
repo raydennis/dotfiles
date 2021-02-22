@@ -102,7 +102,7 @@
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
        ;;lsp
-       magit             ; a git porcelain for Emacs
+       magit               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
@@ -154,7 +154,10 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +pretty +dragndrop)               ; organize your plain life in plain text
+       (org                ; organize your plain life in plain text
+        +pretty            ; Enables pretty unicode symbols for bullets and priorities, and better syntax highlighting for latex. Keep in mind: this can be expensive. If org becomes too slow, it'd be wise to disable this flag.
+        +dragndrop)        ; Enables drag-and-drop support for images and files; insertsinline previews for images and an icon+link for other media types.
+        ;; +roam)             ;Enables org-roam integration. This requires ~sqlite3~ to be installed on your system.
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
