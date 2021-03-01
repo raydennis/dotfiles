@@ -196,6 +196,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/sbin/terraform-lsp:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 #
 # Go development
