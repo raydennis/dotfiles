@@ -63,29 +63,34 @@
         org-startup-folded t
         org-todo-keywords
         '((sequence "TODO(t!)"
-                    "BLOCKED(w@/!)"
                     "STARTED(s!)"
+                    "WAITING(w@!)"
+                    "BLOCKED(b@/!)"
                     "|" "DONE(d!)"
                     "CANCELLED(c!)"
                     ))
+        org-todo-keyword-faces
+        '(("TODO" . org-warning)
+          ("STARTED" . "yellow")
+          ("WAITING" . "green")
+          ("BLOCKED" . "red" )
+          ("CANCELED" . (:foreground "blue" :weight bold))
+          )
         org-attach-id-dir "./.attach"
   )
 )
 
-(setq scroll-margin 20)
-
-;; mappings
-(map! :leader :prefix "y" :desc "toggle word wrap" "w" #'toggle-word-wrap)
-(map! :leader :desc "evil show regisers" "r" #'evil-show-registers)
-(map! :leader :desc "show undow tree" "u" #'undo-tree-visualize)
-(map! :leader :desc "show treemacs" "-" #'treemacs)
-(map! :leader :prefix "z" :desc "correct previous word" "p" #'flyspell-check-previous-highlighted-word)
-(map! :leader :prefix "z" :desc "correct previous word" "z" #'flyspell-auto-correct-word)
-
-
-;; For some reason Doom disables auto-save and backup files by default. Let’s reenable them.
-(setq auto-save-default t
-      make-backup-files t)
-
-;; Disable exit confirmation.
-(setq confirm-kill-emacs nil)
+(use-package switch-window
+  :ensure t
+  :bind
+  ;; default C-x o is other-window
+  ;; default C-x C-o is delete-blank-lines
+  (("C-x o" . switch-window)
+   ("C-x C-o" . switch-window))
+  :config
+  (setq switch-window-multiple-frames t)
+  (setq switch-window-shortcut-style 'qwerty)
+  ;; when Emacs is run as client, the first shortcut does not appear
+  ;; "x" acts as a dummy; remove first entry if not running server
+  (setq switch-window-qwerty-shortcuts '("x" "a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "r" "u" "i" "o" "q" "t" "y" "p"))
+  (setq switch-window-increase 3))
