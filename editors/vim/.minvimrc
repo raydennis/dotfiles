@@ -8,6 +8,10 @@ autocmd Syntax * syntax keyword myUnderlined DONE containedin=ALL | highlight de
 
 " Required {{{
 
+filetype plugin indent on                 " Required
+
+" }}}
+
 " Set and Let {{{
 
 " Let {{{
@@ -68,6 +72,41 @@ set softtabstop=4                         " Allows backspace to delete the space
 
 " Mappings {{{
 
+" Augroups {{{
+
+	" Augroup minivmrc {{{
+	augroup minivimrc
+	  autocmd!
+	  " Automatic location/quickfix window
+	  autocmd QuickFixCmdPost [^l]* cwindow
+	  autocmd QuickFixCmdPost    l* lwindow
+	  autocmd QuickFixCmdPost grep cwindow
+	  autocmd VimEnter            * cwindow
+
+	  " Git-specific settings
+	  autocmd FileType gitcommit nnoremap <buffer> { ?^@@<cr>|nnoremap <buffer> } /^@@<cr>|setlocal iskeyword+=-
+
+	  " When editing a file, always jump to the last known cursor position.
+	  " Don't do it for commit messages, when the position is invalid, or when
+	  " Inside an event handler (happens when dropping a file on gvim).
+	  autocmd BufReadPost *
+	   \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+	   \   exe "normal g`\"" |
+	   \ endif
+
+	  " Automatically rebalance windows on vim resize
+	  autocmd VimResized * :wincmd =
+	augroup END
+	" }}}
+
+	" augroup remember folds [disabled]{{{
+	"   autocmd!
+	"   au BufWinLeave ?* mkview 1
+	"   au BufWinEnter ?* silent! loadview 1
+	" augroup END
+	" }}}
+" }}}
+
 " Buffers {{{
   nnoremap <BS> :buffer#<CR>
 " }}}
@@ -88,17 +127,31 @@ cnoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
 " }}}
 
 " Movement {{{
-nnoremap <C-h> 0
-vnoremap <C-h> 0
-nnoremap <C-j> }
-vnoremap <C-j> }
-nnoremap <C-k> {
-vnoremap <C-k> {
-nnoremap <C-l> $
-vnoremap <C-l> $
 
 cnoremap <C-j> <C-g>
 cnoremap <C-k> <C-t>
+" }}}
+
+" Move screenshots to current directory {{{
+nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
+" }}}
+
+" OS specific commands {{{
+if has("unix")
+  " *nix
+  " *nix subsets
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    " MacOS
+    set guifont=FuraCodeNerdFontComplete-Regular:h18
+    nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
+  else
+    " Linux/WSL
+  endif
+else
+    " Windows
+endif
+
 " }}}
 
 " Registers {{{
@@ -138,7 +191,20 @@ nnoremap <silent> # #zz
 " }}}
 
 " Search and Replace {{{
-nnoremap <Leader>* :%s/\<<C-r>=expand("<cword>")<CR>\>/
+:nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
+" }}}
+
+" SpaceMacs Org-Mode style agenda bindings {{{
+nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>tw :.s/TODO\\|SCHEDULED\\|DONE/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>ts :.s/\TODO\\|WAITING\\|DONE\/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>at :grep " TODO" *<cr>
+nnoremap <leader>ah :grep HTODO *<cr>
+nnoremap <leader>aw :grep WAITING *<cr>
+nnoremap <leader>ad :grep DONE *<cr>
+nnoremap <leader>as :grep SCHEDULED *<cr>
 " }}}
 
 " Source and reload current file {{{
@@ -157,3 +223,74 @@ nnoremap <c-z> :set spell<cr>[s1z=e
 " Stop highlight after searching {{{
 nnoremap <silent> <leader>, :noh<cr>
 " }}}
+
+" Terminal {{{
+nnoremap <leader>' :split term://zsh<cr>
+nnoremap <leader>v' :vsplit term://zsh<cr>
+" To simulate |i_CTRL-R| in terminal-mode: >
+tnoremap <expr> <C-\><C-\> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+" To map <Esc> to exit terminal-mode: >
+tnoremap <C-w> <C-\><C-n>
+
+" To use `ALT+{h,j,k,l}` to navigate windows from any mode: >
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+" }}}
+
+" Vimwiki style jump bindings {{{
+nnoremap <leader>ww :e ~/Repositories/Azure/Sandia/wnotes/todo.md<cr>:cd %:h<cr>
+nnoremap <leader>wd :e ~/Repositories/Azure/Sandia/wnotes/done.md<cr>:cd %:h<cr>
+nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people/people.md<cr>:cd %:h<cr>
+nnoremap <leader>wl :e ~/Repositories/Azure/Sandia/wnotes/quicklinks.md<cr>:cd %:h<cr>
+nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
+nnoremap <leader>ws :e ~/Repositories/Github/raydennis/notes/personal/snippets.md<cr>:cd %:h<cr>
+" }}}
+
+" }}}
+
+" Functions {{{
+
+" Function Mkindex() {{{
+" This was used to grab all files in an directory and make an index to them in
+" a markdown file.  Haven't used this is a long time [2020-03-11].
+"     :read !ls
+"     :%norm I[
+"     :%norm A]()
+"     :%norm t]yi]t)p
+"     :%norm ^f.dt]
+" endfunction
+" }}}
+
+" Function Folds {{{
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . ' ⮐  ' . repeat(" ",fillcharcount) . foldedlinecount . ' ⮐  ' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+" }}}
+hi Folded ctermbg=None ctermfg=Magenta guibg=None guifg=Magenta
+
+" }}}
+
+" vim:foldmethod=marker
