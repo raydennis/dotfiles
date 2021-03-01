@@ -54,3 +54,4 @@
 ; ensure Doom is in a working state.
 
 (package! org-fancy-priorities)
+(package! switch-window)
