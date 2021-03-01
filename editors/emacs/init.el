@@ -146,23 +146,26 @@
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       latex             ; writing papers in Emacs has never been so fun
+       latex               ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org                ; organize your plain life in plain text
         +pretty            ; Enables pretty unicode symbols for bullets and priorities, and better syntax highlighting for latex. Keep in mind: this can be expensive. If org becomes too slow, it'd be wise to disable this flag.
-        +dragndrop)        ; Enables drag-and-drop support for images and files; insertsinline previews for images and an icon+link for other media types.
-        ;; +roam)             ;Enables org-roam integration. This requires ~sqlite3~ to be installed on your system.
+        +dragndrop         ; Enables drag-and-drop support for images and files; insertsinline previews for images and an icon+link for other media types.
+        +journal)          ; Enables [[https://github.com/bastibe/org-journal][org-journal]] integration.
+        ;; +roam)          ; Enables org-roam integration. This requires ~sqlite3~ to be installed on your system.
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python             ; beautiful is better than ugly
+        +lsp
+        +pyright)
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
