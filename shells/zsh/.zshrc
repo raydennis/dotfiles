@@ -69,6 +69,7 @@ alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias v="nvim"
 alias vim="nvim"
 alias vino="nvim -u NONE"
+alias vi="nvim -u ~/.minvimrc"
 alias weather="curl wttr.in"
 
 #
