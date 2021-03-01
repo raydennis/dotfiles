@@ -18,5 +18,23 @@
         "key": "enter",
         "command": "list.select",
         "when": "listFocus && !inputFocus"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+k cmd+i",
+        "command": "-editor.action.showHover",
+        "when": "editorTextFocus"
+    }
+    {
+        "key": "ctrl+d t",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+            "snippet": "$CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}"
+        }
     }
 ]
