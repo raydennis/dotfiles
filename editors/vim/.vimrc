@@ -459,7 +459,7 @@ nnoremap <leader>sd :SDelete<cr>
 
 " Custom surrounds
 let g:surround_{char2nr('b')} = "**\r**"
-let g:surround_{char2nr('c')} = "```\r```"
+let g:surround_{char2nr('c')} = "```bash\r```"
 let g:surround_{char2nr('g')} = "<font face=\"verdana\" color=\"green\">\r</font>"
 let g:surround_{char2nr('l')} = "[link](\r)"
 let g:surround_{char2nr('r')} = "<font face=\"verdana\" color=\"red\">\r</font>"
