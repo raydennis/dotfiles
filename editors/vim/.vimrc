@@ -100,7 +100,7 @@ Plug 'junegunn/limelight.vim'                                " Hyperfocus-writin
 Plug 'junegunn/vim-peekaboo'                                 " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
 Plug 'liuchengxu/vim-which-key'                              " Vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
 Plug 'liuchengxu/vista.vim'                                  " View and search LSP symbols, tags in Vim/NeoVim.
-Plug 'markonm/traces.vim'                                    " This plugin highlights patterns and ranges for Ex commands in Command-line mode.
+Plug 'markonm/traces.vim'                                    " Highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}              " Make your Vim/Neovim as smart as VSCode.
