@@ -726,6 +726,7 @@ augroup python
     autocmd!
     autocmd FileType python setlocal number
     autocmd FileType python nnoremap <leader>r :! python3 % <cr>
+    autocmd FileType python nnoremap <leader>te :! python3 -m unittest % <cr>
 augroup END
 " }}}
 
