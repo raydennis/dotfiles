@@ -433,11 +433,6 @@ let g:qf_join_changes = 1
 let g:qf_write_changes = 1
 " }}}
 
-" Rainbow Parenthesis {{{
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-nnoremap yrp :RainbowParentheses!!<cr>
-" }}}
-
 " Startify {{{
 let g:startify_bookmarks = [
     \ {'c': '/Users/rsdenni/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json'},
