@@ -838,6 +838,8 @@ vnoremap <leader>rml :v/./d
 
 " Run the current line as if it were a command {{{
 nnoremap <leader>e :exe getline(line(! + '.'))<cr>
+" Run the current line as if it were a command and read it into buffer
+nnoremap <leader>r :read !<c-r><c-l><cr>
 " }}}
 
 " Search results centered {{{
