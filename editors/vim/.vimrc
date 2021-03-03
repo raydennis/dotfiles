@@ -850,7 +850,7 @@ nnoremap <silent> # #zz
 " }}}
 
 " Search and Replace {{{
-nnoremap <Leader>* :%s/\<<C-r>=expand("<cword>")<CR>\>/
+:nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
 " }}}
 
 " SpaceMacs Org-Mode style agenda bindings {{{
