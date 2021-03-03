@@ -88,6 +88,7 @@ Plug 'SirVer/ultisnips'                                      " Ultimate snippet 
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
 Plug 'honza/vim-snippets'                                    " Snippets for UltiSnips
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'itchyny/lightline.vim'                                 " Statusbar
 Plug 'jkramer/vim-checkbox'                                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -117,9 +118,10 @@ Plug 'tpope/vim-scriptease'                                  " A Vim plugin for 
 Plug 'tpope/vim-speeddating'                                 " Quickly modify dates.
 Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
-Plug 'vim-pandoc/vim-pandoc'                                 " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
-Plug 'vim-pandoc/vim-pandoc-syntax'                          " Needed for the sytnax highlighting
+" Plug 'vim-pandoc/vim-pandoc'                                 " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
+" Plug 'vim-pandoc/vim-pandoc-syntax'                          " Needed for the sytnax highlighting
 Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
+Plug 'yuki-ycino/fzf-preview.vim'                            " provides collection of features to assist file management using fzf
 
 " Color schemes
 Plug 'lifepillar/vim-solarized8'
@@ -410,10 +412,9 @@ let g:mkdp_preview_options = {
     \ 'sequence_diagrams': {},
     \ 'flowchart_diagrams': {}
     \ }
-" }}}
 
-" Markdown folding {{{
-let g:markdown_fold_style = 'nested'
+
+let g:mkdp_markdown_css = '~/.vim/user/splendor.css'
 " }}}
 
 " Netwr {{{
@@ -739,6 +740,13 @@ augroup END
 augroup json
     autocmd!
     autocmd FileType json setlocal number
+augroup END
+" }}}
+
+" augroup markdown {{{
+augroup markdown
+    autocmd!
+    autocmd FileType markdown nmap <leader>r <Plug>MarkdownPreviewToggle
 augroup END
 " }}}
 
