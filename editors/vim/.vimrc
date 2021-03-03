@@ -887,7 +887,7 @@ nnoremap <silent> <leader>, :noh<cr>
 nnoremap <leader>' :split term://zsh<cr>
 nnoremap <leader>v' :vsplit term://zsh<cr>
 " To simulate |i_CTRL-R| in terminal-mode: >
-tnoremap <expr> <C-p> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+tnoremap <expr> <C-\><C-\> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
 tnoremap <C-w> <C-\><C-n>
 
