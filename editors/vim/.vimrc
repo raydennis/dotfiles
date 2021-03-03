@@ -363,6 +363,7 @@ let g:fzf_preview_git_status_preview_command =
 	\ g:fzf_preview_command
 
 " }}}
+" }}}
 
 " Fugitive Conflict Resolution{{{
 nnoremap <leader>ds :Gvdiffsplit!<cr>
