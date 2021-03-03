@@ -17,6 +17,7 @@ filetype plugin indent on                 " Required
 " Let {{{
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
+let markdown_folding = 1
 " }}}
 
 " Set {{{
