@@ -344,11 +344,9 @@ omap <c-x><c-o> <plug>(fzf-maps-o)
 
 " Fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
 nmap <c-P> :Commands<cr>
-
-nmap <c-B> :Buffers<cr>
-
-" }}}
-
+" These are only needed if COC is disabled.
+" nmap <leader><tab> :Buffers<cr>
+" nmap <leader><space> :Files<cr>
 
 " FzfPreview {{{
 nnoremap <silent> <Leader>fm :<C-u>CocCommand fzf-preview.Marks<CR>
