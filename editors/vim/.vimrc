@@ -788,8 +788,9 @@ cnoremap <C-j> <C-g>
 cnoremap <C-k> <C-t>
 " }}}
 
-" Move screenshots to current directory {{{
-nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
+" Screenshots {{{
+nnoremap <leader>xi i![screenshot](./<c-r>%<esc>xxxa/ =400x)<left><left><left><left><left><left><left>
+nnoremap <leader>xx :! mkdir -p ./%:r && screencapture -ix %:r/.png<left><left><left><left>
 " }}}
 
 " OS specific commands {{{
