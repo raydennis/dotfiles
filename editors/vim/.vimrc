@@ -912,6 +912,7 @@ nnoremap <leader>wd :e ~/Repositories/Azure/Sandia/wnotes/done.md<cr>:cd %:h<cr>
 nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people/people.md<cr>:cd %:h<cr>
 nnoremap <leader>wl :e ~/Repositories/Azure/Sandia/wnotes/quicklinks.md<cr>:cd %:h<cr>
 nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
+nnoremap <leader>ws :e ~/Repositories/Github/raydennis/notes/personal/snippets.md<cr>:cd %:h<cr>
 " }}}
 
 " }}}
