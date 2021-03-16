@@ -306,21 +306,21 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> ;a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>;a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> ;e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>;e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> ;c  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>;c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> ;o  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>;o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> ;s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>;s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> ;j  :<C-u>CocNext<cr>
+nnoremap <silent> <leader>;j  :<C-u>CocNext<cr>
 " Do default action for previous item.
-nnoremap <silent> ;k  :<C-u>CocPrev<cr>
+nnoremap <silent> <leader>;k  :<C-u>CocPrev<cr>
 " Resume latest coc list.
-nnoremap <silent> ;p  :<C-u>CocListResume<cr>
+nnoremap <silent> <leader>;p  :<C-u>CocListResume<cr>
 
 " }}}
 
