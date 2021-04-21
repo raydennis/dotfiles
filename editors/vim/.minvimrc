@@ -17,6 +17,7 @@ filetype plugin indent on                 " Required
 " Let {{{
 let mapleader = " "                       " Leader - ( Space bar )
 let maplocalleader = " "                  " LocalLeader - ( Space bar )
+let markdown_folding = 1
 " }}}
 
 " Set {{{
@@ -28,8 +29,8 @@ set cursorline
 set backspace=indent,eol,start                           " Make backspace act as it does on other editors
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
-set fillchars+=vert:\ ,fold:\ 
-set foldlevelstart=0                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
+set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
 set grepprg=ag\ --vimgrep                                " Use ag instead of grep
@@ -74,37 +75,30 @@ set softtabstop=4                         " Allows backspace to delete the space
 
 " Augroups {{{
 
-	" Augroup minivmrc {{{
-	augroup minivimrc
-	  autocmd!
-	  " Automatic location/quickfix window
-	  autocmd QuickFixCmdPost [^l]* cwindow
-	  autocmd QuickFixCmdPost    l* lwindow
-	  autocmd QuickFixCmdPost grep cwindow
-	  autocmd VimEnter            * cwindow
+" Augroup minivmrc {{{
+augroup minivimrc
+  autocmd!
+  " Automatic location/quickfix window
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost    l* lwindow
+  autocmd QuickFixCmdPost grep cwindow
+  autocmd VimEnter            * cwindow
 
-	  " Git-specific settings
-	  autocmd FileType gitcommit nnoremap <buffer> { ?^@@<cr>|nnoremap <buffer> } /^@@<cr>|setlocal iskeyword+=-
+  " Git-specific settings
+  autocmd FileType gitcommit nnoremap <buffer> { ?^@@<cr>|nnoremap <buffer> } /^@@<cr>|setlocal iskeyword+=-
 
-	  " When editing a file, always jump to the last known cursor position.
-	  " Don't do it for commit messages, when the position is invalid, or when
-	  " Inside an event handler (happens when dropping a file on gvim).
-	  autocmd BufReadPost *
-	   \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-	   \   exe "normal g`\"" |
-	   \ endif
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " Inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+   \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+   \   exe "normal g`\"" |
+   \ endif
 
-	  " Automatically rebalance windows on vim resize
-	  autocmd VimResized * :wincmd =
-	augroup END
-	" }}}
-
-	" augroup remember folds [disabled]{{{
-	"   autocmd!
-	"   au BufWinLeave ?* mkview 1
-	"   au BufWinEnter ?* silent! loadview 1
-	" augroup END
-	" }}}
+  " Automatically rebalance windows on vim resize
+  autocmd VimResized * :wincmd =
+augroup END
+" }}}
 " }}}
 
 " Buffers {{{
@@ -113,10 +107,6 @@ set softtabstop=4                         " Allows backspace to delete the space
 
 " Delete swap files {{{
 nnoremap <leader>rms :! rm $HOME/.vim/swapfiles/*
-" }}}
-
-" Diffthis {{{
-nnoremap <leader>dw :windo diffthis<cr>
 " }}}
 
 " Insert current date {{{
@@ -132,8 +122,9 @@ cnoremap <C-j> <C-g>
 cnoremap <C-k> <C-t>
 " }}}
 
-" Move screenshots to current directory {{{
-nnoremap <leader>mvs :! mv ~/Desktop/Screen* ./
+" Screenshots {{{
+nnoremap <leader>xi i![screenshot](./<c-r>%<esc>xxxa/ =400x)<left><left><left><left><left><left><left>
+nnoremap <leader>xx :! mkdir -p ./%:r && screencapture -ix %:r/.png<left><left><left><left>
 " }}}
 
 " OS specific commands {{{
@@ -150,6 +141,10 @@ if has("unix")
   endif
 else
     " Windows
+    set shell=powershell.exe
+    set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+    set shellpipe=|
+    set shellredir=>
 endif
 
 " }}}
@@ -161,7 +156,6 @@ nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
-nnoremap <leader>rp "0p"
 " }}}
 
 " Remote file management {{{
@@ -180,7 +174,9 @@ vnoremap <leader>rml :v/./d
 " }}}
 
 " Run the current line as if it were a command {{{
-nnoremap <leader>e :exe getline(line(! + '.'))<cr>
+nnoremap <leader>ee :exe getline(line(! + '.'))<cr>
+" Run the current line as if it were a command and read it into buffer
+nnoremap <leader>er :read !<c-r><c-l><cr>
 " }}}
 
 " Search results centered {{{
@@ -195,16 +191,14 @@ nnoremap <silent> # #zz
 " }}}
 
 " SpaceMacs Org-Mode style agenda bindings {{{
-nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>tdd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
 nnoremap <leader>tw :.s/TODO\\|SCHEDULED\\|DONE/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
 nnoremap <leader>ts :.s/\TODO\\|WAITING\\|DONE\/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
 nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
-nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
-nnoremap <leader>at :grep " TODO" *<cr>
-nnoremap <leader>ah :grep HTODO *<cr>
-nnoremap <leader>aw :grep WAITING *<cr>
-nnoremap <leader>ad :grep DONE *<cr>
-nnoremap <leader>as :grep SCHEDULED *<cr>
+nnoremap <leader>ot :grep " TODO" *<cr>
+nnoremap <leader>ow :grep WAITING *<cr>
+nnoremap <leader>od :grep DONE *<cr>
+nnoremap <leader>os :grep SCHEDULED *<cr>
 " }}}
 
 " Source and reload current file {{{
@@ -216,8 +210,8 @@ nnoremap <leader>pc :w<cr> :so %<cr> :PlugClean<cr>
 " }}}
 
 " Spell check for previous misspelled word, accept first choice {{{
-inoremap <c-z> <esc>:set spell<cr>[s1z=<c-o>a
-nnoremap <c-z> :set spell<cr>[s1z=e
+inoremap <c-s> <esc>:set spell<cr>[s1z=<c-o>a
+nnoremap <c-s> :set spell<cr>[s1z=e
 " }}}
 
 " Stop highlight after searching {{{
@@ -228,7 +222,7 @@ nnoremap <silent> <leader>, :noh<cr>
 nnoremap <leader>' :split term://zsh<cr>
 nnoremap <leader>v' :vsplit term://zsh<cr>
 " To simulate |i_CTRL-R| in terminal-mode: >
-tnoremap <expr> <C-\><C-\> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
 tnoremap <C-w> <C-\><C-n>
 
@@ -254,6 +248,14 @@ nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people/people.md<cr>:c
 nnoremap <leader>wl :e ~/Repositories/Azure/Sandia/wnotes/quicklinks.md<cr>:cd %:h<cr>
 nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
 nnoremap <leader>ws :e ~/Repositories/Github/raydennis/notes/personal/snippets.md<cr>:cd %:h<cr>
+" }}}
+
+" Vimgrep add {{{
+" search open buffers for word
+nnoremap <leader>ba :bufdo vimgmrepadd  %<left><left>
+
+" clear the quickfix list
+nnoremap <leader>qc :cexpr [] <cr>
 " }}}
 
 " }}}
@@ -285,7 +287,8 @@ function! MyFoldText() " {{{
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . ' ⮐  ' . repeat(" ",fillcharcount) . foldedlinecount . ' ⮐  ' . ' '
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    " return line . ' ⮐  ' . repeat(" ",fillcharcount) . foldedlinecount . ' ⮐  ' . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
 " }}}

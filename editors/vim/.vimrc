@@ -30,7 +30,7 @@ set backspace=indent,eol,start                           " Make backspace act as
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
 set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
-set foldlevelstart=0                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
 set grepprg=ag\ --vimgrep                                " Use ag instead of grep
@@ -83,7 +83,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Adds Go language support for Vim (no needed with coc-go and treesitter)
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }         " Adds Go language support for Vim (no needed with coc-go and treesitter)
+" Plug 'vim-pandoc/vim-pandoc'                               " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
+" Plug 'vim-pandoc/vim-pandoc-syntax'                        " Needed for the sytnax highlighting
+Plug 'Scuilion/markdown-drawer'                              " Simplify navigation in large markdown files.
 Plug 'SirVer/ultisnips'                                      " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
@@ -93,7 +96,6 @@ Plug 'itchyny/lightline.vim'                                 " Statusbar
 Plug 'jkramer/vim-checkbox'                                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                                      " Fuzzy finding
-Plug 'yuki-ycino/fzf-preview.vim'                            " provides collection of features to assist file management using fzf
 Plug 'junegunn/goyo.vim'                                     " Distraction-free writing in Vim.
 Plug 'junegunn/gv.vim'                                       " A git commit browser.
 Plug 'junegunn/limelight.vim'                                " Hyperfocus-writing in Vim.
@@ -105,7 +107,9 @@ Plug 'mbbill/undotree'                                       " Visual representa
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}              " Make your Vim/Neovim as smart as VSCode.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it:
+Plug 'pedrohdz/vim-yaml-folds'                               " Very simple folding configuration for YAML, Puppet/Hiera EYAML, RAML and SaltStack SLS files.
 Plug 'phenomenes/ansible-snippets'                           " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
+Plug 'puremourning/vimspector'                               " A multi language graphical debugger for Vim
 Plug 'rbgrouleff/bclose.vim'                                 " Ranger dependency for neovim
 Plug 'sebdah/vim-delve'
 Plug 'sheerun/vim-polyglot'                                  " Syntax highlighting for multiple languages
@@ -118,9 +122,8 @@ Plug 'tpope/vim-scriptease'                                  " A Vim plugin for 
 Plug 'tpope/vim-speeddating'                                 " Quickly modify dates.
 Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
-" Plug 'vim-pandoc/vim-pandoc'                                 " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
-" Plug 'vim-pandoc/vim-pandoc-syntax'                          " Needed for the sytnax highlighting
 Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
+Plug 'yuki-ycino/fzf-preview.vim'                            " provides collection of features to assist file management using fzf
 Plug 'yuki-ycino/fzf-preview.vim'                            " provides collection of features to assist file management using fzf
 
 " Color schemes
@@ -289,8 +292,8 @@ omap af <Plug>(coc-funcobj-a)
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " Coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -366,7 +369,8 @@ let g:fzf_preview_git_status_preview_command =
 " }}}
 
 " Fugitive Conflict Resolution{{{
-nnoremap <leader>ds :Gvdiffsplit!<cr>
+nnoremap <leader>dw :windo diffthis<cr>
+nnoremap <leader>dv :Gvdiffsplit!<cr>
 nnoremap <leader>h :diffget //2<cr>
 nnoremap <leader>l :diffget //3<cr>
 " }}}
@@ -385,6 +389,14 @@ let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 autocmd! User GoyoEnter Limelight 
 autocmd! User GoyoLeave Limelight!
+" }}}
+
+" Markdown Drawer {{{
+nnoremap <Leader>md :MarkDrawer<cr>
+let g:markdrawer_drawer_max_levels = 4 " max levels to display
+let g:markdrawer_toc = 'index' " displays as a TOC
+let g:markdrawerDelete = "d"
+let g:markdrawer_increase = "="
 " }}}
 
 " Markdown Preview {{{
@@ -437,9 +449,14 @@ let g:qf_write_changes = 1
 " Startify {{{
 let g:startify_bookmarks = [
     \ {'c': '/Users/rsdenni/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json'},
-    \ {'d': '~/gitHub/dotfiles/'}, 
+    \ {'tt': '~/Repositories/Azure/Sandia/wnotes/todo.md'},
+    \ {'td': '~/Repositories/Azure/Sandia/wnotes/done.md'},
+    \ {'p': '~/Repositories/Azure/Sandia/wnotes/people/people.md'},
     \ {'r': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rc.conf'},
+    \ {'i': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rifle.conf'},
+    \ {'n': '~/Repositories/Azure/Sandia/wnotes/index.md'},
     \ {'s': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/scope.sh'},
+    \ {'ti': '~/Repositories/Github/raydennis/notes/work/trainings/index.md'},
     \ {'v': '~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc'},
     \ {'z': '~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}
     \ ]
@@ -577,6 +594,28 @@ nnoremap <leader>vt :Vista toc <cr>
 
 " }}}
 
+" Vimspector {{{
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+
+" for normal mode - the word under the cursor
+nmap <Leader>de <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>de <Plug>VimspectorBalloonEval
+
+nmap <Leader>dd <Plug>VimspectorContinue
+nmap <Leader>ds <Plug>VimspectorStop
+nmap <Leader>dr <Plug>VimspectorRestart
+nmap <Leader>dp <Plug>VimspectorPause
+nmap <Leader>dbb <Plug>VimspectorToggleBreakpoint
+nmap <Leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Leader>dbf <Plug>VimspectorAddFunctionBreakpoint
+nmap <Leader>dso <Plug>VimspectorStepOver
+nmap <Leader>dsi <Plug>VimspectorStepInto
+nmap <Leader>dsu <Plug>VimspectorStepOut
+nmap <Leader>dc <Plug>VimspectorRunToCursor
+" }}}
+
 " Which-key {{{
 noremap <silent> <leader> :WhichKey '<Space>'<cr>
 autocmd! FileType which_key
@@ -597,7 +636,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-       \ 'colorscheme': 'apprentice',
+       \ 'colorscheme': 'nord',
        \ 'active': {
        \   'left': [ [ 'paste' ],
        \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
@@ -614,26 +653,26 @@ let g:lightline = {
 
 " Apprentice {{{
 
-" (this is mostly for apprentice, but would apply to others as well)
-function! MyHighlights() abort
+" " (this is mostly for apprentice, but would apply to others as well)
+" " function! MyHighlights() abort
 
-    " Use the terminal emulator backround color
-    highlight Normal ctermbg=none
-    " Make comments italic
-    highlight Comment cterm=italic
+"     " Use the terminal emulator backround color
+"     highlight Normal ctermbg=none
+"     " Make comments italic
+"     highlight Comment cterm=italic
 
-    " Don't color text on diff.  Make background use emulator dark versions.
-    hi DiffAdd     cterm=none  ctermbg=DARKGREEN   ctermfg=none
-    hi DiffChange  cterm=none  ctermbg=DARKYELLOW  ctermfg=none
-    hi DiffDelete  cterm=none  ctermbg=DARKRED     ctermfg=none
-    hi DiffText    cterm=none  ctermbg=DARKYELLOW  ctermfg=none
+"     " Don't color text on diff.  Make background use emulator dark versions.
+"     hi DiffAdd     cterm=none  ctermbg=DARKGREEN   ctermfg=none
+"     hi DiffChange  cterm=none  ctermbg=DARKYELLOW  ctermfg=none
+"     hi DiffDelete  cterm=none  ctermbg=DARKRED     ctermfg=none
+"     hi DiffText    cterm=none  ctermbg=DARKYELLOW  ctermfg=none
 
-endfunction
+" endfunction
 
-augroup MyColors
-    autocmd!
-    autocmd ColorScheme * call MyHighlights()
-augroup END
+" augroup MyColors
+"     autocmd!
+"     autocmd ColorScheme * call MyHighlights()
+" augroup END
 " }}}
 
 
@@ -669,7 +708,7 @@ let g:solarized_termtrans =  1
 let g:solarized_extra_hi_groups =  1
 " }}}
 
-colorscheme apprentice
+colorscheme nord
 
 " }}}
 
@@ -717,8 +756,8 @@ augroup go
     autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
     autocmd BufWritePre *.go :silent ! "gofmt -w" % <cr> :e % <cr>
     autocmd FileType go nmap <f5> :DlvTest<cr>
-    autocmd FileType go nnoremap <leader>r :! go run % <cr>
-    autocmd FileType go nnoremap <leader>gp :CocCommand go.playground <cr>
+    autocmd FileType go nnoremap <leader>rr :! go run % <cr>
+    autocmd FileType go nnoremap <leader>rp :CocCommand go.playground <cr>
 augroup END
 " }}}
 
@@ -726,8 +765,8 @@ augroup END
 augroup python
     autocmd!
     autocmd FileType python setlocal number
-    autocmd FileType python nnoremap <leader>r :! python3 % <cr>
-    autocmd FileType python nnoremap <leader>te :! python3 -m unittest % <cr>
+    autocmd FileType python nnoremap <leader>rr :! python3 % <cr>
+    autocmd FileType python nnoremap <leader>rt :! python3 -m unittest % <cr>
 augroup END
 " }}}
 
@@ -741,7 +780,7 @@ augroup END
 " augroup markdown {{{
 augroup markdown
     autocmd!
-    autocmd FileType markdown nmap <leader>r <Plug>MarkdownPreviewToggle
+    autocmd FileType markdown nmap <leader>rr <Plug>MarkdownPreviewToggle
 augroup END
 " }}}
 
@@ -749,8 +788,8 @@ augroup END
 augroup ps1
     autocmd!
     autocmd FileType ps1 setlocal number
-    autocmd FileType ps1 nnoremap <leader>r :CocCommand powershell.execute<cr>
-    autocmd FileType ps1 vnoremap <leader>r :CocCommand powershell.evaluateSelection<cr>
+    autocmd FileType ps1 nnoremap <leader>rr :CocCommand powershell.execute<cr>
+    autocmd FileType ps1 vnoremap <leader>rr :CocCommand powershell.evaluateSelection<cr>
 augroup END
 " }}}
 
@@ -758,7 +797,7 @@ augroup END
 augroup terraform
     autocmd!
     autocmd FileType terraform setlocal number
-    autocmd FileType terraform nnoremap <leader>r :terminal terraform apply<cr>
+    autocmd FileType terraform nnoremap <leader>rr :terminal terraform apply<cr>
 augroup END
 " }}}
 
@@ -770,10 +809,6 @@ augroup END
 
 " Delete swap files {{{
 nnoremap <leader>rms :! rm $HOME/.vim/swapfiles/*
-" }}}
-
-" Diffthis {{{
-nnoremap <leader>dw :windo diffthis<cr>
 " }}}
 
 " Insert current date {{{
@@ -801,13 +836,17 @@ if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " MacOS
-    set guifont=FuraCodeNerdFontComplete-Regular:h18
+    set guifont=MesloLGS-NF-Regular:h26
     nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
     " Linux/WSL
   endif
 else
     " Windows
+    set shell=powershell.exe
+    set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+    set shellpipe=|
+    set shellredir=>
 endif
 
 " }}}
@@ -819,7 +858,6 @@ nnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 nnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
 vnoremap <Leader>p :set paste<cr>"+p:set nopaste<cr>
 vnoremap <Leader>P :set paste<cr>"+P:set nopaste<cr>
-nnoremap <leader>rp "0p"
 " }}}
 
 " Remote file management {{{
@@ -838,9 +876,9 @@ vnoremap <leader>rml :v/./d
 " }}}
 
 " Run the current line as if it were a command {{{
-nnoremap <leader>e :exe getline(line(! + '.'))<cr>
+nnoremap <leader>ee :exe getline(line(! + '.'))<cr>
 " Run the current line as if it were a command and read it into buffer
-nnoremap <leader>r :read !<c-r><c-l><cr>
+nnoremap <leader>er :read !<c-r><c-l><cr>
 " }}}
 
 " Search results centered {{{
@@ -855,16 +893,14 @@ nnoremap <silent> # #zz
 " }}}
 
 " SpaceMacs Org-Mode style agenda bindings {{{
-nnoremap <leader>dd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
+nnoremap <leader>tdd :.s/TODO\\|WAITING\\|SCHEDULED/DONE<cr> ea [d:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
 nnoremap <leader>tw :.s/TODO\\|SCHEDULED\\|DONE/WAITING<cr> ea [w:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
 nnoremap <leader>ts :.s/\TODO\\|WAITING\\|DONE\/SCHEDULED<cr> ea [s:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
 nnoremap <leader>td :.s/- /- TODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
-nnoremap <leader>th :.s/- /- HTODO /<cr> ea [i:<C-R>=strftime("%Y-%m-%d")<cr>]<Esc>
-nnoremap <leader>at :grep " TODO" *<cr>
-nnoremap <leader>ah :grep HTODO *<cr>
-nnoremap <leader>aw :grep WAITING *<cr>
-nnoremap <leader>ad :grep DONE *<cr>
-nnoremap <leader>as :grep SCHEDULED *<cr>
+nnoremap <leader>ot :grep " TODO" *<cr>
+nnoremap <leader>ow :grep WAITING *<cr>
+nnoremap <leader>od :grep DONE *<cr>
+nnoremap <leader>os :grep SCHEDULED *<cr>
 " }}}
 
 " Source and reload current file {{{
@@ -876,8 +912,8 @@ nnoremap <leader>pc :w<cr> :so %<cr> :PlugClean<cr>
 " }}}
 
 " Spell check for previous misspelled word, accept first choice {{{
-inoremap <c-z> <esc>:set spell<cr>[s1z=<c-o>a
-nnoremap <c-z> :set spell<cr>[s1z=e
+inoremap <c-s> <esc>:set spell<cr>[s1z=<c-o>a
+nnoremap <c-s> :set spell<cr>[s1z=e
 " }}}
 
 " Stop highlight after searching {{{
@@ -888,7 +924,7 @@ nnoremap <silent> <leader>, :noh<cr>
 nnoremap <leader>' :split term://zsh<cr>
 nnoremap <leader>v' :vsplit term://zsh<cr>
 " To simulate |i_CTRL-R| in terminal-mode: >
-tnoremap <expr> <C-\><C-\> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
 tnoremap <C-w> <C-\><C-n>
 
@@ -907,13 +943,12 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 " }}}
 
-" Vimwiki style jump bindings {{{
-nnoremap <leader>ww :e ~/Repositories/Azure/Sandia/wnotes/todo.md<cr>:cd %:h<cr>
-nnoremap <leader>wd :e ~/Repositories/Azure/Sandia/wnotes/done.md<cr>:cd %:h<cr>
-nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people/people.md<cr>:cd %:h<cr>
-nnoremap <leader>wl :e ~/Repositories/Azure/Sandia/wnotes/quicklinks.md<cr>:cd %:h<cr>
-nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
-nnoremap <leader>ws :e ~/Repositories/Github/raydennis/notes/personal/snippets.md<cr>:cd %:h<cr>
+" Vimgrep add {{{
+" search open buffers for word
+nnoremap <leader>ba :bufdo vimgmrepadd  %<left><left>
+
+" clear the quickfix list
+nnoremap <leader>qc :cexpr [] <cr>
 " }}}
 
 " }}}
