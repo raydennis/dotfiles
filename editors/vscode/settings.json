@@ -1,14 +1,32 @@
 {
+
+  "azure.cloud": "AzureCloud",
+
   "cSpell.language": "en",
 
+  "diffEditor.renderSideBySide": true,
+
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
   "editor.fontLigatures": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "off",
   "editor.minimap.enabled": false,
+  "editor.multiCursorModifier": "alt",
   "editor.renderWhitespace": "all",
+  "editor.smoothScrolling": true,
   "editor.suggestSelection": "first",
   "editor.tabSize": 4,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.wordWrap": "off",
+
   "explorer.confirmDelete": false,
+
   "files.autoSave": "afterDelay",
   "files.exclude": {
     "**/.git": true,
@@ -23,41 +41,63 @@
       "when": "$(basename)"
     }
   },
+
   "git.autofetch": true,
   "git.enableSmartCommit": true,
+  "git.confirmSync": false,
   "gitlens.advanced.messages": { "suppressShowKeyBindingsNotice": true },
   "gitlens.historyExplorer.enabled": true,
-  "[markdown]": { "editor.quickSuggestions": true },
-  "markdown.extension.preview.autoShowPreviewToSide": true,
-  "phpSniffer.run": "onType",
-  "phpSniffer.standard": "PSR2",
-  "python.jediEnabled": false,
-  "python.pythonPath": "/usr/local/bin/python3",
-  "team.appInsights.enabled": false,
-  "team.showWelcomeMessage": false,
-  "telemetry.enableTelemetry": false,
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "workbench.colorTheme": "Srcery",
-  "window.zoomLevel": 2,
-  "git.confirmSync": false,
-  "python.linting.flake8Enabled": true,
-  "editor.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
-  "terminal.integrated.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
+
+  "go.formatTool": "goimports",
+  "go.toolsManagement.autoUpdate": true,
+  "go.useLanguageServer": true,
+
+
+  "http.proxyStrictSSL": false,
+
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+
+  "[markdown]": { "editor.quickSuggestions": true },
+  "markdown.extension.preview.autoShowPreviewToSide": true,
+
+  "phpSniffer.run": "onType",
+  "phpSniffer.standard": "PSR2",
+
+  "python.jediEnabled": false,
+  "python.pythonPath": "~/virtualenvs/scratch/bin",
+  "python.linting.flake8Enabled": true,
+  "python.languageServer": "Pylance",
+  "python.linting.enabled": true,
+
+
   "terraform.indexing": {
     "enabled": false,
     "liveIndexing": false,
     "delay": 500,
     "exclude": [".terraform/**/*", "**/.terraform/**/*"]
   },
-  "diffEditor.renderSideBySide": true,
-  "http.proxyStrictSSL": false,
-  "go.formatTool": "goimports",
-  "go.useLanguageServer": true,
-  "editor.multiCursorModifier": "alt",
-  "python.languageServer": "Pylance",
+
+  "team.appInsights.enabled": false,
+  "team.showWelcomeMessage": false,
+
+  "telemetry.enableTelemetry": false,
+
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
+
+  "todo-tree.tree.showScanModeButton": false,
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+
   "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -77,11 +117,12 @@
   "vim.highlightedyank.enable": true,
   "vim.useSystemClipboard": true,
   "vim.foldfix": true,
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": true,
-    "strings": true
-  },
-  "azure.cloud": "AzureCloud",
-  "todo-tree.tree.showScanModeButton": false
+
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+
+  "window.zoomLevel": 3,
+
+  "workbench.colorTheme": "Nord Native",
+  "workbench.list.smoothScrolling": true
+
 }
