@@ -39,7 +39,6 @@ set hlsearch                                             " When there is a previ
 set ignorecase                                           " The case of normal letters is ignored.
 set incsearch                                            " While typing a search command, show where pattern, as it was typed
 set lazyredraw                                           " Don't redraw screen while executing macro
-set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
 set mouse=a                                              " Enable the use of the mouse
 set nonumber                                             " No numbers on the left by default
 set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
@@ -105,6 +104,7 @@ Plug 'liuchengxu/vista.vim'                                  " View and search L
 Plug 'markonm/traces.vim'                                    " Highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
+Plug 'nanotee/zoxide.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}              " Make your Vim/Neovim as smart as VSCode.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it:
 Plug 'pedrohdz/vim-yaml-folds'                               " Very simple folding configuration for YAML, Puppet/Hiera EYAML, RAML and SaltStack SLS files.
@@ -675,7 +675,6 @@ let g:lightline = {
 " augroup END
 " }}}
 
-
 " Nord https://www.nordtheme.com/ports/vim {{{ 
 let g:nord_italic = 1
 let g:nord_italic_comments = 1
@@ -837,6 +836,7 @@ if has("unix")
   if s:uname == "Darwin\n"
     " MacOS
     set guifont=MesloLGS-NF-Regular:h26
+    set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
     nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
     " Linux/WSL
@@ -985,7 +985,7 @@ function! MyFoldText() " {{{
 endfunction " }}}
 set foldtext=MyFoldText()
 " }}}
-hi Folded ctermbg=None ctermfg=Magenta guibg=None guifg=Magenta
+hi Folded ctermbg=None ctermfg=Magenta
 
 " }}}
 

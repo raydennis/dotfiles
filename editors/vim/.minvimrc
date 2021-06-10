@@ -39,7 +39,6 @@ set hlsearch                                             " When there is a previ
 set ignorecase                                           " The case of normal letters is ignored.
 set incsearch                                            " While typing a search command, show where pattern, as it was typed
 set lazyredraw                                           " Don't redraw screen while executing macro
-set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
 set mouse=a                                              " Enable the use of the mouse
 set nonumber                                             " No numbers on the left by default
 set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
@@ -135,6 +134,7 @@ if has("unix")
   if s:uname == "Darwin\n"
     " MacOS
     set guifont=FuraCodeNerdFontComplete-Regular:h18
+    set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
     nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
     " Linux/WSL
@@ -292,7 +292,7 @@ function! MyFoldText() " {{{
 endfunction " }}}
 set foldtext=MyFoldText()
 " }}}
-hi Folded ctermbg=None ctermfg=Magenta guibg=None guifg=Magenta
+hi Folded ctermbg=None ctermfg=Magenta
 
 " }}}
 
