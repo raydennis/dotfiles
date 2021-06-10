@@ -29,7 +29,7 @@ set cursorline
 set backspace=indent,eol,start                           " Make backspace act as it does on other editors
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
-set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
+set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
 set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
@@ -134,7 +134,7 @@ if has("unix")
   if s:uname == "Darwin\n"
     " MacOS
     set guifont=FuraCodeNerdFontComplete-Regular:h18
-    set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
+    set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
     nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
     " Linux/WSL
@@ -292,6 +292,7 @@ function! MyFoldText() " {{{
 endfunction " }}}
 set foldtext=MyFoldText()
 " }}}
+
 hi Folded ctermbg=None ctermfg=Magenta
 
 " }}}

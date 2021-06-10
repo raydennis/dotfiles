@@ -25,12 +25,13 @@ let markdown_folding = 1
 set autoindent                                           " Copy indent from current line when starting a new line
 set autoread
 set autowriteall
-set cursorline
 set backspace=indent,eol,start                           " Make backspace act as it does on other editors
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
+set cursorline
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
-set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
+set foldexpr=nvim_treesitter#foldexpr()
 set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
 set grepprg=ag\ --vimgrep                                " Use ag instead of grep
@@ -39,6 +40,7 @@ set hlsearch                                             " When there is a previ
 set ignorecase                                           " The case of normal letters is ignored.
 set incsearch                                            " While typing a search command, show where pattern, as it was typed
 set lazyredraw                                           " Don't redraw screen while executing macro
+set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
 set mouse=a                                              " Enable the use of the mouse
 set nonumber                                             " No numbers on the left by default
 set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
@@ -56,8 +58,6 @@ set undodir=$HOME/.vim/undo                              " Where to save undo hi
 set undofile                                             " Save undos after file closes
 set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
-set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
-set foldexpr=nvim_treesitter#foldexpr()
 
 " Default Tab settings (file specific ones also set in the augroups) {{{{
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
@@ -836,7 +836,7 @@ if has("unix")
   if s:uname == "Darwin\n"
     " MacOS
     set guifont=MesloLGS-NF-Regular:h26
-    set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
+    set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
     nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
     " Linux/WSL
