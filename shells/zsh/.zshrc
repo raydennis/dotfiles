@@ -199,6 +199,12 @@ export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
 #
+# (neo)Vim
+#
+EDITOR=nvim
+VISUAL=nvim
+
+#
 # Go development
 #
 export GOPATH="${HOME}/.go"
