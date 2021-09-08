@@ -123,8 +123,7 @@ Plug 'tpope/vim-speeddating'                                 " Quickly modify da
 Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
 Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
-Plug 'yuki-ycino/fzf-preview.vim'                            " provides collection of features to assist file management using fzf
-Plug 'yuki-ycino/fzf-preview.vim'                            " provides collection of features to assist file management using fzf
+Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'main' }                            " provides collection of features to assist file management using fzf
 
 " Color schemes
 Plug 'lifepillar/vim-solarized8'
