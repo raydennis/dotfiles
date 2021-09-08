@@ -151,6 +151,7 @@ let g:coc_global_extensions = [
             \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
+            \ 'coc-lua',
             \ 'coc-markdownlint',
             \ 'coc-marketplace',
             \ 'coc-pairs',
@@ -158,9 +159,9 @@ let g:coc_global_extensions = [
             \ 'coc-powershell',
             \ 'coc-prettier',
             \ 'coc-pyright',
-            \ 'coc-ultisnips',
             \ 'coc-tslint-plugin',
             \ 'coc-tsserver',
+            \ 'coc-ultisnips',
             \ 'coc-yaml',
             \ 'coc-yank'
             \ ]
@@ -635,7 +636,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-       \ 'colorscheme': 'nord',
+       \ 'colorscheme': 'PaperColor',
        \ 'active': {
        \   'left': [ [ 'paste' ],
        \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
@@ -682,7 +683,16 @@ let g:nord_uniform_status_lines = 1
 " }}}
 
 " Papercolor {{{
-" set background=light
+set background=light
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'allow_bold': 1,
+  \       'allow_italic': 1
+  \     }
+  \   }
+  \ }
+
 " }}}
 
 " Srcry {{{
@@ -706,7 +716,7 @@ let g:solarized_termtrans =  1
 let g:solarized_extra_hi_groups =  1
 " }}}
 
-colorscheme elflord
+colorscheme papercolor
 
 " }}}
 
@@ -820,6 +830,8 @@ cnoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
 
 cnoremap <C-j> <C-g>
 cnoremap <C-k> <C-t>
+nnoremap H 0
+nnoremap L $
 " }}}
 
 " Screenshots {{{
@@ -904,7 +916,6 @@ nnoremap <leader>os :grep SCHEDULED *<cr>
 
 " Source and reload current file {{{
 nnoremap <leader>so :w<cr> :so %<cr>
-nnoremap <leader>sor :w<cr> :so %<cr> e %
 nnoremap <leader>pi :w<cr> :so %<cr> :PlugInstall<cr>
 nnoremap <leader>pu :w<cr> :so %<cr> :PlugUpdate<cr>
 nnoremap <leader>pc :w<cr> :so %<cr> :PlugClean<cr>
@@ -984,6 +995,7 @@ function! MyFoldText() " {{{
 endfunction " }}}
 set foldtext=MyFoldText()
 " }}}
+
 hi Folded ctermbg=None ctermfg=Magenta
 
 " }}}
