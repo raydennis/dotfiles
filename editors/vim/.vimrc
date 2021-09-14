@@ -45,6 +45,7 @@ set mouse=a                                              " Enable the use of the
 set nonumber                                             " No numbers on the left by default
 set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 set scrolloff=20                                         " Minimal number of screen lines to keep above and below the cursor.
+set showbreak=↳\                                         " Downwards arrow with tip rightwards (U+21B3, UTF-8: E2 86 B3)
 set showcmd                                              " Display incomplete command
 set showmatch                                            " When a bracket is inserted, briefly jump to the matching one.
 set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
