@@ -11,6 +11,16 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
+	pager = delta
+[interactive]
+	diffFilter = deta --color-only
+[delta]
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
 [alias]
 	co = checkout
 	br = branch
@@ -50,20 +60,17 @@ logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C
 
 # Diff
 [diff]
-    tool = vimdiff
+    tool = meld
 [difftool "vimdiff"]
-    cmd = nvim -d $LOCAL $REMOTE
+    cmd = meld "$LOCAL" "$REMOTE"
 [difftool]
 	prompt = false
 
 # Merge
 [merge "ours"]
-	driver = true
-[merge]
-	tool = vimdiff
-[merge]
-	conflictstyle = diff3
-[mergetool]
+	tool=meld
+[merge.tool]
 	prompt = false
-[mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[merge.tool "meld"]
+cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+; cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"

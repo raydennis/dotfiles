@@ -1,3 +1,15 @@
+# Emacs
+#  _____
+# | ____|_ __ ___   __ _  ___ ___
+# |  _| | '_ ` _ \ / _` |/ __/ __|
+# | |___| | | | | | (_| | (__\__ \
+# |_____|_| |_| |_|\__,_|\___|___/
+*~
+.dir-locals.el
+.projectile
+.tern-port
+
+# JetBrains
 #      _      _   ____            _           
 #     | | ___| |_| __ ) _ __ __ _(_)_ __  ___ 
 #  _  | |/ _ \ __|  _ \| '__/ _` | | '_ \/ __|
@@ -14,6 +26,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea
 
 # Generated files
 .idea/**/contentModel.xml
@@ -77,7 +90,7 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-
+# Linux
 #  _     _                  
 # | |   (_)_ __  _   ___  __
 # | |   | | '_ \| | | \ \/ /
@@ -99,6 +112,7 @@ fabric.properties
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
+# MacOS
 #  __  __             ___  ____  
 # |  \/  | __ _  ___ / _ \/ ___| 
 # | |\/| |/ _` |/ __| | | \___ \ 
@@ -133,6 +147,17 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Python
+#  ____        _   _                 
+# |  _ \ _   _| |_| |__   ___  _ __  
+# | |_) | | | | __| '_ \ / _ \| '_ \ 
+# |  __/| |_| | |_| | | | (_) | | | |
+# |_|    \__, |\__|_| |_|\___/|_| |_|
+#        |___/                       
+
+__pycache__/
+
+# Ranger
 #  ____                             
 # |  _ \ __ _ _ __   __ _  ___ _ __ 
 # | |_) / _` | '_ \ / _` |/ _ \ '__|
@@ -143,6 +168,7 @@ Temporary Items
 **/shells/ranger/bookmarks
 **/shells/ranger/history
 
+# Terraform
 # _____                   _____                    
 # |_   _|__ _ __ _ __ __ _|  ___|__  _ __ _ __ ___  
  #  | |/ _ \ '__| '__/ _` | |_ / _ \| '__| '_ ` _ \ 
@@ -150,9 +176,10 @@ Temporary Items
  #  |_|\___|_|  |_|  \__,_|_|  \___/|_|  |_| |_| |_|
 #                                                  
 
-**/.tfplan
-**/.tfstate
+**/*.tfplan
+**/*.tfstate
 
+# Vim
 # __     ___           
 # \ \   / (_)_ __ ___  
 #  \ \ / /| | '_ ` _ \ 
@@ -180,6 +207,7 @@ tags
 # Persistent undo
 [._]*.un~
 
+# VsCode
 #                                _      
 # __   _____  ___ ___   ___   __| | ___ 
 # \ \ / / __|/ __/ _ \ / _ \ / _` |/ _ \
@@ -187,6 +215,7 @@ tags
 #   \_/ |___/\___\___/ \___/ \__,_|\___|
 #                                       
 
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -200,6 +229,7 @@ tags
 # Log files (if you are creating logs in debug mode, uncomment this)
 # *.log
 
+# Windows
 # __        ___           _                   
 # \ \      / (_)_ __   __| | _____      _____ 
 #  \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __|

@@ -14,60 +14,59 @@ filetype plugin indent on                 " Required
 
 " Set and Let {{{
 
-" Let {{{
-let mapleader = " "                       " Leader - ( Space bar )
-let maplocalleader = " "                  " LocalLeader - ( Space bar )
-let markdown_folding = 1
-" }}}
+" " Let {{{
+" let mapleader = " "                       " Leader - ( Space bar )
+" let maplocalleader = " "                  " LocalLeader - ( Space bar )
+" let markdown_folding = 1
+" " }}}
 
-" Set {{{
+" " Set {{{
 
-set autoindent                                           " Copy indent from current line when starting a new line
-set autoread
-set autowriteall
-set backspace=indent,eol,start                           " Make backspace act as it does on other editors
-set belloff=all                                          " Turn off all error notifications (both bell and flash)
-set cursorline
-set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
+" set autoindent                                           " Copy indent from current line when starting a new line
+" set autoread
+" set autowriteall
+" set backspace=indent,eol,start                           " Make backspace act as it does on other editors
+" set belloff=all                                          " Turn off all error notifications (both bell and flash)
+" set cursorline
+" set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
 set foldexpr=nvim_treesitter#foldexpr()
-set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
-set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
-set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
+" set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+" set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
+" set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
 set grepprg=ag\ --vimgrep                                " Use ag instead of grep
-set hidden                                               " When ON a buffer becomes hidden when it is |abandon|ed.
-set hlsearch                                             " When there is a previous search pattern, highlight all its matches.
-set ignorecase                                           " The case of normal letters is ignored.
-set incsearch                                            " While typing a search command, show where pattern, as it was typed
-set lazyredraw                                           " Don't redraw screen while executing macro
-set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
-set mouse=a                                              " Enable the use of the mouse
-set nonumber                                             " No numbers on the left by default
+" set hidden                                               " When ON a buffer becomes hidden when it is |abandon|ed.
+" set hlsearch                                             " When there is a previous search pattern, highlight all its matches.
+" set ignorecase                                           " The case of normal letters is ignored.
+" set incsearch                                            " While typing a search command, show where pattern, as it was typed
+" set lazyredraw                                           " Don't redraw screen while executing macro
+" set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
+" set mouse=a                                              " Enable the use of the mouse
+" set nonumber                                             " No numbers on the left by default
 set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
-set scrolloff=20                                         " Minimal number of screen lines to keep above and below the cursor.
-set showbreak=↳\                                         " Downwards arrow with tip rightwards (U+21B3, UTF-8: E2 86 B3)
-set showcmd                                              " Display incomplete command
-set showmatch                                            " When a bracket is inserted, briefly jump to the matching one.
-set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
+" set scrolloff=20                                         " Minimal number of screen lines to keep above and below the cursor.
+" set showcmd                                              " Display incomplete command
+" set showmatch                                            " When a bracket is inserted, briefly jump to the matching one.
+" set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
 set spellfile=~/.vim/spell/en.utf-8.add
-set splitbelow                                           " Open new split panes to right
-set splitright                                           " Open new split panes to the bottom
-set tagcase=smart                                        " Smart	Ignore case unless an upper case letter is used
-set tags=./tags;,tags;
-set timeoutlen=500
+" set splitbelow                                           " Open new split panes to right
+" set splitright                                           " Open new split panes to the bottom
+" set tagcase=smart                                        " Smart	Ignore case unless an upper case letter is used
+" set tags=./tags;,tags;
+" set timeoutlen=500
 set undodir=$HOME/.vim/undo                              " Where to save undo histories (THIS folder MUST be created manually or it doesn't work.  This is great for portability in that it doesn't create the history files unless you specifically create the folder.
-set undofile                                             " Save undos after file closes
-set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
-set wildmode=list:longest,full
+" set undofile                                             " Save undos after file closes
+" set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
+" set wildmode=list:longest,full
 
-" Default Tab settings (file specific ones also set in the augroups) {{{{
-set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
-set shiftwidth=4                          " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
-set expandtab                             " Insert spaces instead of tab
-set softtabstop=4                         " Allows backspace to delete the spaces of an expanded tab with one key press
-" }}}}
+" " Default Tab settings (file specific ones also set in the augroups) {{{{
+" set tabstop=4                                            " Number of spaces that a <Tab> in the file counts for.
+" set shiftwidth=4                                         " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
+" set expandtab                                            " Insert spaces instead of tab
+" set softtabstop=4                                        " Allows backspace to delete the spaces of an expanded tab with one key press
+" " }}}}
 
-" }}}
+" " }}}
 
 " }}}
 
@@ -87,7 +86,6 @@ call plug#begin('~/.vim/plugged')
 " Plug 'vim-pandoc/vim-pandoc'                               " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
 " Plug 'vim-pandoc/vim-pandoc-syntax'                        " Needed for the sytnax highlighting
 Plug 'Scuilion/markdown-drawer'                              " Simplify navigation in large markdown files.
-Plug 'szw/vim-maximizer'                                     " enables maximizing windows with toggle
 Plug 'SirVer/ultisnips'                                      " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
@@ -270,7 +268,7 @@ nmap <leader>rn <Plug>(coc-rename)
 augroup cocgroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,python setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json,python,lua setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -431,10 +429,6 @@ let g:mkdp_preview_options = {
 let g:mkdp_markdown_css = '~/.vim/user/splendor.css'
 " }}}
 
-" Maximizer {{{
-nnoremap <leader>wm :MaximizerToggle<cr>
-" }}}
-
 " Netwr {{{
 let g:netrw_liststyle      = 3     " Tree View
 let g:netrw_winsize        = 80    " Make split 20 (100-80) characters wide
@@ -459,8 +453,7 @@ let g:startify_bookmarks = [
     \ {'td': '~/Repositories/Azure/Sandia/wnotes/done.md'},
     \ {'p': '~/Repositories/Azure/Sandia/wnotes/people/people.md'},
     \ {'r': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rc.conf'},
-    \ {'rr': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rifle.conf'},
-    \ {'i': '~/Repositories/Azure/Sandia/wnotes/inbox.md'},
+    \ {'i': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rifle.conf'},
     \ {'n': '~/Repositories/Azure/Sandia/wnotes/index.md'},
     \ {'s': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/scope.sh'},
     \ {'ti': '~/Repositories/Github/raydennis/notes/work/trainings/index.md'},
@@ -643,7 +636,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-       \ 'colorscheme': 'PaperColor',
+       \ 'colorscheme': 'nord',
        \ 'active': {
        \   'left': [ [ 'paste' ],
        \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
@@ -690,7 +683,7 @@ let g:nord_uniform_status_lines = 1
 " }}}
 
 " Papercolor {{{
-set background=light
+" set background=light
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default': {
@@ -723,7 +716,7 @@ let g:solarized_termtrans =  1
 let g:solarized_extra_hi_groups =  1
 " }}}
 
-colorscheme papercolor
+colorscheme nord
 
 " }}}
 
@@ -789,6 +782,14 @@ augroup END
 augroup json
     autocmd!
     autocmd FileType json setlocal number
+augroup END
+" }}}
+
+" augroup lua{{{
+augroup lua
+    autocmd!
+    autocmd FileType lua setlocal number
+    autocmd FileType lua nnoremap <leader>rr :! lua % <cr>
 augroup END
 " }}}
 

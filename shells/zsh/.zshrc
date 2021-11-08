@@ -1,20 +1,20 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc. {{{
+
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# powerlevel10k theme
+# }}}
+
+# powerlevel10k theme {{{
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
-# set vim keybindings (seems to break when used with oh-my-zsh)
-set -o vi
+# }}}
 
-autoload -U compinit
-compinit -u
+# Completions for {{{
 
-# completions for zsh
 # Make completion:
 # - Case-insensitive.
 # - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
@@ -22,16 +22,16 @@ compinit -u
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 
-#
-# History
-#
+# }}}
+
+# History {{{
 export HISTSIZE=100000
 export HISTFILE="$HOME/.zsh_history"
 export SAVEHIST=$HISTSIZE
 
-#
-# Options
-#
+# }}}
+
+# Options {{{
 setopt autocd               # .. is shortcut for cd .. (etc)
 setopt autoparamslash       # tab completing directory appends a slash
 setopt autopushd            # cd automatically pushes old dir onto dir stack
@@ -48,49 +48,50 @@ setopt pushdignoredups      # don't push multiple copies of same dir onto stack
 setopt pushdsilent          # don't print dir stack after pushing/popping
 setopt sharehistory         # share history across shells
 
-#
-# Alias
-#
+# }}}
+
+# Alias {{{
 alias :q="exit"
-alias q="exit"
-alias c="clear"
-alias cls="clear && ls"
+alias ^z="fd"
 alias e="nvim"
+alias f=". ranger"
 alias gp="git pull && git push"
 alias grd="git add . && git commit -am \"fast update\" && git push"
 alias gs="git status"
 alias ll="ls -Glha"
 alias ls="ls -G"
-alias f=". ranger"
+alias q="exit"
 alias rgrep="ag -il 'first' | xargs ag -il 'second' | xargs ag -il 'third'"
+alias sc="source ~/.zshrc"
 alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
-alias v="nvim"
+alias vi="nvim -u ~/.minvimrc"
 alias vim="nvim"
 alias vino="nvim -u NONE"
-alias vi="nvim -u ~/.minvimrc"
 alias weather="curl wttr.in"
+alias shrug="echo '¯\\_(ツ)_/¯' | pbcopy"
 
-#
-# Bindings
-#
+# }}}
+
+# Bindings {{{
 bindkey '^x^x' edit-command-line
 bindkey ' ' magic-space # do history expansion on space
+bindkey -v
+bindkey '^R' history-incremental-search-backward
 autoload -U edit-command-line
 zle -N edit-command-line
 
-# 
-# OS specific
-#
+# }}}
+
+# OS specific {{{
 case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
     alias vim='nvim'
     # setup "Z" on MACOS
-    # brew install z
-    . `brew --prefix`/etc/profile.d/z.sh
+    eval "$(zoxide init zsh)"
     # date alias on osX
     local LASTWEEK=$(date -j -v-1w +"%Y-%m-%d")
     # brew install zsh-syntax-highlighting
@@ -120,9 +121,9 @@ case `uname` in
   ;;
 esac
 
-#
-# FZF
-#
+# }}}
+
+# FZF {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # fzf
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -149,9 +150,10 @@ fo() {
 fp(){
   fzf --preview="cat {}" --preview-window=right:70%:wrap
 }
-#
-# search using ag on multiple keywords recursively
-#
+
+# }}}
+
+# Search using ag on multiple keywords recursively {{{
 function agr() {
     if [ -n "$3" ]
     then
@@ -162,9 +164,9 @@ function agr() {
     fi
 }
 
-#
-# Make CTRL-Z background things and unbackground them.
-#
+# }}}
+
+# Make CTRL-Z background things and unbackground them. {{{
 function fg-bg() {
   if [[ $#BUFFER -eq 0 ]]; then
     fg
@@ -175,9 +177,9 @@ function fg-bg() {
 zle -N fg-bg
 bindkey '^Z' fg-bg
 
-#
-# auto ls after a cd
-#
+# }}}
+
+# Auto ls after a cd {{{
 function auto-ls-after-cd() {
   emulate -L zsh
   # Only in response to a user-initiated `cd`, not indirectly (eg. via another
@@ -188,39 +190,48 @@ function auto-ls-after-cd() {
 }
 add-zsh-hook chpwd auto-ls-after-cd
 
+# }}}
 
-# 
-# Path
-#
+# Path {{{
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/sbin/terraform-lsp:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="/usr/local/opt/terraform@0.13/bin:$PATH"
 
-#
-# (neo)Vim
-#
+# }}}
+
+# (neo)Vim {{{
 EDITOR=nvim
 VISUAL=nvim
 
-#
-# Go development
-#
+# }}}
+
+# Vim keybindings (seems to break when used with oh-my-zsh) {{{
+set -o vi
+
+autoload -U compinit
+compinit -u
+
+# }}}
+
+# Go development {{{
 export GOPATH="${HOME}/.go"
 export GOROOT="/usr/local/opt/go/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # test -d "${GOPATH}" || mkdir "${GOPATH}" 
 # test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
-#
-# Mage
-#
+# }}}
+
+# Mage {{{
 export MAGEFILE_ENABLE_COLOR=1 # magefile to print the list of target when you run mage or mage -l in ANSI colors.
 export MAGEFILE_IGNOREDEFAULT=1 # tells the compiled magefile to ignore the default target and print the list of targets when you run mage.
 
+# }}}
 
-# env vars
+# env vars {{{
 source ~/Repositories/Azure/Sandia/dotfiles/shells/zsh/.env
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
@@ -228,6 +239,10 @@ export TERM="xterm-256color"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
+# }}}
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh. {{{
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# }}}
+
+# vim:foldmethod=marker

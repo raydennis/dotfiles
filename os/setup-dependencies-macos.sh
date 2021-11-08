@@ -10,6 +10,9 @@ ln -s ~/Repositories/Github/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 rm ~/.vimrc
 ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc ~/.vimrc
 
+rm ~/.minvimrc
+ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/.minvimrc ~/.minvimrc
+
 rm ~/.vim/coc-settings.json
 ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
 
@@ -21,6 +24,10 @@ ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/ultisnips ~/.vim/Ulti
 
 rm ~/.zshrc
 ln -s ~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
+
+rm ~/.config/alacritty/alacritty.yml
+mkdir -p ~/.config/alacritty
+ln -s ~/Repositories/Github/raydennis/shells/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 rm -rf ~/notes
 ln -s ~/Repositories/Github/raydennis/notes ~/notes
@@ -80,6 +87,17 @@ ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/s
 # git clone https://Repositories/Github/raydennis.com/syl20bnr/spacemacs ~/.emacs.d
 # rm -rf ~/.spacemacs
 # ln -s ~/gitHub/dotfiles/editors/emacs/.spacemacs ~/.spacemacs
+
+# emacs - doom
+rm -rf ~/.doom.d/config.el
+rm -rf ~/.doom.d/custom.el
+rm -rf ~/.doom.d/init.el
+rm -rf ~/.doom.d/packages.el
+
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/config.el ~/.doom.d/config.el
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/custom.el ~/.doom.d/custom.el
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/init.el ~/.doom.d/init.el
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/packages.el ~/.doom.d/packages.el
 
 # ranger
 brew tap eddieantonio/eddieantonio

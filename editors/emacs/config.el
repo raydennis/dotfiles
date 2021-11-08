@@ -1,35 +1,48 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-wilmersdorf t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
+)
+
 (setq
  user-full-name "Ray Dennis"
  user-mail-address "raydennis@outlook.com"
- doom-font (font-spec :family "FiraCode Nerd Font" :size 24 :weight 'regular)
- doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 20)
+ doom-font (font-spec :family "FiraCode Nerd Font" :size 20 :weight 'regular)
+ doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 16)
  projectile-project-search-path '("~/Repositories/Azure")
  mac-command-modifier 'meta
  scroll-margin 20
- confirm-kill-emacs nil
  auto-save-default t
  make-backup-files t
- doom-theme 'doom-one
  display-line-numbers-type nil
  org-directory "~/org/"
  magit-ediff-dwim-show-on-hunks t
 )
 
-; [Ace-Window] This changes the ace-window display to show a white letter with a red background. The box attribute adds some padding.
-(custom-set-faces!
-  '(aw-leading-char-face
-    :foreground "white" :background "red"
-    :weight bold :height 2.5 :box (:line-width 10 :color "red")))
-
 (map!
  :leader :prefix "y" :desc "toggle word wrap" "w" #'toggle-word-wrap
- :leader :desc "evil show regisers" "r" #'evil-show-registers
- :leader :desc "show undow tree" "u" #'undo-tree-visualize
- :leader :desc "show treemacs" "-" #'treemacs
+ :leader :prefix "y" :desc "evil show registers" "r" #'evil-show-registers
+ :leader :prefix "y" :desc "show undo tree" "u" #'undo-tree-visualize
+ :leader :prefix "y" :desc "show treemacs" "-" #'treemacs
  :leader :prefix "z" :desc "correct previous word" "p" #'flyspell-check-previous-highlighted-word
- :leader :prefix "z" :desc "correct previous word" "z" #'flyspell-auto-correct-word
-)
+ :leader :prefix "f" :desc "ranger" "." #'ranger
+ )
 
 (after! org-journal
   (setq

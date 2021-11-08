@@ -24,7 +24,7 @@
         +childframe)
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy                ; a search engine for love and lif)
+       (ivy                ; a search engine for love and life)
         +fuzzy             ; Enables fuzzy completion for Ivy searches.
         +prescient         ; Enables prescient filtering and sorting for Ivy searches.
         +childframe        ; Causes Ivy to display in a floating child frame, above Emacs.
@@ -53,7 +53,7 @@
        ;;unicode           ; extended unicode support for various languages
        vc-gutter           ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
-       (window-select       ; visually switch windows
+       (window-select      ; visually switch windows
         +switch-window)
        workspaces          ; tab emulation, persistence & separate workspaces
        zen                 ; distraction-free coding or writing
@@ -70,11 +70,12 @@
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        snippets            ; my elves. They type so I don't have to
-       ;;word-wrap         ; soft wrapping with language-aware indent
+       word-wrap           ; soft wrapping with language-aware indent
 
        :emacs
        (dired              ; making dired pretty [functional]
-        +icons)
+        +icons
+        +ranger)
        electric            ; smarter, keyword-based electric-indent
        ;;ibuffer           ; interactive buffer management
        (undo               ; persistent, smarter undo for your inevitable mistakes
@@ -139,7 +140,7 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       (go +lsp)         ; the hipster dialect
+       (go +lsp)           ; the hipster dialect
        ;;(haskell +dante)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on

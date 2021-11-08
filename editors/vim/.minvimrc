@@ -25,12 +25,13 @@ let markdown_folding = 1
 set autoindent                                           " Copy indent from current line when starting a new line
 set autoread
 set autowriteall
-set cursorline
 set backspace=indent,eol,start                           " Make backspace act as it does on other editors
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
+set cursorline
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
-set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
+set foldexpr=nvim_treesitter#foldexpr()
 set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
 set grepprg=ag\ --vimgrep                                " Use ag instead of grep
@@ -39,10 +40,12 @@ set hlsearch                                             " When there is a previ
 set ignorecase                                           " The case of normal letters is ignored.
 set incsearch                                            " While typing a search command, show where pattern, as it was typed
 set lazyredraw                                           " Don't redraw screen while executing macro
+set list listchars=tab:\|\ ,trail:·                      " Display tabs as '-' and trailing white space as '.'
 set mouse=a                                              " Enable the use of the mouse
 set nonumber                                             " No numbers on the left by default
 set path& | let &path .= "**"                            " This is a list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
 set scrolloff=20                                         " Minimal number of screen lines to keep above and below the cursor.
+set showbreak=↳\                                         " Downwards arrow with tip rightwards (U+21B3, UTF-8: E2 86 B3)
 set showcmd                                              " Display incomplete command
 set showmatch                                            " When a bracket is inserted, briefly jump to the matching one.
 set smartcase                                            " Case insensitive search if your search is all lowercase, sensitive if you use any CAPS.
@@ -56,8 +59,6 @@ set undodir=$HOME/.vim/undo                              " Where to save undo hi
 set undofile                                             " Save undos after file closes
 set wildmenu                                             " When 'wildmenu' is on, command-line completion operates in an enhanced mode
 set wildmode=list:longest,full
-set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
-set foldexpr=nvim_treesitter#foldexpr()
 
 " Default Tab settings (file specific ones also set in the augroups) {{{{
 set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
@@ -119,6 +120,8 @@ cnoremap <C-d>a <C-R>=strftime("%Y-%m-%d")<cr>
 
 cnoremap <C-j> <C-g>
 cnoremap <C-k> <C-t>
+nnoremap H 0
+nnoremap L $
 " }}}
 
 " Screenshots {{{
@@ -133,7 +136,7 @@ if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " MacOS
-    set guifont=FuraCodeNerdFontComplete-Regular:h18
+    set guifont=MesloLGS-NF-Regular:h26
     set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
     nnoremap <leader>F :execute 'silent !open . &' \| redraw! <cr>
   else
@@ -203,7 +206,6 @@ nnoremap <leader>os :grep SCHEDULED *<cr>
 
 " Source and reload current file {{{
 nnoremap <leader>so :w<cr> :so %<cr>
-nnoremap <leader>sor :w<cr> :so %<cr> e %
 nnoremap <leader>pi :w<cr> :so %<cr> :PlugInstall<cr>
 nnoremap <leader>pu :w<cr> :so %<cr> :PlugUpdate<cr>
 nnoremap <leader>pc :w<cr> :so %<cr> :PlugClean<cr>
@@ -225,30 +227,6 @@ nnoremap <leader>v' :vsplit term://zsh<cr>
 tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
 tnoremap <C-w> <C-\><C-n>
-
-" To use `ALT+{h,j,k,l}` to navigate windows from any mode: >
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-" }}}
-
-" Vimwiki style jump bindings {{{
-nnoremap <leader>ww :e ~/Repositories/Azure/Sandia/wnotes/todo.md<cr>:cd %:h<cr>
-nnoremap <leader>wd :e ~/Repositories/Azure/Sandia/wnotes/done.md<cr>:cd %:h<cr>
-nnoremap <leader>wp :e ~/Repositories/Azure/Sandia/wnotes/people/people.md<cr>:cd %:h<cr>
-nnoremap <leader>wl :e ~/Repositories/Azure/Sandia/wnotes/quicklinks.md<cr>:cd %:h<cr>
-nnoremap <leader>wh :e ~/Repositories/Github/raydennis/notes/personal/home.md<cr>:cd %:h<cr>
-nnoremap <leader>ws :e ~/Repositories/Github/raydennis/notes/personal/snippets.md<cr>:cd %:h<cr>
-" }}}
 
 " Vimgrep add {{{
 " search open buffers for word

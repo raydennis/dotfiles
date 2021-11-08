@@ -6,14 +6,14 @@
 
   "diffEditor.renderSideBySide": true,
 
-  "editor.cursorBlinking": "smooth",
+  "editor.cursorBlinking": "expand",
   "editor.cursorSmoothCaretAnimation": true,
   "editor.fontFamily": "FiraCode Nerd Font, Consolas, Menlo, monospace",
   "editor.fontLigatures": true,
   "editor.insertSpaces": true,
-  "editor.lineNumbers": "off",
+  "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
-  "editor.multiCursorModifier": "alt",
+  "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderWhitespace": "all",
   "editor.smoothScrolling": true,
   "editor.suggestSelection": "first",
@@ -98,7 +98,14 @@
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
 
+  "vim.enableNeovim": true,
+  "vim.foldfix": true,
+  "vim.gdefault": true,
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
   "vim.leader": "<space>",
+  "vim.neovimPath": "/usr/local/bin/nvim",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<leader>", "'"],
@@ -109,20 +116,35 @@
       "commands": ["gitlens.diffWithPreviousInDiffLeft"]
     }
   ],
-  "vim.enableNeovim": true,
-  "vim.incsearch": true,
-  "vim.hlsearch": true,
   "vim.smartcase": true,
-  "vim.neovimPath": "/usr/local/bin/nvim",
-  "vim.highlightedyank.enable": true,
   "vim.useSystemClipboard": true,
-  "vim.foldfix": true,
 
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 
-  "window.zoomLevel": 3,
+  "window.zoomLevel": 2,
 
-  "workbench.colorTheme": "Nord Native",
-  "workbench.list.smoothScrolling": true
-
+  "workbench.colorTheme": "Winter is Coming (Dark Black)",
+  "workbench.list.smoothScrolling": true,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "sync.gist": "223e8166249bedfaa9e63f1680d69311",
+  "workbench.editor.showTabs": false,
+  "terraform.languageServer": {
+    "external": true,
+    "pathToBinary": "",
+    "args": [
+      "serve"
+    ],
+    "maxNumberOfProblems": 100,
+    "trace.server": "off"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "security.workspace.trust.untrustedFiles": "open",
 }
