@@ -75,28 +75,27 @@ set softtabstop=4                         " Allows backspace to delete the space
 
 " The rest {{{
 " Install vim-plug if unavailable
+" OS specific commands {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    if has("unix")
+      " *nix
+      " *nix subsets
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    else
+        " Windows
+        iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | `ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
+    endif
 endif
-
 call plug#begin('~/.vim/plugged')
 
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }         " Adds Go language support for Vim (no needed with coc-go and treesitter)
-" Plug 'vim-pandoc/vim-pandoc'                               " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
-" Plug 'vim-pandoc/vim-pandoc-syntax'                        " Needed for the sytnax highlighting
 Plug 'Scuilion/markdown-drawer'                              " Simplify navigation in large markdown files.
 Plug 'szw/vim-maximizer'                                     " enables maximizing windows with toggle
-Plug 'SirVer/ultisnips'                                      " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
-Plug 'honza/vim-snippets'                                    " Snippets for UltiSnips
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'itchyny/lightline.vim'                                 " Statusbar
 Plug 'jkramer/vim-checkbox'                                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'                                      " Fuzzy finding
 Plug 'junegunn/goyo.vim'                                     " Distraction-free writing in Vim.
 Plug 'junegunn/gv.vim'                                       " A git commit browser.
 Plug 'junegunn/limelight.vim'                                " Hyperfocus-writing in Vim.
@@ -107,13 +106,10 @@ Plug 'markonm/traces.vim'                                    " Highlights patter
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
 Plug 'nanotee/zoxide.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}              " Make your Vim/Neovim as smart as VSCode.
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it:
 Plug 'pedrohdz/vim-yaml-folds'                               " Very simple folding configuration for YAML, Puppet/Hiera EYAML, RAML and SaltStack SLS files.
 Plug 'phenomenes/ansible-snippets'                           " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
 Plug 'puremourning/vimspector'                               " A multi language graphical debugger for Vim
 Plug 'rbgrouleff/bclose.vim'                                 " Ranger dependency for neovim
-Plug 'sebdah/vim-delve'
 Plug 'sheerun/vim-polyglot'                                  " Syntax highlighting for multiple languages
 Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
@@ -125,7 +121,6 @@ Plug 'tpope/vim-speeddating'                                 " Quickly modify da
 Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
 Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
-Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'main' }                            " provides collection of features to assist file management using fzf
 
 " Color schemes
 Plug 'lifepillar/vim-solarized8'
@@ -140,36 +135,6 @@ Plug 'srcery-colors/srcery-vim'
 
 call plug#end() " Required, All of the Plugins must be added before this line
 " }}}
-" COC {{{
-
-let g:coc_global_extensions = [
-            \ 'coc-docker',
-            \ 'coc-eslint',
-            \ 'coc-explorer',
-            \ 'coc-fzf-preview',
-            \ 'coc-git',
-            \ 'coc-go',
-            \ 'coc-gocode',
-            \ 'coc-highlight',
-            \ 'coc-html',
-            \ 'coc-json',
-            \ 'coc-lua',
-            \ 'coc-markdownlint',
-            \ 'coc-marketplace',
-            \ 'coc-pairs',
-            \ 'coc-phpls',
-            \ 'coc-powershell',
-            \ 'coc-prettier',
-            \ 'coc-pyright',
-            \ 'coc-tslint-plugin',
-            \ 'coc-tsserver',
-            \ 'coc-ultisnips',
-            \ 'coc-yaml',
-            \ 'coc-yank'
-            \ ]
-
-
-" }}}
 " Built in {{{
 
 " Allows jumping between matches like if and end with %
@@ -179,196 +144,6 @@ runtime macros/matchit.vim
 " }}}
 
 " Plugin settings {{{
-
-" Coc {{{
-
-" Coc-Explorer {{{
-
-nmap - :CocCommand explorer<cr>
-
-" }}}
-
-" Coc-fzf-preview {{{
-nmap <Leader><space> :CocCommand fzf-preview.DirectoryFiles<cr>
-xmap <Leader><space> :CocCommand fzf-preview.DirectoryFiles<cr>
-
-nnoremap <Leader><tab>    :CocCommand fzf-preview.AllBuffers<cr>
-nnoremap <Leader>g :CocCommand fzf-preview.FromResources project_mru git<cr>
-" }}}
-
-nnoremap <leader>cc :CocCommand
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-
-" Don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" Always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" Position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <leader>; <Plug>(coc-diagnostic-info)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<cr>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-augroup cocgroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,python setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>A  <Plug>(coc-codeaction-selected)
-nmap <leader>A  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" Coc-tsserver, coc-python are the examples of servers that support it.
-" nmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-map <leader>A :Format <cr>
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <leader>;a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <leader>;e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <leader>;c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <leader>;o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <leader>;s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <leader>;j  :<C-u>CocNext<cr>
-" Do default action for previous item.
-nnoremap <silent> <leader>;k  :<C-u>CocPrev<cr>
-" Resume latest coc list.
-nnoremap <silent> <leader>;p  :<C-u>CocListResume<cr>
-
-" }}}
-
-" FZF {{{
-
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-
-" [Make :Ag not match file names, only the file content](https://github.com/junegunn/fzf.vim/issues/346)
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Mapping selecting mappings
-nmap <c-x><c-n> <plug>(fzf-maps-n)
-xmap <c-x><c-x> <plug>(fzf-maps-x)
-omap <c-x><c-o> <plug>(fzf-maps-o)
-
-" Fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
-nmap <c-P> :Commands<cr>
-" These are only needed if COC is disabled.
-" nmap <leader><tab> :Buffers<cr>
-" nmap <leader><space> :Files<cr>
-
-" FzfPreview {{{
-nnoremap <silent> <Leader>fm :<C-u>CocCommand fzf-preview.Marks<CR>
-nnoremap <silent> <Leader>fo :<C-u>CocCommand fzf-preview.OldFiles<CR>
-nnoremap <silent> <Leader>gs :<C-u>CocCommand fzf-preview.GitStatus<CR>
-nnoremap <silent> <Leader>ga :<C-u>CocCommand fzf-preview.GitActions<CR>
-let g:fzf_preview_disable_mru = 0
-let g:fzf_preview_floating_window_rate = 0.8
-let g:fzf_preview_command = 'bat --color=always --plain {-1}'
-let g:fzf_preview_default_fzf_options = { '--reverse': v:true, '--preview-window': 'wrap:70%' }
-let g:fzf_preview_git_status_preview_command =
-	\ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | delta || " .
-	\ "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | delta || " .
-	\ g:fzf_preview_command
-
-" }}}
-" }}}
 
 " Fugitive Conflict Resolution{{{
 nnoremap <leader>dw :windo diffthis<cr>
@@ -506,22 +281,6 @@ let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 " }}}
 
-" UltiSnips {{{
-
-if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
-        let g:UltiSnipsEditSplit = "context"
-        " Call mkdir($HOME . "~/.vim/UltiSnips", "p")
-        let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
-    endif
-
-" Set ultisnips triggers
-let g:UltiSnipsExpandTrigger="<Nop>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-imap <C-u> * <C-R>=UltiSnips#ListSnippets()<CR>
-
-" }}}
-
 " Undotree {{{
 nnoremap <leader>u :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
@@ -601,28 +360,6 @@ nnoremap <leader>vt :Vista toc <cr>
 
 " }}}
 
-" Vimspector {{{
-
-" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-
-" for normal mode - the word under the cursor
-nmap <Leader>de <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <Leader>de <Plug>VimspectorBalloonEval
-
-nmap <Leader>dd <Plug>VimspectorContinue
-nmap <Leader>ds <Plug>VimspectorStop
-nmap <Leader>dr <Plug>VimspectorRestart
-nmap <Leader>dp <Plug>VimspectorPause
-nmap <Leader>dbb <Plug>VimspectorToggleBreakpoint
-nmap <Leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
-nmap <Leader>dbf <Plug>VimspectorAddFunctionBreakpoint
-nmap <Leader>dso <Plug>VimspectorStepOver
-nmap <Leader>dsi <Plug>VimspectorStepInto
-nmap <Leader>dsu <Plug>VimspectorStepOut
-nmap <Leader>dc <Plug>VimspectorRunToCursor
-" }}}
-
 " Which-key {{{
 noremap <silent> <leader> :WhichKey '<Space>'<cr>
 autocmd! FileType which_key
@@ -630,6 +367,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " }}}
 
+" }}}
 " }}}
 
 " Color scheme + Lightline {{{
