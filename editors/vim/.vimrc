@@ -430,7 +430,7 @@ set noshowmode
 set laststatus=2
 
 let g:lightline = {
-       \ 'colorscheme': 'solarized8',
+       \ 'colorscheme': 'default',
        \ 'active': {
        \   'left': [ [ 'paste' ],
        \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
@@ -510,7 +510,7 @@ let g:solarized_termtrans =  1
 let g:solarized_extra_hi_groups =  1
 " }}}
 
-colorscheme solarized8
+colorscheme nord
 
 " }}}
 
@@ -721,8 +721,8 @@ nnoremap <silent> <leader>, :noh<cr>
 " }}}
 
 " Terminal {{{
-nnoremap <leader>' :split term://zsh<cr>
-nnoremap <leader>v' :vsplit term://zsh<cr>
+nnoremap <leader>' :term<cr>
+nnoremap <leader>v' :vert term<cr>
 " To simulate |i_CTRL-R| in terminal-mode: >
 tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
