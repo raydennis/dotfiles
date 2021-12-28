@@ -8,8 +8,18 @@ fi
 
 # }}}
 
-# powerlevel10k theme {{{
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+# zsh {{{
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+ZSH_THEME="powerlevel10/powerlevel10k"
+
+plugins=( git sudo zsh-history-substring-search zsh-syntax-highlighting)
+
+source $ZSH/oh-my-zsh.sh
 
 # }}}
 
@@ -109,9 +119,6 @@ case `uname` in
     #setup the z plugin on WSL
     . ~/z.sh
     unsetopt BG_NICE # fixes "zsh: nice(5) failed: operation not permitted" issue when running z on WSL
-    #zsh plugins
-    source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     alias o="xdg-open"
     alias ll="ls -Glha --color=auto"
     alias ls="ls -G --color=auto"

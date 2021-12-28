@@ -1,5 +1,5 @@
 # install vim-gtk3
-sudo dnf install curl zsh silversearcher-ag wget zsh tags npm python3 -y
+dnf install vim-gtk3 curl zsh silversearcher-ag wget zsh ctags npm -y
 
 # Install nerdfont
 mkdir -p ~/.local/share/fonts
@@ -67,49 +67,15 @@ ln -s /Repositoires/GitHub/dotfiles/shells/terminator/config ~/.config/terminato
 
 
 # Python setup
-pip install pep8 flake8 pyflakes isort yapf jedi
-
-# Install TLP (battery saver)
-# apt-get install tlp tlp-rdw -y
+pip install pep8 flake8 pyflakes isort yapf jedi 
 
 # replace capslock with escape
 # vim /usr/share/X11/xkb/symbols/pc
 # Comment out this line:
-# // key <CAPS> {       [ Caps_Lock             ]       };
+# // key <CAPS> {	[ Caps_Lock		]	};
 # And add this line
 # key <CAPS> {        [ Escape                ]       };
 
-## Make Firefox use touch scrolling
-## You can make this permanent by modifying the launcher using the following: sed -i "s|Exe
-c=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox.desktop
-#To undo this change, use:
-# sed -i "s|Exec=env MOZ_USE_XINPUT2=1 |Exec=|g" /usr/share/applications/firefox.desktop
 
-## Docker-CE (only for bare metal)
-# apt-get remove docker docker-engine docker.io
-# apt-get update
-# apt-get install \\n    apt-transport-https \\n    ca-certificates \\n    curl \\n    soft
-ware-properties-common\n
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-# add-apt-repository \\n   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \\n
- $(lsb_release -cs) \\n   stable"
-# apt-get update
-# apt-get install docker-ce
-
-## Multitouch gestures # https://GitHub.com/iberianpig/fusuma
-
-## Pulse secure
-# requires dependency
-# apt-get install libwebkitgtk-1.0
-# download from: http://trial.pulsesecure.net/clients/ps-pulse-linux-5.3r3.0-b1021-ubuntu-d
-ebian-64-bit-installer.deb
-
-## Intellij Idea
-# snap install intellij-idea-ultimate --classic
-
-# allows USB passthrough
-# adduser $USER vboxusers
-
-# Install nvidia drivers
-# ubuntu-drivers autoinstall
-
+# setup zsh as default
+# sudo usermod -s $(which zsh) $USER

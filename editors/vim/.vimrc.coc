@@ -22,11 +22,6 @@ let markdown_folding = 1
 
 " Set {{{
 
-" Colorscheme {{{
-colorscheme nord
-set termguicolors
-" }}}
-
 set autoindent                                           " Copy indent from current line when starting a new line
 set autoread
 set autowriteall
@@ -34,6 +29,7 @@ set backspace=indent,eol,start                           " Make backspace act as
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
 set cursorline
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
+set foldexpr=nvim_treesitter#foldexpr()
 set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
 set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
@@ -65,10 +61,10 @@ set wildmenu                                             " When 'wildmenu' is on
 set wildmode=list:longest,full
 
 " Default Tab settings (file specific ones also set in the augroups) {{{{
-set tabstop=4                                            " Number of spaces that a <Tab> in the file counts for.
-set shiftwidth=4                                         " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
-set expandtab                                            " Insert spaces instead of tab
-set softtabstop=4                                        " Allows backspace to delete the spaces of an expanded tab with one key press
+set tabstop=4                             " Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=4                          " This allows you to use the < and > keys from VIM'S visual (marking) mode to block indent/un-indent regions
+set expandtab                             " Insert spaces instead of tab
+set softtabstop=4                         " Allows backspace to delete the spaces of an expanded tab with one key press
 " }}}}
 
 " }}}
@@ -79,44 +75,45 @@ set softtabstop=4                                        " Allows backspace to d
 
 " The rest {{{
 " Install vim-plug if unavailable
-" OS specific commands {{{
-    if has("unix")
-      " *nix
-      " *nix subsets
-      if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-      endif
-      else
-        " Windows
-        if empty(glob('~\vimfiles\autoload\plug.vim'))
-          iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | `ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
-        endif
-    endif
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }         " Adds Go language support for Vim (no needed with coc-go and treesitter)
+" Plug 'vim-pandoc/vim-pandoc'                               " Vim-pandoc provides facilities to integrate Vim with the pandoc document converter and work with documents written in its markdown variant (although textile documents are also supported).
+" Plug 'vim-pandoc/vim-pandoc-syntax'                        " Needed for the sytnax highlighting
 Plug 'Scuilion/markdown-drawer'                              " Simplify navigation in large markdown files.
-" Plug 'SirVer/ultisnips'                                      " Ultimate snippet solution for Vim
+Plug 'szw/vim-maximizer'                                     " enables maximizing windows with toggle
+Plug 'SirVer/ultisnips'                                      " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
 Plug 'honza/vim-snippets'                                    " Snippets for UltiSnips
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'itchyny/lightline.vim'                                 " Statusbar
 Plug 'jkramer/vim-checkbox'                                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'                                      " Fuzzy finding
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'                                      " Fuzzy finding
 Plug 'junegunn/goyo.vim'                                     " Distraction-free writing in Vim.
 Plug 'junegunn/gv.vim'                                       " A git commit browser.
 Plug 'junegunn/limelight.vim'                                " Hyperfocus-writing in Vim.
 Plug 'junegunn/vim-peekaboo'                                 " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
 Plug 'liuchengxu/vim-which-key'                              " Vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
+Plug 'liuchengxu/vista.vim'                                  " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                                    " Highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
 Plug 'nanotee/zoxide.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}              " Make your Vim/Neovim as smart as VSCode.
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it:
 Plug 'pedrohdz/vim-yaml-folds'                               " Very simple folding configuration for YAML, Puppet/Hiera EYAML, RAML and SaltStack SLS files.
 Plug 'phenomenes/ansible-snippets'                           " Ansible Vim snippets for SnipMate and UltiSnips. (created from documentation)
+Plug 'puremourning/vimspector'                               " A multi language graphical debugger for Vim
+Plug 'rbgrouleff/bclose.vim'                                 " Ranger dependency for neovim
+Plug 'sebdah/vim-delve'
 Plug 'sheerun/vim-polyglot'                                  " Syntax highlighting for multiple languages
 Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
@@ -128,25 +125,250 @@ Plug 'tpope/vim-speeddating'                                 " Quickly modify da
 Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
 Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
+Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'main' }                            " provides collection of features to assist file management using fzf
 
 " Color schemes
 Plug 'lifepillar/vim-solarized8'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
+Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
+Plug 'romainl/flattened'
+Plug 'sickill/vim-monokai'
+Plug 'srcery-colors/srcery-vim'
+
 
 call plug#end() " Required, All of the Plugins must be added before this line
+" }}}
+" COC {{{
+
+let g:coc_global_extensions = [
+            \ 'coc-docker',
+            \ 'coc-eslint',
+            \ 'coc-explorer',
+            \ 'coc-fzf-preview',
+            \ 'coc-git',
+            \ 'coc-go',
+            \ 'coc-gocode',
+            \ 'coc-highlight',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-lua',
+            \ 'coc-markdownlint',
+            \ 'coc-marketplace',
+            \ 'coc-pairs',
+            \ 'coc-phpls',
+            \ 'coc-powershell',
+            \ 'coc-prettier',
+            \ 'coc-pyright',
+            \ 'coc-tslint-plugin',
+            \ 'coc-tsserver',
+            \ 'coc-ultisnips',
+            \ 'coc-yaml',
+            \ 'coc-yank'
+            \ ]
+
 
 " }}}
-" }}}
-
 " Built in {{{
 
 " Allows jumping between matches like if and end with %
 runtime macros/matchit.vim
 
 " }}}
+" }}}
 
 " Plugin settings {{{
+
+" Coc {{{
+
+" Coc-Explorer {{{
+
+nmap - :CocCommand explorer<cr>
+
+" }}}
+
+" Coc-fzf-preview {{{
+nmap <Leader><space> :CocCommand fzf-preview.DirectoryFiles<cr>
+xmap <Leader><space> :CocCommand fzf-preview.DirectoryFiles<cr>
+
+nnoremap <Leader><tab>    :CocCommand fzf-preview.AllBuffers<cr>
+nnoremap <Leader>g :CocCommand fzf-preview.FromResources project_mru git<cr>
+" }}}
+
+nnoremap <leader>cc :CocCommand
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" Don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" Position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <leader>; <Plug>(coc-diagnostic-info)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<cr>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+augroup cocgroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json,python setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>A  <Plug>(coc-codeaction-selected)
+nmap <leader>A  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" Coc-tsserver, coc-python are the examples of servers that support it.
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+map <leader>A :Format <cr>
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <leader>;a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <leader>;e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <leader>;c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <leader>;o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <leader>;s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <leader>;j  :<C-u>CocNext<cr>
+" Do default action for previous item.
+nnoremap <silent> <leader>;k  :<C-u>CocPrev<cr>
+" Resume latest coc list.
+nnoremap <silent> <leader>;p  :<C-u>CocListResume<cr>
+
+" }}}
+
+" FZF {{{
+
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
+" [Make :Ag not match file names, only the file content](https://github.com/junegunn/fzf.vim/issues/346)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Mapping selecting mappings
+nmap <c-x><c-n> <plug>(fzf-maps-n)
+xmap <c-x><c-x> <plug>(fzf-maps-x)
+omap <c-x><c-o> <plug>(fzf-maps-o)
+
+" Fuzzy find Vim commands (like Ctrl-Shift-P in Sublime/Atom/VSC)
+nmap <c-P> :Commands<cr>
+" These are only needed if COC is disabled.
+" nmap <leader><tab> :Buffers<cr>
+" nmap <leader><space> :Files<cr>
+
+" FzfPreview {{{
+nnoremap <silent> <Leader>fm :<C-u>CocCommand fzf-preview.Marks<CR>
+nnoremap <silent> <Leader>fo :<C-u>CocCommand fzf-preview.OldFiles<CR>
+nnoremap <silent> <Leader>gs :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> <Leader>ga :<C-u>CocCommand fzf-preview.GitActions<CR>
+let g:fzf_preview_disable_mru = 0
+let g:fzf_preview_floating_window_rate = 0.8
+let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzf_preview_default_fzf_options = { '--reverse': v:true, '--preview-window': 'wrap:70%' }
+let g:fzf_preview_git_status_preview_command =
+	\ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | delta || " .
+	\ "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | delta || " .
+	\ g:fzf_preview_command
+
+" }}}
+" }}}
 
 " Fugitive Conflict Resolution{{{
 nnoremap <leader>dw :windo diffthis<cr>
@@ -209,6 +431,10 @@ let g:mkdp_preview_options = {
 let g:mkdp_markdown_css = '~/.vim/user/splendor.css'
 " }}}
 
+" Maximizer {{{
+nnoremap <leader>wm :MaximizerToggle<cr>
+" }}}
+
 " Netwr {{{
 let g:netrw_liststyle      = 3     " Tree View
 let g:netrw_winsize        = 80    " Make split 20 (100-80) characters wide
@@ -228,16 +454,24 @@ let g:qf_write_changes = 1
 
 " Startify {{{
 let g:startify_bookmarks = [
-    \ {'c': '~/Repositories/GitHub/raydennis/wnotes/commands.md'},
-    \ {'p': '~/Repositories/GitHub/raydennis/wnotes/people.md'},
-    \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
-    \ {'t': '~/Repositories/GitHub/raydennis/wnotes/trainings/index.md'},
-    \ {'v': '~/Repositories/GitHub/raydennis/dotfiles/editors/vim/.vimrc'},
+    \ {'c': '/Users/rsdenni/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json'},
+    \ {'tt': '~/Repositories/Azure/Sandia/wnotes/todo.md'},
+    \ {'td': '~/Repositories/Azure/Sandia/wnotes/done.md'},
+    \ {'p': '~/Repositories/Azure/Sandia/wnotes/people/people.md'},
+    \ {'r': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rc.conf'},
+    \ {'rr': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/rifle.conf'},
+    \ {'i': '~/Repositories/Azure/Sandia/wnotes/inbox.md'},
+    \ {'n': '~/Repositories/Azure/Sandia/wnotes/index.md'},
+    \ {'s': '~/Repositories/Github/raydennis/dotfiles/shells/ranger/scope.sh'},
+    \ {'ti': '~/Repositories/Github/raydennis/notes/work/trainings/index.md'},
+    \ {'v': '~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc'},
+    \ {'z': '~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc'}
     \ ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
     \ 'bundle/.*/doc',
+    \ '/Dropbox/notes/personal/*',
     \ ]
 
 nnoremap <leader>s :Startify<cr>
@@ -272,6 +506,22 @@ let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 " }}}
 
+" UltiSnips {{{
+
+if filereadable(expand("~/.vim/plugged/ultisnips/plugin/UltiSnips.vim"))
+        let g:UltiSnipsEditSplit = "context"
+        " Call mkdir($HOME . "~/.vim/UltiSnips", "p")
+        let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+    endif
+
+" Set ultisnips triggers
+let g:UltiSnipsExpandTrigger="<Nop>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+imap <C-u> * <C-R>=UltiSnips#ListSnippets()<CR>
+
+" }}}
+
 " Undotree {{{
 nnoremap <leader>u :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
@@ -280,6 +530,98 @@ if !exists('g:undotree_WindowLayout')
 endif
 " }}}
 
+" Vista {{{
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\ 'augroup': 'פּ',
+\ 'autocommand groups': 'פּ',
+\ 'class': '',
+\ 'classes': '',
+\ 'const': '',
+\ 'constant': '',
+\ 'default': '',
+\ 'enum': '',
+\ 'enumerator': '',
+\ 'field': '',
+\ 'fields': '',
+\ 'func': '',
+\ 'function': '',
+\ 'functions': '',
+\ 'implementation': '',
+\ 'interface': '',
+\ 'macro': '',
+\ 'macros': '',
+\ 'map': 'פּ',
+\ 'maps': 'פּ',
+\ 'member': '',
+\ 'members': '',
+\ 'method': '',
+\ 'module': '',
+\ 'modules': '',
+\ 'namespace': '',
+\ 'package': '',
+\ 'packages': '',
+\ 'property': '襁',
+\ 'struct': '',
+\ 'subroutine': '羚',
+\ 'target': '',
+\ 'type': '',
+\ 'typeParameter': '',
+\ 'typedef': '',
+\ 'types': '',
+\ 'union': '鬒',
+\ 'var': '',
+\ 'variable': '',
+\ 'variables': '',
+\  }
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+let g:vista_fzf_preview = ['right:50%']
+
+let g:vista_executive_for = {
+  \ 'python': 'coc',
+  \ 'go': 'coc',
+  \ 'javascript': 'coc',
+  \ 'javascript.jsx': 'coc',
+  \ 'json': 'coc',
+  \ 'php': 'coc',
+  \ 'ps1': 'coc',
+  \ 'tf': 'coc',
+  \ 'pandoc': 'markdown',
+  \ 'typescript': 'coc'
+  \ }
+
+" Keybinding
+nnoremap <leader>vi :Vista!! <cr>
+nnoremap <leader>vt :Vista toc <cr>
+
+" }}}
+
+" Vimspector {{{
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+
+" for normal mode - the word under the cursor
+nmap <Leader>de <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>de <Plug>VimspectorBalloonEval
+
+nmap <Leader>dd <Plug>VimspectorContinue
+nmap <Leader>ds <Plug>VimspectorStop
+nmap <Leader>dr <Plug>VimspectorRestart
+nmap <Leader>dp <Plug>VimspectorPause
+nmap <Leader>dbb <Plug>VimspectorToggleBreakpoint
+nmap <Leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Leader>dbf <Plug>VimspectorAddFunctionBreakpoint
+nmap <Leader>dso <Plug>VimspectorStepOver
+nmap <Leader>dsi <Plug>VimspectorStepInto
+nmap <Leader>dsu <Plug>VimspectorStepOut
+nmap <Leader>dc <Plug>VimspectorRunToCursor
+" }}}
 
 " Which-key {{{
 noremap <silent> <leader> :WhichKey '<Space>'<cr>
@@ -288,7 +630,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " }}}
 
-" }}}
 " }}}
 
 " Color scheme + Lightline {{{
@@ -302,7 +643,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-       \ 'colorscheme': 'nord',
+       \ 'colorscheme': 'PaperColor',
        \ 'active': {
        \   'left': [ [ 'paste' ],
        \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
@@ -349,7 +690,7 @@ let g:nord_uniform_status_lines = 1
 " }}}
 
 " Papercolor {{{
-" set background=light
+set background=light
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default': {
@@ -382,7 +723,7 @@ let g:solarized_termtrans =  1
 let g:solarized_extra_hi_groups =  1
 " }}}
 
-colorscheme nord
+colorscheme papercolor
 
 " }}}
 
@@ -427,9 +768,11 @@ augroup go
     autocmd!
     autocmd FileType go setlocal number
     autocmd FileType go nmap <f9> :DlvToggleBreakpoint<cr>
+    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
     autocmd BufWritePre *.go :silent ! "gofmt -w" % <cr> :e % <cr>
     autocmd FileType go nmap <f5> :DlvTest<cr>
     autocmd FileType go nnoremap <leader>rr :! go run % <cr>
+    autocmd FileType go nnoremap <leader>rp :CocCommand go.playground <cr>
 augroup END
 " }}}
 
@@ -449,7 +792,6 @@ augroup json
 augroup END
 " }}}
 
-
 " augroup markdown {{{
 augroup markdown
     autocmd!
@@ -461,6 +803,8 @@ augroup END
 augroup ps1
     autocmd!
     autocmd FileType ps1 setlocal number
+    autocmd FileType ps1 nnoremap <leader>rr :CocCommand powershell.execute<cr>
+    autocmd FileType ps1 vnoremap <leader>rr :CocCommand powershell.evaluateSelection<cr>
 augroup END
 " }}}
 
@@ -515,11 +859,10 @@ if has("unix")
   else
     " Linux/WSL
   endif
-endif
-if has("win32")
+else
     " Windows
-    " set shell=
-    " set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+    set shell=powershell.exe
+    set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
     set shellpipe=|
     set shellredir=>
 endif
@@ -595,8 +938,8 @@ nnoremap <silent> <leader>, :noh<cr>
 " }}}
 
 " Terminal {{{
-nnoremap <leader>' :terminal<cr>
-nnoremap <leader>v' :vert terminal<cr>
+nnoremap <leader>' :split term://zsh<cr>
+nnoremap <leader>v' :vsplit term://zsh<cr>
 " To simulate |i_CTRL-R| in terminal-mode: >
 tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
