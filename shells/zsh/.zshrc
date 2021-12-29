@@ -12,12 +12,11 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-ZSH_THEME="powerlevel10/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=( git sudo zsh-history-substring-search zsh-syntax-highlighting)
+plugins=( git sudo zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -63,7 +62,7 @@ setopt sharehistory         # share history across shells
 # Alias {{{
 alias :q="exit"
 alias ^z="fd"
-alias e="nvim"
+alias e="vim"
 alias f=". ranger"
 alias gp="git pull && git push"
 alias grd="git add . && git commit -am \"fast update\" && git push"
@@ -76,9 +75,9 @@ alias sc="source ~/.zshrc"
 alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
-alias vi="nvim -u ~/.minvimrc"
-alias vim="nvim"
-alias vino="nvim -u NONE"
+alias vi="vim -u ~/.mivimrc"
+alias vim="vim"
+alias vino="vim -u NONE"
 alias weather="curl wttr.in"
 alias shrug="echo '¯\\_(ツ)_/¯' | pbcopy"
 
@@ -99,7 +98,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='nvim'
+    alias vim='vim'
     # setup "Z" on MACOS
     eval "$(zoxide init zsh)"
     # date alias on osX
@@ -140,7 +139,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
@@ -151,7 +150,7 @@ fo() {
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-nvim} "$file"
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
   fi
 }
 fp(){
@@ -210,8 +209,8 @@ export PATH="/usr/local/opt/terraform@0.13/bin:$PATH"
 # }}}
 
 # (neo)Vim {{{
-EDITOR=nvim
-VISUAL=nvim
+EDITOR=vim
+VISUAL=vim
 
 # }}}
 
@@ -239,7 +238,7 @@ export MAGEFILE_IGNOREDEFAULT=1 # tells the compiled magefile to ignore the defa
 # }}}
 
 # env vars {{{
-source ~/Repositories/Azure/Sandia/dotfiles/shells/zsh/.env
+source ~/.env
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 export TERM="xterm-256color"
@@ -251,5 +250,6 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh. {{{
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # }}}
+
 
 # vim:foldmethod=marker
