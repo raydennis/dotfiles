@@ -1,5 +1,5 @@
 # install vim-gtk3
-dnf install vim-gtk3 curl zsh silversearcher-ag wget zsh ctags npm -y
+dnf install vim-gtk3 curl zsh silversearcher-ag wget zsh ctags npm xclip-y
 
 # Install nerdfont
 mkdir -p ~/.local/share/fonts
@@ -67,12 +67,12 @@ ln -s /Repositoires/GitHub/dotfiles/shells/terminator/config ~/.config/terminato
 
 
 # Python setup
-pip install pep8 flake8 pyflakes isort yapf jedi 
+pip install pep8 flake8 pyflakes isort yapf jedi
 
 # replace capslock with escape
 # vim /usr/share/X11/xkb/symbols/pc
 # Comment out this line:
-# // key <CAPS> {	[ Caps_Lock		]	};
+# // key <CAPS> {       [ Caps_Lock             ]       };
 # And add this line
 # key <CAPS> {        [ Escape                ]       };
 
