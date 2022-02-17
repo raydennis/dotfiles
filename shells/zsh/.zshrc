@@ -62,7 +62,7 @@ setopt sharehistory         # share history across shells
 # Alias {{{
 alias :q="exit"
 alias ^z="fd"
-alias e="vim"
+alias e="nvim"
 alias f=". ranger"
 alias gp="git pull && git push"
 alias grd="git add . && git commit -am \"fast update\" && git push"
@@ -75,11 +75,17 @@ alias sc="source ~/.zshrc"
 alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
-alias vi="vim -u ~/.mivimrc"
-alias vim="vim"
-alias vino="vim -u NONE"
+alias vi="nvim -u ~/.minvimrc"
+alias vim="nvim"
+alias vino="nvim -u NONE"
 alias weather="curl wttr.in"
 alias shrug="echo '¯\\_(ツ)_/¯' | pbcopy"
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -t"
+alias td="t kill-session -t"
+alias tda="t kill-session -a"
 
 # }}}
 
@@ -98,7 +104,7 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     # setup alias for MacVim
-    alias vim='vim'
+    alias vim='nvim'
     # setup "Z" on MACOS
     eval "$(zoxide init zsh)"
     # date alias on osX
@@ -139,7 +145,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+  [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
@@ -150,7 +156,7 @@ fo() {
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-nvim} "$file"
   fi
 }
 fp(){
@@ -208,9 +214,9 @@ export PATH="/usr/local/opt/terraform@0.13/bin:$PATH"
 
 # }}}
 
-# (neo)Vim {{{
-EDITOR=vim
-VISUAL=vim
+# (neo)nvim {{{
+EDITOR=nvim
+VISUAL=nvim
 
 # }}}
 
@@ -234,6 +240,17 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # Mage {{{
 export MAGEFILE_ENABLE_COLOR=1 # magefile to print the list of target when you run mage or mage -l in ANSI colors.
 export MAGEFILE_IGNOREDEFAULT=1 # tells the compiled magefile to ignore the default target and print the list of targets when you run mage.
+
+# }}}
+
+# Python Development {{{
+
+# Virtualenvwrapper settings: {{{
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=~/.virtualenvs
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+source ~/.local/bin/virtualenvwrapper.sh
+# }}}
 
 # }}}
 
