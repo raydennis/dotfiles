@@ -5,7 +5,6 @@ sudo apt-get install zsh -y
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-
 rm ~/.zshrc
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
 
@@ -19,9 +18,6 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 rm ~/z.sh
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 ln -s ~/re
-
-rm ~/.vimrc
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/.vimrc ~/.vimrc
 
 rm ~/.vim/coc-settings.json
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
@@ -42,5 +38,5 @@ ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/s
 sudo apt install ranger
 rm -rf ~/.config/ranger
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/ranger ~/.config/ranger
-git clone https://Github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+rit clone https://Github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 

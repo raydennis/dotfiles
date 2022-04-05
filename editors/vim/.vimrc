@@ -22,10 +22,6 @@ let markdown_folding = 1
 
 " Set {{{
 
-" Colorscheme {{{
-colorscheme nord
-set termguicolors
-" }}}
 
 set autoindent                                           " Copy indent from current line when starting a new line
 set autoread
@@ -382,7 +378,10 @@ let g:solarized_termtrans =  1
 let g:solarized_extra_hi_groups =  1
 " }}}
 
+" Colorscheme {{{
 colorscheme nord
+set termguicolors
+" }}}
 
 " }}}
 

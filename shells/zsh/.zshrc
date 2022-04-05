@@ -16,7 +16,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=( git sudo zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
+plugins=( git sudo zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -62,7 +62,7 @@ setopt sharehistory         # share history across shells
 # Alias {{{
 alias :q="exit"
 alias ^z="fd"
-alias e="nvim"
+alias e="vim"
 alias f=". ranger"
 alias gp="git pull && git push"
 alias grd="git add . && git commit -am \"fast update\" && git push"
@@ -76,7 +76,7 @@ alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test1
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vi="nvim -u ~/.minvimrc"
-alias vim="nvim"
+alias vim="vim"
 alias vino="nvim -u NONE"
 alias weather="curl wttr.in"
 alias shrug="echo '¯\\_(ツ)_/¯' | pbcopy"
@@ -209,8 +209,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/sbin/terraform-lsp:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="/usr/local/opt/terraform@0.13/bin:$PATH"
+export PATH="~/.local/bin:$PATH"
+export PATH="~/.local/lib/python3.8/site-packages/virtualenv:$PATH"
 
 # }}}
 
@@ -246,10 +247,11 @@ export MAGEFILE_IGNOREDEFAULT=1 # tells the compiled magefile to ignore the defa
 # Python Development {{{
 
 # Virtualenvwrapper settings: {{{
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export WORKON_HOME=~/.virtualenvs
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.8'
+export PATH=~/.local/bin:$PATH
 source ~/.local/bin/virtualenvwrapper.sh
+export WORKON_HOME=~/.virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
 # }}}
 
 # }}}
