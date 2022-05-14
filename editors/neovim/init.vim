@@ -65,29 +65,31 @@ set wildmode=list:longest,full
 call plug#begin('~/.vim/plugged')
 
 Plug 'BurntSushi/ripgrep'                                    " line-oriented search tool that recursively searches the current directory for a regex pattern
+Plug 'L3MON4D3/LuaSnip'                                      " snippets
 Plug 'arcticicestudio/nord-vim'                              " Nord theme
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'                                      " completion
-Plug 'williamboman/nvim-lsp-installer'                       " lsp installer
 Plug 'kyazdani42/nvim-web-devicons'                          " (icons)
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
 Plug 'neovim/nvim-lspconfig'                                 " (picker)
 Plug 'nvim-lua/plenary.nvim'                                 " Lua library (required for telescope)
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }  " fuzzy finder native
-Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
-Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
-Plug 'tpope/vim-speeddating'                                 " Quickly modify dates.
-Plug 'tpope/vim-repeat'                                      " Enable repeating supported plugin maps with
-Plug 'tpope/vim-fugitive'                                    " Adds git functionality to vim ex. :Gdiff
-Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
-Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy find
 Plug 'nvim-treesitter/nvim-treesitter'                       " (finder/preview)
 Plug 'sharkdp/fd'                                            " (finder)
-Plug 'L3MON4D3/LuaSnip'                                      " snippets
+Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
+Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
+Plug 'tpope/vim-fugitive'                                    " Adds git functionality to vim ex. :Gdiff
+Plug 'tpope/vim-repeat'                                      " Enable repeating supported plugin maps with
+Plug 'tpope/vim-speeddating'                                 " Quickly modify dates.
+Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
+Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
+Plug 'williamboman/nvim-lsp-installer'                       " lsp installer
 
 call plug#end() " Required, All of the Plugins must be added before this line
 
@@ -261,9 +263,20 @@ end)
 EOF
 " }}}} Lsp-install
 
+" Fugitive Conflict Resolution{{{
+nnoremap <leader>dw :windo diffthis<cr>
+nnoremap <leader>dv :Gvdiffsplit!<cr>
+nnoremap <leader>h :diffget //2<cr>
+nnoremap <leader>l :diffget //3<cr>
+" }}}
+
+" IndentLine {{{
+let g:indentLine_char = '|'
+" }}}
+
 " Ranger {{{{
 let g:ranger_map_keys = 0
-map <leader> rr
+map <leader>rr :Ranger<cr>
 " }}}} Ranger
 
 " Startify {{{{
@@ -272,7 +285,9 @@ let g:startify_bookmarks = [
 \ {'i': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
 \ {'p': '~/Repositories/GitHub/raydennis/wnotes/people.md'},
 \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
-\ {'t': '~/Repositories/GitHub/raydennis/wnotes/trainings/index.md'},
+\ {'ti': '~/Repositories/GitHub/raydennis/wnotes/trainings/index.md'},
+\ {'te': '/mnt/c/Users/rdennis/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'},
+\ {'tm': '~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf'},
 \ ]
 let g:startify_skiplist = [
 \ 'COMMIT_EDITMSG',
@@ -304,12 +319,36 @@ let g:table_mode_corner = '|'
 " }}}} Tablemode 
 
 " Telescope {{{{
-    nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-    nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-    nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-    nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+lua << EOF
+local telescope = require('telescope')
+telescope.setup {
+	pickers = {
+		find_files = {
+			hidden = true
+			}
+		}
+	}
+EOF
+nnoremap <leader><space> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader><tab> <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 " }}}} Telescope
 
+" TmuxNavigator {{{{
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-z> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+
+tnoremap <silent> <C-z> <C-\><C-n>:TmuxNavigatePrevious<cr>
+tnoremap <silent> <C-h> <C-\><C-n>:TmuxNavigateLeft<cr>
+tnoremap <silent> <C-j> <C-\><C-n>:TmuxNavigateDown<cr>
+tnoremap <silent> <C-k> <C-\><C-n>:TmuxNavigateUp<cr>
+tnoremap <silent> <C-l> <C-\><C-n>:TmuxNavigateRight<cr>
 " Treesitter {{{{
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -360,6 +399,13 @@ let g:nord_italic_comments = 1
 let g:nord_uniform_diff_background = 1
 let g:nord_uniform_status_lines = 1
 " }}}]
+
+" Dracula {{{{
+let g:dracula_bold = 1
+let g:dracula_italic = 1
+let g:dracula_colorterm = 1
+let g:dracula_full_special_attrs_support = 1
+" }}}} /Dracula
 
 " }}} /Plugin settings
 
@@ -524,6 +570,7 @@ nnoremap <leader>v' :vsplit term://zsh<cr>
 tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
 tnoremap <C-w> <C-\><C-n>}} " Terminal
+
 " }}}}} Terminal
 
 " Vimgrep add {{{{{
@@ -574,8 +621,9 @@ hi Folded ctermbg=None ctermfg=Magenta
 " }}} /Functions
 
 " Colorscheme {{{
-colorscheme nord
 set termguicolors
+colorscheme nord
+hi Normal guibg=NONE ctermbg=NONE
 " }}}
 
 " vim:foldmethod=marker
