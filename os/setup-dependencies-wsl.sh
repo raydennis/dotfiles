@@ -34,6 +34,16 @@ ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_gl
 rm ~/.vim/spell/en.utf-8.add
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
+# Node 18
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# tmux
+
+rm ~/.tmux.conf
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # ranger
 sudo apt install ranger
 rm -rf ~/.config/ranger
