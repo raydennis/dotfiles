@@ -76,7 +76,7 @@ alias st="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test1
 alias tg="terraform graph -draw-cycles -type=plan | dot -Tsvg > graph.svg && open graph.svg"
 alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vi="nvim -u ~/.minvimrc"
-alias vim="vim"
+alias vim="nvim"
 alias vino="nvim -u NONE"
 alias weather="curl wttr.in"
 alias shrug="echo '¯\\_(ツ)_/¯' | pbcopy"
@@ -260,7 +260,7 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 source ~/.env
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
@@ -270,5 +270,8 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # }}}
 
+# For Loading the SSH key
+/usr/bin/keychain -q --nogui /home/rdennis/.ssh/id_rsa_rdennis
+source $HOME/.keychain/$HOST-sh
 
 # vim:foldmethod=marker
