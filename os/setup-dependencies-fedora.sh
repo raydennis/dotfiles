@@ -1,81 +1,72 @@
-# install vim-gtk3
-dnf install vim-gtk3 curl zsh silversearcher-ag wget zsh ctags npm xclip-y
+# sudo dnf copr enable agriffis/neovim-nightly
+sudo dnf install -y curl zsh the_silver_searcher wget ctags npm xclip 
 
-# Install nerdfont
-mkdir -p ~/.local/share/fonts
-cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https:
-//GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%
-20Code%20Regular%20Nerd%20Font%20Complete.otf
+cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
 
-# setup zsh autosuggestisons
-rm -rf ~/.zsh/plugins/zsh-autosuggestions
-mkdir ~/.zsh/plugins/zsh-autosuggestions
-ln -s /Repositoires/GitHub/dotfiles/shells/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# neovim
+sudo dnf install -y neovim python3-neovim fd-find ripgrep gcc-c++
+mkdir -p ~/.config/nvim
+rm ~/.config/nvim/init.vim
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim ~/.config/nvim/init.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# setup zsh-syntax-highlighting
-rm -rf ~/.zsh/plugins/zsh-syntax-highlighting
-mkdir ~/.zsh/plugins/zsh-syntax-highlighting
-ln -s /Repositoires/GitHub/dotfiles/shells/zsh/zsh-syntax-highlighting/zsh-syntax-highlight
-ing.zsh ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-rm ~/z.sh
-ln -s /Repositoires/GitHub/dotfiles/shells/zsh/z/z.sh ~/z.sh
-
-rm ~/.vimrc
-ln -s /Repositoires/GitHub/dotfiles/editors/vim/.vimrc ~/.vimrc
-
+# zsh
+sudo dnf install -y zsh 
 rm ~/.zshrc
-ln -s /Repositoires/GitHub/dotfiles/shells/zsh/.zshrc ~/.zshrc
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
 
-mkdir ~/.vim/colors
-rm ~/.vim/colors/monokai.vim
-ln -s /Repositoires/GitHub/dotfiles/editors/vim/vim-monokai/colors/monokai.vim ~/.vim/color
-s/monokai.vim
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-rm ~/.vim/colors/solarized.vim
-ln -s /Repositoires/GitHub/dotfiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~
-/.vim/colors/solarized.vim
+#Powerlevel 10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
-rm ~/.vim/colors/nord.vim
-ln -s /Repositoires/GitHub/dotfiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors
-/nord.vim
+# zsh autosuggestions
+rm -rf ~/.zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-rm -rf ~/.vim/UltiSnips
-ln -s /Repositoires/GitHub/dotfiles/editors/vim/ultisnips ~/.vim/UltiSnips
+# zsh syntax highlighting
+rm -rf ~/.zsh/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-rm /Repositoires/GitHub/dotfiles/.gitconfig ~/.gitconfig
-ln -s /Repositoires/GitHub/dotfiles/.gitconfig ~/.gitconfig
-rm /Repositoires/GitHub/dotfiles/.gitignore_global ~/.gitignore_global
-ln -s /Repositoires/GitHub/dotfiles/.gitignore_global ~/.gitignore_global
+# zsh syntax history
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
+# z.sh
+rm ~/z.sh
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
+
+# git
+rm ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
+rm ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
+
+# spelling
 rm ~/.vim/spell/en.utf-8.add
-ln -s /mnt/c/Users/Ray/GitHub/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
+ln -s /mnt/c/Users/Ray/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
 # ranger
 sudo dnf install ranger -y
 rm -rf ~/.config/ranger
-ln -s /Repositoires/GitHub/dotfiles/shells/ranger ~/.config/ranger
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/ranger ~/.config/ranger
 git clone https://GitHub.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ra
 nger_devicons
 
-# # Terminator setup
-sudo dnf install terminator -y
-mkdir ~/.config/terminator
-rm ~/.config/terminator/config
-ln -s /Repositoires/GitHub/dotfiles/shells/terminator/config ~/.config/terminator/
-
+# tmux
+sudo dnf install tmux -y
+rm ~/.tmux.conf
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Python setup
 pip install pep8 flake8 pyflakes isort yapf jedi
 
-# replace capslock with escape
-# vim /usr/share/X11/xkb/symbols/pc
-# Comment out this line:
-# // key <CAPS> {       [ Caps_Lock             ]       };
-# And add this line
-# key <CAPS> {        [ Escape                ]       };
 
+# replace capslock with escape
+# install gnome tweak tools > alternate layouts > swap esc and caps
 
 # setup zsh as default
 # sudo usermod -s $(which zsh) $USER
