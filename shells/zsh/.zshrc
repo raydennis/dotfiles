@@ -14,7 +14,8 @@ fi
 export ZSH=$HOME/.oh-my-zsh
 # source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 plugins=( git sudo zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting virtualenv)
 
@@ -211,7 +212,7 @@ export PATH="/usr/local/sbin/terraform-lsp:$PATH"
 export PATH="/ascldap/users/rsdenni/.nvm/versions/node/v8.12.0/bin:$PATH"
 export PATH="/usr/local/opt/terraform@0.13/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
-export PATH="~/.local/lib/python3.8/site-packages/virtualenv:$PATH"
+export PATH="~/.local/lib//site-packages/virtualenv:$PATH"
 
 # }}}
 
@@ -247,7 +248,7 @@ export MAGEFILE_IGNOREDEFAULT=1 # tells the compiled magefile to ignore the defa
 # Python Development {{{
 
 # Virtualenvwrapper settings: {{{
-export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.8'
+export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
 export PATH=~/.local/bin:$PATH
 source ~/.local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.virtualenvs
@@ -271,7 +272,7 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 # }}}
 
 # For Loading the SSH key
-/usr/bin/keychain -q --nogui /home/rdennis/.ssh/id_rsa_rdennis
-source $HOME/.keychain/$HOST-sh
+# /usr/bin/keychain -q --nogui /home/rdennis/.ssh/id_rsa_rdennis
+# source $HOME/.keychain/$HOST-sh
 
 # vim:foldmethod=marker
