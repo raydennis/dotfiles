@@ -48,6 +48,7 @@ set smartcase                                            " Case insensitive sear
 set spellfile=~/.vim/spell/en.utf-8.add
 set splitbelow                                           " Open new split panes to right
 set splitright                                           " Open new split panes to the bottom
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab " indents that consist of 4 space characters but are entered with the tab key
 set tagcase=smart                                        " Smart	Ignore case unless an upper case letter is used
 set tags=./tags;,tags;
 set timeoutlen=500
@@ -282,12 +283,14 @@ map <leader>rr :Ranger<cr>
 " Startify {{{{
 let g:startify_bookmarks = [
 \ {'c': '~/Repositories/GitHub/raydennis/wnotes/commands.md'},
+\ {'f': '~/Repositories/GitHub/raydennis/dotfiles/os/setup-dependencies-fedora.sh'},
 \ {'i': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
 \ {'p': '~/Repositories/GitHub/raydennis/wnotes/people.md'},
 \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
 \ {'ti': '~/Repositories/GitHub/raydennis/wnotes/trainings/index.md'},
 \ {'te': '/mnt/c/Users/rdennis/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'},
 \ {'tm': '~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf'},
+\ {'z': '~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc'},
 \ ]
 let g:startify_skiplist = [
 \ 'COMMIT_EDITMSG',
