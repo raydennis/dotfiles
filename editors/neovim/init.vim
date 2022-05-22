@@ -66,13 +66,19 @@ set wildmode=list:longest,full
 call plug#begin('~/.vim/plugged')
 
 Plug 'BurntSushi/ripgrep'                                    " line-oriented search tool that recursively searches the current directory for a regex pattern
-Plug 'L3MON4D3/LuaSnip'                                      " snippets
 Plug 'arcticicestudio/nord-vim'                              " Nord theme
+Plug 'sbdchd/neoformat'                                      " formatting
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/nvim-cmp'                                      " completion
+Plug 'hrsh7th/vim-vsnip'
 Plug 'kyazdani42/nvim-web-devicons'                          " (icons)
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
@@ -81,6 +87,7 @@ Plug 'nvim-lua/plenary.nvim'                                 " Lua library (requ
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }  " fuzzy finder native
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy find
 Plug 'nvim-treesitter/nvim-treesitter'                       " (finder/preview)
+Plug 'rafamadriz/friendly-snippets'
 Plug 'sharkdp/fd'                                            " (finder)
 Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
@@ -98,104 +105,86 @@ call plug#end() " Required, All of the Plugins must be added before this line
 
 " Plugin settings {{{
 
-" CMP (completion) {{{{
+" Setup nvim-cmp {{{{
 lua << EOF
-local cmp = require'cmp'
+  local cmp = require'cmp'
 
-cmp.setup({
-snippet = {
-    expand = function(args)
-    -- For `vsnip` user.
-    -- vim.fn["vsnip#anonymous"](args.body)
-
-    -- For `luasnip` user.
-    require('luasnip').lsp_expand(args.body)
-
-    -- For `ultisnips` user.
-    -- vim.fn["UltiSnips#Anon"](args.body)
-    end,
-},
-mapping = {
-  ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-  ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-  ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-  ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-  ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-  ['<C-f>'] = cmp.mapping.scroll_docs(4),
-  ['<C-Space>'] = cmp.mapping.complete(),
-  ['<C-e>'] = cmp.mapping.close(),
-  ['<CR>'] = cmp.mapping.confirm({
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = true,
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
     })
-},
-sources = {
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
-    { name = 'calc' },
-    { name = 'tmux' },
-}
-})
+  })
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['pyright'].setup {
+    capabilities = capabilities
+  }
 EOF
+
 " }}}} /cmp (completion)
 
-" Luasnip {{{
-lua << EOF
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local luasnip = require("luasnip")
-local cmp = require("cmp")
-
-cmp.setup({
-
-  -- ... Your other configuration ...
-
-  mapping = {
-
-    -- ... Your other mappings ...
-
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-
-    -- ... Your other mappings ...
-  },
-
-  -- ... Your other configuration ...
-})
-
-EOF
-" }}} /Luasnip
-
 " Lsp-config {{{{
- lua << EOF
+lua << EOF
+
+require("nvim-lsp-installer").setup {}
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -218,22 +207,34 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  lim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'pyright',  'bashls' }
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      -- This will be the default in neovim 0.7+
+      debounce_text_changes = 150,
+    }
+  }
+end
+
 EOF
 " }}}} lsp-config
 
-" Lsp-install {{{{
- lua << EOF
+" nvim-lsp-installer {{{{
+lua << EOF
 
-local lsp_installer = require("nvim-lsp-installer")
-
-lsp_installer.settings({
+require("nvim-lsp-installer").setup({
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
         icons = {
             server_installed = "✓",
@@ -243,26 +244,8 @@ lsp_installer.settings({
     }
 })
 
-local lsp_installer = require("nvim-lsp-installer")
-
--- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
--- or if the server is already installed).
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
-
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
-
-    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
-    -- before passing it onwards to lspconfig.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-end)
-
 EOF
-" }}}} Lsp-install
+" }}}} nvim-lsp-installer
 
 " Fugitive Conflict Resolution{{{
 nnoremap <leader>dw :windo diffthis<cr>
@@ -271,9 +254,15 @@ nnoremap <leader>h :diffget //2<cr>
 nnoremap <leader>l :diffget //3<cr>
 " }}}
 
-" IndentLine {{{
+" IndentLine {{{P
 let g:indentLine_char = '|'
-" }}}
+" }}}{
+
+" NeoFormat {{{{
+nnoremap <leader>a :Neoformat<CR>
+
+" }}}} NeoFormat
+
 
 " Ranger {{{{
 let g:ranger_map_keys = 0
@@ -285,8 +274,11 @@ let g:startify_bookmarks = [
 \ {'c': '~/Repositories/GitHub/raydennis/wnotes/commands.md'},
 \ {'f': '~/Repositories/GitHub/raydennis/dotfiles/os/setup-dependencies-fedora.sh'},
 \ {'i': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
+\ {'k': '~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf'},
 \ {'p': '~/Repositories/GitHub/raydennis/wnotes/people.md'},
 \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
+\ {'rc': '~/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rc.conf'},
+\ {'ri': '~/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rifle.conf'},
 \ {'ti': '~/Repositories/GitHub/raydennis/wnotes/trainings/index.md'},
 \ {'te': '/mnt/c/Users/rdennis/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'},
 \ {'tm': '~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf'},
@@ -411,6 +403,36 @@ let g:dracula_full_special_attrs_support = 1
 " }}}} /Dracula
 
 " }}} /Plugin settings
+
+" vim-vsnip {{{
+" NOTE: You can use other key to expand snippet.
+
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+nmap        s   <Plug>(vsnip-select-text)
+xmap        s   <Plug>(vsnip-select-text)
+nmap        S   <Plug>(vsnip-cut-text)
+xmap        S   <Plug>(vsnip-cut-text)
+
+" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['typescript']
+" }}}} /vim-vsnip
 
 " Mappings {{{
 
