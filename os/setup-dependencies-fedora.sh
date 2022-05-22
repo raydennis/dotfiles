@@ -61,9 +61,16 @@ rm ~/.tmux.conf
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+
+# env
+rm ~/.env
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/os/.env ~/.env
+
 # Python setup
 pip install pep8 flake8 pyflakes isort yapf jedi
-
+sudo dnf -y install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install prettier --beta
 
 # replace capslock with escape
 # install gnome tweak tools > alternate layouts > swap esc and caps
