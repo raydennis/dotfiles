@@ -71,12 +71,12 @@ Plug 'sbdchd/neoformat'                                      " formatting
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/cmp-buffer'                                    " buffer completions
+Plug 'hrsh7th/cmp-cmdline'                                   " commandline completions
+Plug 'hrsh7th/cmp-nvim-lsp'                                  " lsp completions
+Plug 'hrsh7th/cmp-nvim-lua'                                  " lua completions
+Plug 'hrsh7th/cmp-path'                                      " path completions
+Plug 'hrsh7th/cmp-vsnip'                                     " snippet completions
 Plug 'hrsh7th/nvim-cmp'                                      " completion
 Plug 'hrsh7th/vim-vsnip'
 Plug 'kyazdani42/nvim-web-devicons'                          " (icons)
@@ -85,6 +85,7 @@ Plug 'mhinz/vim-startify'                                    " Provides a start 
 Plug 'neovim/nvim-lspconfig'                                 " (picker)
 Plug 'nvim-lua/plenary.nvim'                                 " Lua library (required for telescope)
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }  " fuzzy finder native
+Plug 'junegunn/goyo.vim'                                         " Distraction-free writing
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy find
 Plug 'nvim-treesitter/nvim-treesitter'                       " (finder/preview)
 Plug 'rafamadriz/friendly-snippets'
@@ -263,7 +264,6 @@ nnoremap <leader>a :Neoformat<CR>
 
 " }}}} NeoFormat
 
-
 " Ranger {{{{
 let g:ranger_map_keys = 0
 map <leader>rr :Ranger<cr>
@@ -404,16 +404,8 @@ let g:dracula_full_special_attrs_support = 1
 
 " }}} /Plugin settings
 
-" vim-vsnip {{{
+" Vim-vsnip {{{
 " NOTE: You can use other key to expand snippet.
-
-" Expand
-imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-
-" Expand or jump
-imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
 " Jump forward or backward
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
@@ -432,6 +424,9 @@ xmap        S   <Plug>(vsnip-cut-text)
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.javascriptreact = ['javascript']
 let g:vsnip_filetypes.typescriptreact = ['typescript']
+
+
+let g:vsnip_snippet_dir = expand('~/.config/nvim/snippets')
 " }}}} /vim-vsnip
 
 " Mappings {{{

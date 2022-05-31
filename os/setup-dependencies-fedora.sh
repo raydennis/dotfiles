@@ -10,6 +10,7 @@ rm ~/.config/nvim/init.vim
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim ~/.config/nvim/init.vim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets ~/.config/nvim/snippets
 
 
 # zsh
@@ -61,10 +62,17 @@ rm ~/.tmux.conf
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-
 # env
 rm ~/.env
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/os/.env ~/.env
+
+# google-chrome
+sudo dnf install -y google-chrome-unstable
+cp /usr/share/applications/google-chrome-unstable.desktop ~/.local/share/applications
+echo "Manual settings required for google chrome:
+echo "about://flags → Preferred Ozone platform → Wayland"
+echo "about://flags → Pull-to-refresh gesture → Enabled"
+
 
 # Python setup
 pip install pep8 flake8 pyflakes isort yapf jedi

@@ -1,0 +1,33 @@
+{
+  "Meeting": {
+    "prefix": ["meeting"],
+    "body": [
+      "## Meeting $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+      "\t",
+      "### Participants",
+      "\t",
+      "- [x] Dennis, Ray",
+      "- ${3:}",
+      "\t",
+      "### Agenda",
+      "\t",
+      "${4:}",
+      "\t",
+      "### Actions Required",
+      "\t",
+      "${5:}",
+      "\t",
+      "### Reference Documents ",
+      "\t",
+      "### Notes",
+      "\t",
+      "${6:}"
+        ],
+    "description": "Markdown meeting template"
+  },
+  "Title": {
+    "prefix": ["title"],
+    "body": [ "# $TM_FILENAME_BASE"],
+    "description": "title"
+  }
+}

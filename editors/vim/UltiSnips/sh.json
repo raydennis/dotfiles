@@ -1,0 +1,7 @@
+{
+  "Class": {
+    "prefix": ["ansible_adhoc"],
+    "body": ["ansible -i ${1:inv/wolf} ${2:ci_prod_hw8_hosts} -m shell -a ${3:\"cat /etc/os-release\"} -u root"],
+    "description": "ansible ad hoc"
+  }
+}

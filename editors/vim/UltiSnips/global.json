@@ -1,0 +1,9 @@
+{
+  "Snippet": {
+    "prefix": ["snippet"],
+    "body": [ 
+	"\\"Snippet\\""
+	],
+    "description": "snippet"
+  }
+}
