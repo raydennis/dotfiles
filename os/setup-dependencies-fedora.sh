@@ -47,7 +47,8 @@ ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_gl
 
 # spelling
 rm ~/.vim/spell/en.utf-8.add
-ln -s /mnt/c/Users/Ray/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
+mkdir -p ~/.vim/spell/
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
 # ranger
 sudo dnf install ranger -y
