@@ -271,17 +271,20 @@ map <leader>rr :Ranger<cr>
 " }}}} Ranger
 
 " Startify {{{{
+" Unused
+    " \ {'wt': '/mnt/c/Users/rdennis/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'},
 let g:startify_bookmarks = [
-\ {'c': '~/Repositories/GitHub/raydennis/wnotes/commands.md'},
+\ {'b': '~/Repositories/GitHub/raydennis/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c'},
+\ {'c': '~/Repositories/GitHub/raydennis/wnotes/How-To/Common.md'},
+\ {'d': '~/Repositories/GitHub/raydennis/wnotes/Tasks/done.md'},
 \ {'f': '~/Repositories/GitHub/raydennis/dotfiles/os/setup-dependencies-fedora.sh'},
-\ {'i': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
-\ {'k': '~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf'},
-\ {'p': '~/Repositories/GitHub/raydennis/wnotes/people.md'},
+\ {'i': '~/Repositories/GitHub/raydennis/wnotes/inbox.md'},
+\ {'n': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
+\ {'p': '~/Repositories/GitHub/raydennis/wnotes/People/Intel/Index.md'},
 \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
 \ {'rc': '~/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rc.conf'},
 \ {'ri': '~/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rifle.conf'},
 \ {'ti': '~/Repositories/GitHub/raydennis/wnotes/trainings/index.md'},
-\ {'te': '/mnt/c/Users/rdennis/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'},
 \ {'tm': '~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf'},
 \ {'z': '~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc'},
 \ ]
