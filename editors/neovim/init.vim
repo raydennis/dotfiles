@@ -25,8 +25,8 @@ set backspace=indent,eol,start                           " Make backspace act as
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
 set cursorline
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
-set foldlevelstart=1                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
-set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
+set foldlevelstart=99                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set foldmethod=expr                                     " This is used for vimrc marker, but also for treesitter with the following
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
 set grepprg=ag\ --vimgrep                                " Use ag instead of grep
@@ -61,13 +61,12 @@ set wildmode=list:longest,full
 
 " }}}
 
-" Plugins {{{
+" Plugins {{
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'BurntSushi/ripgrep'                                    " line-oriented search tool that recursively searches the current directory for a regex pattern
 Plug 'arcticicestudio/nord-vim'                              " Nord theme
-Plug 'sbdchd/neoformat'                                      " formatting
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
@@ -98,6 +97,7 @@ Plug 'tpope/vim-repeat'                                      " Enable repeating 
 Plug 'tpope/vim-speeddating'                                 " Quickly modify dates.
 Plug 'tpope/vim-surround'                                    " Provides mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-unimpaired'                                  " Pairs of handy bracket mappings
+Plug 'tversteeg/registers.nvim', { 'branch': 'main' }
 Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
 Plug 'williamboman/nvim-lsp-installer'                       " lsp installer
 
@@ -419,7 +419,7 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 
 " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
 " See https://github.com/hrsh7th/vim-vsnip/pull/50
-nmap        s   <Plug>(vsnip-select-text)
+nmap       s   <Plug>(vsnip-select-text)
 xmap        s   <Plug>(vsnip-select-text)
 nmap        S   <Plug>(vsnip-cut-text)
 xmap        S   <Plug>(vsnip-cut-text)
@@ -492,6 +492,10 @@ cnoremap <C-j> <C-g>
 cnoremap <C-k> <C-t>
 nnoremap H 0
 nnoremap L $
+vnoremap H 0
+vnoremap L $
+cnoremap H 0
+cnoremap L $
 
 " }}}}} Movement
 
