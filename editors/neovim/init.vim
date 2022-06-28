@@ -79,16 +79,17 @@ Plug 'hrsh7th/cmp-path'                                      " path completions
 Plug 'hrsh7th/cmp-vsnip'                                     " snippet completions
 Plug 'hrsh7th/nvim-cmp'                                      " completion
 Plug 'hrsh7th/vim-vsnip'
+Plug 'junegunn/goyo.vim'                                         " Distraction-free writing
 Plug 'kyazdani42/nvim-web-devicons'                          " (icons)
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
 Plug 'neovim/nvim-lspconfig'                                 " (picker)
 Plug 'nvim-lua/plenary.nvim'                                 " Lua library (required for telescope)
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }  " fuzzy finder native
-Plug 'junegunn/goyo.vim'                                         " Distraction-free writing
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy find
 Plug 'nvim-treesitter/nvim-treesitter'                       " (finder/preview)
 Plug 'rafamadriz/friendly-snippets'
+Plug 'sbdchd/neoformat'                                      " formatting
 Plug 'sharkdp/fd'                                            " (finder)
 Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
