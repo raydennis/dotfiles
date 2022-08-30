@@ -66,7 +66,6 @@ set wildmode=list:longest,full
 call plug#begin('~/.vim/plugged')
 
 Plug 'BurntSushi/ripgrep'                                    " line-oriented search tool that recursively searches the current directory for a regex pattern
-Plug 'arcticicestudio/nord-vim'                              " Nord theme
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
@@ -75,7 +74,6 @@ Plug 'hrsh7th/cmp-cmdline'                                   " commandline compl
 Plug 'hrsh7th/cmp-nvim-lsp'                                  " lsp completions
 Plug 'hrsh7th/cmp-nvim-lua'                                  " lua completions
 Plug 'hrsh7th/cmp-path'                                      " path completions
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-vsnip'                                     " snippet completions
 Plug 'hrsh7th/nvim-cmp'                                      " completion
 Plug 'hrsh7th/vim-vsnip'
@@ -83,15 +81,13 @@ Plug 'junegunn/goyo.vim'                                         " Distraction-f
 Plug 'kyazdani42/nvim-web-devicons'                          " (icons)
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
-Plug 'morhetz/gruvbox'
 Plug 'neovim/nvim-lspconfig'                                 " (picker)
 Plug 'nvim-lua/plenary.nvim'                                 " Lua library (required for telescope)
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }  " fuzzy finder native
 Plug 'nvim-telescope/telescope.nvim'                         " fuzzy find
-Plug 'nvim-treesitter/nvim-treesitter'                       " (finder/preview)
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rafamadriz/friendly-snippets'
 Plug 'sbdchd/neoformat'                                      " formatting
-Plug 'morhetz/gruvbox'                                       " Gruvbox colorscheme
 Plug 'sharkdp/fd'                                            " (finder)
 Plug 'tommcdo/vim-lion'                                      " Align based on a character ex :glip(char)
 Plug 'tpope/vim-commentary'                                  " Comment out code with gcc
@@ -103,6 +99,16 @@ Plug 'tpope/vim-unimpaired'                                  " Pairs of handy br
 Plug 'tversteeg/registers.nvim', { 'branch': 'main' }
 Plug 'will133/vim-dirdiff'                                   " Recursively diff on two directories
 Plug 'williamboman/nvim-lsp-installer'                       " lsp installer
+Plug 'chrisbra/Colorizer'                                    " A plugin to color colornames and codes
+
+" Colorschemes {{{{
+
+Plug 'arcticicestudio/nord-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'morhetz/gruvbox'
+Plug 'tanvirtin/monokai.nvim'
+
+" }}}}
 
 call plug#end() " Required, All of the Plugins must be added before this line
 
@@ -671,7 +677,7 @@ hi Folded ctermbg=None ctermfg=Magenta
 
 " Colorscheme {{{
 set termguicolors
-colorscheme tokyonight
+colorscheme nord
 hi Normal guibg=NONE ctermbg=NONE
 " }}}
 
