@@ -318,20 +318,40 @@ let g:table_mode_corner = '|'
 " }}}} Tablemode 
 
 " Telescope {{{{
+
 lua << EOF
 local telescope = require('telescope')
-telescope.setup {
-	pickers = {
-		find_files = {
-			hidden = true
-			}
-		}
-	}
+require('telescope').setup{
+  defaults = {
+    -- Default configuration for telescope goes here:
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key"
+      }
+    }
+  },
+  pickers = {
+    find_files = {
+      hidden = true
+    }
+  },
+  extensions = {
+    -- extension_name = {
+    --   extension_config_key = value,
+    -- }
+  }
+}
+require('telescope').load_extension('fzf')
 EOF
+
 nnoremap <leader><space> <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader><tab> <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 " }}}} Telescope
 
 " TmuxNavigator {{{{
