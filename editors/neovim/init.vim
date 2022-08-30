@@ -61,7 +61,7 @@ set wildmode=list:longest,full
 
 " }}}
 
-" Plugins {{
+" Plugins {{{
 
 call plug#begin('~/.vim/plugged')
 
@@ -517,8 +517,6 @@ nnoremap H 0
 nnoremap L $
 vnoremap H 0
 vnoremap L $
-cnoremap H 0
-cnoremap L $
 
 " }}}}} Movement
 
