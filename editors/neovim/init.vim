@@ -287,7 +287,7 @@ let g:startify_bookmarks = [
 \ {'c': '~/Repositories/GitHub/raydennis/wnotes/How-To/Common.md'},
 \ {'d': '~/Repositories/GitHub/raydennis/wnotes/Tasks/done.md'},
 \ {'f': '~/Repositories/GitHub/raydennis/dotfiles/os/setup-dependencies-fedora.sh'},
-\ {'i': '~/Repositories/GitHub/raydennis/wnotes/inbox.md'},
+\ {'i': '~/Repositories/GitHub/raydennis/wnotes/Inbox.md'},
 \ {'n': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
 \ {'p': '~/Repositories/GitHub/raydennis/wnotes/People/Intel/Index.md'},
 \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
@@ -477,6 +477,9 @@ autocmd VimEnter            * cwindow
 
 " Git-specific settings
 autocmd FileType gitcommit nnoremap <buffer> { ?^@@<cr>|nnoremap <buffer> } /^@@<cr>|setlocal iskeyword+=-
+
+" FileType 
+autocmd FileType md, markdown nnoremap <buffer> <leader>e "! google-chrome %"
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
