@@ -79,8 +79,8 @@ alias tnc="ping -c 1 8.8.8.8 -t 1 | grep '0.0% \| 100.0%'"
 alias vi="nvim -u ~/.minvimrc"
 alias vim="nvim"
 alias vino="nvim -u NONE"
-alias weather="curl wttr.in"
-alias shrug="echo '¯\\_(ツ)_/¯' | pbcopy"
+alias weather="curl wttr.in/rio+rancho"
+alias shrug="wl-copy '¯\\_(ツ)_/¯'"
 alias t="tmux"
 alias ta="t a -t"
 alias tls="t ls"
@@ -118,8 +118,8 @@ case `uname` in
     alias o.="open ."
   ;;
   Linux)
-    # commands for Linux go here
-   alias copy='xclip -sel clip'
+    # commands for Wayland Linux go here
+     alias copy='wl-copy'
     # allow access to Vagrant from WSL
     export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
     #setup the z plugin on WSL
