@@ -70,9 +70,17 @@ ln -s ~/Repositories/GitHub/raydennis/dotfiles/os/.env ~/.env
 # google-chrome
 sudo dnf install -y google-chrome-unstable
 cp /usr/share/applications/google-chrome-unstable.desktop ~/.local/share/applications
-echo "Manual settings required for google chrome:
+echo "Manual settings required for google chrome:"
 echo "about://flags → Preferred Ozone platform → Wayland"
 echo "about://flags → Pull-to-refresh gesture → Enabled"
+
+# kitty
+sudo dnf install kitty -y
+pip install Pillow
+rm -rf ~/.config/kitty/theme
+rm ~/.config/kitty/kitty.conf
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf ~/.config/kitty/kitty.conf
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/themes ~/.config/kitty/themes
 
 
 # Python setup
