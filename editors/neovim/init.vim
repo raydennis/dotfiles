@@ -25,8 +25,8 @@ set backspace=indent,eol,start                           " Make backspace act as
 set belloff=all                                          " Turn off all error notifications (both bell and flash)
 set cursorline
 set directory=$HOME/.vim/swapfiles/                      " Where to save swap files
-set foldlevelstart=99                                     " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
-set foldmethod=expr                                     " This is used for vimrc marker, but also for treesitter with the following
+set foldlevelstart=99                                    " Useful to always start editing with all folds closed (value zero), some folds closed (one) or no folds closed (99).
+set foldmethod=expr                                      " This is used for vimrc marker, but also for treesitter with the following
 set gdefault                                             " Makes global the default for things like :%s/search/replace.  Add a g to negate the global (:%/s/r/g)
 set grepprg=LC_ALL=C\ grep\ -nrsH                        " Program to use for the |:grep| command.
 set grepprg=ag\ --vimgrep                                " Use ag instead of grep
@@ -107,6 +107,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'morhetz/gruvbox'
 Plug 'tanvirtin/monokai.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " }}}}
 
@@ -292,6 +293,7 @@ let g:startify_bookmarks = [
 \ {'d': '~/Repositories/GitHub/raydennis/wnotes/Tasks/done.md'},
 \ {'f': '~/Repositories/GitHub/raydennis/dotfiles/os/setup-dependencies-fedora.sh'},
 \ {'i': '~/Repositories/GitHub/raydennis/wnotes/Inbox.md'},
+\ {'k': '~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf'},
 \ {'n': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
 \ {'p': '~/Repositories/GitHub/raydennis/wnotes/People/Intel/Index.md'},
 \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
@@ -684,6 +686,7 @@ hi Folded ctermbg=None ctermfg=Magenta
 
 " Colorscheme {{{
 set termguicolors
+set bg=dark
 colorscheme nord
 hi Normal guibg=NONE ctermbg=NONE
 " }}}
