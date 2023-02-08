@@ -80,7 +80,8 @@ set softtabstop=4                                        " Allows backspace to d
       " *nix
       " *nix subsets
       if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
       endif
       else
@@ -89,25 +90,21 @@ set softtabstop=4                                        " Allows backspace to d
           iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | `ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
         endif
     endif
-" }}} OS specific commands
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'Scuilion/markdown-drawer'                              " Simplify navigation in large markdown files.
-" Plug 'SirVer/ultisnips'                                      " Ultimate snippet solution for Vim
 Plug 'dhruvasagar/vim-table-mode'                            " Tables
 Plug 'francoiscabrol/ranger.vim'                             " Ranger integration
 Plug 'honza/vim-snippets'                                    " Snippets for UltiSnips
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'itchyny/lightline.vim'                                 " Statusbar
 Plug 'jkramer/vim-checkbox'                                  " Simple plugin that toggles text checkboxes in Vim. Works great if you're using a markdown file for notes and todo lists.
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'                                      " Fuzzy finding
 Plug 'junegunn/goyo.vim'                                     " Distraction-free writing in Vim.
 Plug 'junegunn/gv.vim'                                       " A git commit browser.
 Plug 'junegunn/limelight.vim'                                " Hyperfocus-writing in Vim.
 Plug 'junegunn/vim-peekaboo'                                 " Peekaboo extends \" and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
 Plug 'liuchengxu/vim-which-key'                              " Vim-which-key is vim port of emacs-which-key that displays available keybindings in popup.
+Plug 'liuchengxu/vista.vim'                                  " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'markonm/traces.vim'                                    " Highlights patterns and ranges for Ex commands in Command-line mode.
 Plug 'mbbill/undotree'                                       " Visual representation of undo tree
 Plug 'mhinz/vim-startify'                                    " Provides a start screen for Vim
@@ -225,11 +222,13 @@ let g:qf_write_changes = 1
 
 " Startify {{{
 let g:startify_bookmarks = [
-    \ {'c': '~/Repositories/GitHub/raydennis/wnotes/commands.md'},
-    \ {'p': '~/Repositories/GitHub/raydennis/wnotes/people.md'},
-    \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
-    \ {'t': '~/Repositories/GitHub/raydennis/wnotes/trainings/index.md'},
+    \ {'c': '/Users/rsdenni/Repositories/GitHub/raydennis/dotfiles/editors/vim/coc-settings.json'},
+    \ {'r': '~/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rc.conf'},
+    \ {'i': '~/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rifle.conf'},
+    \ {'s': '~/Repositories/GitHub/raydennis/dotfiles/shells/ranger/scope.sh'},
+    \ {'ti': '~/Repositories/GitHub/raydennis/notes/work/trainings/index.md'},
     \ {'v': '~/Repositories/GitHub/raydennis/dotfiles/editors/vim/.vimrc'},
+    \ {'z': '~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc'}
     \ ]
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
@@ -277,6 +276,60 @@ if !exists('g:undotree_WindowLayout')
 endif
 " }}}
 
+" Vista {{{
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\ 'augroup': 'פּ',
+\ 'autocommand groups': 'פּ',
+\ 'class': '',
+\ 'classes': '',
+\ 'const': '',
+\ 'constant': '',
+\ 'default': '',
+\ 'enum': '',
+\ 'enumerator': '',
+\ 'field': '',
+\ 'fields': '',
+\ 'func': '',
+\ 'function': '',
+\ 'functions': '',
+\ 'implementation': '',
+\ 'interface': '',
+\ 'macro': '',
+\ 'macros': '',
+\ 'map': 'פּ',
+\ 'maps': 'פּ',
+\ 'member': '',
+\ 'members': '',
+\ 'method': '',
+\ 'module': '',
+\ 'modules': '',
+\ 'namespace': '',
+\ 'package': '',
+\ 'packages': '',
+\ 'property': '襁',
+\ 'struct': '',
+\ 'subroutine': '羚',
+\ 'target': '',
+\ 'type': '',
+\ 'typeParameter': '',
+\ 'typedef': '',
+\ 'types': '',
+\ 'union': '鬒',
+\ 'var': '',
+\ 'variable': '',
+\ 'variables': '',
+\  }
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Keybinding
+nnoremap <leader>vi :Vista!! <cr>
+nnoremap <leader>vt :Vista toc <cr>
+
+" }}}
 
 " Which-key {{{
 noremap <silent> <leader> :WhichKey '<Space>'<cr>
@@ -285,7 +338,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " }}}
 
-" }}}
 " }}}
 
 " Color scheme + Lightline {{{
@@ -449,6 +501,13 @@ augroup json
 augroup END
 " }}}
 
+" augroup lua{{{
+augroup lua
+    autocmd!
+    autocmd FileType lua setlocal number
+    autocmd FileType lua nnoremap <leader>rr :! lua % <cr>
+augroup END
+" }}}
 
 " augroup markdown {{{
 augroup markdown
@@ -518,8 +577,8 @@ if has("unix")
 endif
 if has("win32")
     " Windows
-    " set shell=
-    " set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+    set shell=pwsh.exe
+    set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
     set shellpipe=|
     set shellredir=>
 endif
