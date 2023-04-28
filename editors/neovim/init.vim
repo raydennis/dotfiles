@@ -61,6 +61,10 @@ set wildmode=list:longest,full
 
 " }}}
 
+if exists('g:vscode')
+    " VSCode extension
+else
+    " ordinary Neovim
 " Plugins {{{
 
 call plug#begin('~/.vim/plugged')
@@ -441,6 +445,15 @@ let g:dracula_full_special_attrs_support = 1
 
 " }}} /Plugin settings
 
+" Colorscheme {{{
+set termguicolors
+colorscheme nord
+hi Normal guibg=NONE ctermbg=NONE
+" }}}
+
+endif
+
+
 " Vim-vsnip {{{
 " NOTE: You can use other key to expand snippet.
 
@@ -681,11 +694,5 @@ set foldtext=MyFoldText()
 hi Folded ctermbg=None ctermfg=Magenta
 
 " }}} /Functions
-
-" Colorscheme {{{
-set termguicolors
-colorscheme nord
-hi Normal guibg=NONE ctermbg=NONE
-" }}}
 
 " vim:foldmethod=marker
