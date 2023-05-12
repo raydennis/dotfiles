@@ -184,11 +184,16 @@ lua << EOF
   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['pyright'].setup {
-    capabilities = capabilities
+    capabilities = capabilities,
+    on_attach = on_attach,
   }
   require('lspconfig')['ansiblels'].setup{
-      on_attach = on_attach,
-      flags = lsp_flags,
+    on_attach = on_attach,
+    flags = lsp_flags,
+  }
+  require('lspconfig')['yamlls'].setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
   }
 EOF
 
@@ -288,12 +293,12 @@ map <leader>rr :Ranger<cr>
 " Unused
     " \ {'wt': '/mnt/c/Users/rdennis/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'},
 let g:startify_bookmarks = [
-\ {'b': '~/Repositories/GitHub/raydennis/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c'},
+\ {'b': '~/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c'},
 \ {'c': '~/Repositories/GitHub/raydennis/wnotes/How-To/Common.md'},
 \ {'d': '~/Repositories/GitHub/raydennis/wnotes/Tasks/done.md'},
 \ {'f': '~/Repositories/GitHub/raydennis/dotfiles/os/setup-dependencies-fedora.sh'},
 \ {'i': '~/Repositories/GitHub/raydennis/wnotes/Inbox.md'},
-\ {'k': '~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf'},
+\ {'t': '~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf'},
 \ {'n': '~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim'},
 \ {'p': '~/Repositories/GitHub/raydennis/wnotes/People/Intel/Index.md'},
 \ {'ps': '~/Repositories/GitHub/raydennis/dotfiles/shells/powershell/profile.ps1'},
@@ -686,8 +691,8 @@ hi Folded ctermbg=None ctermfg=Magenta
 
 " Colorscheme {{{
 set termguicolors
-set bg=dark
-colorscheme nord
+" set bg=light
+colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 " }}}
 
