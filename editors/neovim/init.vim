@@ -61,6 +61,10 @@ set wildmode=list:longest,full
 
 " }}}
 
+if exists('g:vscode')
+    " VSCode extension
+else
+    " ordinary Neovim
 " Plugins {{{
 
 call plug#begin('~/.vim/plugged')
@@ -447,6 +451,15 @@ let g:dracula_full_special_attrs_support = 1
 " }}}} /Dracula
 
 " }}} /Plugin settings
+
+" Colorscheme {{{
+set termguicolors
+colorscheme nord
+hi Normal guibg=NONE ctermbg=NONE
+" }}}
+
+endif
+
 
 " Vim-vsnip {{{
 " NOTE: You can use other key to expand snippet.
