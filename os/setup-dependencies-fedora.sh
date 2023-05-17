@@ -89,8 +89,18 @@ sudo dnf -y install snapd
 sudo ln -s /var/lib/snapd/snap /snap
 sudo snap install prettier --beta
 
+# yaml-language-server
+sudo snap install yaml-language-server
+
 # replace capslock with escape
 # install gnome tweak tools > alternate layouts > swap esc and caps
 
 # setup zsh as default
 # sudo usermod -s $(which zsh) $USER
+
+# key-mapper
+sudo pip uninstall evdev
+
+# keyboard (for qmk)
+ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
+
