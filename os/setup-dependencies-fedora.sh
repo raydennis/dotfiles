@@ -6,8 +6,8 @@ cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.
 # neovim
 sudo dnf install -y neovim python3-neovim fd-find ripgrep gcc-c++
 mkdir -p ~/.config/nvim
-rm ~/.config/nvim/init.vim
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.vim ~/.config/nvim/init.vim
+rm ~/.config/nvim/init.lua
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.lua ~/.config/nvim/init.lua
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets ~/.config/nvim/snippets
