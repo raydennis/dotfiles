@@ -271,6 +271,10 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # }}}
 
+# Ansible {{{
+ANSIBLE_NOCOWS=1
+# }}}
+
 # For Loading the SSH key
 # /usr/bin/keychain -q --nogui /home/rdennis/.ssh/id_rsa_rdennis
 # source $HOME/.keychain/$HOST-sh
