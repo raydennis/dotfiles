@@ -1,5 +1,5 @@
 # sudo dnf copr enable agriffis/neovim-nightly
-sudo dnf install -y curl zsh the_silver_searcher wget ctags npm xclip 
+sudo dnf install -y curl zsh the_silver_searcher wget ctags npm xclip fzf
 
 cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
 
@@ -8,20 +8,18 @@ sudo dnf install -y neovim python3-neovim fd-find ripgrep gcc-c++
 mkdir -p ~/.config/nvim
 rm ~/.config/nvim/init.lua
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.lua ~/.config/nvim/init.lua
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets ~/.config/nvim/snippets
 
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # zsh
 sudo dnf install -y zsh 
 rm ~/.zshrc
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
 
-# oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-#Powerlevel 10k
+# Powerlevel 10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
 # zsh autosuggestions
@@ -40,8 +38,8 @@ rm ~/z.sh
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 
 # git
-rm ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
+rm ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig_global ~/.gitconfig_global
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig_global ~/.gitconfig_global
 rm ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 
@@ -96,11 +94,12 @@ sudo snap install yaml-language-server
 # install gnome tweak tools > alternate layouts > swap esc and caps
 
 # setup zsh as default
-# sudo usermod -s $(which zsh) $USER
+sudo dnf install -y util-linux-user
+sudo usermod -s $(which zsh) $USER
 
 # key-mapper
-sudo pip uninstall evdev
+# sudo pip uninstall evdev
 
 # keyboard (for qmk)
-ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
+# ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
 

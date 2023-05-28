@@ -5,9 +5,7 @@
 	required = true
 [user]
 	name = Ray Dennis
-	email = raydennis@outlook.com
-[credential]
-	helper = osxkeychain
+	email = raydennis@duck.com
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
