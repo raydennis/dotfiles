@@ -124,11 +124,6 @@ nnoremap H 0
 nnoremap L $
 " }}}
 
-" Screenshots {{{
-nnoremap <leader>xi i![screenshot](./<c-r>%<esc>xxxa/ =400x)<left><left><left><left><left><left><left>
-nnoremap <leader>xx :! mkdir -p ./%:r && screencapture -ix %:r/.png<left><left><left><left>
-" }}}
-
 " OS specific commands {{{
 if has("unix")
   " *nix
@@ -144,7 +139,7 @@ if has("unix")
   endif
 else
     " Windows
-    set shell=powershell.exe
+    set shell=pwsh.exe
     set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
     set shellpipe=|
     set shellredir=>
@@ -204,13 +199,6 @@ nnoremap <leader>od :grep DONE *<cr>
 nnoremap <leader>os :grep SCHEDULED *<cr>
 " }}}
 
-" Source and reload current file {{{
-nnoremap <leader>so :w<cr> :so %<cr>
-nnoremap <leader>pi :w<cr> :so %<cr> :PlugInstall<cr>
-nnoremap <leader>pu :w<cr> :so %<cr> :PlugUpdate<cr>
-nnoremap <leader>pc :w<cr> :so %<cr> :PlugClean<cr>
-" }}}
-
 " Spell check for previous misspelled word, accept first choice {{{
 inoremap <c-s> <esc>:set spell<cr>[s1z=<c-o>a
 nnoremap <c-s> :set spell<cr>[s1z=e
@@ -221,8 +209,7 @@ nnoremap <silent> <leader>, :noh<cr>
 " }}}
 
 " Terminal {{{
-nnoremap <leader>' :split term://zsh<cr>
-nnoremap <leader>v' :vsplit term://zsh<cr>
+nnoremap <leader>' :terminal<cr>
 " To simulate |i_CTRL-R| in terminal-mode: >
 tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " To map <Esc> to exit terminal-mode: >
@@ -236,19 +223,6 @@ nnoremap <leader>ba :bufdo vimgmrepadd  %<left><left>
 nnoremap <leader>qc :cexpr [] <cr>
 " }}}
 
-" }}}
-
-" Functions {{{
-
-" Function Mkindex() {{{
-" This was used to grab all files in an directory and make an index to them in
-" a markdown file.  Haven't used this is a long time [2020-03-11].
-"     :read !ls
-"     :%norm I[
-"     :%norm A]()
-"     :%norm t]yi]t)p
-"     :%norm ^f.dt]
-" endfunction
 " }}}
 
 " Function Folds {{{
