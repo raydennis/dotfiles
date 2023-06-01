@@ -453,8 +453,8 @@ vim.keymap.set("n", "<Up>", ":resize +5<cr>")
 vim.keymap.set("n", "<Down>", ":resize -5<cr>")
 
 -- Terminal
-vim.keymap.set("n", "<leader>'", ":split term://zsh<cr>")
-vim.keymap.set("n", "<leader>v'", ":vsplit term://zsh<cr>")
+vim.keymap.set("n", "<leader>'", ":split | terminal<cr>")
+vim.keymap.set("n", "<leader>v'", ":vsplit | terminal<cr>")
 
 
 -- Spell check for previous misspelled word, accept first choice
