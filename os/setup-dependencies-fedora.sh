@@ -46,7 +46,7 @@ ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 
 # git
 rm ~/.gitconfig_global
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig_global
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
 rm ~/.gitignore_global
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 
