@@ -1,0 +1,85 @@
+- hosts: localhost
+  connection: local
+  become: yes
+
+  vars:
+    - dnf_rpms:
+      - curl
+      - zsh
+      - the_silver_searcher
+      - wget
+      - ctags
+      - npm
+      - xclip
+      - fzf
+      - pip
+      - nmap
+      - util-linux-user
+      - python3-neovim 
+      - fd-find 
+      - ripgrep 
+      - gcc-c++
+      - ranger
+      - tmux
+      - snapd
+
+    - pip_packages:
+      - pep8 
+      - flake8 
+      - pyflakes 
+      - isort 
+      - yapf 
+      - jedi
+
+    - git_repos:
+
+  tasks:
+    - name: Install required packages
+      ansible.builtin.package:
+        name: "{{ dnf_rpms }}"
+        state: present
+        update_cache: no
+    - name: Set timezone to US/Mountain
+      community.general.timezone:
+        name: US/Mountain
+    - name: Install python packages
+      ansible.builtin.pip:
+        name: "{{ pip_packages }}"
+    - name: clone ranger_devicons
+      ansible.builtin.git:
+        repo: https://GitHub.com/alexanderjeurissen/ranger_devicons 
+        dest: ~/.config/ranger/plugins/ranger_devicons        
+    - name: clone tmux_plugins
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm 
+        dest: ~/.tmux/plugins/tpm
+    - name: clone powerlevel10k
+      ansible.builtin.git:
+        repo: https://github.com/romkatv/powerlevel10k.git 
+        dest: ~/powerlevel10k        
+    # - name: Create symbolic link 
+    #   file:
+    #     src: "{{SOURCE_FOLDER}}"
+    #     dest: "/opt/application/i99/SYMLINK"
+    #     state: link
+    - name: Create symlinks
+      ansible.builtin.shell: 
+        cmd: |
+          cat <<EOF
+          mkdir -p ~/.config/nvim
+          mkdir -p ~/.vim/spell/
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf ~/.config/kitty/kitty.conf
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/themes ~/.config/kitty/themes
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.lua ~/.config/nvim/init.lua
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets ~/.config/nvim/snippets
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/ranger ~/.config/ranger
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf ~/.tmux.conf
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/os/.env ~/.env
+          sudo ln -s /var/lib/snapd/snap /snap
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/p10k/.p10k.zsh ~/.p10k.zsh 
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
+          ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
+          EOF
