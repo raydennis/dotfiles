@@ -72,6 +72,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # Powerlevel 10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+rm ~/.p10k.zsh
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/p10k/.p10k.zsh ~/.p10k.zsh 
 
 rm ~/.zshrc
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
