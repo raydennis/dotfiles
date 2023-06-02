@@ -453,7 +453,7 @@ vim.keymap.set("n", "<Down>", ":resize -5<cr>")
 -- Terminal
 vim.keymap.set("n", "<leader>'", ":split | terminal<cr>")
 vim.keymap.set("n", "<leader>v'", ":vsplit | terminal<cr>")
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n><C-w>")
+vim.keymap.set("t", "<C-k>", "<C-\\><C-n>")
 vim.o.termguicolors = true
 
 -- Spell check for previous misspelled word, accept first choice
