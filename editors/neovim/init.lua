@@ -426,8 +426,6 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
 
 -- Set the default split to below and to the right
 vim.o.splitright = true
@@ -455,7 +453,8 @@ vim.keymap.set("n", "<Down>", ":resize -5<cr>")
 -- Terminal
 vim.keymap.set("n", "<leader>'", ":split | terminal<cr>")
 vim.keymap.set("n", "<leader>v'", ":vsplit | terminal<cr>")
-
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n><C-w>")
+vim.o.termguicolors = true
 
 -- Spell check for previous misspelled word, accept first choice
 vim.keymap.set('i', "<c-s>", "<esc>:set spell<cr>[s1z=<c-o>a")
