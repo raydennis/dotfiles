@@ -91,7 +91,7 @@ sudo snap install yaml-language-server
 
 # zsh
 ## oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 ## zsh and zshrc
 sudo dnf -y install zsh 
