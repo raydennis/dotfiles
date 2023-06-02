@@ -1,6 +1,9 @@
 # basics
 sudo dnf -y install curl zsh the_silver_searcher wget ctags npm xclip fzf
 
+# timezone
+
+sudo timedatectl set-timezone "US\Mountain"
 # font
 cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
 
