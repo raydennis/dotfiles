@@ -143,8 +143,11 @@ rm -f ~/z.sh
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 # }}}
 
-# keyboard (for qmk) {{{
-ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
+# TODO keyboard (for qmk) {{{ 
+# rm -rf ~/Repositories/qmk
+# mkdir -p ~/Repositories/qmk
+# git clone https://github.com/qmk/qmk_firmware ~/Repositories/qmk/
+# ln -s ~/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
 # }}}
 
 # [[ Modeline ]] {{{
