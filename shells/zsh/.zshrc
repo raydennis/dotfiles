@@ -245,18 +245,6 @@ export MAGEFILE_IGNOREDEFAULT=1 # tells the compiled magefile to ignore the defa
 
 # }}}
 
-# Python Development {{{
-
-# Virtualenvwrapper settings: {{{
-export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
-export PATH=~/.local/bin:$PATH
-source ~/.local/bin/virtualenvwrapper.sh
-export WORKON_HOME=~/.virtualenvs
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-# }}}
-
-# }}}
-
 # env vars {{{
 source ~/.env
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
