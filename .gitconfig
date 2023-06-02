@@ -5,9 +5,7 @@
 	required = true
 [user]
 	name = Ray Dennis
-	email = raydennis@outlook.com
-[credential]
-	helper = osxkeychain
+	email = raydennis@duck.com
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
@@ -61,6 +59,7 @@ logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C
 # Diff
 [diff]
     tool = meld
+	external = git-meld
 [difftool "vimdiff"]
     cmd = meld "$LOCAL" "$REMOTE"
 [difftool]
@@ -74,3 +73,7 @@ logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C
 [merge.tool "meld"]
 cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 ; cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+[safe]
+	directory = /home/rdennis/Repositories
+	directory = /home/rdennis/Repositories/GitHub/ansible-lab
+	directory = *

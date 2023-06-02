@@ -1,27 +1,27 @@
-# sudo dnf copr enable agriffis/neovim-nightly
-sudo dnf install -y curl zsh the_silver_searcher wget ctags npm xclip 
+# basics
+sudo dnf -y install curl zsh the_silver_searcher wget ctags npm xclip 
 
+# font
 cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
 
 # neovim
-sudo dnf install -y neovim python3-neovim fd-find ripgrep gcc-c++
+sudo dnf -y copr enable agriffis/neovim-nightly
+sudo dnf -y install neovim python3-neovim fd-find ripgrep gcc-c++
 mkdir -p ~/.config/nvim
 rm ~/.config/nvim/init.lua
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.lua ~/.config/nvim/init.lua
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets ~/.config/nvim/snippets
 
-
 # zsh
-sudo dnf install -y zsh 
+sudo dnf -y install zsh 
 rm ~/.zshrc
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-#Powerlevel 10k
+# Powerlevel 10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
 # zsh autosuggestions
@@ -40,8 +40,8 @@ rm ~/z.sh
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 
 # git
-rm ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
+rm ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig_global ~/.gitconfig_global
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig_global ~/.gitconfig_global
 rm ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 
@@ -51,14 +51,14 @@ mkdir -p ~/.vim/spell/
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
 
 # ranger
-sudo dnf install ranger -y
+sudo dnf -y install ranger
 rm -rf ~/.config/ranger
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/ranger ~/.config/ranger
 git clone https://GitHub.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ra
 nger_devicons
 
 # tmux
-sudo dnf install tmux -y
+sudo dnf -y install tmux
 rm ~/.tmux.conf
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -68,20 +68,19 @@ rm ~/.env
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/os/.env ~/.env
 
 # google-chrome
-sudo dnf install -y google-chrome-unstable
+sudo dnf -y install google-chrome-unstable
 cp /usr/share/applications/google-chrome-unstable.desktop ~/.local/share/applications
 echo "Manual settings required for google chrome:"
 echo "about://flags → Preferred Ozone platform → Wayland"
 echo "about://flags → Pull-to-refresh gesture → Enabled"
 
 # kitty
-sudo dnf install kitty -y
+sudo dnf -y install kitty
 pip install Pillow
 rm -rf ~/.config/kitty/theme
 rm ~/.config/kitty/kitty.conf
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/themes ~/.config/kitty/themes
-
 
 # Python setup
 pip install pep8 flake8 pyflakes isort yapf jedi
@@ -96,11 +95,12 @@ sudo snap install yaml-language-server
 # install gnome tweak tools > alternate layouts > swap esc and caps
 
 # setup zsh as default
-# sudo usermod -s $(which zsh) $USER
+sudo dnf install -y util-linux-user
+sudo usermod -s $(which zsh) $USER
 
 # key-mapper
-sudo pip uninstall evdev
+# sudo pip uninstall evdev
 
 # keyboard (for qmk)
-ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
+# ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
 

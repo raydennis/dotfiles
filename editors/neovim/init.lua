@@ -122,10 +122,10 @@ require('lazy').setup({
   -- }}}
   -- [[ Colorscheme ]] {{{
   {
-    'morhetz/gruvbox',
+    'nordtheme/vim',
     priority = 100,
     config = function()
-      vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.colorscheme 'nord'
     end,
   },
   -- }}}
@@ -453,8 +453,8 @@ vim.keymap.set("n", "<Up>", ":resize +5<cr>")
 vim.keymap.set("n", "<Down>", ":resize -5<cr>")
 
 -- Terminal
-vim.keymap.set("n", "<leader>'", ":split term://zsh<cr>")
-vim.keymap.set("n", "<leader>v'", ":vsplit term://zsh<cr>")
+vim.keymap.set("n", "<leader>'", ":split | terminal<cr>")
+vim.keymap.set("n", "<leader>v'", ":vsplit | terminal<cr>")
 
 
 -- Spell check for previous misspelled word, accept first choice
@@ -521,7 +521,20 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = {
+    'bash',
+    'comment',
+    'dockerfile',
+    'go',
+    'hcl',
+    'lua',
+    'markdown',
+    'python',
+    'regex',
+    'typescript',
+    'vim',
+    'yaml',
+  },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -655,6 +668,18 @@ require('neodev').setup()
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+require('lspconfig')['pyright'].setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+require('lspconfig')['ansiblels'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['yamlls'].setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'

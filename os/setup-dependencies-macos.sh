@@ -1,175 +1,83 @@
-# install qlmarkdown, a finder plugin to preview markdown
-brew cask install qlmarkdown
-
-# install zsh
-brew install zsh z zsh-syntax-highlighting zsh-autosuggestions
-
-rm ~/z.sh
-ln -s ~/Repositories/Github/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
-
-rm ~/.vimrc
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/.vimrc ~/.vimrc
-
-rm ~/.minvimrc
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/.minvimrc ~/.minvimrc
-
-rm ~/.vim/coc-settings.json
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/coc-settings.json ~/.vim/coc-settings.json
-
-rm -rf ~/.config/nvim
-ln -s  ~/.vim  ~/.config/nvim
-
-rm -rf ~/.vim/UltiSnips
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/ultisnips ~/.vim/UltiSnips
-
-rm ~/.zshrc
-ln -s ~/Repositories/Github/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
-
-rm ~/.config/alacritty/alacritty.yml
-mkdir -p ~/.config/alacritty
-ln -s ~/Repositories/Github/raydennis/shells/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-
-rm -rf ~/notes
-ln -s ~/Repositories/Github/raydennis/notes ~/notes
-
-rm ~/.vim/colors/monokai.vim
-mkdir ~/.vim/colors
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/vim-monokai/colors/monokai.vim ~/.vim/colors/monokai.vim
-
-rm ~/.vim/colors/solarized.vim
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
-
-rm ~/.vim/colors/nord.vim
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/nord/nord-vim/colors/nord.vim ~/.vim/colors/nord.vim
-
-rm ~/.ideavimrc
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/IntellijIdea/.ideavimrc ~/.ideavimrc
-
-# git
-rm ~/.gitconfig
-ln -s ~/Repositories/Github/raydennis/dotfiles/.gitconfig ~/.gitconfig
-
-rm ~/.gitignore_global
-ln -s ~/Repositories/Github/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
-
-## git-madge
-### Dependencies
-
-### Requires that madge and jq are on your path:
-
-brew install npm yarn
-# sudo npm install -g madge
-# brew install jq
-
-### If we want to use any of the visual features, we'll also need graphviz:
-
-# brew install graphviz
-
-### If you're using iTerm2 and you want to display images in the terminal, install imgcat:
-
-brew install imgcat
-
-### Installation
-
-### Copy the git-madge file to your path. Alternatively, using Homebrew:
-
-# brew install jez/formulae/git-madge
-
-
-rm ~/.vim/spell/en.utf-8.add
-ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
+# install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # brew
-# brew install git git-credential-manager macvim nmap openconnect openssl python sshfs the_silver_searcher tree z aspell osxfuse 
+brew install ripgrep git git-credential-manager nmap openconnect openssl python sshfs the_silver_searcher tree z aspell osxfuse imgcat
+sudo dnf -y install curl zsh the_silver_searcher wget ctags npm xclip 
 
-# emacs - spacemacs
-# brew cask install emacs
-# git clone https://Repositories/Github/raydennis.com/syl20bnr/spacemacs ~/.emacs.d
-# rm -rf ~/.spacemacs
-# ln -s ~/gitHub/dotfiles/editors/emacs/.spacemacs ~/.spacemacs
 
-# emacs - doom
-rm -rf ~/.doom.d/config.el
-rm -rf ~/.doom.d/custom.el
-rm -rf ~/.doom.d/init.el
-rm -rf ~/.doom.d/packages.el
+# neovim
+brew install neovim
+mkdir -p ~/.config/nvim
+rm ~/.config/nvim/init.lua
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.lua ~/.config/nvim/init.lua
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets ~/.config/nvim/snippets
 
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/config.el ~/.doom.d/config.el
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/custom.el ~/.doom.d/custom.el
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/init.el ~/.doom.d/init.el
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/emacs/packages.el ~/.doom.d/packages.el
+# zsh
+brew install zsh zsh-syntax-highlighting zsh-autosuggestions
+rm ~/.zshrc
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
 
-# ranger
-brew tap eddieantonio/eddieantonio
-brew cask install xquartz macdown
-brew install libcaca highlight atool lynx w3m elinks poppler transmission mediainfo exiftool ranger
-sudo npm install ansimd -g
-rm -rf ~/.config/ranger
-ln -s ~/Repositories/Github/raydennis/dotfiles/shells/ranger ~/.config/ranger
-git clone https://Repositories/Github/raydennis.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
 # font
 brew tap homebrew/cask-fonts
 brew cask install font-firacode-nerd-font
 
-# gitk theme
-rm -rf ~/.config/git/gitk
-mkdir -p ~/.config/git
-cp ~/Repositories/Github/raydennis/dotfiles/tools/gitk/gitk ~/.config/git/
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# # setup dependencies for vscode
-# on Mac or Linux (WSL = ?) type: 
-# code --list-extensions | xargs -L 1 echo code --install-extension
-# code --install-extension 2gua.rainbow-brackets
-# code --install-extension arcticicestudio.nord-visual-studio-code
-# code --install-extension bbenoist.vagrant
-# code --install-extension calebporzio.better-phpunit
-# code --install-extension christian-kohler.path-intellisense
-# code --install-extension dbaeumer.vscode-eslint
-# code --install-extension eamodio.gitlens
-# code --install-extension esbenp.prettier-vscode
-# code --install-extension humao.rest-client
-# code --install-extension ikappas.composer
-# code --install-extension johnpapa.winteriscoming
-# code --install-extension ms-azure-devops.azure-pipelines
-# code --install-extension ms-azuretools.vscode-apimanagement
-# code --install-extension ms-azuretools.vscode-azureappservice
-# code --install-extension ms-azuretools.vscode-azurefunctions
-# code --install-extension ms-azuretools.vscode-azurestorage
-# code --install-extension ms-azuretools.vscode-cosmosdb
-# code --install-extension ms-azuretools.vscode-docker
-# code --install-extension ms-mssql.mssql
-# code --install-extension ms-python.python
-# code --install-extension ms-vscode.azure-account
-# code --install-extension ms-vscode.azurecli
-# code --install-extension ms-vscode.powershell
-# code --install-extension ms-vscode.vscode-node-azure-pack
-# code --install-extension ms-vscode.vscode-typescript-tslint-plugin
-# code --install-extension ms-vsts.team
-# code --install-extension msazurermtools.azurerm-vscode-tools
-# code --install-extension PKief.material-icon-theme
-# code --install-extension ryu1kn.partial-diff
-# code --install-extension Sophisticode.php-formatter
-# code --install-extension vsciot-vscode.azure-iot-toolkit
-# code --install-extension vscodevim.vim
-# code --install-extension waderyan.gitblame
-# code --install-extension yzhang.dictionary-completion
-# code --install-extension yzhang.markdown-all-in-one
+# Powerlevel 10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
-# To enable key-repeating execute the following in your Terminal and restart VS Code.
-# defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-# defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
-# defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
-# defaults delete -g ApplePressAndHoldEnabled
+# zsh autosuggestions
+rm -rf ~/.zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# now link to the user settings.json
-# rm ~/Library/Application\ Support/VSCodium/User/settings.json
-# rm ~/Library/Application\ Support/VSCodium/User/keybindings.json
-# ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vscode/settings.json ~/Library/Application\ Support/VSCodium/User/settings.json
-# ln -s ~/Repositories/Github/raydennis/dotfiles/editors/vscode/keybindings.json ~/Library/Application\ Support/VSCodium/User/keybindings.json
+# zsh syntax highlighting
+rm -rf ~/.zsh/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Node
-brew install node
-mkdir "${HOME}/.npm-packages"
-npm config set prefix "${HOME}/.npm-packages"
+# zsh syntax history
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
+# z.sh
+brew install z
+rm ~/z.sh
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
+
+# git
+rm ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig
+rm ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
+
+# spelling
+rm ~/.vim/spell/en.utf-8.add
+mkdir -p ~/.vim/spell/
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add ~/.vim/spell/en.utf-8.add
+
+# ranger
+brew tap eddieantonio/eddieantonio
+brew install w3m elinks poppler transmission mediainfo exiftool ranger
+rm -rf ~/.config/ranger
+ln -s ~/Repositories/Github/raydennis/dotfiles/shells/ranger ~/.config/ranger
+git clone https://Repositories/Github/raydennis.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+
+# ranger
+sudo dnf -y install ranger
+rm -rf ~/.config/ranger
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/ranger ~/.config/ranger
+git clone https://GitHub.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ra
+nger_devicons
+
+# tmux
+sudo dnf -y install tmux
+rm ~/.tmux.conf
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# env
+rm ~/.env
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/os/.env ~/.env

@@ -222,7 +222,7 @@ VISUAL=nvim
 
 # }}}
 
-# Vim keybindings (seems to break when used with oh-my-zsh) {{{
+# Vim keybindings {{{
 set -o vi
 
 autoload -U compinit
