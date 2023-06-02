@@ -1,3 +1,46 @@
+#!/bin/bash
+
+# setup gui {{{
+
+# Check if argument is provided
+if [ -z "$1" ]; then
+  echo "No argument provided, assuming no gui"
+fi
+
+setup_gui() {
+  echo "Setting up Fedora..."
+  replace capslock with escape
+  install gnome tweak tools > alternate layouts > swap esc and caps
+
+  # font
+  cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
+
+  # key-mapper
+  sudo pip uninstall evdev
+
+  # google-chrome
+  sudo dnf -y install google-chrome-unstable
+  cp /usr/share/applications/google-chrome-unstable.desktop ~/.local/share/applications
+  echo "Manual settings required for google chrome:"
+  echo "about://flags → Preferred Ozone platform → Wayland"
+  echo "about://flags → Pull-to-refresh gesture → Enabled"
+
+  # kitty
+  sudo dnf -y install kitty
+  pip install Pillow
+  rm -rf ~/.config/kitty/theme
+  rm -f ~/.config/kitty/kitty.conf
+  ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf ~/.config/kitty/kitty.conf
+  ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/themes ~/.config/kitty/themes
+}
+
+# Check if the argument is true
+if [ "$1" = "true" ]; then
+  setup_gui
+fi
+
+# }}}
+
 # Basics {{{
 sudo dnf -y install \
  curl \
@@ -100,34 +143,8 @@ rm ~/z.sh
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 # }}}
 
-# GUI {{{
-# replace capslock with escape
-# install gnome tweak tools > alternate layouts > swap esc and caps
-
-# font
-# cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
-
-# key-mapper
-# sudo pip uninstall evdev
-
-# google-chrome
-# sudo dnf -y install google-chrome-unstable
-# cp /usr/share/applications/google-chrome-unstable.desktop ~/.local/share/applications
-# echo "Manual settings required for google chrome:"
-# echo "about://flags → Preferred Ozone platform → Wayland"
-# echo "about://flags → Pull-to-refresh gesture → Enabled"
-
-# kitty
-# sudo dnf -y install kitty
-# pip install Pillow
-# rm -rf ~/.config/kitty/theme
-# rm ~/.config/kitty/kitty.conf
-# ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/kitty.conf ~/.config/kitty/kitty.conf
-# ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/kitty/themes ~/.config/kitty/themes
-
-# keyboard (for qmk)
-# ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
-
+# keyboard (for qmk) {{{
+ln -s /home/rdennis/Repositories/GitHub/raydennis/dotfiles/keyboard/iris/keymap.c ~/Repositories/GitHub/qmk/qmk_firmware/keyboards/keebio/iris/keymaps/raydennis/keymap.c
 # }}}
 
 # [[ Modeline ]] {{{
