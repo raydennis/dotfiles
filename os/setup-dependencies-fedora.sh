@@ -1,5 +1,5 @@
 # basics
-sudo dnf -y install curl zsh the_silver_searcher wget ctags npm xclip 
+sudo dnf -y install curl zsh the_silver_searcher wget ctags npm xclip fzf
 
 # font
 cd ~/.local/share/fonts && curl -fLo "Fura Mono Regular Nerd Font Complete Mono.otf" https://GitHub.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.otf
@@ -13,13 +13,15 @@ ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.lua ~/.config
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets ~/.config/nvim/snippets
 
+
 # zsh
+## oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+## zsh and zshrc
 sudo dnf -y install zsh 
 rm ~/.zshrc
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc ~/.zshrc
-
-# oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Powerlevel 10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
@@ -40,9 +42,9 @@ rm ~/z.sh
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 
 # git
-rm ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig_global ~/.gitconfig_global
-ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig_global ~/.gitconfig_global
-rm ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
+rm ~/.gitconfig_global
+ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitconfig ~/.gitconfig_global
+rm ~/.gitignore_global
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/.gitignore_global ~/.gitignore_global
 
 # spelling
