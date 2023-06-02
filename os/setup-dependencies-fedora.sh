@@ -139,7 +139,7 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 # }}}
 
 # z.sh {{{
-rm ~/z.sh
+rm -f ~/z.sh
 ln -s ~/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh ~/z.sh
 # }}}
 
