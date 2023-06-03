@@ -59,6 +59,10 @@
         cmd: sudo -u  {{ ansible_user }} sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
         creates: "/home/{{ ansible_user }}/.oh-my-zsh"
 
+    - name: Set zsh as default shell
+      ansible.builtin.shell:
+        cmd: sudo usermod -s $(which zsh) {{ ansible_user }}
+
     - name: Create symlinks
       file:
         src: "/home/{{ ansible_user }}{{ item.path }}"
@@ -95,3 +99,5 @@
         - { repo: 'https://github.com/zsh-users/zsh-autosuggestions', dest: '/.oh-my-zsh/plugins/zsh-autosuggestions' }
         - { repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git', dest: '/.oh-my-zsh/plugins/zsh-syntax-highlighting' }
         - { repo: 'https://github.com/zsh-users/zsh-history-substring-search', dest: '/.oh-my-zsh/plugins/zsh-history-substring-search' }
+
+
