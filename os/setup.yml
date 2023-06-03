@@ -49,6 +49,8 @@
         dest: "/home/{{ ansible_user }}{{ item.path }}"
         recurse: true
         state: directory
+        owner: "{{ ansible_user }}"
+
       with_items:
         - { path: '/.config/nvim/' }
         - { path: '/.config/ranger/'}
