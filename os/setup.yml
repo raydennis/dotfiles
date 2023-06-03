@@ -1,5 +1,6 @@
 - hosts: localhost
   become: yes
+
   vars:
     - dnf_rpms:
       - curl
@@ -28,7 +29,6 @@
       - yapf 
       - jedi
 
-    - git_repos:
   tasks:
     - name: Set timezone to US/Mountain
       community.general.timezone:
@@ -50,7 +50,6 @@
         recurse: true
         state: directory
         owner: "{{ ansible_user }}"
-
       with_items:
         - { path: '/.config/nvim/' }
         - { path: '/.config/ranger/'}
@@ -66,6 +65,7 @@
         dest: "/home/{{ ansible_user }}{{ item.dest }}"
         state: link
         force: true
+        owner: "{{ ansible_user }}"
       with_items:
         - { path: '/Repositories/GitHub/raydennis/dotfiles/editors/neovim/init.lua', dest: '/.config/nvim/init.lua' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/editors/neovim/snippets', dest: '/.config/nvim/snippets' }
@@ -82,8 +82,9 @@
         - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/scope.sh', dest: '/.config/ranger/scope.sh' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/commands.py', dest: '/.config/ranger/commands.py' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/commands_full.py', dest: '/.config/ranger/commands_full.py' }
+        - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/plugins', dest: '/.config/ranger/plugins' }
 
-    - name: Git clone
+    - name: Clone Git Repos
       ansible.builtin.git:
         repo: "{{ item.repo }}"
         dest: "/home/{{ ansible_user }}{{ item.dest }}"
