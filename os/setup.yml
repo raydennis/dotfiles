@@ -1,4 +1,5 @@
 - hosts: localhost
+  become: yes
   vars:
     - dnf_rpms:
       - curl
@@ -29,43 +30,32 @@
 
     - git_repos:
   tasks:
+    - name: Set timezone to US/Mountain
+      community.general.timezone:
+        name: US/Mountain
+
     - name: Install required packages
       ansible.builtin.package:
         name: "{{ dnf_rpms }}"
         state: present
         update_cache: no
 
-    - name: Set timezone to US/Mountain
-      community.general.timezone:
-        name: US/Mountain
-
     - name: Install python packages
       ansible.builtin.pip:
         name: "{{ pip_packages }}"
 
-    - name: Git clone
-      ansible.builtin.git:
-        repo: "{{ item.repo }}"
-        dest: "/home/{{ ansible_user }}{{ item.dest }}"
-      with_items:
-        - { repo: 'https://GitHub.com/alexanderjeurissen/ranger_devicons', dest: '/.config/ranger/plugins/ranger_devicons' }
-        - { repo: 'https://github.com/tmux-plugins/tpm', dest: '/.tmux/plugins/tpm' }
-        - { repo: 'https://github.com/romkatv/powerlevel10k.git', dest: '/powerlevel10k' }
-        - { repo: 'https://github.com/zsh-users/zsh-autosuggestions', dest: '/.oh-my-zsh/plugins/zsh-autosuggestions' }
-        - { repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git', dest: '/.oh-my-zsh/plugins/zsh-syntax-highlighting' }
-        - { repo: 'https://github.com/zsh-users/zsh-history-substring-search', dest: '/.oh-my-zsh/plugins/zsh-history-substring-search' }
-
     - name: Create config directories
       file:
-        dest: "/home/{{ ansible_user }}{{ item.dest }}"
+        dest: "/home/{{ ansible_user }}{{ item.path }}"
         recurse: true
         state: directory
       with_items:
-        - { path: '/Repositories/GitHub/raydennis/dotfiles/editors/neovim/', dest: '/.config/nvim/' }
+        - { path: '/.config/nvim/' }
+        - { path: '/.config/ranger/'}
 
     - name: Setup oh-my-zsh
       ansible.builtin.shell: 
-        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        cmd: sudo -u  {{ ansible_user }} sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
         creates: "/home/{{ ansible_user }}/.oh-my-zsh"
 
     - name: Create symlinks
@@ -80,10 +70,25 @@
         - { path: '/Repositories/GitHub/raydennis/dotfiles/editors/vim/en.utf-8.add', dest: '/.config/nvim/en.utf-8.add' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/.gitconfig', dest: '/.gitconfig' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/.gitignore_global', dest: '/.gitignore_global' }
-        - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger', dest: '/.config/ranger' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/tmux/.tmux.conf', dest: '/.tmux.conf' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/os/.env', dest: '/.env' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/zsh/p10k/.p10k.zsh', dest: '/.p10k.zsh' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/zsh/.zshrc', dest: '/.zshrc' }
         - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/zsh/z/z.sh', dest: '/z.sh' }
+        - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rc.conf', dest: '/.config/ranger/rc.conf' }
+        - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/rifle.conf', dest: '/.config/ranger/rifle.conf' }
+        - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/scope.sh', dest: '/.config/ranger/scope.sh' }
+        - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/commands.py', dest: '/.config/ranger/commands.py' }
+        - { path: '/Repositories/GitHub/raydennis/dotfiles/shells/ranger/commands_full.py', dest: '/.config/ranger/commands_full.py' }
 
+    - name: Git clone
+      ansible.builtin.git:
+        repo: "{{ item.repo }}"
+        dest: "/home/{{ ansible_user }}{{ item.dest }}"
+      with_items:
+        - { repo: 'https://GitHub.com/alexanderjeurissen/ranger_devicons', dest: '/.config/ranger/plugins/ranger_devicons' }
+        - { repo: 'https://github.com/tmux-plugins/tpm', dest: '/.tmux/plugins/tpm' }
+        - { repo: 'https://github.com/romkatv/powerlevel10k.git', dest: '/powerlevel10k' }
+        - { repo: 'https://github.com/zsh-users/zsh-autosuggestions', dest: '/.oh-my-zsh/plugins/zsh-autosuggestions' }
+        - { repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git', dest: '/.oh-my-zsh/plugins/zsh-syntax-highlighting' }
+        - { repo: 'https://github.com/zsh-users/zsh-history-substring-search', dest: '/.oh-my-zsh/plugins/zsh-history-substring-search' }
